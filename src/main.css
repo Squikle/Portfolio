@@ -61,11 +61,11 @@ body {
   top: 0;
   bottom: 0;
   margin: auto;
-  max-width: 50%;
-  max-height: 50%;
+  max-width: 85%;
+  max-height: 60%;
   pointer-events: none;
-  z-index: -1;
-  /* filter: drop-shadow(rgba(225, 0, 255, 0.1) 10px 12px 5px); 
+  z-index: 1;
+  /* filter: drop-shadow(rgba(225, 0, 255, 0.1) 10px 12px 5px);
   -webkit-filter: drop-shadow(rgba(225, 0, 255, 0.2) 6px 8px 0px); */
   user-select: none;
   -moz-user-select: none;
@@ -74,11 +74,32 @@ body {
   -o-user-select: none;
 }
 
-canvas {
+/* #emitters-particles canvas,
+#canvas-particles canvas {
   z-index: -2;
   position: fixed;
   width: 100%;
   height: 100%;
+} */
+
+#global-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  padding: 0;
+  margin: 0;
+  z-index: 0; /* if you use -1 you have to set to `"window"` the interactivity.detectsOn property */
+}
+
+.particles-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  width: 100%;
+  height: 50%;
 }
 
 html.draggable-cursor {
@@ -102,7 +123,8 @@ html.draggable-cursor {
 
   border-radius: 30px;
   background: rgba(255, 255, 255, 0.07);
-  box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.8),
+  box-shadow:
+    8px 8px 20px rgba(0, 0, 0, 0.8),
     inset 0px 0px 60px rgba(255, 0, 230, 0.05);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(5px);
@@ -117,17 +139,18 @@ html.draggable-cursor {
   margin-top: 3%;
 }
 
-.empty {
-  width: 100vw;
-  height: 100vh;
-  position: relative;
-  z-index: -1000;
-}
-
+.empty,
 .info {
   width: 100vw;
   height: 100vh;
   position: relative;
+  z-index: 10000;
+}
+
+canvas {
+  z-index: -100;
+  overflow: hidden;
+  position: absolute;
 }
 
 .circle {
@@ -144,10 +167,11 @@ html.draggable-cursor {
   justify-content: center;
   align-items: center;
   transition: background-color 1;
-  z-index: 1;
+  z-index: 1000;
 
   background: rgba(255, 255, 255, 0.05);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 1),
+  box-shadow:
+    0 4px 30px rgba(0, 0, 0, 1),
     inset 0px 0px 50px rgba(255, 255, 255, 0.07);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);

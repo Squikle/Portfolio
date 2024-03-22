@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@tsparticles/plugin-canvas-mask": "^3.3.0",
+    "@tsparticles/plugin-emitters": "^3.3.0",
     "@tsparticles/react": "^3.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -25,6 +26,7 @@
     "eslint-plugin-react": "^7.34.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
+    "prettier": "3.2.5",
     "vite": "^5.1.6"
   }
 }

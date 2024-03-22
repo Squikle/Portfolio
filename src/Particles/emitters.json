@@ -12,8 +12,7 @@
           "decay": 0,
           "sync": false
         },
-        "direction": "random",
-        "path": false
+        "direction": "random"
       },
       "move": {
         "angle": {
@@ -21,11 +20,9 @@
           "value": 25
         },
         "direction": "top",
-        "speed": 4,
-        "trail": {
-          "enable": true,
-          "length": 50,
-          "fill": "#222"
+        "speed": {
+          "min": 3,
+          "max": 4
         },
         "distance": {
           "horizontal": 0,
@@ -83,7 +80,7 @@
       "height": 2
     },
     "rate": {
-      "quantity": 4
+      "quantity": 1
     }
   },
   "k-emitter": {
@@ -108,11 +105,9 @@
           "value": 25
         },
         "direction": "top",
-        "speed": 4,
-        "trail": {
-          "enable": true,
-          "length": 50,
-          "fill": "#222"
+        "speed": {
+          "min": 3,
+          "max": 4
         },
         "distance": {
           "horizontal": 0,
@@ -170,7 +165,7 @@
       "height": 2
     },
     "rate": {
-      "quantity": 4
+      "quantity": 1
     }
   }
 }

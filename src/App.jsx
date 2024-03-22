@@ -5,39 +5,54 @@ import globalParticlesOptions from "./Particles/global-particles.json";
 import emittersParticlesOptions from "./Particles/emitters-particles.json";
 import Particles from "./Particles/Particles";
 import Emitters from "./Particles/Emitters";
-import CanvasParticles from "./Particles/CanvasParticles";
+import { adaptParticles } from "./retinaAdapter";
+import { useParticlesEngine } from "./hooks/useParticlesEngine";
+import Parallax from "./Parallax/Parallax";
 
 export default function App() {
   const imageRef = useRef(null);
   const cardRef = useRef(null);
-  const [imageSize, setImageSize] = useState();
-  const [imagePosition, setImagePosition] = useState();
+  const [imageData, setImageData] = useState();
   const [loadState, setLoadState] = useState({});
+  const options = useRef({});
+
+  const updateImage = useCallback(() => {
+    setImageData({ ...getImagePosition(), ...getImageSize() });
+  }, []);
 
   useEffect(() => {
+    let resizeTimer;
+
     const handleResize = () => {
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(() => {
-        setImageSize(getImageSize());
-        setImagePosition(getImagePosition());
-      }, 50);
+        updateImage();
+      }, 100);
     };
 
-    let resizeTimer;
-
     window.addEventListener("resize", handleResize);
-
     return () => {
       window.removeEventListener("resize", handleResize);
       clearTimeout(resizeTimer);
     };
-  }, []);
+  }, [updateImage]);
 
   useEffect(() => {
-    setImagePosition(getImagePosition());
-  }, [imageSize]);
+    if (!imageData?.width && !imageData?.height) {
+      return;
+    }
+    const newSize = { width: imageData.width, height: imageData.height };
+    options.current = {
+      global: adaptParticles(globalParticlesOptions, newSize),
+      emitters: adaptParticles(emittersParticlesOptions, newSize),
+      canvas: adaptParticles(canvasParticlesOptions, newSize),
+    };
+  }, [imageData]);
 
   const getImageSize = () => {
+    console.log(
+      `[${imageRef.current.clientWidth}, ${imageRef.current.clientHeight}, ]`,
+    );
     return {
       width: imageRef.current.clientWidth,
       height: imageRef.current.clientHeight,
@@ -53,15 +68,14 @@ export default function App() {
   };
 
   const onImageLoad = useCallback(() => {
-    setImageSize(getImageSize());
-    setImagePosition(getImagePosition());
     setLoadState((prev) => {
       if (prev?.image !== true) {
         return { ...prev, image: true };
       }
       return prev;
     });
-  }, []);
+    updateImage();
+  }, [updateImage]);
 
   useEffect(() => {
     window.onbeforeunload = function () {
@@ -77,6 +91,8 @@ export default function App() {
       return prev;
     });
   }, []);
+
+  useParticlesEngine(onParticlesLoaded);
 
   const isLoaded = () => {
     return isImageLoaded() && loadState?.particles == true;
@@ -111,36 +127,30 @@ export default function App() {
             veritatis et! Unde?
           </p>
         </div>
+        <script src="https://embed.tidal.com/tidal-embed.js"></script>
       </div>
-      <img
-        src={backgroundImage}
-        className="image"
-        ref={imageRef}
-        onLoad={onImageLoad}
-      />
-      {isImageLoaded() && (
-        <Particles
-          id="global-particles"
-          onLoaded={onParticlesLoaded}
-          options={globalParticlesOptions}
+      <div className="particles-container">
+        <img
+          src={backgroundImage}
+          className="image"
+          ref={imageRef}
+          onLoad={onImageLoad}
         />
-      )}
-      {isImageLoaded() && (
-        <Emitters
-          id="emitters-particles"
-          onLoaded={onParticlesLoaded}
-          options={emittersParticlesOptions}
-          imagePosition={imagePosition}
-          imageSize={imageSize}
-        />
-      )}
-      {isImageLoaded() && (
-        <CanvasParticles
-          id="canvas-particles"
-          onLoaded={onParticlesLoaded}
-          options={canvasParticlesOptions}
-        />
-      )}
+        {isLoaded() && (
+          <Particles id="global-particles" options={options.current.global} />
+        )}
+        {isLoaded() && (
+          <Emitters
+            id="emitters-particles"
+            options={options.current.emitters}
+            imageData={imageData}
+          />
+        )}
+        {isLoaded() && (
+          <Particles id="canvas-particles" options={options.current.canvas} />
+        )}
+      </div>
+      <Parallax></Parallax>
     </div>
   );
 }

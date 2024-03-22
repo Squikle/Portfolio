@@ -3,11 +3,11 @@
   "delay": 0,
   "fullScreen": {
     "zIndex": 0,
-    "enable": true
+    "enable": false
   },
-  "detectRetina": true,
+  "detectRetina": false,
   "duration": 0,
-  "fpsLimit": 144,
+  "fpsLimit": 90,
   "particles": {
     "rotate": {
       "value": {
@@ -24,36 +24,7 @@
       "path": false
     },
     "color": {
-      "value": ["#ff1ce7", "#1cddff"],
-      "animation": {
-        "h": {
-          "count": 0,
-          "enable": false,
-          "speed": 1,
-          "decay": 0,
-          "delay": 0,
-          "sync": true,
-          "offset": 0
-        },
-        "s": {
-          "count": 0,
-          "enable": false,
-          "speed": 1,
-          "decay": 0,
-          "delay": 0,
-          "sync": true,
-          "offset": 0
-        },
-        "l": {
-          "count": 0,
-          "enable": false,
-          "speed": 1,
-          "decay": 0,
-          "delay": 0,
-          "sync": true,
-          "offset": 0
-        }
-      }
+      "value": ["#ff1ce7", "#1cddff"]
     },
     "effect": {
       "close": true,
@@ -123,7 +94,7 @@
         "mode": "delete",
         "value": 0
       },
-      "value": 100
+      "value": 40
     },
     "opacity": {
       "value": {
@@ -172,7 +143,7 @@
       "blink": false,
       "color": "random",
       "consent": false,
-      "distance": 30,
+      "distance": 15,
       "enable": true,
       "frequency": 1,
       "opacity": 0.2,
@@ -195,8 +166,8 @@
   "pauseOnOutsideViewport": true,
   "smooth": false,
   "style": {},
-  "zLayers": 100,
-  "name": "Portfolio",
+  "zLayers": 10,
+  "name": "Global",
   "backgroundMask": {
     "composite": "destination-out",
     "cover": {
@@ -220,17 +191,30 @@
       },
       "onHover": {
         "enable": true,
-        "mode": ["bubble", "attract"],
+        "mode": ["bubble", "connect", "grab"],
         "parallax": {
           "enable": true,
-          "force": 120,
-          "smooth": 5
+          "force": 60,
+          "smooth": 4
         }
       }
     },
     "modes": {
+      "grab": {
+        "distance": 150,
+        "links": {
+          "opacity": 1
+        }
+      },
+      "connect": {
+        "radius": 150,
+        "distance": 100,
+        "links": {
+          "opacity": 0.6
+        }
+      },
       "trail": {
-        "delay": 0,
+        "delay": 0.2,
         "pauseOnStop": true,
         "quantity": 1
       },
@@ -243,11 +227,11 @@
         "speed": 50
       },
       "bubble": {
-        "distance": 150,
+        "distance": 200,
         "duration": 0,
         "mix": true,
         "opacity": 1,
-        "size": 4,
+        "size": 6,
         "divs": {
           "distance": 2000,
           "duration": 0,

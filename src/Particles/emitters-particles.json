@@ -1,19 +1,18 @@
 {
   "autoPlay": true,
-  "delay": 0,
   "fullScreen": {
-    "zIndex": 0,
     "enable": true
   },
   "detectRetina": true,
-  "duration": 0,
   "fpsLimit": 144,
   "particles": {
     "color": {
       "value": ["#ff1ce7", "#1cddff"]
     },
     "move": {
-      "decay": 0,
+      "outModes": {
+        "default": "destroy"
+      },
       "distance": {
         "horizontal": 75,
         "vertical": 75
@@ -24,11 +23,6 @@
       "speed": {
         "min": 0.2,
         "max": 0.8
-      },
-      "trail": {
-        "enable": false,
-        "length": 5,
-        "fill": "#222"
       }
     },
     "number": {
@@ -54,7 +48,6 @@
     "shape": {
       "close": true,
       "fill": true,
-      "options": {},
       "type": "triangle"
     },
     "size": {
@@ -66,8 +59,6 @@
         "count": 0,
         "enable": true,
         "speed": 13,
-        "decay": 0,
-        "delay": 0,
         "sync": false,
         "mode": "random",
         "startValue": "max",
@@ -78,10 +69,8 @@
       "width": 0.1
     },
     "links": {
-      "blink": false,
       "color": "random",
-      "consent": false,
-      "distance": 25,
+      "distance": 8,
       "enable": true,
       "frequency": 0.15,
       "opacity": 1,
@@ -89,23 +78,12 @@
         "enable": true,
         "frequency": 1
       },
-      "width": 0.75,
-      "warp": false
+      "width": 0.75
     }
   },
   "pauseOnBlur": true,
   "pauseOnOutsideViewport": true,
-  "smooth": false,
-  "style": {},
-  "zLayers": 100,
-  "name": "Portfolio",
-  "motion": {
-    "disable": false,
-    "reduce": {
-      "factor": 4,
-      "value": true
-    }
-  },
+  "name": "Emitters",
   "backgroundMode": {
     "enable": true,
     "zIndex": 0
