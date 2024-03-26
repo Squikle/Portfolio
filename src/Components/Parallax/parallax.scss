@@ -1,0 +1,469 @@
+%select-disabled {
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+%select-enabled {
+  -webkit-user-select: text;
+  -khtml-user-select: text;
+  -moz-user-select: text;
+  -o-user-select: text;
+  user-select: text;
+}
+
+.parallax-layers {
+  overflow: hidden;
+  aspect-ratio: 1/1;
+  min-height: 100vh;
+  min-width: 100vw;
+  pointer-events: none;
+  position: absolute;
+  margin: auto auto 0;
+  inset: auto 0 0;
+  @extend %select-disabled;
+}
+
+.parallax-layers > * {
+  --scale: 0.316;
+  --origTranslateX: 0px;
+  --origTranslateY: 0px;
+  --origTranslateZ: 0px;
+  --translateX: var(--origTranslateX);
+  --translateY: var(--origTranslateY);
+  --translateZ: var(--origTranslateZ);
+  --rotateY: 0;
+  --rotateX: 0;
+  --leftOffset: calc(-100px * var(--scale));
+  position: absolute;
+  top: calc(var(--from-top) * var(--scale));
+  left: calc(var(--from-left) * var(--scale) + var(--leftOffset));
+  transform: translate(
+      calc(var(--translateX) + var(--origTranslateX)),
+      calc(var(--translateY) + var(--origTranslateY))
+    )
+    perspective(20000px)
+    rotateY(var(--rotateY))
+    rotateX(var(--rotateX))
+    translateZ(var(--translateZ));
+}
+
+.parallax {
+  width: calc(var(--width) * var(--scale));
+  transition: transform 1s cubic-bezier(0.15, 0.43, 0.15, 0.71);
+}
+
+.sky-overlap {
+  --width: 364%;
+  --from-left: 0%;
+  --from-top: 0%;
+  z-index: 4;
+  opacity: 0;
+  filter: brightness(1) saturate(1);
+}
+.sky-3 {
+  --width: 364%;
+  --from-left: -15%;
+  --from-top: -10%;
+  z-index: 1;
+}
+.sky-2 {
+  --width: 364%;
+  --from-left: -15%;
+  --from-top: -24%;
+  z-index: 2;
+  opacity: 0.8;
+}
+.sky-1 {
+  --width: 364%;
+  --from-left: -20%;
+  --from-top: -15%;
+  z-index: 5;
+  opacity: 1;
+}
+.trace {
+  --width: 126.311%;
+  --from-left: 125.94%;
+  --from-top: 187%;
+  z-index: 4;
+}
+.left-9 {
+  --width: 10.644%;
+  --from-left: 7.85%;
+  --from-top: 243%;
+  z-index: 5;
+}
+.left-8 {
+  --width: 17.298%;
+  --from-left: 19.27%;
+  --from-top: 234.5%;
+  z-index: 6;
+}
+.left-7 {
+  --width: 15.806%;
+  --from-left: -7.5%;
+  --from-top: 233.69%;
+  z-index: 7;
+}
+.left-6 {
+  --width: 6.366%;
+  --from-left: 38.82%;
+  --from-top: 240%;
+  z-index: 8;
+}
+.left-5 {
+  --width: 18.685%;
+  --from-left: 51.59%;
+  --from-top: 232.91%;
+  z-index: 9;
+}
+.left-4 {
+  --width: 33.346%;
+  --from-left: 80.35%;
+  --from-top: 216%;
+  z-index: 9;
+}
+.left-3 {
+  --width: 33.436%;
+  --from-left: 89%;
+  --from-top: 236%;
+  z-index: 32;
+}
+.left-2 {
+  --width: 26.806%;
+  --from-left: 66.64%;
+  --from-top: 230.86%;
+  z-index: 11;
+}
+.rays-left {
+  --width: 264.028%;
+  --from-left: 5%;
+  --from-top: 66.28%;
+  z-index: 28;
+  opacity: 1;
+}
+.fog-left {
+  --width: 68.419%;
+  --from-left: -11.44%;
+  --from-top: 241.2%;
+  z-index: 13;
+  mix-blend-mode: screen;
+}
+.right-11 {
+  --width: 12.853%;
+  --from-left: 231.8%;
+  --from-top: 210.19%;
+  z-index: 14;
+}
+.right-10 {
+  --width: 12.049%;
+  --from-left: 221.2%;
+  --from-top: 220.13%;
+  z-index: 15;
+}
+.right-9 {
+  --width: 35.333%;
+  --from-left: 262.19%;
+  --from-top: 189.08%;
+  z-index: 16;
+}
+.right-8 {
+  --width: 17.116%;
+  --from-left: 310.38%;
+  --from-top: 218.52%;
+  z-index: 17;
+}
+.right-7 {
+  --width: 18.415%;
+  --from-left: 295%;
+  --from-top: 211%;
+  z-index: 18;
+}
+.fog-right-6 {
+  --width: 85.254%;
+  --from-left: 261.31%;
+  --from-top: 219.16%;
+  z-index: 19;
+  mix-blend-mode: screen;
+}
+.right-5 {
+  --width: 13.014%;
+  --from-left: 297.13%;
+  --from-top: 228.47%;
+  z-index: 20;
+}
+.right-4 {
+  --width: 14.504%;
+  --from-left: 320.32%;
+  --from-top: 242.66%;
+  z-index: 21;
+}
+.right-3 {
+  --width: 21.732%;
+  --from-left: 315.17%;
+  --from-top: 246%;
+  z-index: 22;
+}
+.right-2 {
+  --width: 18.932%;
+  --from-left: 245.26%;
+  --from-top: 198.78%;
+  z-index: 23;
+}
+.right-1 {
+  --width: 27.942%;
+  --from-left: 239.96%;
+  --from-top: 216.21%;
+  z-index: 24;
+}
+.fog-right-0 {
+  --width: 81.204%;
+  --from-left: 203.86%;
+  --from-top: 218.79%;
+  z-index: 25;
+  mix-blend-mode: screen;
+}
+.middle-5 {
+  --width: 70.011%;
+  --from-left: 147.62%;
+  --from-top: 198.41%;
+  z-index: 26;
+}
+.middle-4 {
+  --width: 9.242%;
+  --from-left: 136.76%;
+  --from-top: 160%;
+  z-index: 27;
+}
+.fog-middle {
+  --width: 87.295%;
+  min-height: 278px;
+  --from-left: 128.86%;
+  --from-top: 206.72%;
+  z-index: 28;
+  mix-blend-mode: screen;
+}
+.middle-2 {
+  --width: 11.529%;
+  --from-left: 189.67%;
+  --from-top: 228.17%;
+  z-index: 29;
+}
+.middle-1 {
+  --width: 15.713%;
+  --from-left: 134%;
+  --from-top: 228%;
+  z-index: 30;
+}
+.middle-0 {
+  --width: 29.494%;
+  --from-left: 198.62%;
+  --from-top: 217.94%;
+  z-index: 31;
+}
+.buildings-front {
+  --width: 345.575%;
+  --from-left: -6.54%;
+  --from-top: 189.59%;
+  z-index: 32;
+}
+.water {
+  --width: 349.487%;
+  --from-left: -8.12%;
+  --from-top: 253.31%;
+  z-index: 33;
+}
+.water-yacht {
+  --width: 15.366%;
+  --from-left: 97.65%;
+  --from-top: 249.35%;
+  z-index: 34;
+}
+.water-boat-right {
+  --width: 16.068%;
+  --from-left: 130.39%;
+  --from-top: 246.89%;
+  z-index: 35;
+}
+.water-boat-left {
+  --width: 7%;
+  --from-left: -5%;
+  --from-top: 246.98%;
+  z-index: 36;
+}
+.fog-front-small {
+  --width: 121.605%;
+  --from-left: 113.03%;
+  --from-top: 230.77%;
+  z-index: 37;
+}
+.fog-front {
+  --width: 389.398%;
+  --from-left: -26.97%;
+  --from-top: 210.15%;
+  z-index: 38;
+}
+.birds {
+  --width: 39%;
+  --from-left: 197.78%;
+  --from-top: 195%;
+  z-index: 39;
+}
+.person {
+  --width: 83%;
+  --from-left: 11.34%;
+  --from-top: 230%;
+  z-index: 40;
+  opacity: 1;
+}
+.light {
+  will-change: filter;
+  --width: 219.073%;
+  --from-left: -12.2%;
+  --from-top: 60.44%;
+  z-index: 41;
+  opacity: 0.4;
+  filter: saturate(200%) hue-rotate(340deg);
+  mix-blend-mode: screen;
+}
+@media (max-aspect-ratio: 0.69/1) and (orientation: portrait){
+  .parallax-layers {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .person {
+    transform-origin: left top;
+    --from-left: -142vw;
+    --origTranslateX: 165%;
+  }
+  .birds {
+    transform-origin: left top;
+    --from-left: 125vw;
+    --from-top: 194%;
+    --origTranslateX: 290%;
+  }
+  .light {
+    transform-origin: left top;
+    --from-left: -100vw;
+    opacity: 0.5;
+    --origTranslateX: 37%;
+  }
+  .rays-left {
+    transform-origin: left top;
+    --from-left: -150vw;
+    --origTranslateX: 40%;
+  }
+  .parallax-layers {
+    left: 50%;
+    transform: translateX(-42%);
+  }
+}
+@media (max-aspect-ratio: 0.54/1) and (orientation: portrait){
+  .person {
+    --width: 80%;
+    --from-left: -142vw;
+    --origTranslateX: 165%;
+  }
+  .text {
+    .dev {
+      left: 53%;
+      --font-size: 0.8;
+      line-height: 3.8vmax;
+    }
+    .name {
+      left: 15%;
+      --font-size: 0.9;
+      line-height: 3.8vmax;
+    }
+  }
+}
+@media (max-aspect-ratio: 0.44/1) and (orientation: portrait){
+  .text {
+    .dev {
+      --font-size: 0.55;
+      line-height: 3vmax;
+      top: 10%;
+    }
+    .name {
+      --font-size: 0.65;
+      line-height: 3vmax;
+      left: 25%;
+      top: 10%;
+    }
+  }
+}
+@media (max-aspect-ratio: 0.3/1) and (orientation: portrait){
+  .text {
+    .dev {
+      display: none;
+    }
+    .name {
+      left: 55%;
+      text-align: left;
+    }
+  }
+  .parallax-layers {
+    left: 50%;
+    transform: translateX(-47%);
+  }
+  .person {
+    --width: 65%;
+    --from-left: -120vw;
+    --from-top: 240%;
+    --origTranslateX: 220%;
+  }
+}
+@media (min-aspect-ratio: 1.5/1) and (orientation: landscape){
+  .parallax-layers {
+    transform: translateY(15vh);
+  }
+  .person {
+    width: 22%;
+    --from-left: 15vw;
+    --from-top: 210%;
+  }
+}
+@media (min-aspect-ratio: 1.9/1) and (orientation: landscape){
+  .parallax-layers {
+    transform: translateY(25vh);
+  }
+  .person {
+    width: 18%;
+    --from-left: 25vw;
+    --from-top: 210%;
+  }
+}
+
+@media (min-aspect-ratio: 2.3/1) and (orientation: landscape){
+  .parallax-layers {
+    transform: translateY(40vh);
+  }
+  .person {
+    width: 18%;
+    --from-left: 25vw;
+    --from-top: 200%;
+  }
+}
+
+@media (min-aspect-ratio: 2.7/1) and (orientation: landscape){
+  .parallax-layers {
+    transform: translateY(45vh);
+  }
+  .person {
+    width: 18%;
+    --from-left: 25vw;
+    --from-top: 200%;
+  }
+}
+
+@media (min-aspect-ratio: 3/1) and (orientation: landscape){
+  .parallax-layers {
+    transform: translateY(65vh);
+  }
+  .person {
+    width: 18%;
+    --from-left: 25vw;
+    --from-top: 200%;
+  }
+}

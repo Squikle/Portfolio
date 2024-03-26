@@ -1,0 +1,21 @@
+.page,
+.section {
+  position: relative;
+  scroll-snap-align: start;
+  scroll-behavior: smooth;
+}
+
+.page {
+  height: fit-content;
+  scroll-snap-type: y mandatory;
+}
+
+.section {
+  overflow: hidden;
+  transition: opacity 1s;
+  opacity: 1;
+}
+
+.section.inactive {
+  opacity: 0;
+}
