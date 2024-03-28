@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { throttle } from "../../utils/throttle.ts";
 
 const cssProps = {
   xOrigTranslate: "--origTranslateX",
@@ -24,8 +25,8 @@ export function useParallax(isActive: boolean) {
     clientY: number,
     elementsToUpdate: HTMLElement[],
   ) => {
-    const xValue = clientX - window.innerWidth / 2;
-    const yValue = clientY - window.innerHeight / 2;
+    const xValue = clientX - window.innerHeight / 2;
+    const yValue = clientY - window.innerWidth / 2;
     update(xValue, yValue, elementsToUpdate);
   };
 
@@ -47,9 +48,11 @@ export function useParallax(isActive: boolean) {
       const yOffset = y * ySpeed;
       const zOffset = zValue * zSpeed;
 
-      el.style.setProperty(cssProps.xTranslate, `${xOffsetX}px`);
-      el.style.setProperty(cssProps.yTranslate, `${yOffset}px`);
-      el.style.setProperty(cssProps.zTranslate, `${zOffset}px`);
+      window.requestAnimationFrame(() => {
+        el.style.setProperty(cssProps.xTranslate, `${xOffsetX}px`);
+        el.style.setProperty(cssProps.yTranslate, `${yOffset}px`);
+        el.style.setProperty(cssProps.zTranslate, `${zOffset}px`);
+      });
 
       const speedRotY =
         ((dataset.speedRotY || zSpeed) / (window.innerWidth * 0.002)) * 2;
@@ -66,49 +69,55 @@ export function useParallax(isActive: boolean) {
     speedRotY: number,
   ) {
     const rotateDegreeY = (x / (window.innerHeight / 2)) * 10;
-    el.style.setProperty(
-      cssProps.yRotate,
-      `${rotateDegreeY * speedRotY * 2}deg`,
-    );
+
+    window.requestAnimationFrame(() => {
+      el.style.setProperty(
+        cssProps.yRotate,
+        `${rotateDegreeY * speedRotY * 2}deg`,
+      );
+    });
 
     if (speedRotX) {
       const xRotSpeed = speedRotX * 0.35;
       const rotateDegreeX = (y / (window.innerWidth / 2)) * -10;
-      el.style.setProperty(
-        cssProps.xRotate,
-        `${rotateDegreeX * xRotSpeed * 10}deg`,
-      );
+      window.requestAnimationFrame(() => {
+        el.style.setProperty(
+          cssProps.xRotate,
+          `${rotateDegreeX * xRotSpeed * 10}deg`,
+        );
+      });
     }
   }
 
   useEffect(() => {
+    const container = document.querySelector(".parallax-container")!;
     const elementsToUpdate = Array.from(
-      document.querySelectorAll<HTMLElement>(".parallax"),
+      container.querySelectorAll<HTMLElement>(".parallax"),
     );
 
-    const handleMouseUpdate = (e: MouseEvent) => {
+    const handleMouseUpdate = throttle((e: MouseEvent) => {
       handleUpdate(e.clientX, e.clientY, elementsToUpdate);
-    };
+    }, 50);
 
-    const handleTouchUpdate = (e: TouchEvent) => {
+    const handleTouchUpdate = throttle((e: TouchEvent) => {
       const lastTouch = e.changedTouches[e.changedTouches.length - 1];
       handleUpdate(lastTouch.clientX, lastTouch.clientY, elementsToUpdate);
-    };
+    }, 70);
 
     const reset = () => {
       update(0, 0, elementsToUpdate);
     };
 
     reset();
-    window.addEventListener("mousemove", handleMouseUpdate);
-    window.addEventListener("touchmove", handleTouchUpdate);
-    window.addEventListener("mouseout", reset);
+    container.addEventListener("mousemove", handleMouseUpdate);
+    container.addEventListener("touchmove", handleTouchUpdate);
+    container.addEventListener("mouseleave", reset);
     window.addEventListener("touchend", reset);
 
     return () => {
-      window.removeEventListener("mousemove", handleMouseUpdate);
-      window.removeEventListener("touchmove", handleTouchUpdate);
-      window.removeEventListener("mouseout", reset);
+      container.removeEventListener("mousemove", handleMouseUpdate);
+      container.removeEventListener("touchmove", handleTouchUpdate);
+      container.removeEventListener("mouseleave", reset);
       window.removeEventListener("touchend", reset);
     };
   }, [isActive]);
