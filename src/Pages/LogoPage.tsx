@@ -114,7 +114,10 @@ export default function LogoPage({ className }: Props) {
   };
 
   return (
-    <Page onActiveUpdate={setIsActive} className={className}>
+    <Page
+      onActiveUpdate={setIsActive}
+      className={classNames(className, styles.logoPage)}
+    >
       {isLoaded() && particles}
       <Logo
         ref={imageRef}
@@ -127,7 +130,7 @@ export default function LogoPage({ className }: Props) {
       <PageSection className={classNames(styles.globalParticles)}>
         {isActive && (
           <Particles
-            id="global-particles"
+            id={styles["global-particles"]}
             options={options.current.global}
             isActive={isActive}
           />

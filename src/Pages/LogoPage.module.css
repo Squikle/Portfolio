@@ -1,5 +1,12 @@
-.globalParticles {
+#global-particles {
+  position: relative;
+  height: 100%;
   -ms-user-select: none;
   -webkit-user-select: none;
   user-select: none;
+}
+
+.logoPage {
+  position: relative;
+  z-index: -0;
 }

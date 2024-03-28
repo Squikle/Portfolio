@@ -70,7 +70,6 @@ export default function ParallaxPage({ className }: Props) {
         className={classNames(className, styles.parallaxSlide)}
         onActiveUpdate={setIsActive}
       >
-        <InfoCard></InfoCard>
         <Parallax isActive={isActive}></Parallax>
       </PageSection>
     </Page>

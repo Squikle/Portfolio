@@ -44,7 +44,6 @@ import light from "./layers-mid/0-0-light.png";
 import "./parallax.scss";
 import "./parallax.text.scss";
 import { useParallax } from "./useParallax.ts";
-import { useEffect } from "react";
 
 type Props = {
   isActive: boolean;
@@ -52,8 +51,6 @@ type Props = {
 
 export default function Parallax({ isActive }: Props) {
   useParallax(isActive);
-
-  useEffect(() => {}, []);
 
   return (
     <div className="parallax-container">
@@ -117,13 +114,7 @@ export default function Parallax({ isActive }: Props) {
           data-speed-y="0.1"
           data-speed-z="0"
         />
-        <img
-          src={skyOverlap}
-          className="sky-overlap"
-          data-speed-x="0.5"
-          data-speed-y="0.16"
-          data-speed-z="0"
-        />
+        <img src={skyOverlap} className="parallax sky-overlap" />
         <img
           src={trace}
           className="parallax trace"

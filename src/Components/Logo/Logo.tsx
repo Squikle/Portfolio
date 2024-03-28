@@ -1,11 +1,11 @@
 import backgroundImage from "./squik.png";
 import { ForwardedRef, forwardRef, RefObject, useEffect } from "react";
 import styles from "./Logo.module.css";
-import { OnImageResize, OnLoad } from "./types.ts";
+import { OnImageResize, OnImageLoaded } from "./types.ts";
 
 type Props = {
   onImageResize: OnImageResize;
-  onLoad: OnLoad;
+  onLoad: OnImageLoaded;
 };
 
 export default forwardRef<HTMLImageElement, Props>(function Logo(

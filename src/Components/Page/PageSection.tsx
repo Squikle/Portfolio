@@ -40,7 +40,7 @@ export default function PageSection({
     <CurrentSectionContextProvider isActive={isActive}>
       <div
         ref={ref}
-        className={classNames(className, styles.content, styles.section, {
+        className={classNames(className, styles.section, {
           [styles.inactive]: !isActive && !alwaysActive,
         })}
         style={overriddenStyles}

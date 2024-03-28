@@ -6,7 +6,4 @@ export type OnImageResize = (
   imagePosition: ImagePosition,
 ) => void;
 
-export type OnImageLoaded = (
-  imageSize: ImageSize,
-  imagePosition: ImagePosition,
-) => void;
+export type OnImageLoaded = (size: ImageSize, position: ImagePosition) => void;

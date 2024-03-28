@@ -1,6 +1,8 @@
+import styles from "./Page.module.css";
 import { ReactNode, useCallback, useRef, useState } from "react";
 import useActiveClass from "./useActiveClass";
 import { CurrentPageContextProvider } from "./CurrentPageContext/Contexts";
+import classNames from "classnames";
 
 type Props = {
   className?: string;
@@ -10,7 +12,7 @@ type Props = {
 
 export default function Page({ className, children, onActiveUpdate }: Props) {
   const ref = useRef(null);
-  const [isActive, setIsActive] = useState(false);
+  const [isActive, setIsActive] = useState(true);
 
   const handleActiveUpdate = useCallback(
     (active: boolean) => {
@@ -23,7 +25,7 @@ export default function Page({ className, children, onActiveUpdate }: Props) {
 
   return (
     <CurrentPageContextProvider isActive={isActive}>
-      <div ref={ref} className={className}>
+      <div ref={ref} className={classNames(className, styles.page)}>
         {children}
       </div>
     </CurrentPageContextProvider>
