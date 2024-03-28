@@ -37,8 +37,6 @@
 
 .name, .dev {
   --font-size : 1;
-  padding: 50px;
-  margin: -50px;
   line-height: 4.4vmax;
   letter-spacing: 0.01vmax;
   position: absolute;
@@ -49,7 +47,6 @@
   opacity: 0.2;
   &:hover {
     opacity: 1;
-    filter: none;
     h1 {
       color: white;
     }
