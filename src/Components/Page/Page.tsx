@@ -1,4 +1,4 @@
-import React, { ReactNode, useCallback, useRef, useState } from "react";
+import { ReactNode, useCallback, useRef, useState } from "react";
 import useActiveClass from "./useActiveClass";
 import { CurrentPageContextProvider } from "./CurrentPageContext/Contexts";
 

@@ -16,13 +16,12 @@ type Props = {
 export default function PageSection({
   className,
   children,
-  height = "100vh",
+  height,
   onActiveUpdate,
   alwaysActive,
 }: Props) {
   const ref = useRef(null);
   const [isActive, setIsActive] = useState(false);
-  const [hasNext] = useState(true);
 
   const handleActiveUpdate = useCallback(
     (active: boolean) => {
@@ -33,17 +32,21 @@ export default function PageSection({
   );
   useActiveClass(ref, handleActiveUpdate);
 
+  const overriddenStyles = {
+    height: height || undefined,
+  };
+
   return (
     <CurrentSectionContextProvider isActive={isActive}>
       <div
         ref={ref}
-        className={classNames(className, styles.section, {
+        className={classNames(className, styles.content, styles.section, {
           [styles.inactive]: !isActive && !alwaysActive,
         })}
-        style={{ height: height }}
+        style={overriddenStyles}
       >
         {children}
-        {hasNext && <ScrollButton elementRef={ref}></ScrollButton>}
+        <ScrollButton elementRef={ref}></ScrollButton>
       </div>
     </CurrentSectionContextProvider>
   );

@@ -44,6 +44,7 @@ import light from "./layers-mid/0-0-light.png";
 import "./parallax.scss";
 import "./parallax.text.scss";
 import { useParallax } from "./useParallax.ts";
+import { useEffect } from "react";
 
 type Props = {
   isActive: boolean;
@@ -52,8 +53,31 @@ type Props = {
 export default function Parallax({ isActive }: Props) {
   useParallax(isActive);
 
+  useEffect(() => {}, []);
+
   return (
     <div className="parallax-container">
+      <img
+        src={birds}
+        className="parallax birds"
+        data-speed-x="0.3"
+        data-speed-y="0.25"
+        data-speed-z="0.2"
+      />
+      <img
+        src={person}
+        className="parallax person"
+        data-speed-x="0.01"
+        data-speed-y="0.08"
+        data-speed-z="0.5"
+      />
+      <img
+        src={light}
+        className="parallax light"
+        data-speed-x="0.2"
+        data-speed-y="0.2"
+        data-speed-z="0.5"
+      />
       <div className="parallax-layers">
         <img
           src={sky3}
@@ -68,7 +92,7 @@ export default function Parallax({ isActive }: Props) {
           data-speed-y="0.13"
           data-speed-z="0"
           data-speed-rot-y="1"
-          data-speed-rot-x="1"
+          data-speed-rot-x="0.5"
         >
           <div className="dev">
             <h1 className="filled">Fullstack</h1>
@@ -307,14 +331,14 @@ export default function Parallax({ isActive }: Props) {
           src={water}
           className="parallax water"
           data-speed-x="0.20"
-          data-speed-y="0.19"
+          data-speed-y="0.21"
           data-speed-z="0.15"
         />
         <img
           src={waterYacht}
           className="parallax water-yacht"
           data-speed-x="0.22"
-          data-speed-y="0.19"
+          data-speed-y="0.21"
           data-speed-z="0.1"
         />
         <img
@@ -351,27 +375,6 @@ export default function Parallax({ isActive }: Props) {
           data-speed-x="0.11"
           data-speed-y="0.05"
           data-speed-z="0.15"
-        />
-        <img
-          src={birds}
-          className="parallax birds"
-          data-speed-x="0.25"
-          data-speed-y="0.2"
-          data-speed-z="0.2"
-        />
-        <img
-          src={person}
-          className="parallax person"
-          data-speed-x="0.01"
-          data-speed-y="0.08"
-          data-speed-z="0.5"
-        />
-        <img
-          src={light}
-          className="parallax light"
-          data-speed-x="0.2"
-          data-speed-y="0.2"
-          data-speed-z="0.5"
         />
       </div>
     </div>

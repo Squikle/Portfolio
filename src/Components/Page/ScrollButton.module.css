@@ -1,8 +1,8 @@
 .circle {
   position: absolute;
-  bottom: 50px;
-  width: 50px;
-  height: 50px;
+  bottom: 1dvh;
+  width: 60px;
+  height: 40px;
   background-color: white;
   left: 0;
   right: 0;
@@ -22,17 +22,26 @@
   -webkit-backdrop-filter: blur(5px);
   border: 0.5px solid rgba(255, 255, 255, 0.2);
   animation: bubbleup ease-out 0.5s forwards;
-}
 
-.circle::after {
-  content: "▼";
+  &::after {
+    content: "▼";
+    text-shadow: 0 0 10px white;
+    transition: text-shadow 0.2s ease-in-out;
+  }
+
+  &:hover::after {
+    text-shadow:
+      0 0 10px white,
+      0 0 20px white,
+      0 0 30px white;
+  }
 }
 
 .circle:hover {
-  background: rgba(255, 255, 255, 0.5);
-  -webkit-transition: background-color 200ms linear;
-  -ms-transition: background-color 200ms linear;
-  transition: background-color 200ms linear;
+  background: rgba(255, 255, 255, 0.1);
+  -webkit-transition: background-color 400ms linear;
+  -ms-transition: background-color 400ms linear;
+  transition: background-color 400ms linear;
 }
 
 @keyframes bubbleup {
@@ -40,6 +49,6 @@
     bottom: -15%;
   }
   100% {
-    bottom: 50px;
+    bottom: 1dvh;
   }
 }

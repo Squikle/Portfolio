@@ -1,12 +1,20 @@
 import { useCurrentSectionContext } from "../Page/CurrentPageContext/useContexts";
 import classNames from "classnames";
 import styles from "./InfoCard.module.css";
+import React from "react";
 
-export default function InfoCard() {
+type Props = { propsStyles?: React.CSSProperties };
+
+export default function InfoCard({ propsStyles }: Props) {
   const isActive = useCurrentSectionContext().isActive;
 
   return (
-    <div className={classNames(styles.card, { [styles.active]: isActive })}>
+    <div
+      className={classNames(styles.card, {
+        [styles.active]: isActive,
+      })}
+      style={propsStyles}
+    >
       <h1>Michael Dovhalov</h1>
       <p>
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aut assumenda

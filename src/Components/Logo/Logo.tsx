@@ -1,13 +1,11 @@
 import backgroundImage from "./squik.png";
 import { ForwardedRef, forwardRef, RefObject, useEffect } from "react";
 import styles from "./Logo.module.css";
-
-type ImageSize = { width: number; height: number };
-type ImagePosition = { top: number; left: number };
+import { OnImageResize, OnLoad } from "./types.ts";
 
 type Props = {
-  onImageResize: (imageSize: ImageSize, imagePosition: ImagePosition) => void;
-  onLoad: (imageSize: ImageSize, imagePosition: ImagePosition) => void;
+  onImageResize: OnImageResize;
+  onLoad: OnLoad;
 };
 
 export default forwardRef<HTMLImageElement, Props>(function Logo(
@@ -15,7 +13,7 @@ export default forwardRef<HTMLImageElement, Props>(function Logo(
   imageRef: ForwardedRef<HTMLImageElement>,
 ) {
   useEffect(() => {
-    let resizeTimer: number;
+    let resizeTimer: NodeJS.Timeout;
 
     const handleResize = () => {
       clearTimeout(resizeTimer);

@@ -1,6 +1,6 @@
 import styles from "./ScrollButton.module.css";
 import React, { useEffect, useState } from "react";
-declare module "*.scss";
+
 type Props = {
   elementRef: React.RefObject<HTMLElement>;
   mainContainerId?: string;
@@ -39,7 +39,5 @@ export default function ScrollButton({
     setIsShown(!isBottom);
   }, []);
 
-  return (
-    isShown && <div className={styles.circle} onClick={() => scroll()}></div>
-  );
+  return isShown && <div className={styles.circle} onClick={scroll} />;
 }

@@ -51,8 +51,9 @@ export function useParallax(isActive: boolean) {
       el.style.setProperty(cssProps.yTranslate, `${yOffset}px`);
       el.style.setProperty(cssProps.zTranslate, `${zOffset}px`);
 
-      const speedRotX = dataset.speedRotY || zSpeed;
-      const speedRotY = dataset.speedRotY || 0;
+      const speedRotY =
+        ((dataset.speedRotY || zSpeed) / (window.innerWidth * 0.002)) * 2;
+      const speedRotX = 0;
       updateRotation(x, y, el, speedRotX, speedRotY);
     });
   }
@@ -70,12 +71,12 @@ export function useParallax(isActive: boolean) {
       `${rotateDegreeY * speedRotY * 2}deg`,
     );
 
-    if (speedRotY) {
+    if (speedRotX) {
       const xRotSpeed = speedRotX * 0.35;
       const rotateDegreeX = (y / (window.innerWidth / 2)) * -10;
       el.style.setProperty(
         cssProps.xRotate,
-        `${rotateDegreeX * xRotSpeed * 2}deg`,
+        `${rotateDegreeX * xRotSpeed * 10}deg`,
       );
     }
   }

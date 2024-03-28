@@ -54,7 +54,6 @@ export default function Emitters({
     const update = async () => {
       const containerWithEmitters = container as ContainerWithPlugins;
       if (!containerWithEmitters || !containerWithEmitters.addEmitter) return;
-      await containerWithEmitters.refresh();
       const imageSize = { width: imageData.width, height: imageData.height };
       const imagePosition = { left: imageData.left, top: imageData.top };
       const sEmitter = adaptEmitter(emittersOptions["s-emitter"], imageSize);

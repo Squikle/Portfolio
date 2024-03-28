@@ -13,45 +13,41 @@
   user-select: text;
 }
 
-.parallax-layers {
-  overflow: hidden;
+.parallax-layers, .parallax-container {
   aspect-ratio: 1/1;
-  min-height: 100vh;
-  min-width: 100vw;
   pointer-events: none;
+  min-height: 100vh;
   position: absolute;
-  margin: auto auto 0;
+  margin: 0;
   inset: auto 0 0;
   @extend %select-disabled;
 }
 
-.parallax-layers > * {
+.parallax {
   --scale: 0.316;
   --origTranslateX: 0px;
   --origTranslateY: 0px;
   --origTranslateZ: 0px;
-  --translateX: var(--origTranslateX);
-  --translateY: var(--origTranslateY);
-  --translateZ: var(--origTranslateZ);
   --rotateY: 0;
   --rotateX: 0;
-  --leftOffset: calc(-100px * var(--scale));
-  position: absolute;
-  top: calc(var(--from-top) * var(--scale));
-  left: calc(var(--from-left) * var(--scale) + var(--leftOffset));
-  transform: translate(
-      calc(var(--translateX) + var(--origTranslateX)),
-      calc(var(--translateY) + var(--origTranslateY))
-    )
-    perspective(20000px)
-    rotateY(var(--rotateY))
-    rotateX(var(--rotateX))
-    translateZ(var(--translateZ));
-}
+  --leftOffset: -110px;
 
-.parallax {
+  position: absolute;
+
+  top: calc(var(--from-top) * var(--scale));
+  left: calc((var(--from-left) + var(--leftOffset)) * var(--scale));
+  transform:
+    perspective(10000px)
+    translate3d(
+                calc(var(--translateX) + var(--origTranslateX)),
+                calc(var(--translateY) + var(--origTranslateY)),
+                var(--translateZ)
+              )
+    rotateY(var(--rotateY))
+    rotateX(var(--rotateX));
+
+  transition: transform 0.5s cubic-bezier(0.15, 0.43, 0.15, 0.71);
   width: calc(var(--width) * var(--scale));
-  transition: transform 1s cubic-bezier(0.15, 0.43, 0.15, 0.71);
 }
 
 .sky-overlap {
@@ -238,7 +234,6 @@
 }
 .fog-middle {
   --width: 87.295%;
-  min-height: 278px;
   --from-left: 128.86%;
   --from-top: 206.72%;
   z-index: 28;
@@ -305,77 +300,89 @@
   z-index: 38;
 }
 .birds {
-  --width: 39%;
-  --from-left: 197.78%;
+  --width: 34%;
+  --from-left: 199%;
   --from-top: 195%;
   z-index: 39;
 }
 .person {
   --width: 83%;
   --from-left: 11.34%;
-  --from-top: 230%;
+  bottom: -2%;
   z-index: 40;
   opacity: 1;
 }
 .light {
-  will-change: filter;
-  --width: 219.073%;
-  --from-left: -12.2%;
-  --from-top: 60.44%;
+  --width: 230%;
+  --from-left: -10%;
+  --from-top: 35%;
   z-index: 41;
   opacity: 0.4;
   filter: saturate(200%) hue-rotate(340deg);
   mix-blend-mode: screen;
 }
-@media (max-aspect-ratio: 0.69/1) and (orientation: portrait){
-  .parallax-layers {
-    left: 50%;
-    transform: translateX(-50%);
+@media (max-aspect-ratio: 0.75/1) and (orientation: portrait){
+  .text {
+    .dev {
+      top: -7%
+    }
+    .name {
+      top: -7%
+    }
+    left: 17%;
   }
   .person {
-    transform-origin: left top;
-    --from-left: -142vw;
-    --origTranslateX: 165%;
+    right: auto;
+    top: auto;
+    bottom: -2%;
+    min-width: 26vmax;
   }
   .birds {
-    transform-origin: left top;
-    --from-left: 125vw;
-    --from-top: 194%;
-    --origTranslateX: 290%;
+    left: auto;
+    right: 12%;
+    top: 61%;
+    min-width: 12vmax;
   }
   .light {
-    transform-origin: left top;
-    --from-left: -100vw;
-    opacity: 0.5;
-    --origTranslateX: 37%;
+    right: auto;
+    min-width: 75vmax;
+    left: -8vmax;
+    bottom: -15%;
+    top: auto;
   }
   .rays-left {
-    transform-origin: left top;
-    --from-left: -150vw;
-    --origTranslateX: 40%;
+    left: 10vw;
+  }
+  .parallax {
+    --leftOffset: -10%;
   }
   .parallax-layers {
-    left: 50%;
-    transform: translateX(-42%);
+    left: 65vw;
+    transform: translateX(-50%);
+  }
+  .parallax-container {
+    width: 100vw;
+    height: 100vh;
   }
 }
 @media (max-aspect-ratio: 0.54/1) and (orientation: portrait){
-  .person {
-    --width: 80%;
-    --from-left: -142vw;
-    --origTranslateX: 165%;
-  }
   .text {
     .dev {
       left: 53%;
       --font-size: 0.8;
       line-height: 3.8vmax;
+      top: 1%
     }
     .name {
       left: 15%;
       --font-size: 0.9;
       line-height: 3.8vmax;
+      top: 1%
     }
+    left: 17%;
+  }
+  .rays-left {
+    left: 15vw;
   }
 }
 @media (max-aspect-ratio: 0.44/1) and (orientation: portrait){
@@ -391,9 +398,17 @@
       left: 25%;
       top: 10%;
     }
+    left: 16.5%;
+  }
+  .rays-left {
+    left: 30vw;
+  }
+  .person {
+    min-width: 25vmax;
+    left: -2%;
   }
 }
-@media (max-aspect-ratio: 0.3/1) and (orientation: portrait){
+@media (max-aspect-ratio: 0.35/1) and (orientation: portrait){
   .text {
     .dev {
       display: none;
@@ -403,67 +418,85 @@
       text-align: left;
     }
   }
-  .parallax-layers {
-    left: 50%;
-    transform: translateX(-47%);
-  }
   .person {
-    --width: 65%;
-    --from-left: -120vw;
-    --from-top: 240%;
-    --origTranslateX: 220%;
+    min-width: 22vmax;
   }
 }
 @media (min-aspect-ratio: 1.5/1) and (orientation: landscape){
-  .parallax-layers {
-    transform: translateY(15vh);
+  .parallax-layers, .parallax-container {
+    transform: translateY(5vh);
   }
   .person {
-    width: 22%;
-    --from-left: 15vw;
-    --from-top: 210%;
+    max-width: 22vmax;
+    top: auto;
+    bottom: 0;
+  }
+  .birds {
+    left: auto;
+    right: 30%;
+    top: auto;
+    bottom: 32%;
+    min-width: 12vmax;
+  }
+  .light {
+    right: auto;
+    min-width: 75vmax;
+    left: -12vmax;
+    bottom: -25%;
+    top: auto;
   }
 }
 @media (min-aspect-ratio: 1.9/1) and (orientation: landscape){
-  .parallax-layers {
+  .parallax-layers, .parallax-container {
+    transform: translateY(13vh);
+  }
+  .person {
+    max-width: 19vmax;
+    top: auto;
+    bottom: 3%;
+  }
+  .birds {
+    left: auto;
+    right: 30%;
+    top: auto;
+    bottom: 30%;
+    min-width: 12vmax;
+  }
+}
+@media (min-aspect-ratio: 2.4/1) and (orientation: landscape){
+  .parallax-layers, .parallax-container {
+    transform: translateY(15vh);
+  }
+}
+@media (min-aspect-ratio: 2.5/1) and (orientation: landscape){
+  .parallax-layers, .parallax-container {
+    transform: translateY(17vh);
+  }
+}
+@media (min-aspect-ratio: 2.7/1) and (orientation: landscape){
+  .parallax-layers, .parallax-container {
+    transform: translateY(21vh);
+  }
+  .person {
+    max-width: 17vmax;
+    left: 5%;
+  }
+}
+@media (min-aspect-ratio: 2.9/1) and (orientation: landscape){
+  .parallax-layers, .parallax-container {
     transform: translateY(25vh);
   }
   .person {
-    width: 18%;
-    --from-left: 25vw;
-    --from-top: 210%;
+    left: 5%;
+    bottom: 5%;
   }
 }
-
-@media (min-aspect-ratio: 2.3/1) and (orientation: landscape){
-  .parallax-layers {
-    transform: translateY(40vh);
+@media (min-aspect-ratio: 3.1/1) and (orientation: landscape){
+  .parallax-layers, .parallax-container {
+    transform: translateY(27vh);
   }
   .person {
-    width: 18%;
-    --from-left: 25vw;
-    --from-top: 200%;
-  }
-}
-
-@media (min-aspect-ratio: 2.7/1) and (orientation: landscape){
-  .parallax-layers {
-    transform: translateY(45vh);
-  }
-  .person {
-    width: 18%;
-    --from-left: 25vw;
-    --from-top: 200%;
-  }
-}
-
-@media (min-aspect-ratio: 3/1) and (orientation: landscape){
-  .parallax-layers {
-    transform: translateY(65vh);
-  }
-  .person {
-    width: 18%;
-    --from-left: 25vw;
-    --from-top: 200%;
+    left: 5%;
+    bottom: 5%;
   }
 }
