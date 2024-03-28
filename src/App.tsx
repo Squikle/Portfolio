@@ -10,8 +10,8 @@ export default function App() {
   }, []);
 
   return (
-    <div className="content" id="main-container">
-      <div id="scroll">
+    <div id="main-container">
+      <div id="content">
         <ParallaxPage></ParallaxPage>
         <LogoPage></LogoPage>
       </div>

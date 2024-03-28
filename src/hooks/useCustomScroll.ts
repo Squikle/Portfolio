@@ -29,7 +29,6 @@ export function useCustomScroll() {
           container.scrollHeight - 1 && event.deltaY >= 0;
       if (bottomBound) return;
 
-      console.log("scroll!");
       container.scrollBy({
         top: Math.sign(event.deltaY) * window.innerHeight,
         behavior: "smooth",

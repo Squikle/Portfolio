@@ -4,13 +4,13 @@ import React, { useEffect, useState } from "react";
 type Props = {
   elementRef: React.RefObject<HTMLElement>;
   mainContainerId?: string;
-  scrollElementId?: string;
+  contentElementId?: string;
 };
 
 export default function ScrollButton({
   elementRef,
   mainContainerId = "main-container",
-  scrollElementId = "scroll",
+  contentElementId = "content",
 }: Props) {
   const [isShown, setIsShown] = useState(true);
 
@@ -27,15 +27,15 @@ export default function ScrollButton({
     if (!elementRef.current)
       throw new Error("element ref current must be not null!");
 
-    const scrollElement = document.getElementById(scrollElementId);
-    if (!scrollElement)
+    const contentElement = document.getElementById(contentElementId);
+    if (!contentElement)
       throw new Error(
-        "couldn't retrieve scroll element with id: " + scrollElementId,
+        "couldn't retrieve scroll element with id: " + contentElementId,
       );
 
     const isBottom =
       elementRef.current.getBoundingClientRect().bottom >=
-      scrollElement.offsetHeight;
+      contentElement.offsetHeight;
     setIsShown(!isBottom);
   }, []);
 
