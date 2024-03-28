@@ -15,12 +15,21 @@
 
 .parallax-layers, .parallax-container {
   aspect-ratio: 1/1;
-  pointer-events: none;
   min-height: 100vh;
-  position: absolute;
+  position: relative;
   margin: 0;
   inset: auto 0 0;
   @extend %select-disabled;
+  overflow: hidden;
+}
+
+.parallax-container img {
+  -webkit-user-drag: none;
+  user-drag: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .parallax {
@@ -31,7 +40,6 @@
   --rotateY: 0;
   --rotateX: 0;
   --leftOffset: -110px;
-
   position: absolute;
 
   top: calc(var(--from-top) * var(--scale));
@@ -46,8 +54,12 @@
     rotateY(var(--rotateY))
     rotateX(var(--rotateX));
 
-  transition: transform 0.5s cubic-bezier(0.15, 0.43, 0.15, 0.71);
+  transition: transform 1s cubic-bezier(0.15, 0.43, 0.15, 0.71);
   width: calc(var(--width) * var(--scale));
+}
+
+.parallax:not(.text) {
+  pointer-events: none;
 }
 
 .sky-overlap {
