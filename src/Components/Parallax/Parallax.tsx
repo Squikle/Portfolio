@@ -64,8 +64,8 @@ export default function Parallax({ isActive }: Props) {
       <img
         src={person}
         className="parallax person"
-        data-speed-x="0.01"
-        data-speed-y="0.08"
+        data-speed-x="0.05"
+        data-speed-y="0.10"
         data-speed-z="0.5"
       />
       <img
