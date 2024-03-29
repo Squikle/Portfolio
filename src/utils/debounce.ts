@@ -1,6 +1,6 @@
 type DebouncingFunc = (...args: any[]) => void;
 
-export function executeAndDebounce(func: DebouncingFunc, delay: number) {
+export function debounceAndExecute(func: DebouncingFunc, delay: number) {
   let timeoutId: NodeJS.Timeout;
 
   return function (this: any, ...args: any[]) {
@@ -11,7 +11,7 @@ export function executeAndDebounce(func: DebouncingFunc, delay: number) {
   };
 }
 
-export function debounceAndExecute(func: DebouncingFunc, delay: number) {
+export function executeAndDebounce(func: DebouncingFunc, delay: number) {
   let timeoutId: NodeJS.Timeout;
   let throttled = false;
 

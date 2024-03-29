@@ -121,7 +121,8 @@ export function adaptParticles(
     newOptions.particles.move.speed.min *= screenScale * 0.1;
     newOptions.particles.move.speed.max *= screenScale * 0.1;
     //let before = newOptions.particles.number.value;
-    newOptions.particles.number.value *= screenScale * 0.4;
+    newOptions.particles.number.value *=
+      Math.pow(5, (screenScale / window.devicePixelRatio) * 0.12) * 1.3;
     //console.log(before, "=number=>", newOptions.particles.number.value);
 
     //before = newOptions.particles.size.value.max;
@@ -129,8 +130,10 @@ export function adaptParticles(
     newOptions.particles.size.value.max *= screenScale * 0.14;
     //console.log(before, "=size=>", newOptions.particles.size.value.max);
     newOptions.particles.stroke.width *= screenScale * 0.5;
-    newOptions.particles.links.distance *= screenScale * 0.64;
-    newOptions.particles.links.width *= screenScale * 0.1;
+    newOptions.particles.links.distance *=
+      Math.pow(5, (screenScale / window.devicePixelRatio) * 0.09) * 2;
+    newOptions.particles.links.width *=
+      Math.pow(5, (screenScale / window.devicePixelRatio) * 0.11) * 0.6;
   }
 
   if (newOptions.interactivity) {
@@ -141,6 +144,22 @@ export function adaptParticles(
     if (newOptions.interactivity.modes?.attract) {
       newOptions.interactivity.modes.attract.distance *= screenScale * 0.2;
       newOptions.interactivity.modes.attract.speed *= screenScale * 0.1;
+    }
+    if (newOptions.interactivity.modes?.connect) {
+      newOptions.interactivity.modes.connect.distance *=
+        Math.pow(5, (screenScale / window.devicePixelRatio) * 0.12) * 0.3;
+      newOptions.interactivity.modes.connect.radius *=
+        Math.pow(5, (screenScale / window.devicePixelRatio) * 0.12) * 0.5;
+      newOptions.interactivity.modes.connect.opacity *=
+        Math.pow(5, (screenScale / window.devicePixelRatio) * 0.12) * 0.09;
+      newOptions.interactivity.modes.connect.width *=
+        Math.pow(5, (screenScale / window.devicePixelRatio) * 0.2) * 0.02;
+    }
+    if (newOptions.interactivity.modes?.grab) {
+      newOptions.interactivity.modes.grab.distance *=
+        Math.pow(5, (screenScale / window.devicePixelRatio) * 0.07) * 0.9;
+      newOptions.interactivity.modes.grab.links.opacity *=
+        Math.pow(5, (screenScale / window.devicePixelRatio) * 0.12) * 0.4;
     }
   }
 

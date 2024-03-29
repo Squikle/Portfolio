@@ -93,7 +93,7 @@
         "mode": "delete",
         "value": 0
       },
-      "value": 40
+      "value": 30
     },
     "opacity": {
       "value": {
@@ -226,11 +226,11 @@
         "speed": 50
       },
       "bubble": {
-        "distance": 200,
+        "distance": 400,
         "duration": 0,
         "mix": true,
         "opacity": 1,
-        "size": 6,
+        "size": 4,
         "divs": {
           "distance": 2000,
           "duration": 0,

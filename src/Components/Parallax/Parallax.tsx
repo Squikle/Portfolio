@@ -88,8 +88,8 @@ export default function Parallax({ isActive }: Props) {
           data-speed-x="0.19"
           data-speed-y="0.13"
           data-speed-z="0"
-          data-speed-rot-y="1"
-          data-speed-rot-x="0.5"
+          data-speed-rot-y="8"
+          data-speed-rot-x="4"
         >
           <div className="dev">
             <h1 className="filled">Fullstack</h1>
@@ -328,14 +328,14 @@ export default function Parallax({ isActive }: Props) {
         <img
           src={waterYacht}
           className="parallax water-yacht"
-          data-speed-x="0.22"
+          data-speed-x="0.25"
           data-speed-y="0.21"
           data-speed-z="0.1"
         />
         <img
           src={waterBoatRight}
           className="parallax water-boat-right"
-          data-speed-x="0.3"
+          data-speed-x="0.33"
           data-speed-y="0.2"
           data-speed-z="0.1"
         />

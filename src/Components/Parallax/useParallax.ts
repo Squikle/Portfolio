@@ -27,7 +27,9 @@ export function useParallax(isActive: boolean) {
   ) => {
     const xValue = clientX - window.innerWidth / 2;
     const yValue = clientY - window.innerHeight / 2;
-    update(xValue, yValue, elementsToUpdate);
+    const xPercent = (xValue / window.innerWidth) * 100;
+    const yPercent = (yValue / window.innerHeight) * 100;
+    update(xPercent, yPercent, elementsToUpdate);
   };
 
   function update(x: number, y: number, elementsToUpdate: HTMLElement[]): void {
@@ -35,9 +37,9 @@ export function useParallax(isActive: boolean) {
 
     elementsToUpdate.forEach((el) => {
       const dataset = el.dataset as unknown as ParallaxDataset;
-      const xSpeed = dataset.speedX * 0.39;
-      const ySpeed = dataset.speedY * 0.39;
-      const zSpeed = dataset.speedZ * 0.35;
+      const xSpeed = dataset.speedX * 2;
+      const ySpeed = dataset.speedY * 2;
+      const zSpeed = dataset.speedZ * 3;
 
       const leftOfEl =
         parseFloat(getComputedStyle(el).left) - el.offsetWidth / 2;
@@ -54,9 +56,8 @@ export function useParallax(isActive: boolean) {
         el.style.setProperty(cssProps.zTranslate, `${zOffset}px`);
       });
 
-      const speedRotY =
-        ((dataset.speedRotY || zSpeed) / (window.innerWidth * 0.002)) * 2;
-      const speedRotX = 0;
+      const speedRotY = dataset.speedRotY || zSpeed;
+      const speedRotX = dataset.speedRotX;
       updateRotation(x, y, el, speedRotX, speedRotY);
     });
   }
@@ -68,23 +69,17 @@ export function useParallax(isActive: boolean) {
     speedRotX: number,
     speedRotY: number,
   ) {
-    const rotateDegreeY = (x / (window.innerHeight / 2)) * 10;
+    const strength = 0.04;
+    const rotateDegreeY = x * speedRotY * strength;
 
     window.requestAnimationFrame(() => {
-      el.style.setProperty(
-        cssProps.yRotate,
-        `${rotateDegreeY * speedRotY * 2}deg`,
-      );
+      el.style.setProperty(cssProps.yRotate, `${rotateDegreeY}deg`);
     });
 
     if (speedRotX) {
-      const xRotSpeed = speedRotX * 0.35;
-      const rotateDegreeX = (y / (window.innerWidth / 2)) * -10;
+      const rotateDegreeX = y * speedRotX * strength;
       window.requestAnimationFrame(() => {
-        el.style.setProperty(
-          cssProps.xRotate,
-          `${rotateDegreeX * xRotSpeed * 10}deg`,
-        );
+        el.style.setProperty(cssProps.xRotate, `${-rotateDegreeX}deg`);
       });
     }
   }
