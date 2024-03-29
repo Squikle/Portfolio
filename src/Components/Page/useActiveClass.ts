@@ -1,11 +1,8 @@
-import { RefObject, useEffect } from "react";
+import { RefObject, useEffect, useState } from "react";
 
-type Callback = (isActive: boolean) => void;
+export default function (ref: RefObject<HTMLInputElement>): boolean {
+  const [isActive, setIsActive] = useState(true);
 
-export default function (
-  ref: RefObject<HTMLInputElement>,
-  onUpdate: Callback,
-): void {
   useEffect(() => {
     const updateActive = () => {
       if (!ref.current) throw new Error("ref must be not null!");
@@ -13,15 +10,17 @@ export default function (
       const rect = ref.current.getBoundingClientRect();
       const viewHeight = Math.max(
         document.documentElement.clientHeight,
-        window.innerHeight,
+        window.outerHeight,
       );
 
-      const isActive = !(rect.bottom <= 0 || rect.top - viewHeight >= 0);
-      if (onUpdate) onUpdate(isActive);
+      const newIsActive = !(rect.bottom <= 0 || rect.top - viewHeight >= 0);
+      setIsActive(newIsActive);
     };
 
     updateActive();
     window.addEventListener("scroll", updateActive, true);
     return () => window.removeEventListener("scroll", updateActive);
-  }, [onUpdate]);
+  }, []);
+
+  return isActive;
 }

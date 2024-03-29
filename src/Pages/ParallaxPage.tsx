@@ -1,77 +1,38 @@
 import PageSection from "../Components/Page/PageSection";
-import InfoCard from "../Components/TextCard/InfoCard";
 import Parallax from "../Components/Parallax/Parallax";
 import Page from "../Components/Page/Page";
 import styles from "./ParallaxPage.module.css";
 import classNames from "classnames";
-import { useEffect, useState } from "react";
+import { useSwipeScroll } from "../hooks/useSwipeScroll.ts";
+import { useCurrentSectionContext } from "../Components/Page/CurrentPageContext/useContexts.ts";
 
 type Props = {
   className?: string;
 };
 
 export default function ParallaxPage({ className }: Props) {
-  const [isActive, setIsActive] = useState(false);
+  const swipeScroll = useSwipeScroll("main-container");
 
-  useEffect(() => {
-    document.addEventListener("touchstart", handleTouchStart, false);
-    document.addEventListener("touchmove", handleTouchMove, false);
+  const handleActiveChange = (active: boolean) => {
+    if (!swipeScroll) return;
 
-    let xDown = null;
-    let yDown = null;
-
-    function getTouches(evt) {
-      return (
-        evt.touches || // browser API
-        evt.originalEvent.touches
-      ); // jQuery
-    }
-
-    function handleTouchStart(evt) {
-      const firstTouch = getTouches(evt)[0];
-      xDown = firstTouch.clientX;
-      yDown = firstTouch.clientY;
-    }
-
-    function handleTouchMove(evt) {
-      if (!xDown || !yDown) {
-        return;
-      }
-
-      var xUp = evt.touches[0].clientX;
-      var yUp = evt.touches[0].clientY;
-
-      var xDiff = xDown - xUp;
-      var yDiff = yDown - yUp;
-
-      if (Math.abs(xDiff) > Math.abs(yDiff)) {
-        /*most significant*/
-        if (xDiff > 0) {
-          /* right swipe */
-        } else {
-          /* left swipe */
-        }
-      } else {
-        if (yDiff > 0) {
-          /* down swipe */
-        } else {
-          /* up swipe */
-        }
-      }
-      /* reset values */
-      xDown = null;
-      yDown = null;
-    }
-  }, []);
+    if (active) swipeScroll.bind();
+    else swipeScroll.unbind();
+  };
 
   return (
     <Page>
       <PageSection
         className={classNames(className, styles.parallaxSlide)}
-        onActiveUpdate={setIsActive}
+        onActiveUpdate={handleActiveChange}
       >
-        <Parallax isActive={isActive}></Parallax>
+        <ParallaxInContext></ParallaxInContext>
       </PageSection>
     </Page>
   );
+}
+
+function ParallaxInContext() {
+  const sectionContext = useCurrentSectionContext();
+  return <Parallax isActive={sectionContext.isActive}></Parallax>;
 }

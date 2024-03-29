@@ -1,5 +1,5 @@
 import styles from "./Page.module.css";
-import { ReactNode, useCallback, useRef, useState } from "react";
+import { ReactNode, useEffect, useRef } from "react";
 import useActiveClass from "./useActiveClass";
 import { CurrentPageContextProvider } from "./CurrentPageContext/Contexts";
 import classNames from "classnames";
@@ -12,20 +12,20 @@ type Props = {
 
 export default function Page({ className, children, onActiveUpdate }: Props) {
   const ref = useRef(null);
-  const [isActive, setIsActive] = useState(true);
+  const isActive = useActiveClass(ref);
 
-  const handleActiveUpdate = useCallback(
-    (active: boolean) => {
-      setIsActive(active);
-      if (onActiveUpdate) onActiveUpdate(active);
-    },
-    [onActiveUpdate],
-  );
-  useActiveClass(ref, handleActiveUpdate);
+  useEffect(() => {
+    if (onActiveUpdate) onActiveUpdate(isActive);
+  }, [isActive]);
 
   return (
     <CurrentPageContextProvider isActive={isActive}>
-      <div ref={ref} className={classNames(className, styles.page)}>
+      <div
+        ref={ref}
+        className={classNames(className, styles.page, {
+          [styles.inactive]: !isActive,
+        })}
+      >
         {children}
       </div>
     </CurrentPageContextProvider>
