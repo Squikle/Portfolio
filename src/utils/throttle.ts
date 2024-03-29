@@ -1,6 +1,8 @@
 type ThrottlingFunc = (...args: any[]) => void;
 
 export function throttle(func: ThrottlingFunc, limit: number): ThrottlingFunc {
+  if (!limit) return func;
+
   let inThrottle = false;
 
   return function (this: any, ...args: any[]) {

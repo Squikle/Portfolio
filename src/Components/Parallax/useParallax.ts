@@ -25,8 +25,8 @@ export function useParallax(isActive: boolean) {
     clientY: number,
     elementsToUpdate: HTMLElement[],
   ) => {
-    const xValue = clientX - window.innerHeight / 2;
-    const yValue = clientY - window.innerWidth / 2;
+    const xValue = clientX - window.innerWidth / 2;
+    const yValue = clientY - window.innerHeight / 2;
     update(xValue, yValue, elementsToUpdate);
   };
 
@@ -102,7 +102,7 @@ export function useParallax(isActive: boolean) {
     const handleTouchUpdate = throttle((e: TouchEvent) => {
       const lastTouch = e.changedTouches[e.changedTouches.length - 1];
       handleUpdate(lastTouch.clientX, lastTouch.clientY, elementsToUpdate);
-    }, 70);
+    }, 0);
 
     const reset = () => {
       update(0, 0, elementsToUpdate);
@@ -112,13 +112,13 @@ export function useParallax(isActive: boolean) {
     container.addEventListener("mousemove", handleMouseUpdate);
     container.addEventListener("touchmove", handleTouchUpdate);
     container.addEventListener("mouseleave", reset);
-    window.addEventListener("touchend", reset);
+    container.addEventListener("touchend", reset);
 
     return () => {
       container.removeEventListener("mousemove", handleMouseUpdate);
       container.removeEventListener("touchmove", handleTouchUpdate);
       container.removeEventListener("mouseleave", reset);
-      window.removeEventListener("touchend", reset);
+      container.removeEventListener("touchend", reset);
     };
   }, [isActive]);
 }
