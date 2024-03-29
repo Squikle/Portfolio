@@ -8,12 +8,13 @@ export default function App() {
   useScrollSnap(
     contentRef,
     {
-      snapDestinationY: "100%",
-      duration: 2000,
-      timeout: 500,
+      snapDestinationY: "100vh",
+      duration: 500,
+      timeout: 50,
       threshold: 0.2,
       easing: (t) =>
         t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1,
+      snapStop: true,
     },
     () => console.log("snapped"),
   );
