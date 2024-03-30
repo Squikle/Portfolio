@@ -10,7 +10,7 @@
   box-sizing: border-box;
 }
 
-#main-container::-webkit-scrollbar {
+#root::-webkit-scrollbar {
   -webkit-appearance: none;
   width: 0;
   height: 0;
@@ -19,9 +19,4 @@
 html {
   background-color: black;
   overflow-x: hidden;
-}
-
-#main-container {
-  scroll-snap-type: y mandatory;
-  scroll-behavior: smooth;
 }

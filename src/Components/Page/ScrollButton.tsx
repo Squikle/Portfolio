@@ -9,7 +9,7 @@ type Props = {
 
 export default function ScrollButton({
   elementRef,
-  mainContainerId = "main-container",
+  mainContainerId = "root",
 }: Props) {
   const [isShown, setIsShown] = useState(true);
 

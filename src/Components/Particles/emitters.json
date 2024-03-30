@@ -1,5 +1,6 @@
 {
   "s-emitter": {
+    "name": "s-emitter",
     "particles": {
       "rotate": {
         "value": {
@@ -21,8 +22,8 @@
         },
         "direction": "top",
         "speed": {
-          "min": 3,
-          "max": 4
+          "min": 1,
+          "max": 1
         },
         "distance": {
           "horizontal": 0,
@@ -60,7 +61,7 @@
       },
       "size": {
         "value": {
-          "min": 0,
+          "min": 1,
           "max": 1
         },
         "animation": {
@@ -84,6 +85,7 @@
     }
   },
   "k-emitter": {
+    "name": "k-emitter",
     "particles": {
       "rotate": {
         "value": {
@@ -106,8 +108,8 @@
         },
         "direction": "top",
         "speed": {
-          "min": 3,
-          "max": 4
+          "min": 1,
+          "max": 1
         },
         "distance": {
           "horizontal": 0,
@@ -145,7 +147,7 @@
       },
       "size": {
         "value": {
-          "min": 0,
+          "min": 1,
           "max": 1
         },
         "animation": {

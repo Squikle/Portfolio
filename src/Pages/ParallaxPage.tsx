@@ -11,7 +11,7 @@ type Props = {
 };
 
 export default function ParallaxPage({ className }: Props) {
-  const swipeScroll = useSwipeScroll("main-container");
+  const swipeScroll = useSwipeScroll("root");
 
   const handleActiveChange = (active: boolean) => {
     if (!swipeScroll) return;

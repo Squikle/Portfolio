@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useParticlesComponent } from "../../hooks/useParticlesEngine.js";
 import { Container, ISourceOptions } from "@tsparticles/engine";
 
@@ -10,20 +10,21 @@ type Props = {
 };
 
 export default function Particles({ isActive, id, options, onLoaded }: Props) {
-  const containerRef = useRef<Container | null>(null);
+  const [container, setContainer] = useState<Container | null>(null);
 
   useEffect(() => {
-    if (!containerRef.current) return;
+    if (!container) return;
 
-    if (isActive) containerRef.current.play();
-    else containerRef.current.pause();
-  }, [isActive, containerRef]);
+    if (isActive) container.play();
+    else container.pause();
+  }, [isActive, container]);
 
   const handleParticlesLoaded = useCallback(
     async (container?: Container) => {
-      containerRef.current = container!;
+      setContainer(container!);
       if (onLoaded) onLoaded();
       if (isActive) container?.play();
+      else container?.pause();
     },
     [onLoaded, isActive],
   );

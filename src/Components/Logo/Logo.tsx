@@ -12,23 +12,30 @@ type Props = {
 };
 
 export default function Logo({ onImageResize, onLoad }: Props) {
-  const imageRef = useRef(null);
+  const imageRef = useRef<HTMLImageElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const handleResize = useCallback(
-    debounceAndExecute(() => onImageResize(getImageData()), 200),
+    debounceAndExecute(() => {
+      console.log("resize");
+      onImageResize(getImageData());
+    }, 200),
     [onImageResize],
   );
-  useResizeObserver(imageRef, handleResize);
-  useEffect(() => {}, []);
+  useResizeObserver(containerRef, handleResize);
 
   const getImageData = (): ImageData => {
+    const container = getContainerElement();
     const image = getImageElement();
+
     const imageRect = image.getBoundingClientRect();
+    const containerRect = container.getBoundingClientRect();
+
     return {
       width: image.clientWidth,
       height: image.clientHeight,
-      left: imageRect.left,
-      top: imageRect.top,
+      left: imageRect.left - containerRect.left,
+      top: imageRect.top - containerRect.top,
     };
   };
 
@@ -38,8 +45,14 @@ export default function Logo({ onImageResize, onLoad }: Props) {
     return image.current;
   };
 
+  const getContainerElement = () => {
+    const container = containerRef as RefObject<HTMLDivElement>;
+    if (!container.current) throw new Error("Image ref must be not null!");
+    return container.current;
+  };
+
   return (
-    <div className={styles.container}>
+    <div className={styles.container} ref={containerRef}>
       <img
         src={backgroundImage}
         className={styles.logo}

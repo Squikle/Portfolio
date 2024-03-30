@@ -77,7 +77,7 @@ export default function LogoPage({ className }: { className?: string }) {
     const newSize = { width: imageData.width, height: imageData.height };
     options.current = {
       global: adaptParticles(globalParticlesOptions, newSize),
-      emitters: emittersParticlesOptions,
+      emitters: adaptParticles(emittersParticlesOptions, newSize),
       canvas: adaptParticles(canvasParticlesOptions, newSize),
     };
   }, []);
@@ -96,19 +96,15 @@ export default function LogoPage({ className }: { className?: string }) {
 
   return (
     <Page className={classNames(className, styles.logoPage)}>
+      <Logo onLoad={onImageLoad} onImageResize={updateImage}></Logo>
+      {isLoaded() && (
+        <FixedParticles options={options.current} imageData={imageData} />
+      )}
       <PageSection>
         <InfoCard></InfoCard>
       </PageSection>
-      <Logo onLoad={onImageLoad} onImageResize={updateImage}></Logo>
-      <div className={styles.particlesContainer}>
-        {isLoaded() && (
-          <FixedParticles options={options.current} imageData={imageData} />
-        )}
-      </div>
       <PageSection className={classNames(styles.globalParticles)}>
-        <div className={styles.particlesContainer}>
-          <StaticParticles options={options.current} />
-        </div>
+        {isLoaded() && <StaticParticles options={options.current} />}
       </PageSection>
     </Page>
   );
@@ -124,7 +120,7 @@ const FixedParticles = ({
   const isActive = useCurrentPageContext().isActive;
 
   return (
-    <>
+    <div className={styles.particlesContainer}>
       <Emitters
         id="emitters-particles"
         options={options.emitters}
@@ -136,7 +132,7 @@ const FixedParticles = ({
         options={options.canvas}
         isActive={isActive}
       />
-    </>
+    </div>
   );
 };
 
@@ -144,12 +140,12 @@ const StaticParticles = ({ options }: { options: ParticlesOptions }) => {
   const isActive = useCurrentSectionContext().isActive;
 
   return (
-    <>
-      {/*<Particles
+    <div className={styles.globalParticlesContainer}>
+      <Particles
         id={styles["global-particles"]}
         options={options.global}
         isActive={isActive}
-      />*/}
-    </>
+      />
+    </div>
   );
 };

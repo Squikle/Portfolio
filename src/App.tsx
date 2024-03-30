@@ -1,15 +1,16 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import ParallaxPage from "./Pages/ParallaxPage.tsx";
 import LogoPage from "./Pages/LogoPage.tsx";
 import useScrollSnap from "./hooks/useScrollSnap.ts";
+import styles from "./App.module.css";
 
 export default function App() {
   const contentRef = useRef<HTMLInputElement | null>(null);
   useScrollSnap(contentRef, {
     snapDestinationY: "100vh",
-    duration: 300,
-    timeout: 0,
-    threshold: 0.1,
+    duration: 500,
+    timeout: 100,
+    threshold: 0.3,
     easing: (t) =>
       t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1,
     snapStop: true,
@@ -21,7 +22,7 @@ export default function App() {
     };
   }, []);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const updateViewportHeight = () => {
       document.documentElement.style.setProperty(
         "--viewport-height",
@@ -35,11 +36,9 @@ export default function App() {
   }, []);
 
   return (
-    <div id="main-container" ref={contentRef}>
-      <div id="scroll">
-        <ParallaxPage></ParallaxPage>
-        <LogoPage></LogoPage>
-      </div>
+    <div className={styles.scroller} id="scroller" ref={contentRef}>
+      <ParallaxPage></ParallaxPage>
+      <LogoPage></LogoPage>
     </div>
   );
 }

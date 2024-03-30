@@ -9,9 +9,9 @@ import { ContainerWithPlugins } from "../vite-env";
 export function useParticlesEngine(onLoaded: () => void) {
   useEffect(() => {
     initParticlesEngine(async (engine) => {
-      await loadFull(engine);
       await loadEmittersPlugin(engine);
       await loadCanvasMaskPlugin(engine);
+      await loadFull(engine);
     }).then(() => {
       if (onLoaded) onLoaded();
     });

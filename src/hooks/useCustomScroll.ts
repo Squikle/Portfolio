@@ -7,8 +7,8 @@ export function useCustomScroll() {
 
     if (!isSupportsScrollend()) return;
 
-    const container = document.getElementById("main-container");
-    if (!container) throw new Error("main-container doesn't exist!");
+    const container = document.getElementById("root");
+    if (!container) throw new Error("root doesn't exist!");
 
     let scrolling = false;
 

@@ -1,0 +1,12 @@
+.scroller {
+  position: absolute;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  /*scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;*/
+}
+
+#content {
+  height: 100%;
+}

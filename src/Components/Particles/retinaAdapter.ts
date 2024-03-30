@@ -1,4 +1,5 @@
 import { ImageSize } from "../../types/imageData";
+import { normalizePath } from "vite";
 
 const idealScreens = [
   [306, 228, 2, 2.2],
@@ -15,10 +16,6 @@ type NearestPoints = {
   prevPoint: Point | null;
   nextPoint: Point | null;
 };
-
-function roundTo2Dec(number: number) {
-  return Math.round((number + Number.EPSILON) * 100) / 100;
-}
 
 function calculateDiagonal(length: number, breadth: number) {
   return Math.sqrt(length * length + breadth * breadth);
@@ -37,6 +34,7 @@ function interpolateLinear(
       (nextDiagonal - prevDiagonal)
   );
 }
+
 function interpolateScale(diagonal: number, diagonalPoints: Point[]) {
   const nearestPoints = diagonalPoints.reduce(
     (accPoints: NearestPoints, currentPoint) => {
@@ -99,180 +97,122 @@ function calculateScaleForScreen(
   return interpolateScale(currentDiagonal, diagonalPoints as Point[]);
 }
 
-export function adaptParticles(
-  defaultOptions: any,
-  { width, height }: ImageSize,
-) {
-  const ratio = window.devicePixelRatio;
+export function adaptEmitter(emitterOptions: any) {
+  const screenMultiplier = 1;
 
-  const newOptions = structuredClone(defaultOptions);
-  if (ratio <= 1) {
-    newOptions.detectRetina = true;
-  }
+  const normalize = (val: number, min: number, max: number) =>
+    (val - min) / (max - min);
 
-  let screenScale = calculateScaleForScreen(
-    width,
-    height,
-    window.devicePixelRatio,
-  );
-  if (newOptions.canvasMask) {
-    newOptions.canvasMask.scale = screenScale;
-    if (ratio <= 1.5)
-      screenScale = roundTo2Dec(Math.log((screenScale + 1) * 3) * 2);
-  }
+  const diagonal = calculateDiagonal(screen.width, screen.height);
+
+  const powAdapt = (exp: number = 1.5, flat: number = 0.1) => {
+    return Math.pow(normalize(diagonal, 1, 500), exp) * flat;
+  };
+
+  const newOptions = structuredClone(emitterOptions);
   if (newOptions.particles) {
-    newOptions.particles.move.distance.horizontal = Math.round(
-      newOptions.particles.move.distance.horizontal * screenScale * 0.1,
-    );
-    newOptions.particles.move.distance.vertical = Math.round(
-      newOptions.particles.move.distance.vertical * screenScale * 0.1,
-    );
-    newOptions.particles.move.speed.min = roundTo2Dec(
-      newOptions.particles.move.speed.min * screenScale * 0.1,
-    );
-    newOptions.particles.move.speed.max = roundTo2Dec(
-      newOptions.particles.move.speed.max * screenScale * 0.1,
-    );
-    //let before = newOptions.particles.number.value;
-    newOptions.particles.number.value = Math.round(
-      newOptions.particles.number.value *
-        Math.pow(5, (screenScale / window.devicePixelRatio) * 0.12) *
-        1.3,
-    );
-    //console.log(before, "=number=>", newOptions.particles.number.value);
-
-    //before = newOptions.particles.size.value.max;
-    newOptions.particles.size.value.min = roundTo2Dec(
-      newOptions.particles.size.value.min * screenScale * 0.14,
-    );
-    newOptions.particles.size.value.max = roundTo2Dec(
-      newOptions.particles.size.value.max * screenScale * 0.14,
-    );
-    //console.log(before, "=size=>", newOptions.particles.size.value.max);
-    newOptions.particles.stroke.width = roundTo2Dec(
-      newOptions.particles.stroke.width * screenScale * 0.5,
-    );
-    newOptions.particles.links.distance = Math.round(
-      newOptions.particles.links.distance *
-        Math.pow(5, (screenScale / window.devicePixelRatio) * 0.09) *
-        2,
-    );
-    newOptions.particles.links.width = roundTo2Dec(
-      newOptions.particles.links.width *
-        Math.pow(5, (screenScale / window.devicePixelRatio) * 0.11) *
-        0.6,
-    );
+    if (newOptions.particles.animation) {
+      newOptions.particles.animation.speed *= screenMultiplier;
+      newOptions.particles.move.speed.min *= powAdapt(2, 0.05) * 1.2 + 1;
+    }
+    newOptions.particles.move.speed.max *= powAdapt(2, 0.05) * 1.2 + 1;
+    newOptions.particles.move.speed.min *= powAdapt(2, 0.05) * 0.4 + 1;
+    newOptions.particles.life.duration.value *= screenMultiplier;
+    newOptions.particles.size.value.min *= powAdapt(2, 0.02) * 0.4 + 0.4;
+    newOptions.particles.size.value.max *= powAdapt(2, 0.02) * 1.2 + 0.4;
   }
 
-  if (newOptions.interactivity) {
-    if (newOptions.interactivity.modes?.bubble) {
-      newOptions.interactivity.modes.bubble.distance = roundTo2Dec(
-        newOptions.interactivity.modes.bubble.distance * screenScale * 0.15,
-      );
-      newOptions.interactivity.modes.bubble.size = roundTo2Dec(
-        newOptions.interactivity.modes.bubble.size * screenScale * 0.15,
-      );
-    }
-    if (newOptions.interactivity.modes?.attract) {
-      newOptions.interactivity.modes.attract.distance = Math.round(
-        newOptions.interactivity.modes.attract.distance * screenScale * 0.2,
-      );
-      newOptions.interactivity.modes.attract.speed = roundTo2Dec(
-        newOptions.interactivity.modes.attract.speed * screenScale * 0.1,
-      );
-    }
-    if (newOptions.interactivity.modes?.connect) {
-      newOptions.interactivity.modes.connect.distance = roundTo2Dec(
-        newOptions.interactivity.modes.connect.distance *
-          Math.pow(5, (screenScale / window.devicePixelRatio) * 0.12) *
-          0.3,
-      );
-      newOptions.interactivity.modes.connect.radius = roundTo2Dec(
-        newOptions.interactivity.modes.connect.radius *
-          Math.pow(5, (screenScale / window.devicePixelRatio) * 0.12) *
-          0.5,
-      );
-      newOptions.interactivity.modes.connect.links.opacity = roundTo2Dec(
-        newOptions.interactivity.modes.connect.links.opacity *
-          Math.pow(5, (screenScale / window.devicePixelRatio) * 0.12) *
-          0.09,
-      );
-      newOptions.interactivity.modes.connect.links.width = roundTo2Dec(
-        newOptions.interactivity.modes.connect.links.width *
-          Math.pow(5, (screenScale / window.devicePixelRatio) * 0.2) *
-          0.02,
-      );
-    }
-    if (newOptions.interactivity.modes?.grab) {
-      newOptions.interactivity.modes.grab.distance = roundTo2Dec(
-        newOptions.interactivity.modes.grab.distance *
-          Math.pow(5, (screenScale / window.devicePixelRatio) * 0.07) *
-          0.9,
-      );
-      newOptions.interactivity.modes.grab.links.opacity = roundTo2Dec(
-        newOptions.interactivity.modes.grab.links.opacity *
-          Math.pow(5, (screenScale / window.devicePixelRatio) * 0.12) *
-          0.4,
-      );
-    }
+  if (newOptions.size) {
+    newOptions.size.height *= screenMultiplier;
   }
 
   return newOptions;
 }
 
-export function adaptEmitter(
-  emitterOptions: any,
+export function adaptParticles(
+  defaultOptions: any,
   { width, height }: ImageSize,
 ) {
-  const ratio = window.devicePixelRatio;
+  const newOptions = structuredClone(defaultOptions);
 
-  let screenScale = calculateScaleForScreen(
-    width,
-    height,
-    window.devicePixelRatio,
-  );
+  const diagonal = calculateDiagonal(screen.width, screen.height);
+  const scale = calculateScaleForScreen(width, height, devicePixelRatio);
 
-  if (ratio < 1) return emitterOptions;
-  const newOptions = structuredClone(emitterOptions);
+  const screenMultiplier = 1;
+
+  const normalize = (val: number, min: number, max: number) =>
+    (val - min) / (max - min);
+
+  const clamp = (value: number, min: number, max: number) => {
+    return Math.min(Math.max(value, min), max);
+  };
+
+  const powAdapt = (exp: number = 1.5, flat: number = 0.1) => {
+    return Math.pow(normalize(diagonal, 1, 500), exp) * flat;
+  };
+
+  const logAdapt = (offset: number = 1, flat: number = 0.1) => {
+    return flat * Math.log(diagonal) + offset;
+  };
+
+  const rationalAdapt = (offset: number = 1, flat: number = 1) => {
+    return (1 / diagonal - offset) * flat;
+  };
+
+  if (newOptions.canvasMask) {
+    newOptions.canvasMask.scale *= scale * 0.3;
+  }
+
   if (newOptions.particles) {
-    if (newOptions.particles.animation) {
-      newOptions.particles.animation.speed = roundTo2Dec(
-        newOptions.particles.animation.speed * screenScale * 0.1,
-      );
-      newOptions.particles.move.speed.min = roundTo2Dec(
-        newOptions.particles.animation.speed * screenScale * 0.1,
-      );
+    newOptions.particles.move.distance.horizontal *= screenMultiplier;
+    newOptions.particles.move.distance.vertical *= screenMultiplier;
+    newOptions.particles.move.speed.min *= powAdapt(2, 0.005) * 0.4 + 0.3;
+    newOptions.particles.move.speed.max *= powAdapt(2, 0.005) * 1.2 + 0.3;
+    newOptions.particles.number.value *= clamp(
+      powAdapt(2, 0.05) * 350,
+      200,
+      1200,
+    );
+    newOptions.particles.size.value.min *= powAdapt(2, 0.03) * 0.4 + 0.4;
+    newOptions.particles.size.value.max *= powAdapt(2, 0.03) * 1.2 + 0.4;
+    newOptions.particles.stroke.width *= powAdapt(2, 0.001) + 0.1;
+    newOptions.particles.links.distance *= powAdapt(2, 0.01) * 30 + 16;
+    newOptions.particles.links.width *= powAdapt(2, 0.03) + 0.4;
+
+    if (newOptions.interactivity) {
+      if (newOptions.interactivity.modes?.bubble) {
+        newOptions.interactivity.modes.bubble.distance *= powAdapt(2, 2) + 200;
+        newOptions.interactivity.modes.bubble.size *= clamp(
+          rationalAdapt(0, 1500),
+          newOptions.particles.size.value.max * 1.1,
+          newOptions.particles.size.value.max * 4,
+        );
+      }
+      if (newOptions.interactivity.modes?.attract) {
+        newOptions.interactivity.modes.attract.distance *=
+          clamp(rationalAdapt(0, 2000), 0, 300) + 100;
+        newOptions.interactivity.modes.attract.speed *= clamp(
+          rationalAdapt(0, 2000),
+          0,
+          300,
+        );
+      }
+      if (newOptions.interactivity.modes?.connect) {
+        newOptions.interactivity.modes.connect.distance *= powAdapt(2, 2) + 30;
+        newOptions.interactivity.modes.connect.radius *=
+          powAdapt(2, 0.01) + 100;
+        newOptions.interactivity.modes.connect.links.opacity *=
+          screenMultiplier;
+        newOptions.interactivity.modes.connect.links.width *=
+          powAdapt(2, 0.03) + 0.4;
+        if (newOptions.interactivity.modes?.grab) {
+          newOptions.interactivity.modes.grab.distance *=
+            powAdapt(2, 0.1) + 120;
+          newOptions.interactivity.modes.grab.links.opacity *= screenMultiplier;
+        }
+      }
     }
-    newOptions.particles.move.speed.max = roundTo2Dec(
-      newOptions.particles.move.speed.max *
-        Math.pow(5, (screenScale / window.devicePixelRatio) * 0.15) *
-        0.3,
-    );
-    newOptions.particles.move.speed.min = roundTo2Dec(
-      newOptions.particles.move.speed.min *
-        Math.pow(5, (screenScale / window.devicePixelRatio) * 0.15) *
-        0.3,
-    );
-    newOptions.particles.life.duration.value = roundTo2Dec(
-      newOptions.particles.life.duration.value *
-        Math.pow(5, (screenScale / window.devicePixelRatio) * 0.1) *
-        0.6,
-    );
-    newOptions.particles.size.value.min = roundTo2Dec(
-      newOptions.particles.life.duration.value *
-        Math.pow(5, (screenScale / window.devicePixelRatio) * 0.4) *
-        0.12,
-    );
-    newOptions.particles.size.value.max = roundTo2Dec(
-      newOptions.particles.life.duration.value *
-        Math.pow(5, (screenScale / window.devicePixelRatio) * 0.4) *
-        0.12,
-    );
-  }
 
-  if (newOptions.size) {
-    newOptions.size.height *= screenScale * 0.14;
+    return newOptions;
   }
-
-  return newOptions;
 }

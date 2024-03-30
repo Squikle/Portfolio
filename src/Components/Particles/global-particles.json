@@ -65,8 +65,8 @@
       "random": true,
       "size": false,
       "speed": {
-        "min": 0.2,
-        "max": 0.8
+        "min": 1,
+        "max": 1
       },
       "spin": {
         "acceleration": 0,
@@ -79,7 +79,7 @@
         "mode": "delete",
         "value": 0
       },
-      "value": 50
+      "value": 0.2
     },
     "opacity": {
       "value": {
@@ -106,8 +106,8 @@
     },
     "size": {
       "value": {
-        "min": 0.1,
-        "max": 2.2
+        "min": 1,
+        "max": 1
       },
       "animation": {
         "count": 0,
@@ -122,13 +122,13 @@
       }
     },
     "stroke": {
-      "width": 0.1
+      "width": 1
     },
     "links": {
       "blink": false,
       "color": "random",
       "consent": false,
-      "distance": 15,
+      "distance": 1,
       "enable": true,
       "frequency": 1,
       "opacity": 0.2,
@@ -143,7 +143,7 @@
         "enable": true,
         "frequency": 1
       },
-      "width": 0.75,
+      "width": 1,
       "warp": false
     }
   },
@@ -168,17 +168,17 @@
     },
     "modes": {
       "grab": {
-        "distance": 150,
+        "distance": 1,
         "links": {
           "opacity": 1
         }
       },
       "connect": {
-        "radius": 150,
-        "distance": 100,
+        "radius": 1,
+        "distance": 1,
         "links": {
-          "opacity": 0.6,
-          "width": 2
+          "opacity": 0.4,
+          "width": 1
         }
       },
       "trail": {
@@ -187,25 +187,19 @@
         "quantity": 1
       },
       "attract": {
-        "distance": 150,
+        "distance": 2,
         "duration": 0,
         "easing": "ease-out-quad",
         "factor": 0.05,
         "maxSpeed": 70,
-        "speed": 50
+        "speed": 1
       },
       "bubble": {
-        "distance": 400,
+        "distance": 2,
         "duration": 0,
         "mix": true,
         "opacity": 1,
-        "size": 4,
-        "divs": {
-          "distance": 2000,
-          "duration": 0,
-          "mix": false,
-          "selectors": {}
-        }
+        "size": 1
       }
     }
   }

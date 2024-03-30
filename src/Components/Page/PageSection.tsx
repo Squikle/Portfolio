@@ -21,7 +21,7 @@ export default function PageSection({
   alwaysActive,
 }: Props) {
   const ref = useRef(null);
-  const isActive = useActiveClass(ref, "main-container");
+  const isActive = useActiveClass(ref, "scroller");
 
   useEffect(() => {
     if (onActiveUpdate) onActiveUpdate(isActive);

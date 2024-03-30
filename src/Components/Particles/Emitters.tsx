@@ -13,9 +13,9 @@ const kEmitterPosition: position = { x: 2435, y: 612 };
 import { useCallback, useEffect, useState } from "react";
 import { Container, ISourceOptions } from "@tsparticles/engine";
 import { adaptEmitter } from "./retinaAdapter.js";
-import { ContainerWithPlugins } from "../../vite-env";
 import { IEmitterOptions } from "@tsparticles/plugin-emitters/types/types";
 import { ImageData } from "../Logo/types.ts";
+import { EmitterContainer } from "@tsparticles/plugin-emitters";
 
 type Props = {
   isActive: boolean;
@@ -32,24 +32,33 @@ export default function Emitters({
   options,
   onLoaded,
 }: Props) {
-  const [container, setContainer] = useState<ContainerWithPlugins | null>(null);
+  const [container, setContainer] = useState<EmitterContainer | null>(null);
+
+  useEffect(() => {
+    if (!container) return;
+
+    if (isActive) container.play();
+    else container.pause();
+  }, [isActive, container]);
+
   const handleParticlesLoaded = useCallback(
     async (container?: Container) => {
-      setContainer(container as ContainerWithPlugins);
+      setContainer(container as EmitterContainer);
       if (onLoaded) onLoaded();
+      if (isActive) container?.play();
+      else container?.pause();
     },
-    [onLoaded],
+    [onLoaded, isActive],
   );
 
   useEffect(() => {
     const updateEmitters = async () => {
-      console.log("updateEmitters", isActive, imgData);
-      if (!isActive || !container?.addEmitter) return;
+      if (!container?.addEmitter || !container.plugins) return;
 
       if (!imgData) throw new Error("Image data must be provided!");
 
       const addEmitter = async (emitter: IEmitterOptions, defPos: position) => {
-        const pushedEmitter = await container.addEmitter(emitter, {
+        return await container.addEmitter(emitter, {
           x:
             ((defPos.x / initImgSize.width) * imgData.width + imgData.left) *
             window.devicePixelRatio,
@@ -57,34 +66,19 @@ export default function Emitters({
             ((defPos.y / initImgSize.height) * imgData.height + imgData.top) *
             window.devicePixelRatio,
         });
-        pushedEmitter.play();
       };
 
-      const sEmitter = adaptEmitter(emittersOptions["s-emitter"], {
-        ...imgData,
-      });
-      const kEmitter = adaptEmitter(emittersOptions["k-emitter"], {
-        ...imgData,
-      });
-      await addEmitter(sEmitter, sEmitterPosition);
+      const sEmitter = adaptEmitter(emittersOptions["s-emitter"]);
+      const kEmitter = adaptEmitter(emittersOptions["k-emitter"]);
+      container.removeEmitter(sEmitter.name);
+      container.removeEmitter(kEmitter.name);
+      const addedSEmitter = await addEmitter(sEmitter, sEmitterPosition);
       await addEmitter(kEmitter, kEmitterPosition);
+      console.log("added emitter: ", addedSEmitter.position);
     };
 
     updateEmitters();
-  }, [imgData, isActive, container]);
-
-  useEffect(() => {
-    console.log(
-      "isActive changed: ",
-      isActive,
-      "container set: ",
-      container !== null,
-    );
-    if (!container) return;
-
-    if (isActive) container.play();
-    else container.pause();
-  }, [isActive]);
+  }, [imgData, container]);
 
   return useParticlesComponent(id, options, handleParticlesLoaded);
 }
