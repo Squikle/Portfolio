@@ -65,7 +65,10 @@ const createSwipeScroll = (element: HTMLElement): Control => {
 
   const bindElement = (element: HTMLElement) => {
     if (isBound) return;
-    element.addEventListener("touchstart", handleTouchStart, false);
+    element.addEventListener("touchstart", handleTouchStart, {
+      passive: true,
+      capture: false,
+    });
     element.addEventListener("touchend", handleTouchEnd, false);
     isBound = true;
   };

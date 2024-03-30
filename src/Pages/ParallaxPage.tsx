@@ -21,11 +21,8 @@ export default function ParallaxPage({ className }: Props) {
   };
 
   return (
-    <Page>
-      <PageSection
-        className={classNames(className, styles.parallaxSlide)}
-        onActiveUpdate={handleActiveChange}
-      >
+    <Page className={classNames(className, styles.parallaxPage)}>
+      <PageSection onActiveUpdate={handleActiveChange}>
         <ParallaxInContext></ParallaxInContext>
       </PageSection>
     </Page>

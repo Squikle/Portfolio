@@ -21,7 +21,7 @@ export default function PageSection({
   alwaysActive,
 }: Props) {
   const ref = useRef(null);
-  const isActive = useActiveClass(ref);
+  const isActive = useActiveClass(ref, "main-container");
 
   useEffect(() => {
     if (onActiveUpdate) onActiveUpdate(isActive);
@@ -40,8 +40,10 @@ export default function PageSection({
         })}
         style={overriddenStyles}
       >
-        {children}
-        <ScrollButton elementRef={ref}></ScrollButton>
+        <div className={styles.content}>
+          {children}
+          <ScrollButton elementRef={ref}></ScrollButton>
+        </div>
       </div>
     </CurrentSectionContextProvider>
   );

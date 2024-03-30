@@ -105,7 +105,9 @@ export function useParallax(isActive: boolean) {
 
     reset();
     container.addEventListener("mousemove", handleMouseUpdate);
-    container.addEventListener("touchmove", handleTouchUpdate);
+    container.addEventListener("touchmove", handleTouchUpdate, {
+      passive: true,
+    });
     container.addEventListener("mouseleave", reset);
     container.addEventListener("touchend", reset);
 

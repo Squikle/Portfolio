@@ -18,15 +18,10 @@
 
 html {
   background-color: black;
+  overflow-x: hidden;
 }
 
 #main-container {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  width: 100vw;
-  height: 100dvh;
-  overflow-x: hidden;
-  //overflow-y: scroll;
-  //scroll-snap-type: y mandatory;
-  //scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
 }

@@ -10,7 +10,6 @@ type Props = {
 export default function ScrollButton({
   elementRef,
   mainContainerId = "main-container",
-  contentElementId = "content",
 }: Props) {
   const [isShown, setIsShown] = useState(true);
 
@@ -27,15 +26,15 @@ export default function ScrollButton({
     if (!elementRef.current)
       throw new Error("element ref current must be not null!");
 
-    const contentElement = document.getElementById(contentElementId);
-    if (!contentElement)
+    const mainContainer = document.getElementById(mainContainerId);
+    if (!mainContainer)
       throw new Error(
-        "couldn't retrieve scroll element with id: " + contentElementId,
+        "couldn't retrieve main container with id: " + mainContainerId,
       );
 
     const isBottom =
       elementRef.current.getBoundingClientRect().bottom >=
-      contentElement.offsetHeight;
+      mainContainer.offsetHeight;
     setIsShown(!isBottom);
   }, []);
 

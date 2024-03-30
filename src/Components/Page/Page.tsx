@@ -12,7 +12,7 @@ type Props = {
 
 export default function Page({ className, children, onActiveUpdate }: Props) {
   const ref = useRef(null);
-  const isActive = useActiveClass(ref);
+  const isActive = useActiveClass(ref, "main-container");
 
   useEffect(() => {
     if (onActiveUpdate) onActiveUpdate(isActive);
@@ -26,7 +26,7 @@ export default function Page({ className, children, onActiveUpdate }: Props) {
           [styles.inactive]: !isActive,
         })}
       >
-        {children}
+        <div className={styles.content}>{children}</div>
       </div>
     </CurrentPageContextProvider>
   );

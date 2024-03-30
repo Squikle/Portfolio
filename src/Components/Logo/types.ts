@@ -1,9 +1,12 @@
-type ImageSize = { width: number; height: number };
-type ImagePosition = { top: number; left: number };
+export type OnImageUpdate = (imageData: ImageData) => void;
+export type ImageData = ImageSize & ImagePosition;
 
-export type OnImageResize = (
-  imageSize: ImageSize,
-  imagePosition: ImagePosition,
-) => void;
+export type ImageSize = {
+  width: number;
+  height: number;
+};
 
-export type OnImageLoaded = (size: ImageSize, position: ImagePosition) => void;
+export type ImagePosition = {
+  left: number;
+  top: number;
+};

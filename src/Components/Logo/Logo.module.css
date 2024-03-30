@@ -1,10 +1,8 @@
 .logo {
-  position: fixed;
-  inset: 0;
-  margin: auto;
   max-width: 100%;
   max-height: 60%;
   pointer-events: none;
+
   /* filter: drop-shadow(rgba(225, 0, 255, 0.1) 10px 12px 5px);
     -webkit-filter: drop-shadow(rgba(225, 0, 255, 0.2) 6px 8px 0px); */
   user-select: none;
@@ -12,4 +10,14 @@
   -khtml-user-select: none;
   -webkit-user-select: none;
   -o-user-select: none;
+}
+
+.container {
+  position: sticky;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  inset: 0;
 }

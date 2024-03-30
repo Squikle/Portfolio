@@ -4,9 +4,8 @@
   "fullScreen": {
     "enable": false
   },
-  "detectRetina": false,
-  "duration": 0,
-  "fpsLimit": 90,
+  "detectRetina": true,
+  "fpsLimit": 120,
   "particles": {
     "rotate": {
       "value": {
@@ -25,13 +24,6 @@
     "color": {
       "value": ["#ff1ce7", "#1cddff"]
     },
-    "effect": {
-      "close": true,
-      "fill": true,
-      "options": {},
-      "type": {}
-    },
-    "groups": {},
     "move": {
       "angle": {
         "offset": 0,
@@ -44,12 +36,6 @@
           "x": 100,
           "y": 100
         }
-      },
-      "center": {
-        "x": 50,
-        "y": 50,
-        "mode": "percent",
-        "radius": 50
       },
       "decay": 0,
       "distance": {
@@ -93,7 +79,7 @@
         "mode": "delete",
         "value": 0
       },
-      "value": 30
+      "value": 50
     },
     "opacity": {
       "value": {
@@ -161,26 +147,8 @@
       "warp": false
     }
   },
-  "pauseOnBlur": true,
-  "pauseOnOutsideViewport": true,
-  "smooth": false,
-  "style": {},
-  "zLayers": 10,
+  "zLayers": 100,
   "name": "Global",
-  "backgroundMask": {
-    "composite": "destination-out",
-    "cover": {
-      "color": {
-        "value": "#ff1ce7"
-      },
-      "opacity": 5
-    },
-    "enable": false
-  },
-  "backgroundMode": {
-    "enable": true,
-    "zIndex": 0
-  },
   "interactivity": {
     "detectsOn": "window",
     "events": {
@@ -209,7 +177,8 @@
         "radius": 150,
         "distance": 100,
         "links": {
-          "opacity": 0.6
+          "opacity": 0.6,
+          "width": 2
         }
       },
       "trail": {

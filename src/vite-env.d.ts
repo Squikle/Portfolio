@@ -1,5 +1,7 @@
 /// <reference types="vite/client" />
 import { Container as TSParticlesContainer } from "@tsparticles/engine";
+import { IEmitterOptions } from "@tsparticles/plugin-emitters/types/types";
+import { EmitterInstance } from "@tsparticles/plugin-emitters/types/EmitterInstance";
 
 declare module "*.css";
 declare module "*.png";
@@ -10,6 +12,9 @@ declare module "*.module.css";
 declare module "@tsparticles/engine";
 
 interface ContainerWithPlugins extends TSParticlesContainer {
-  addEmitter(emitter: any, position: { x: number; y: number }): Promise<void>;
-  play(): Promise<void>;
+  addEmitter(
+    options: IEmitterOptions,
+    position: { x: number; y: number },
+  ): Promise<EmitterInstance>;
+  play(force?: boolean): Promise<void>;
 }

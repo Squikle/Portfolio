@@ -1,12 +1,11 @@
 {
   "autoPlay": false,
   "fullScreen": {
-    "zIndex": 0,
-    "enable": true
+    "enable": false
   },
   "detectRetina": true,
   "duration": 0,
-  "fpsLimit": 144,
+  "fpsLimit": 120,
   "particles": {
     "rotate": {
       "value": {
@@ -116,9 +115,6 @@
       "warp": false
     }
   },
-  "pauseOnBlur": true,
-  "pauseOnOutsideViewport": true,
-  "smooth": false,
   "zLayers": 100,
   "name": "Canvas",
   "canvasMask": {

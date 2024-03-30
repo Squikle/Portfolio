@@ -3,42 +3,32 @@ import InfoCard from "../Components/TextCard/InfoCard";
 import Page from "../Components/Page/Page";
 import Logo from "../Components/Logo/Logo";
 import Particles from "../Components/Particles/Particles";
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useReducer, useRef, useState } from "react";
 import Emitters from "../Components/Particles/Emitters";
 import globalParticlesOptions from "../Components/Particles/global-particles.json";
 import emittersParticlesOptions from "../Components/Particles/emitters-particles.json";
 import canvasParticlesOptions from "../Components/Particles/canvas-particles.json";
 import { useParticlesEngine } from "../hooks/useParticlesEngine";
-import { ImageData, ImagePosition, ImageSize } from "../types/imageData";
+import { ImageData } from "../types/imageData";
 import { adaptParticles } from "../Components/Particles/retinaAdapter";
 import classNames from "classnames";
 import styles from "./LogoPage.module.css";
-
-type Props = {
-  className?: string;
-};
+import {
+  useCurrentPageContext,
+  useCurrentSectionContext,
+} from "../Components/Page/CurrentPageContext/useContexts.ts";
 
 type ParticlesOptions = {
   global: any;
   emitters: any;
   canvas: any;
 };
+
 const initialParticlesOptions: ParticlesOptions = {
   global: null,
   canvas: null,
   emitters: null,
 };
-
-type LoadState = {
-  particles: boolean;
-  image: boolean;
-};
-
-const initialLoadState: LoadState = {
-  particles: false,
-  image: false,
-};
-
 const initialImageData: ImageData = {
   height: 0,
   width: 0,
@@ -46,65 +36,56 @@ const initialImageData: ImageData = {
   left: 0,
 };
 
-export default function LogoPage({ className }: Props) {
-  const imageRef = useRef(null);
-  const [isActive, setIsActive] = useState(false);
-  const options = useRef<ParticlesOptions>(initialParticlesOptions);
-  const [loadState, setLoadState] = useState<LoadState>(initialLoadState);
-  const [imageData, setImageData] = useState<ImageData>(initialImageData);
-
-  const onParticlesLoaded = useCallback(() => {
-    setLoadState((prev: LoadState) => {
-      if (prev?.particles !== true) {
-        return { ...prev, particles: true };
-      }
-      return prev;
-    });
-  }, []);
-  useParticlesEngine(onParticlesLoaded);
-
-  const updateImage = useCallback(
-    (size: ImageSize, position: ImagePosition) => {
-      setImageData({ ...position, ...size });
-
-      if (!size?.width && !size?.height) {
-        return;
-      }
-      const newSize = { width: size.width, height: size.height };
-      options.current = {
-        global: adaptParticles(globalParticlesOptions, newSize),
-        emitters: adaptParticles(emittersParticlesOptions, newSize),
-        canvas: adaptParticles(canvasParticlesOptions, newSize),
+type LoadState = {
+  particles: boolean;
+  image: boolean;
+};
+const initialLoadState: LoadState = {
+  particles: false,
+  image: false,
+};
+type stateUpdatedAction = "image" | "particles";
+const stateReducer = (state: LoadState, action: stateUpdatedAction) => {
+  switch (action) {
+    case "image":
+      return {
+        ...state,
+        image: true,
       };
-    },
-    [],
-  );
+    case "particles":
+      return {
+        ...state,
+        particles: true,
+      };
+    default:
+      return state;
+  }
+};
 
-  const particles = (
-    <>
-      <Emitters
-        id="emitters-particles"
-        options={options.current.emitters}
-        imageData={imageData}
-        isActive={isActive}
-      />
-      <Particles
-        id="canvas-particles"
-        options={options.current.canvas}
-        isActive={isActive}
-      />
-    </>
-  );
+export default function LogoPage({ className }: { className?: string }) {
+  const [imageData, setImageData] = useState<ImageData>(initialImageData);
+  const [loadState, dispatchLoad] = useReducer(stateReducer, initialLoadState);
+  const options = useRef(initialParticlesOptions);
+  useParticlesEngine(useCallback(() => dispatchLoad("particles"), []));
+
+  const updateImage = useCallback((imageData: ImageData) => {
+    setImageData(imageData);
+
+    if (!imageData?.width && !imageData?.height) {
+      return;
+    }
+    const newSize = { width: imageData.width, height: imageData.height };
+    options.current = {
+      global: adaptParticles(globalParticlesOptions, newSize),
+      emitters: emittersParticlesOptions,
+      canvas: adaptParticles(canvasParticlesOptions, newSize),
+    };
+  }, []);
 
   const onImageLoad = useCallback(
-    (size: ImageSize, position: ImagePosition) => {
-      updateImage(size, position);
-      setLoadState((prev) => {
-        if (prev?.image !== true) {
-          return { ...prev, image: true };
-        }
-        return prev;
-      });
+    (imageData: ImageData) => {
+      updateImage(imageData);
+      dispatchLoad("image");
     },
     [updateImage],
   );
@@ -114,28 +95,61 @@ export default function LogoPage({ className }: Props) {
   };
 
   return (
-    <Page
-      onActiveUpdate={setIsActive}
-      className={classNames(className, styles.logoPage)}
-    >
-      {isLoaded() && particles}
-      <Logo
-        ref={imageRef}
-        onLoad={onImageLoad}
-        onImageResize={updateImage}
-      ></Logo>
+    <Page className={classNames(className, styles.logoPage)}>
       <PageSection>
         <InfoCard></InfoCard>
       </PageSection>
-      <PageSection className={classNames(styles.globalParticles)}>
-        {isActive && (
-          <Particles
-            id={styles["global-particles"]}
-            options={options.current.global}
-            isActive={isActive}
-          />
+      <Logo onLoad={onImageLoad} onImageResize={updateImage}></Logo>
+      <div className={styles.particlesContainer}>
+        {isLoaded() && (
+          <FixedParticles options={options.current} imageData={imageData} />
         )}
+      </div>
+      <PageSection className={classNames(styles.globalParticles)}>
+        <div className={styles.particlesContainer}>
+          <StaticParticles options={options.current} />
+        </div>
       </PageSection>
     </Page>
   );
 }
+
+const FixedParticles = ({
+  options,
+  imageData,
+}: {
+  options: ParticlesOptions;
+  imageData: ImageData;
+}) => {
+  const isActive = useCurrentPageContext().isActive;
+
+  return (
+    <>
+      <Emitters
+        id="emitters-particles"
+        options={options.emitters}
+        imgData={imageData}
+        isActive={isActive}
+      />
+      <Particles
+        id="canvas-particles"
+        options={options.canvas}
+        isActive={isActive}
+      />
+    </>
+  );
+};
+
+const StaticParticles = ({ options }: { options: ParticlesOptions }) => {
+  const isActive = useCurrentSectionContext().isActive;
+
+  return (
+    <>
+      {/*<Particles
+        id={styles["global-particles"]}
+        options={options.global}
+        isActive={isActive}
+      />*/}
+    </>
+  );
+};

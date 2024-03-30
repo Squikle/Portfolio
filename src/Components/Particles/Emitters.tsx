@@ -1,19 +1,25 @@
 import { useParticlesComponent } from "../../hooks/useParticlesEngine";
 import emittersOptions from "./emitters.json";
 
-const initialImageSize = { width: 2750, height: 2052 };
-const sEmitterPosition = { x: 425, y: 1205 };
-const kEmitterPosition = { x: 2435, y: 612 };
+type position = {
+  x: number;
+  y: number;
+};
+
+const initImgSize = { width: 2750, height: 2052 };
+const sEmitterPosition: position = { x: 425, y: 1205 };
+const kEmitterPosition: position = { x: 2435, y: 612 };
 
 import { useCallback, useEffect, useState } from "react";
 import { Container, ISourceOptions } from "@tsparticles/engine";
 import { adaptEmitter } from "./retinaAdapter.js";
 import { ContainerWithPlugins } from "../../vite-env";
-import { ImageData } from "../../types/imageData";
+import { IEmitterOptions } from "@tsparticles/plugin-emitters/types/types";
+import { ImageData } from "../Logo/types.ts";
 
 type Props = {
   isActive: boolean;
-  imageData: ImageData;
+  imgData: ImageData;
   id: string;
   options: ISourceOptions;
   onLoaded?: () => void;
@@ -21,67 +27,64 @@ type Props = {
 
 export default function Emitters({
   isActive,
-  imageData,
+  imgData,
   id,
   options,
   onLoaded,
 }: Props) {
-  const [container, setContainer] = useState<Container | undefined | null>(
-    null,
-  );
-
+  const [container, setContainer] = useState<ContainerWithPlugins | null>(null);
   const handleParticlesLoaded = useCallback(
-    (container?: Container) => {
-      console.log("loaded");
-      setContainer(container);
+    async (container?: Container) => {
+      setContainer(container as ContainerWithPlugins);
       if (onLoaded) onLoaded();
-      return Promise.resolve();
     },
     [onLoaded],
   );
 
   useEffect(() => {
-    if (!container) return;
+    const updateEmitters = async () => {
+      console.log("updateEmitters", isActive, imgData);
+      if (!isActive || !container?.addEmitter) return;
 
-    if (isActive) {
-      container.play();
-    } else {
-      container.pause();
-    }
-  }, [isActive, container]);
+      if (!imgData) throw new Error("Image data must be provided!");
 
-  useEffect(() => {
-    const update = async () => {
-      const containerWithEmitters = container as ContainerWithPlugins;
-      if (!containerWithEmitters || !containerWithEmitters.addEmitter) return;
-      const imageSize = { width: imageData.width, height: imageData.height };
-      const imagePosition = { left: imageData.left, top: imageData.top };
-      const sEmitter = adaptEmitter(emittersOptions["s-emitter"], imageSize);
-      await containerWithEmitters.addEmitter(sEmitter, {
-        x:
-          ((sEmitterPosition.x / initialImageSize.width) * imageSize.width +
-            imagePosition.left) *
-          window.devicePixelRatio,
-        y:
-          ((sEmitterPosition.y / initialImageSize.height) * imageSize.height +
-            imagePosition.top) *
-          window.devicePixelRatio,
+      const addEmitter = async (emitter: IEmitterOptions, defPos: position) => {
+        const pushedEmitter = await container.addEmitter(emitter, {
+          x:
+            ((defPos.x / initImgSize.width) * imgData.width + imgData.left) *
+            window.devicePixelRatio,
+          y:
+            ((defPos.y / initImgSize.height) * imgData.height + imgData.top) *
+            window.devicePixelRatio,
+        });
+        pushedEmitter.play();
+      };
+
+      const sEmitter = adaptEmitter(emittersOptions["s-emitter"], {
+        ...imgData,
       });
-      const kEmitter = adaptEmitter(emittersOptions["k-emitter"], imageSize);
-      await containerWithEmitters.addEmitter(kEmitter, {
-        x:
-          ((kEmitterPosition.x / initialImageSize.width) * imageSize.width +
-            imagePosition.left) *
-          window.devicePixelRatio,
-        y:
-          ((kEmitterPosition.y / initialImageSize.height) * imageSize.height +
-            imagePosition.top) *
-          window.devicePixelRatio,
+      const kEmitter = adaptEmitter(emittersOptions["k-emitter"], {
+        ...imgData,
       });
+      await addEmitter(sEmitter, sEmitterPosition);
+      await addEmitter(kEmitter, kEmitterPosition);
     };
 
-    update();
-  }, [container, imageData]);
+    updateEmitters();
+  }, [imgData, isActive, container]);
+
+  useEffect(() => {
+    console.log(
+      "isActive changed: ",
+      isActive,
+      "container set: ",
+      container !== null,
+    );
+    if (!container) return;
+
+    if (isActive) container.play();
+    else container.pause();
+  }, [isActive]);
 
   return useParticlesComponent(id, options, handleParticlesLoaded);
 }
