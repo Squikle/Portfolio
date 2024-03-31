@@ -3,7 +3,7 @@ import InfoCard from "../Components/TextCard/InfoCard";
 import Page from "../Components/Page/Page";
 import Logo from "../Components/Logo/Logo";
 import Particles from "../Components/Particles/Particles";
-import { useCallback, useReducer, useRef, useState } from "react";
+import { useCallback, useEffect, useReducer, useRef, useState } from "react";
 import Emitters from "../Components/Particles/Emitters";
 import globalParticlesOptions from "../Components/Particles/global-particles.json";
 import emittersParticlesOptions from "../Components/Particles/emitters-particles.json";
@@ -18,7 +18,7 @@ import {
   useCurrentSectionContext,
 } from "../Components/Page/CurrentPageContext/useContexts.ts";
 import { Keyboard, Mousewheel } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
 import SlidesPagination from "../Components/Slides/SlidesPagination.tsx";
 import { useSwiperPagination } from "../Components/Slides/useSwiperPagination.ts";
 
@@ -75,6 +75,7 @@ export default function LogoPage({
 }) {
   const [imageData, setImageData] = useState<ImageData>(initialImageData);
   const [loadState, dispatchLoad] = useReducer(stateReducer, initialLoadState);
+  const [swiper, setSwiper] = useState<SwiperClass | null>(null);
   const options = useRef(initialParticlesOptions);
   const pagination = useSwiperPagination();
   useParticlesEngine(useCallback(() => dispatchLoad("particles"), []));
@@ -105,6 +106,15 @@ export default function LogoPage({
     return loadState?.image === true && loadState?.particles === true;
   };
 
+  useEffect(() => {
+    if (!swiper) return;
+
+    if (isActive) setTimeout(() => swiper.mousewheel.enable(), 1500);
+    else {
+      swiper.mousewheel.disable();
+    }
+  }, [isActive]);
+
   return (
     <Page
       isActive={isActive}
@@ -117,15 +127,16 @@ export default function LogoPage({
       <Swiper
         direction={"vertical"}
         slidesPerView={1}
-        mousewheel={true}
         modules={[Mousewheel, Keyboard]}
         className="mySwiper"
         autoHeight={false}
         speed={850}
         followFinger={false}
         keyboard={true}
-        nested={true}
-        onInit={pagination.setSwiper}
+        onInit={(s) => {
+          pagination.setSwiper(s);
+          setSwiper(s);
+        }}
         onSlideChange={pagination.updateSlides}
       >
         <Logo onLoad={onImageLoad} onImageResize={updateImage}></Logo>

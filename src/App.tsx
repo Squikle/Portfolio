@@ -41,15 +41,15 @@ export default function App() {
       <Swiper
         direction={"horizontal"}
         slidesPerView={1}
-        mousewheel={true}
+        mousewheel={{ enabled: true, forceToAxis: true }}
         modules={[Mousewheel, Pagination, Keyboard]}
         autoHeight={false}
-        speed={850}
+        speed={1200}
         followFinger={false}
         keyboard={true}
-        slidesPerGroup={1}
         onInit={pagination.setSwiper}
         onSlideChange={pagination.updateSlides}
+        noSwipingClass={"text"}
       >
         <SwiperSlide>
           {({ isActive }) => <ParallaxPage isActive={isActive}></ParallaxPage>}

@@ -8,8 +8,8 @@
 .section {
   scroll-snap-align: center;
   scroll-snap-stop: always;
-  touch-action: pan-y;
-  height: var(--viewport-height);
+  touch-action: none;
+  height: 100dvh;//var(--viewport-height);
   width: 100%;
   //transition: height 0.1s ease-in-out;
   overflow: hidden;
