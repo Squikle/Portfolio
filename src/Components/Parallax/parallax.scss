@@ -40,6 +40,7 @@
   --rotateY: 0;
   --rotateX: 0;
   --leftOffset: -110px;
+  --parallaxMultiplier: 1;
   position: absolute;
 
   top: calc(var(--from-top) * var(--scale));
@@ -47,8 +48,8 @@
   transform:
     perspective(10000px)
     translate3d(
-                calc(var(--translateX) + var(--origTranslateX)),
-                calc(var(--translateY) + var(--origTranslateY)),
+                calc((var(--translateX) + var(--origTranslateX)) * var(--parallaxMultiplier)),
+                calc((var(--translateY) + var(--origTranslateY)) * var(--parallaxMultiplier)),
                 var(--translateZ)
               )
     rotateY(var(--rotateY))
@@ -77,8 +78,8 @@
   z-index: 1;
 }
 .sky-2 {
-  --width: 364%;
-  --from-left: -15%;
+  --width: 365%;
+  --from-left: -20%;
   --from-top: -24%;
   z-index: 2;
   opacity: 0.8;
@@ -146,10 +147,10 @@
 }
 .rays-left {
   --width: 264.028%;
-  --from-left: 5%;
+  --from-left: 9%;
   --from-top: 66.28%;
-  z-index: 28;
-  opacity: 1;
+  z-index: 30;
+  opacity: 0.8;
 }
 .fog-left {
   --width: 68.419%;
@@ -178,7 +179,7 @@
 }
 .right-8 {
   --width: 17.116%;
-  --from-left: 310.38%;
+  --from-left: 315%;
   --from-top: 218.52%;
   z-index: 17;
 }
@@ -203,7 +204,7 @@
 }
 .right-4 {
   --width: 14.504%;
-  --from-left: 320.32%;
+  --from-left: 324.32%;
   --from-top: 242.66%;
   z-index: 21;
 }
@@ -222,7 +223,7 @@
 .right-1 {
   --width: 27.942%;
   --from-left: 239.96%;
-  --from-top: 216.21%;
+  --from-top: 218.21%;
   z-index: 24;
 }
 .fog-right-0 {
@@ -278,19 +279,19 @@
 .water {
   --width: 349.487%;
   --from-left: -8.12%;
-  --from-top: 253.31%;
+  --from-top: 256%;
   z-index: 33;
 }
 .water-yacht {
   --width: 16.366%;
   --from-left: 180.65%;
-  --from-top: 249.35%;
+  --from-top: 253.35%;
   z-index: 34;
 }
 .water-boat-right {
   --width: 16.068%;
   --from-left: 130.39%;
-  --from-top: 249.89%;
+  --from-top: 254.89%;
   z-index: 35;
 }
 .water-boat-left {
@@ -318,9 +319,9 @@
   z-index: 39;
 }
 .person {
-  --width: 83%;
+  --width: 84%;
   --from-left: 11.34%;
-  bottom: -2%;
+  bottom: -3%;
   z-index: 40;
   opacity: 1;
 }
@@ -334,24 +335,9 @@
   mix-blend-mode: screen;
 }
 @media (max-aspect-ratio: 0.75/1) and (orientation: portrait){
-  .text {
-    .dev {
-      top: -7%
-    }
-    .name {
-      top: -7%
-    }
-    left: 17%;
-  }
-  .person {
-    right: auto;
-    top: auto;
-    bottom: -2%;
-    min-width: 26vmax;
-  }
   .birds {
     left: auto;
-    right: 12%;
+    right: 35%;
     top: 61%;
     min-width: 12vmax;
   }
@@ -383,13 +369,13 @@
       left: 53%;
       --font-size: 0.8;
       line-height: 3.8vmax;
-      top: 1%
+      top: 9%
     }
     .name {
       left: 15%;
       --font-size: 0.9;
       line-height: 3.8vmax;
-      top: 1%
+      top: 9%
     }
     left: 17%;
   }
@@ -426,7 +412,7 @@
       display: none;
     }
     .name {
-      left: 55%;
+      left: 56%;
       text-align: left;
     }
   }

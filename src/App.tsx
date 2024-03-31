@@ -1,20 +1,17 @@
-import { useEffect, useLayoutEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import ParallaxPage from "./Pages/ParallaxPage.tsx";
 import LogoPage from "./Pages/LogoPage.tsx";
-import useScrollSnap from "./hooks/useScrollSnap.ts";
-import styles from "./App.module.css";
+import "swiper/css";
+import "swiper/css/pagination";
+import "./main.scss";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Keyboard, Mousewheel, Pagination } from "swiper/modules";
+import SlidesPagination from "./Components/Slides/SlidesPagination.tsx";
+import { useSwiperPagination } from "./Components/Slides/useSwiperPagination.ts";
 
 export default function App() {
-  const contentRef = useRef<HTMLInputElement | null>(null);
-  useScrollSnap(contentRef, {
-    snapDestinationY: "100vh",
-    duration: 500,
-    timeout: 100,
-    threshold: 0.3,
-    easing: (t) =>
-      t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1,
-    snapStop: true,
-  });
+  const pagination = useSwiperPagination();
 
   useEffect(() => {
     window.onbeforeunload = function () {
@@ -36,9 +33,36 @@ export default function App() {
   }, []);
 
   return (
-    <div className={styles.scroller} id="scroller" ref={contentRef}>
-      <ParallaxPage></ParallaxPage>
-      <LogoPage></LogoPage>
-    </div>
+    <>
+      <SlidesPagination
+        position={"top"}
+        onInit={pagination.setPagination}
+      ></SlidesPagination>
+      <Swiper
+        direction={"horizontal"}
+        slidesPerView={1}
+        mousewheel={true}
+        modules={[Mousewheel, Pagination, Keyboard]}
+        autoHeight={false}
+        speed={850}
+        followFinger={false}
+        keyboard={true}
+        slidesPerGroup={1}
+        onInit={pagination.setSwiper}
+        onSlideChange={pagination.updateSlides}
+      >
+        <SwiperSlide>
+          <ParallaxPage></ParallaxPage>
+        </SwiperSlide>
+        <SwiperSlide
+        /*style={{
+            height: "200vh",
+            overflow: "scroll",
+          }}*/
+        >
+          <LogoPage></LogoPage>
+        </SwiperSlide>
+      </Swiper>
+    </>
   );
 }

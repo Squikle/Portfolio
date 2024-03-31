@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "ES6",
     "useDefineForClassFields": true,
-    "lib": ["ES6", "DOM", "DOM.Iterable"],
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "skipLibCheck": true,
     "allowJs": true,
@@ -25,5 +25,4 @@
     "./src/*"
   ],
   "references": [{ "path": "./tsconfig.node.json"}],
-
 }

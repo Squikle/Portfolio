@@ -1,5 +1,5 @@
 import backgroundImage from "./squik.png";
-import { RefObject, useCallback, useEffect, useRef } from "react";
+import { RefObject, useCallback, useRef } from "react";
 import styles from "./Logo.module.css";
 import { OnImageUpdate } from "./types.ts";
 import useResizeObserver from "@react-hook/resize-observer";
@@ -17,7 +17,6 @@ export default function Logo({ onImageResize, onLoad }: Props) {
 
   const handleResize = useCallback(
     debounceAndExecute(() => {
-      console.log("resize");
       onImageResize(getImageData());
     }, 200),
     [onImageResize],

@@ -7,6 +7,8 @@ export default function useActiveClass(
   const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
+    setIsActive(true);
+    return;
     const scrollElement = document.getElementById(scrollElementId);
     if (!scrollElement)
       throw new Error(

@@ -17,7 +17,7 @@
 }
 
 .container {
-  position: sticky;
+  position: absolute;
   height: 0;
   inset: 0;
 }

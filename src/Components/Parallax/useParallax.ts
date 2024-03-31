@@ -37,14 +37,15 @@ export function useParallax(isActive: boolean) {
 
     elementsToUpdate.forEach((el) => {
       const dataset = el.dataset as unknown as ParallaxDataset;
-      const xSpeed = dataset.speedX * 2;
-      const ySpeed = dataset.speedY * 2;
-      const zSpeed = dataset.speedZ * 3;
+      const xSpeed = dataset.speedX * 5.5;
+      const ySpeed = dataset.speedY * 4;
+      const zSpeed = dataset.speedZ * 4;
 
       const leftOfEl =
         parseFloat(getComputedStyle(el).left) - el.offsetWidth / 2;
+      const leftOfElInPercent = (leftOfEl / el.offsetWidth) * 100;
       const isInLeftHalf = leftOfEl < window.innerWidth / 2 ? 1 : -1;
-      const zValue = (x - leftOfEl) * isInLeftHalf;
+      const zValue = (x - leftOfElInPercent) * isInLeftHalf;
 
       const xOffsetX = x * xSpeed;
       const yOffset = y * ySpeed;
@@ -92,7 +93,7 @@ export function useParallax(isActive: boolean) {
 
     const handleMouseUpdate = throttle((e: MouseEvent) => {
       handleUpdate(e.clientX, e.clientY, elementsToUpdate);
-    }, 50);
+    }, 0);
 
     const handleTouchUpdate = throttle((e: TouchEvent) => {
       const lastTouch = e.changedTouches[e.changedTouches.length - 1];

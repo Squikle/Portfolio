@@ -9,7 +9,7 @@ import globalParticlesOptions from "../Components/Particles/global-particles.jso
 import emittersParticlesOptions from "../Components/Particles/emitters-particles.json";
 import canvasParticlesOptions from "../Components/Particles/canvas-particles.json";
 import { useParticlesEngine } from "../hooks/useParticlesEngine";
-import { ImageData } from "../types/imageData";
+import { ImageData } from "../Components/Logo/types.ts";
 import { adaptParticles } from "../Components/Particles/retinaAdapter";
 import classNames from "classnames";
 import styles from "./LogoPage.module.css";
@@ -17,6 +17,10 @@ import {
   useCurrentPageContext,
   useCurrentSectionContext,
 } from "../Components/Page/CurrentPageContext/useContexts.ts";
+import { Keyboard, Mousewheel } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+import SlidesPagination from "../Components/Slides/SlidesPagination.tsx";
+import { useSwiperPagination } from "../Components/Slides/useSwiperPagination.ts";
 
 type ParticlesOptions = {
   global: any;
@@ -66,6 +70,7 @@ export default function LogoPage({ className }: { className?: string }) {
   const [imageData, setImageData] = useState<ImageData>(initialImageData);
   const [loadState, dispatchLoad] = useReducer(stateReducer, initialLoadState);
   const options = useRef(initialParticlesOptions);
+  const pagination = useSwiperPagination();
   useParticlesEngine(useCallback(() => dispatchLoad("particles"), []));
 
   const updateImage = useCallback((imageData: ImageData) => {
@@ -96,16 +101,39 @@ export default function LogoPage({ className }: { className?: string }) {
 
   return (
     <Page className={classNames(className, styles.logoPage)}>
-      <Logo onLoad={onImageLoad} onImageResize={updateImage}></Logo>
-      {isLoaded() && (
-        <FixedParticles options={options.current} imageData={imageData} />
-      )}
-      <PageSection>
-        <InfoCard></InfoCard>
-      </PageSection>
-      <PageSection className={classNames(styles.globalParticles)}>
-        {isLoaded() && <StaticParticles options={options.current} />}
-      </PageSection>
+      <SlidesPagination
+        position={"bottom"}
+        onInit={pagination.setPagination}
+      ></SlidesPagination>
+      <Swiper
+        direction={"vertical"}
+        slidesPerView={1}
+        mousewheel={true}
+        modules={[Mousewheel, Keyboard]}
+        className="mySwiper"
+        autoHeight={false}
+        speed={850}
+        followFinger={false}
+        keyboard={true}
+        nested={true}
+        onInit={pagination.setSwiper}
+        onSlideChange={pagination.updateSlides}
+      >
+        <Logo onLoad={onImageLoad} onImageResize={updateImage}></Logo>
+        {isLoaded() && (
+          <FixedParticles options={options.current} imageData={imageData} />
+        )}
+        <SwiperSlide>
+          <PageSection>
+            <InfoCard></InfoCard>
+          </PageSection>
+        </SwiperSlide>
+        <SwiperSlide>
+          <PageSection className={classNames(styles.globalParticles)}>
+            {isLoaded() && <StaticParticles options={options.current} />}
+          </PageSection>
+        </SwiperSlide>
+      </Swiper>
     </Page>
   );
 }
@@ -118,7 +146,6 @@ const FixedParticles = ({
   imageData: ImageData;
 }) => {
   const isActive = useCurrentPageContext().isActive;
-
   return (
     <div className={styles.particlesContainer}>
       <Emitters

@@ -17,6 +17,29 @@
 }
 
 html {
-  background-color: black;
   overflow-x: hidden;
+  background-color: black;
+}
+
+#root {
+   height: 100%;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+.swiper {
+  width: 100vw;
+  height: 100%;
+}
+
+.swiper-pagination-bullet {
+  width: 1.2vmax;
+  height: 1.2vmax;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: rgba(215, 215, 215, 0.54);
 }

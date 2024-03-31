@@ -79,7 +79,7 @@ export default function Parallax({ isActive }: Props) {
         <img
           src={sky3}
           className="parallax sky-3"
-          data-speed-x="0.35"
+          data-speed-x="0.19"
           data-speed-y="0.16"
           data-speed-z="0"
         />
@@ -103,14 +103,14 @@ export default function Parallax({ isActive }: Props) {
         <img
           src={sky2}
           className="parallax sky-2"
-          data-speed-x="0.3"
+          data-speed-x="0.26"
           data-speed-y="0.13"
           data-speed-z="0"
         />
         <img
           src={sky1}
           className="parallax sky-1"
-          data-speed-x="0.25"
+          data-speed-x="0.22"
           data-speed-y="0.1"
           data-speed-z="0"
         />
@@ -188,14 +188,14 @@ export default function Parallax({ isActive }: Props) {
         <img
           src={right11}
           className="parallax right-11"
-          data-speed-x="0.22"
-          data-speed-y="0.155"
+          data-speed-x="0.14"
+          data-speed-y="0.13"
           data-speed-z="0.185"
         />
         <img
           src={right10}
           className="parallax right-10"
-          data-speed-x="0.21"
+          data-speed-x="0.15"
           data-speed-y="0.13"
           data-speed-z="0.16"
         />
@@ -230,15 +230,15 @@ export default function Parallax({ isActive }: Props) {
         <img
           src={right5}
           className="parallax right-5"
-          data-speed-x="0.235"
-          data-speed-y="0.21"
+          data-speed-x="0.2"
+          data-speed-y="0.2"
           data-speed-z="0.215"
         />
         <img
           src={right4}
           className="parallax right-4"
-          data-speed-x="0.21"
-          data-speed-y="0.22"
+          data-speed-x="0.18"
+          data-speed-y="0.19"
           data-speed-z="0.22"
         />
         <img
@@ -251,14 +251,14 @@ export default function Parallax({ isActive }: Props) {
         <img
           src={right2}
           className="parallax right-2"
-          data-speed-x="0.19"
-          data-speed-y="0.14"
+          data-speed-x="0.17"
+          data-speed-y="0.18"
           data-speed-z="0.165"
         />
         <img
           src={right1}
           className="parallax right-1"
-          data-speed-x="0.22"
+          data-speed-x="0.2"
           data-speed-y="0.2"
           data-speed-z="0.2"
         />
@@ -315,27 +315,27 @@ export default function Parallax({ isActive }: Props) {
           src={buildingsFront}
           className="parallax buildings-front"
           data-speed-x="0.19"
-          data-speed-y="0.21"
-          data-speed-z="0.15"
+          data-speed-y="0.2"
+          data-speed-z="0"
         />
         <img
           src={water}
           className="parallax water"
-          data-speed-x="0.20"
-          data-speed-y="0.21"
-          data-speed-z="0.15"
+          data-speed-x="0.2"
+          data-speed-y="0.2"
+          data-speed-z="0"
         />
         <img
           src={waterYacht}
           className="parallax water-yacht"
-          data-speed-x="0.25"
+          data-speed-x="0.23"
           data-speed-y="0.21"
           data-speed-z="0.1"
         />
         <img
           src={waterBoatRight}
           className="parallax water-boat-right"
-          data-speed-x="0.33"
+          data-speed-x="0.29"
           data-speed-y="0.2"
           data-speed-z="0.1"
         />

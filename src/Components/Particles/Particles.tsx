@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useParticlesComponent } from "../../hooks/useParticlesEngine.js";
 import { Container, ISourceOptions } from "@tsparticles/engine";
 

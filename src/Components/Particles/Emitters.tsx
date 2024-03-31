@@ -72,9 +72,8 @@ export default function Emitters({
       const kEmitter = adaptEmitter(emittersOptions["k-emitter"]);
       container.removeEmitter(sEmitter.name);
       container.removeEmitter(kEmitter.name);
-      const addedSEmitter = await addEmitter(sEmitter, sEmitterPosition);
+      await addEmitter(sEmitter, sEmitterPosition);
       await addEmitter(kEmitter, kEmitterPosition);
-      console.log("added emitter: ", addedSEmitter.position);
     };
 
     updateEmitters();
