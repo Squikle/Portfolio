@@ -198,7 +198,7 @@ export function adaptParticles(
         );
       }
       if (newOptions.interactivity.modes?.connect) {
-        newOptions.interactivity.modes.connect.distance *= powAdapt(2, 2) + 30;
+        newOptions.interactivity.modes.connect.distance *= powAdapt(2, 1) + 20;
         newOptions.interactivity.modes.connect.radius *=
           powAdapt(2, 0.01) + 100;
         newOptions.interactivity.modes.connect.links.opacity *=

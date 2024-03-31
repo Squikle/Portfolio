@@ -151,7 +151,7 @@
     },
     "modes": {
       "attract": {
-        "distance": 1,
+        "distance": 0.7,
         "duration": 0,
         "easing": "ease-out-quad",
         "factor": 0.05,
