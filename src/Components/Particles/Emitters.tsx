@@ -38,17 +38,22 @@ export default function Emitters({
     if (!container) return;
 
     if (isActive) container.play();
-    else container.pause();
-  }, [isActive, container]);
+    else container?.pause();
+  }, [isActive]);
+
+  useEffect(() => {
+    if (!container) return;
+
+    if (isActive) container?.play();
+    else container?.pause();
+  }, [container]);
 
   const handleParticlesLoaded = useCallback(
-    async (container?: Container) => {
-      setContainer(container as EmitterContainer);
+    async (container?: EmitterContainer) => {
+      setContainer(container!);
       if (onLoaded) onLoaded();
-      if (isActive) container?.play();
-      else container?.pause();
     },
-    [onLoaded, isActive],
+    [onLoaded],
   );
 
   useEffect(() => {
