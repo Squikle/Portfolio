@@ -1,31 +1,25 @@
-import styles from "./Page.module.css";
+import styles from "./Page.module.scss";
 import classNames from "classnames";
 import ScrollButton from "./ScrollButton";
-import { ReactNode, useEffect, useRef } from "react";
-import useActiveClass from "./useActiveClass";
+import { ReactNode, useRef } from "react";
 import { CurrentSectionContextProvider } from "./CurrentPageContext/Contexts";
 
 type Props = {
+  isActive: boolean;
   className?: string;
   children?: ReactNode;
   height?: string;
-  onActiveUpdate?: (active: boolean) => void;
   alwaysActive?: boolean;
 };
 
 export default function PageSection({
+  isActive,
   className,
   children,
   height,
-  onActiveUpdate,
   alwaysActive,
 }: Props) {
   const ref = useRef(null);
-  const isActive = useActiveClass(ref, "scroller");
-
-  useEffect(() => {
-    if (onActiveUpdate) onActiveUpdate(isActive);
-  }, [isActive]);
 
   const overriddenStyles = {
     height: height || undefined,

@@ -35,7 +35,7 @@ export default function App() {
   return (
     <>
       <SlidesPagination
-        position={"top"}
+        position={"bottom"}
         onInit={pagination.setPagination}
       ></SlidesPagination>
       <Swiper
@@ -52,15 +52,10 @@ export default function App() {
         onSlideChange={pagination.updateSlides}
       >
         <SwiperSlide>
-          <ParallaxPage></ParallaxPage>
+          {({ isActive }) => <ParallaxPage isActive={isActive}></ParallaxPage>}
         </SwiperSlide>
-        <SwiperSlide
-        /*style={{
-            height: "200vh",
-            overflow: "scroll",
-          }}*/
-        >
-          <LogoPage></LogoPage>
+        <SwiperSlide>
+          {({ isActive }) => <LogoPage isActive={isActive}></LogoPage>}
         </SwiperSlide>
       </Swiper>
     </>

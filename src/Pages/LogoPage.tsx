@@ -66,7 +66,13 @@ const stateReducer = (state: LoadState, action: stateUpdatedAction) => {
   }
 };
 
-export default function LogoPage({ className }: { className?: string }) {
+export default function LogoPage({
+  isActive,
+  className,
+}: {
+  isActive: boolean;
+  className?: string;
+}) {
   const [imageData, setImageData] = useState<ImageData>(initialImageData);
   const [loadState, dispatchLoad] = useReducer(stateReducer, initialLoadState);
   const options = useRef(initialParticlesOptions);
@@ -100,9 +106,12 @@ export default function LogoPage({ className }: { className?: string }) {
   };
 
   return (
-    <Page className={classNames(className, styles.logoPage)}>
+    <Page
+      isActive={isActive}
+      className={classNames(className, styles.logoPage)}
+    >
       <SlidesPagination
-        position={"bottom"}
+        position={"right"}
         onInit={pagination.setPagination}
       ></SlidesPagination>
       <Swiper
@@ -124,14 +133,21 @@ export default function LogoPage({ className }: { className?: string }) {
           <FixedParticles options={options.current} imageData={imageData} />
         )}
         <SwiperSlide>
-          <PageSection>
-            <InfoCard></InfoCard>
-          </PageSection>
+          {({ isActive }) => (
+            <PageSection isActive={isActive}>
+              <InfoCard></InfoCard>
+            </PageSection>
+          )}
         </SwiperSlide>
         <SwiperSlide>
-          <PageSection className={classNames(styles.globalParticles)}>
-            {isLoaded() && <StaticParticles options={options.current} />}
-          </PageSection>
+          {({ isActive }) => (
+            <PageSection
+              isActive={isActive}
+              className={classNames(styles.globalParticles)}
+            >
+              {isLoaded() && <StaticParticles options={options.current} />}
+            </PageSection>
+          )}
         </SwiperSlide>
       </Swiper>
     </Page>

@@ -3,26 +3,20 @@ import Parallax from "../Components/Parallax/Parallax";
 import Page from "../Components/Page/Page";
 import styles from "./ParallaxPage.module.css";
 import classNames from "classnames";
-import { useSwipeScroll } from "../hooks/useSwipeScroll.ts";
 import { useCurrentSectionContext } from "../Components/Page/CurrentPageContext/useContexts.ts";
 
 type Props = {
+  isActive: boolean;
   className?: string;
 };
 
-export default function ParallaxPage({ className }: Props) {
-  const swipeScroll = useSwipeScroll("root");
-
-  const handleActiveChange = (active: boolean) => {
-    if (!swipeScroll) return;
-
-    if (active) swipeScroll.bind();
-    else swipeScroll.unbind();
-  };
-
+export default function ParallaxPage({ isActive, className }: Props) {
   return (
-    <Page className={classNames(className, styles.parallaxPage)}>
-      <PageSection onActiveUpdate={handleActiveChange}>
+    <Page
+      isActive={isActive}
+      className={classNames(className, styles.parallaxPage)}
+    >
+      <PageSection isActive={isActive}>
         <ParallaxInContext></ParallaxInContext>
       </PageSection>
     </Page>
