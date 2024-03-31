@@ -20,6 +20,7 @@ type Props = {
 export type Pagination = {
   addSlider: (swiper: SwiperClass) => void;
   updateSliders: (swiper: SwiperClass) => void;
+  clearSliders: () => void;
 };
 
 export type Position = "top" | "right" | "bottom" | "left";
@@ -93,14 +94,12 @@ export default function SlidesPagination({ onInit, position }: Props) {
     });
   }, []);
 
-  const updateSliders = useCallback((swiper: SwiperClass) => {
-    setSliders((sliders) => updateSlider(sliders, swiper));
-  }, []);
-
   useEffect(() => {
     onInit({
-      addSlider,
-      updateSliders,
+      addSlider: addSlider,
+      updateSliders: (swiper) =>
+        setSliders((sliders) => updateSlider(sliders, swiper)),
+      clearSliders: () => setSliders([]),
     });
   }, []);
 

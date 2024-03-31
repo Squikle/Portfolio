@@ -7,11 +7,13 @@ export function useSwiperPagination() {
   const [swiper, setSwiper] = useState<SwiperClass | null>(null);
 
   useEffect(() => {
-    if (pagination && swiper) {
-      pagination.addSlider(swiper);
-      pagination.updateSliders(swiper);
-    }
-  }, [pagination, swiper]);
+    if (swiper) pagination?.addSlider(swiper);
+    return () => pagination?.clearSliders();
+  }, [pagination]);
+
+  useEffect(() => {
+    if (swiper) pagination?.updateSliders(swiper);
+  }, [swiper]);
 
   return {
     setSwiper,
