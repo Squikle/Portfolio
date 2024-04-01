@@ -35,11 +35,9 @@ export const CurrentSectionContext = createContext<PageContextData | null>(
 export const CurrentSectionContextProvider = ({
   isActive,
   children,
-  backgroundControl,
 }: Props) => {
   const contextValue = {
     isActive,
-    backgroundControl,
   };
 
   return (

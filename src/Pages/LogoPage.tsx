@@ -1,5 +1,4 @@
 import PageSection from "../Components/Page/PageSection";
-import InfoCard from "../Components/TextCard/InfoCard";
 import Page from "../Components/Page/Page";
 import Particles from "../Components/Particles/Particles";
 import { useCallback, useEffect, useReducer, useRef, useState } from "react";
@@ -17,8 +16,13 @@ import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
 import SlidesPagination from "../Components/Slides/SlidesPagination.tsx";
 import { useSwiperPagination } from "../Components/Slides/useSwiperPagination.ts";
 import config from "../global.config.json";
-import Resume from "../Components/CV/Resume.tsx";
+import {
+  Intro,
+  ExperienceUpswot,
+  ExperienceBtcs,
+} from "../Components/Resume/Resume.tsx";
 import useBackground from "./useBackground.tsx";
+import cardStyle from "../Components/TextCard/InfoCard.module.scss";
 
 export type ParticlesOptions = {
   global: any;
@@ -67,9 +71,11 @@ const stateReducer = (state: LoadState, action: stateUpdatedAction) => {
 export default function LogoPage({
   isActive,
   className,
+  isAlwaysActive = false,
 }: {
   isActive: boolean;
   className?: string;
+  isAlwaysActive?: boolean;
 }) {
   const [imageData, setImageData] = useState<ImageData>(initialImageData);
   const [loadState, dispatchLoad] = useReducer(stateReducer, initialLoadState);
@@ -129,11 +135,13 @@ export default function LogoPage({
       thickness={config.slides.progress.thickness}
     ></SlidesPagination>
   );
+
   return (
     <Page
       isActive={isActive}
       className={classNames(className, styles.logoPage)}
       backgroundControl={background.control}
+      isAlwaysVisible={isAlwaysActive}
     >
       {paginationElement}
       <Swiper
@@ -146,28 +154,49 @@ export default function LogoPage({
           pagination.setSwiper(s);
           setSwiper(s);
         }}
+        mousewheel={{
+          enabled: true,
+          noMousewheelClass: cardStyle.card,
+        }}
         onSlideChange={pagination.updateSlides}
+        noSwipingClass={cardStyle.card}
       >
-        {background.element}
-        <SwiperSlide>
-          {({ isActive }) => (
-            <PageSection isActive={isActive}>
-              <InfoCard></InfoCard>
-            </PageSection>
-          )}
-        </SwiperSlide>
-
         <SwiperSlide>
           {({ isActive }) => (
             <PageSection
               isActive={isActive}
               backgroundControl={background.control}
+              isAlwaysVisible={true}
             >
-              <Resume></Resume>
+              <Intro></Intro>
             </PageSection>
           )}
         </SwiperSlide>
+        <SwiperSlide>
+          {({ isActive }) => (
+            <PageSection
+              isAlwaysVisible={true}
+              isActive={isActive}
+              backgroundOpacity={0.3}
+            >
+              <ExperienceUpswot></ExperienceUpswot>
+            </PageSection>
+          )}
+        </SwiperSlide>
+        <SwiperSlide>
+          {({ isActive }) => (
+            <PageSection
+              isAlwaysVisible={true}
+              isActive={isActive}
+              backgroundOpacity={0.3}
+            >
+              <ExperienceBtcs></ExperienceBtcs>
+            </PageSection>
+          )}
+        </SwiperSlide>
+        <SwiperSlide></SwiperSlide>
 
+        {background.element}
         <SwiperSlide>
           {({ isActive }) => (
             <PageSection

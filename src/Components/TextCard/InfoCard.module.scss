@@ -1,6 +1,7 @@
 @use "../../global";
 
-.card {display: flex;
+.card {
+  display: flex;
   flex-direction: column;
   max-width: 50%;
   position: relative;
@@ -9,12 +10,10 @@
   bottom: auto;
   left: 0;
   right: 0;
-  padding: 3%;
+  padding: 50px;
   border-radius: 30px;
   font-family: Arial, Helvetica, sans-serif;
-  transition: opacity 2s ease-in-out;
-  --opacity: 1;
-  @include global.glass($opacity: var(--opacity), $border-thickness: 1px, $background-opacity: 0.05, $border-opacity: 0.05);
+  @include global.glass($opacity: 1, $border-thickness: 1px, $background-opacity: 0.05, $border-opacity: 0.05);
 }
 
 .card h1 {

@@ -60,7 +60,9 @@ export default function App() {
           {({ isActive }) => <ParallaxPage isActive={isActive}></ParallaxPage>}
         </SwiperSlide>
         <SwiperSlide>
-          {({ isActive }) => <LogoPage isActive={isActive}></LogoPage>}
+          {({ isActive }) => (
+            <LogoPage isAlwaysActive={true} isActive={isActive}></LogoPage>
+          )}
         </SwiperSlide>
       </Swiper>
     </>

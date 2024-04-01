@@ -1,8 +1,5 @@
 import { loadCanvasMaskPlugin } from "@tsparticles/plugin-canvas-mask";
-import {
-  EmitterContainer,
-  loadEmittersPlugin,
-} from "@tsparticles/plugin-emitters";
+import { loadEmittersPlugin } from "@tsparticles/plugin-emitters";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { useEffect, useMemo } from "react";
 import { loadFull } from "tsparticles";
@@ -23,7 +20,7 @@ export function useParticlesEngine(onLoaded: () => void) {
 export function useParticlesComponent(
   id: string,
   options: ISourceOptions,
-  particlesLoaded: (container?: EmitterContainer | Container) => Promise<void>,
+  particlesLoaded: (container?: Container) => Promise<void>,
 ) {
   return useMemo(() => {
     return (

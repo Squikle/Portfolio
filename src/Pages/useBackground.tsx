@@ -28,10 +28,10 @@ export default function (
       }}
       className={classNames(className, styles.background)}
     >
-      <Logo onLoad={onImageLoaded} onImageResize={onImageResize}></Logo>
       {particlesLoaded && (
         <FixedParticles options={particlesOptions} imageData={imageData} />
       )}
+      <Logo onLoad={onImageLoaded} onImageResize={onImageResize}></Logo>
     </div>
   );
 

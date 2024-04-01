@@ -1,7 +1,7 @@
 {
   "slides": {
     "progress": {
-      "offset": 1,
+      "offset": 0,
       "length": 40,
       "thickness": 10
     },
@@ -10,7 +10,7 @@
       "thickness": 20
     },
     "animation": {
-      "speed": 1200
+      "speed": 1000
     }
   },
   "resume": {
@@ -26,7 +26,7 @@
     "jobs": [
       {
         "title": "upSWOT",
-        "period": "2020-2024",
+        "period": "2020-2023",
         "location": "USA, South Carolina",
         "position": "Software Engineer",
         "description": "Worked as a backend software developer on the fintech product, contributing to both\nthe product and customer support teams.",

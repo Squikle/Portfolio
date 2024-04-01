@@ -6,6 +6,7 @@
             inset 0px 0px 60px rgba(255, 0, 230, 0.06),
             $box-shadow;
   }
+  transition: backdrop-filter 0.5s ease-in-out;
   backdrop-filter: blur($blur);
   -webkit-backdrop-filter: blur(5px);
   border: $border-thickness solid rgba(255, 255, 255, $border-opacity);

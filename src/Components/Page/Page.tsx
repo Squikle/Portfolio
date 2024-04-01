@@ -9,6 +9,7 @@ type Props = {
   children?: ReactNode;
   onActiveUpdate?: (active: boolean) => void;
   backgroundControl?: BackgroundControl;
+  isAlwaysVisible?: boolean;
 };
 
 export type BackgroundControl = {
@@ -22,6 +23,7 @@ export default function Page({
   children,
   onActiveUpdate,
   backgroundControl,
+  isAlwaysVisible,
 }: Props) {
   const ref = useRef(null);
 
@@ -37,7 +39,7 @@ export default function Page({
       <div
         ref={ref}
         className={classNames(className, styles.page, {
-          [styles.inactive]: !isActive,
+          [styles.inactive]: !isActive && !isAlwaysVisible,
         })}
       >
         {children}

@@ -11,7 +11,7 @@ const sEmitterPosition: position = { x: 425, y: 1205 };
 const kEmitterPosition: position = { x: 2435, y: 612 };
 
 import { useCallback, useEffect, useState } from "react";
-import { ISourceOptions } from "@tsparticles/engine";
+import { Container, ISourceOptions } from "@tsparticles/engine";
 import { adaptEmitter } from "./retinaAdapter.js";
 import { IEmitterOptions } from "@tsparticles/plugin-emitters/types/types";
 import { ImageData } from "../Logo/types.ts";
@@ -49,8 +49,8 @@ export default function Emitters({
   }, [container]);
 
   const handleParticlesLoaded = useCallback(
-    async (container?: EmitterContainer) => {
-      setContainer(container!);
+    async (container?: Container) => {
+      setContainer(container as EmitterContainer);
       if (onLoaded) onLoaded();
     },
     [onLoaded],
@@ -78,7 +78,7 @@ export default function Emitters({
       container.removeEmitter(sEmitter.name);
       container.removeEmitter(kEmitter.name);
       await addEmitter(sEmitter, sEmitterPosition);
-      await addEmitter(kEmitter, kEmitterPosition);
+      const kEmitterNew = await addEmitter(kEmitter, kEmitterPosition);
     };
 
     updateEmitters();

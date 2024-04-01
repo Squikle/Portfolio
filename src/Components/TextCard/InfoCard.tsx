@@ -5,11 +5,12 @@ import React, { ReactNode } from "react";
 type Props = {
   propsStyles?: React.CSSProperties;
   children?: ReactNode;
+  className?: string;
 };
 
-export default function InfoCard({ propsStyles, children }: Props) {
+export default function InfoCard({ className, propsStyles, children }: Props) {
   return (
-    <div className={classNames(styles.card)} style={propsStyles}>
+    <div className={classNames(styles.card, className)} style={propsStyles}>
       {children}
     </div>
   );
