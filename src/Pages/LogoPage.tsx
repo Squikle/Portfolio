@@ -1,10 +1,8 @@
 import PageSection from "../Components/Page/PageSection";
 import InfoCard from "../Components/TextCard/InfoCard";
 import Page from "../Components/Page/Page";
-import Logo from "../Components/Logo/Logo";
 import Particles from "../Components/Particles/Particles";
 import { useCallback, useEffect, useReducer, useRef, useState } from "react";
-import Emitters from "../Components/Particles/Emitters";
 import globalParticlesOptions from "../Components/Particles/global-particles.json";
 import emittersParticlesOptions from "../Components/Particles/emitters-particles.json";
 import canvasParticlesOptions from "../Components/Particles/canvas-particles.json";
@@ -13,17 +11,16 @@ import { ImageData } from "../Components/Logo/types.ts";
 import { adaptParticles } from "../Components/Particles/retinaAdapter";
 import classNames from "classnames";
 import styles from "./LogoPage.module.css";
-import {
-  useCurrentPageContext,
-  useCurrentSectionContext,
-} from "../Components/Page/CurrentPageContext/useContexts.ts";
+import { useCurrentSectionContext } from "../Components/Page/CurrentPageContext/useContexts.ts";
 import { Keyboard, Mousewheel } from "swiper/modules";
 import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
 import SlidesPagination from "../Components/Slides/SlidesPagination.tsx";
 import { useSwiperPagination } from "../Components/Slides/useSwiperPagination.ts";
 import config from "../global.config.json";
+import Resume from "../Components/CV/Resume.tsx";
+import useBackground from "./useBackground.tsx";
 
-type ParticlesOptions = {
+export type ParticlesOptions = {
   global: any;
   emitters: any;
   canvas: any;
@@ -116,18 +113,29 @@ export default function LogoPage({
     }
   }, [isActive]);
 
+  const background = useBackground(
+    isLoaded(),
+    onImageLoad,
+    updateImage,
+    options.current,
+    imageData,
+  );
+  const paginationElement = (
+    <SlidesPagination
+      position={"right"}
+      onInit={pagination.setPagination}
+      length={config.slides.progress.length}
+      offset={config.slides.progress.offset}
+      thickness={config.slides.progress.thickness}
+    ></SlidesPagination>
+  );
   return (
     <Page
       isActive={isActive}
       className={classNames(className, styles.logoPage)}
+      backgroundControl={background.control}
     >
-      <SlidesPagination
-        position={"right"}
-        onInit={pagination.setPagination}
-        length={config.slides.progress.length}
-        offset={config.slides.progress.offset}
-        thickness={config.slides.progress.thickness}
-      ></SlidesPagination>
+      {paginationElement}
       <Swiper
         direction={"vertical"}
         modules={[Mousewheel, Keyboard]}
@@ -140,10 +148,7 @@ export default function LogoPage({
         }}
         onSlideChange={pagination.updateSlides}
       >
-        <Logo onLoad={onImageLoad} onImageResize={updateImage}></Logo>
-        {isLoaded() && (
-          <FixedParticles options={options.current} imageData={imageData} />
-        )}
+        {background.element}
         <SwiperSlide>
           {({ isActive }) => (
             <PageSection isActive={isActive}>
@@ -151,6 +156,18 @@ export default function LogoPage({
             </PageSection>
           )}
         </SwiperSlide>
+
+        <SwiperSlide>
+          {({ isActive }) => (
+            <PageSection
+              isActive={isActive}
+              backgroundControl={background.control}
+            >
+              <Resume></Resume>
+            </PageSection>
+          )}
+        </SwiperSlide>
+
         <SwiperSlide>
           {({ isActive }) => (
             <PageSection
@@ -165,31 +182,6 @@ export default function LogoPage({
     </Page>
   );
 }
-
-const FixedParticles = ({
-  options,
-  imageData,
-}: {
-  options: ParticlesOptions;
-  imageData: ImageData;
-}) => {
-  const isActive = useCurrentPageContext().isActive;
-  return (
-    <div className={styles.particlesContainer}>
-      <Emitters
-        id="emitters-particles"
-        options={options.emitters}
-        imgData={imageData}
-        isActive={isActive}
-      />
-      <Particles
-        id="canvas-particles"
-        options={options.canvas}
-        isActive={isActive}
-      />
-    </div>
-  );
-};
 
 const StaticParticles = ({ options }: { options: ParticlesOptions }) => {
   const isActive = useCurrentSectionContext().isActive;

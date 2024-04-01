@@ -11,7 +11,7 @@ const sEmitterPosition: position = { x: 425, y: 1205 };
 const kEmitterPosition: position = { x: 2435, y: 612 };
 
 import { useCallback, useEffect, useState } from "react";
-import { Container, ISourceOptions } from "@tsparticles/engine";
+import { ISourceOptions } from "@tsparticles/engine";
 import { adaptEmitter } from "./retinaAdapter.js";
 import { IEmitterOptions } from "@tsparticles/plugin-emitters/types/types";
 import { ImageData } from "../Logo/types.ts";

@@ -67,11 +67,17 @@
   justify-content: center;
   align-items: center;
   transition-property: box-shadow, background, border, opacity;
-  transition-duration: 0.4s, 0.4s, 5s, 1s;
+  transition-duration: 0.4s, 0.4s, 0.5s, 0.5s;
   transition-timing-function: ease-in-out;
   z-index: 1000;
 
-  @include global.glass($opacity: 0.7, $with-shadow: false);
+  $blur: 3px;
+  $opacity: 0.6;
+  $border-thickness: 0.1px;
+  @include global.glass(
+          $opacity: $opacity,
+          $blur: $blur);
+
   animation: bubbleup ease-out 0.5s forwards;
 
   margin-left: 2%;
@@ -90,13 +96,25 @@
     width: 50%;
     height: 50%;
     position: absolute;
+    transition: filter 0.5s ease-in-out;
   }
 
   &:not(.hidden):hover {
-    box-shadow: 0 0 10px rgba(204, 160, 224, 1),
-    0 0 20px rgba(255, 255, 255, 0.25),
-    0 0 35px rgba(255, 255, 255, 0.15);
-    @include global.glass($opacity: 0.5, $with-shadow: false);
+    box-shadow: 0 0 10px rgba(204, 160, 224, 0.2),
+    0 0 10px rgba(255, 255, 255, 0.2),
+    0 0 20px rgba(255, 255, 255, 0.1);
+    @include global.glass($opacity: 1,
+    $blur: $blur);
+    backdrop-filter: drop-shadow(
+                    0 0 6px rgba(255, 255, 255, 1)
+                    0 0 6px rgba(255, 255, 255, 1)
+                    0 0 6px rgba(255, 255, 255, 1));
+
+    img {
+      filter:
+              drop-shadow(0 0 2px rgba(255, 255, 255, 0.8))
+              drop-shadow(0 0 4px rgba(255, 255, 255, 0.6));
+    }
   }
 }
 

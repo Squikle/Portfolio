@@ -32,15 +32,18 @@ export default function App() {
     return window.removeEventListener("resize", updateViewportHeight);
   }, []);
 
+  const paginationElement = (
+    <SlidesPagination
+      position={"bottom"}
+      onInit={pagination.setPagination}
+      length={config.slides.progress.length}
+      offset={config.slides.progress.offset}
+      thickness={config.slides.progress.thickness}
+    ></SlidesPagination>
+  );
   return (
     <>
-      <SlidesPagination
-        position={"bottom"}
-        onInit={pagination.setPagination}
-        length={config.slides.progress.length}
-        offset={config.slides.progress.offset}
-        thickness={config.slides.progress.thickness}
-      ></SlidesPagination>
+      {paginationElement}
       <Swiper
         direction={"horizontal"}
         slidesPerView={1}

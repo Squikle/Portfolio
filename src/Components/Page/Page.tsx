@@ -8,6 +8,12 @@ type Props = {
   className?: string;
   children?: ReactNode;
   onActiveUpdate?: (active: boolean) => void;
+  backgroundControl?: BackgroundControl;
+};
+
+export type BackgroundControl = {
+  setOpacity: (opacity: number) => void;
+  setClassName: (classNames: classNames.ArgumentArray) => void;
 };
 
 export default function Page({
@@ -15,6 +21,7 @@ export default function Page({
   className,
   children,
   onActiveUpdate,
+  backgroundControl,
 }: Props) {
   const ref = useRef(null);
 
@@ -23,14 +30,17 @@ export default function Page({
   }, [isActive]);
 
   return (
-    <CurrentPageContextProvider isActive={isActive}>
+    <CurrentPageContextProvider
+      isActive={isActive}
+      backgroundControl={backgroundControl}
+    >
       <div
         ref={ref}
         className={classNames(className, styles.page, {
           [styles.inactive]: !isActive,
         })}
       >
-        <div className={styles.content}>{children}</div>
+        {children}
       </div>
     </CurrentPageContextProvider>
   );

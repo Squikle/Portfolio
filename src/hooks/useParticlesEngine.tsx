@@ -1,10 +1,12 @@
 import { loadCanvasMaskPlugin } from "@tsparticles/plugin-canvas-mask";
-import { loadEmittersPlugin } from "@tsparticles/plugin-emitters";
+import {
+  EmitterContainer,
+  loadEmittersPlugin,
+} from "@tsparticles/plugin-emitters";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { useEffect, useMemo } from "react";
 import { loadFull } from "tsparticles";
 import type { Container, ISourceOptions } from "@tsparticles/engine";
-import { ContainerWithPlugins } from "../vite-env";
 
 export function useParticlesEngine(onLoaded: () => void) {
   useEffect(() => {
@@ -21,9 +23,7 @@ export function useParticlesEngine(onLoaded: () => void) {
 export function useParticlesComponent(
   id: string,
   options: ISourceOptions,
-  particlesLoaded: (
-    container?: ContainerWithPlugins | Container,
-  ) => Promise<void>,
+  particlesLoaded: (container?: EmitterContainer | Container) => Promise<void>,
 ) {
   return useMemo(() => {
     return (

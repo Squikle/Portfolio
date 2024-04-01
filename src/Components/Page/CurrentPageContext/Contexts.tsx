@@ -1,7 +1,9 @@
 import { createContext, ReactNode } from "react";
+import { BackgroundControl } from "../Page.tsx";
 
 type PageContextData = {
   isActive: boolean;
+  backgroundControl?: BackgroundControl;
 };
 
 type Props = PageContextData & {
@@ -10,9 +12,14 @@ type Props = PageContextData & {
 
 export const CurrentPageContext = createContext<PageContextData | null>(null);
 
-export const CurrentPageContextProvider = ({ isActive, children }: Props) => {
+export const CurrentPageContextProvider = ({
+  isActive,
+  children,
+  backgroundControl,
+}: Props) => {
   const contextValue = {
     isActive,
+    backgroundControl,
   };
 
   return (
@@ -28,9 +35,11 @@ export const CurrentSectionContext = createContext<PageContextData | null>(
 export const CurrentSectionContextProvider = ({
   isActive,
   children,
+  backgroundControl,
 }: Props) => {
   const contextValue = {
     isActive,
+    backgroundControl,
   };
 
   return (

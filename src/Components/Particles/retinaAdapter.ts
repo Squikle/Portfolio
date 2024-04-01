@@ -1,5 +1,4 @@
 import { ImageSize } from "../../types/imageData";
-import { normalizePath } from "vite";
 
 const idealScreens = [
   [306, 228, 2, 2.2],

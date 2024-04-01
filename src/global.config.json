@@ -12,5 +12,125 @@
     "animation": {
       "speed": 1200
     }
+  },
+  "resume": {
+    "name": "Michael Dovhalov",
+    "position": "Software Engineer",
+    "contacts": {
+      "email": "mmishaa1702@gmail.com",
+      "linkedin": "https://www.linkedin.com/in/dovhalov/",
+      "phoneNumber": "+380956895173",
+      "location": "Bratislava, Slovakia"
+    },
+    "description": "I am dedicated to building scalable and well-documented code, leveraging the\nlatest tools and technologies. My approach is rooted in the\n'T-shaped'\nmodel,\nwith a strong focus on backend development, complemented by a growing\nexpertise in frontend development and deployment strategies. I am committed\nto staying abreast of modern technologies to ensure timely and effective tool\nselection for optimal results.",
+    "jobs": [
+      {
+        "title": "upSWOT",
+        "period": "2020-2024",
+        "location": "USA, South Carolina",
+        "position": "Software Engineer",
+        "description": "Worked as a backend software developer on the fintech product, contributing to both\nthe product and customer support teams.",
+        "highlights": [
+          {
+            "title": "Product Team Highlights:",
+            "bullets": [
+              "Developed and deployed microservices, including integration and unit tests.",
+              "Integrated AWS and GCP infrastructure solutions.",
+              "Worked on a multi-tenant SaaS application.",
+              "Developed multiple OAuth2.0 RestAPI integrations with third-party services.",
+              "Created a custom internal library for working with Kafka.",
+              "Set up CI/CD for the test environment.",
+              "Practiced the principles of DDD architecture.",
+              "Implemented WebSockets communication.",
+              "Built RESTful APIs.",
+              "Implemented SAML authorization.",
+              "Developed backend architecture for web components.",
+              "Assumed frontend responsibilities to support the frontend team.",
+              "Made important strategic decisions to address complex challenges."
+            ]
+          },
+          {
+            "title": "Customers-support Team Highlights:",
+            "bullets": [
+              "Participated in pre-sales calls and provided support to clients in designing and implementing integration solutions, primarily in the fintech industry.",
+              "Assisted clients in technical discussions and troubleshooting.",
+              "Created and presented workflow, deployment, architecture, use-case sequence, and data-flow diagrams to clients.",
+              "Supported and debugged client environments."
+            ]
+          },
+          {
+            "title": "Soft-skills Highlights:",
+            "bullets": [
+              "Mentored several newcomers to the team, providing guidance on technical and best practices.",
+              "Demonstrated adaptability when working with new colleagues.",
+              "Maintained composure and emotional control in high-stress situations.",
+              "Displayed a problem-solving approach, consistently seeking effective solutions rather than superficial fixes."
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Bitcoin Suisse",
+        "period": "2023-2024",
+        "location": "Zug, Switzerland",
+        "position": "Software Engineer",
+        "description": "Worked as a software developer on the fintech product, contributing to both\nthe product and customer support teams.",
+        "highlights": [
+          {
+            "title": "Product Team Highlights:",
+            "bullets": [
+              "Developed and deployed microservices, including integration and unit tests."
+            ]
+          },
+          {
+            "title": "Customers-support Team Highlights:",
+            "bullets": [
+              "Participated in pre-sales calls and provided support to clients in designing and implementing integration solutions, primarily in the fintech industry."
+            ]
+          },
+          {
+            "title": "Soft-skills Highlights:",
+            "bullets": [
+              "Mentored several newcomers to the team, providing guidance on technical and best practices.",
+              "Demonstrated adaptability when working with new colleagues."
+            ]
+          }
+        ]
+      }
+    ],
+    "skills": [
+      "Critical Thinking",
+      "OOP",
+      "DDD",
+      "Design Patterns",
+      "CI/CD",
+      "AWS",
+      "SOLID",
+      "Clean architecture and code",
+      "Containerization",
+      "Microservices Architecture",
+      "Integration and Unit testing",
+      "Multithreading"
+    ],
+    "stack": [
+      "ASP.NET Core",
+      "Kafka",
+      "MySQL",
+      "RabbitMQ",
+      "Redis",
+      "ClickHouse",
+      "MongoDB",
+      "Docker",
+      "Jenkins",
+      "gRPC",
+      "NGinx",
+      "React",
+      "Redux (RTK)"
+    ],
+    "education": {
+      "title": "State University of Telecommunications",
+      "degree": "Bachelor of Software Engineer",
+      "status": "Completed in 2023"
+    }
   }
 }

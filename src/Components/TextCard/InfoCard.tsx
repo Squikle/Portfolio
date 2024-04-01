@@ -1,29 +1,16 @@
-import { useCurrentSectionContext } from "../Page/CurrentPageContext/useContexts";
 import classNames from "classnames";
 import styles from "./InfoCard.module.scss";
-import React from "react";
+import React, { ReactNode } from "react";
 
-type Props = { propsStyles?: React.CSSProperties };
+type Props = {
+  propsStyles?: React.CSSProperties;
+  children?: ReactNode;
+};
 
-export default function InfoCard({ propsStyles }: Props) {
-  const isActive = useCurrentSectionContext().isActive;
-
+export default function InfoCard({ propsStyles, children }: Props) {
   return (
-    <div
-      className={classNames(styles.card, {
-        [styles.active]: isActive,
-      })}
-      style={propsStyles}
-    >
-      <h1>Michael Dovhalov</h1>
-      <p>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aut assumenda
-        perferendis laudantium numquam architecto, iusto, porro debitis facilis
-        magnam minima in optio officiis placeat eum consequuntur possimus
-        nostrum repellat dolorem molestiae illo! Vitae, consectetur voluptas
-        doloribus optio repellendus facere, tenetur delectus autem illo deserunt
-        distinctio provident atque veritatis et! Unde?
-      </p>
+    <div className={classNames(styles.card)} style={propsStyles}>
+      {children}
     </div>
   );
 }

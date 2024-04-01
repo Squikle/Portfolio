@@ -13,11 +13,8 @@
   border-radius: 30px;
   font-family: Arial, Helvetica, sans-serif;
   transition: opacity 2s ease-in-out;
-  @include global.glass();
-}
-
-.card.active {
-  opacity: 1;
+  --opacity: 1;
+  @include global.glass($opacity: var(--opacity), $border-thickness: 1px, $background-opacity: 0.05, $border-opacity: 0.05);
 }
 
 .card h1 {

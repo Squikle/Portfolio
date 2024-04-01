@@ -19,6 +19,10 @@
   }
 }
 
+.background {
+  transition: opacity 1s ease-in-out;
+}
+
 #global-particles {
   position: absolute;
   inset: 0;
