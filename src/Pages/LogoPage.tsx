@@ -194,7 +194,6 @@ export default function LogoPage({
             </PageSection>
           )}
         </SwiperSlide>
-        <SwiperSlide></SwiperSlide>
 
         {background.element}
         <SwiperSlide>
