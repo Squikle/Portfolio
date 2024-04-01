@@ -21,6 +21,7 @@ import { Keyboard, Mousewheel } from "swiper/modules";
 import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
 import SlidesPagination from "../Components/Slides/SlidesPagination.tsx";
 import { useSwiperPagination } from "../Components/Slides/useSwiperPagination.ts";
+import config from "../global.config.json";
 
 type ParticlesOptions = {
   global: any;
@@ -123,15 +124,15 @@ export default function LogoPage({
       <SlidesPagination
         position={"right"}
         onInit={pagination.setPagination}
+        length={config.slides.progress.length}
+        offset={config.slides.progress.offset}
+        thickness={config.slides.progress.thickness}
       ></SlidesPagination>
       <Swiper
         direction={"vertical"}
-        slidesPerView={1}
         modules={[Mousewheel, Keyboard]}
-        className="mySwiper"
-        autoHeight={false}
-        speed={850}
-        followFinger={false}
+        speed={config.slides.animation.speed}
+        followFinger={true}
         keyboard={true}
         onInit={(s) => {
           pagination.setSwiper(s);

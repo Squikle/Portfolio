@@ -1,14 +1,14 @@
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useEffect, useLayoutEffect } from "react";
 import ParallaxPage from "./Pages/ParallaxPage.tsx";
 import LogoPage from "./Pages/LogoPage.tsx";
 import "swiper/css";
 import "swiper/css/pagination";
 import "./main.scss";
-
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Keyboard, Mousewheel, Pagination } from "swiper/modules";
 import SlidesPagination from "./Components/Slides/SlidesPagination.tsx";
 import { useSwiperPagination } from "./Components/Slides/useSwiperPagination.ts";
+import config from "./global.config.json";
 
 export default function App() {
   const pagination = useSwiperPagination();
@@ -37,14 +37,16 @@ export default function App() {
       <SlidesPagination
         position={"bottom"}
         onInit={pagination.setPagination}
+        length={config.slides.progress.length}
+        offset={config.slides.progress.offset}
+        thickness={config.slides.progress.thickness}
       ></SlidesPagination>
       <Swiper
         direction={"horizontal"}
         slidesPerView={1}
         mousewheel={{ enabled: true, forceToAxis: true }}
         modules={[Mousewheel, Pagination, Keyboard]}
-        autoHeight={false}
-        speed={1200}
+        speed={config.slides.animation.speed}
         followFinger={false}
         keyboard={true}
         onInit={pagination.setSwiper}

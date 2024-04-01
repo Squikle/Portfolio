@@ -1,6 +1,6 @@
 import { useCurrentSectionContext } from "../Page/CurrentPageContext/useContexts";
 import classNames from "classnames";
-import styles from "./InfoCard.module.css";
+import styles from "./InfoCard.module.scss";
 import React from "react";
 
 type Props = { propsStyles?: React.CSSProperties };

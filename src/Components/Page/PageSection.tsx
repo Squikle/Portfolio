@@ -1,6 +1,5 @@
 import styles from "./Page.module.scss";
 import classNames from "classnames";
-import ScrollButton from "./ScrollButton";
 import { ReactNode, useRef } from "react";
 import { CurrentSectionContextProvider } from "./CurrentPageContext/Contexts";
 
@@ -34,10 +33,7 @@ export default function PageSection({
         })}
         style={overriddenStyles}
       >
-        <div className={styles.content}>
-          {children}
-          <ScrollButton elementRef={ref}></ScrollButton>
-        </div>
+        <div className={styles.content}>{children}</div>
       </div>
     </CurrentSectionContextProvider>
   );

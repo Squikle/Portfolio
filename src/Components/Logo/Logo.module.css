@@ -1,7 +1,6 @@
 .logo {
   max-width: 100vw;
   max-height: 60vh;
-  pointer-events: none;
 
   /* filter: drop-shadow(rgba(225, 0, 255, 0.1) 10px 12px 5px);
     -webkit-filter: drop-shadow(rgba(225, 0, 255, 0.2) 6px 8px 0px); */
@@ -14,10 +13,4 @@
   inset: 50vh 0 auto;
   margin: auto;
   transform: translateY(-50%);
-}
-
-.container {
-  position: absolute;
-  height: 0;
-  inset: 0;
 }

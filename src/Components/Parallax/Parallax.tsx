@@ -100,6 +100,7 @@ export default function Parallax({ isActive }: Props) {
             <h1 className="empty">Dovhalov</h1>
           </div>
         </div>
+        <div className="vignette"></div>
         <img
           src={sky2}
           className="parallax sky-2"

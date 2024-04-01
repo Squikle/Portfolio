@@ -1,4 +1,4 @@
-import styles from "./ScrollButton.module.css";
+import styles from "./ScrollButton.module.scss";
 import React, { useEffect, useState } from "react";
 
 type Props = {

@@ -1,0 +1,113 @@
+@use "../../global";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  position: absolute;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.bullet {
+  border-radius: 100000px;
+  width: 10px;
+  height: 10px;
+  display: flex;
+
+  transition: transform 0.6s cubic-bezier(.83,1.65,.57,.66);
+  --rotation: 0;
+}
+
+.bullet:not(.active) {
+  $box-shadow: 0 0 5px rgba(0, 0, 0, 1),
+  0 0 10px rgba(0, 0, 0, 0.5);
+  @include global.glass($box-shadow: $box-shadow, $opacity: 0.8);
+}
+
+.bullet.active {
+  --offset: 0;
+  transform: translate(calc(100% * var(--offset)));
+  box-shadow: 0 0 15px rgba(0, 0, 0, 1);
+  background-color: rgba(216, 196, 224, 0.38);
+}
+
+.block {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  position: relative;
+}
+
+.block.vertical {
+  right: -50%;
+  transform: rotateZ(90deg) translateY(50%);
+
+  > .button {
+    margin-left: -15%;
+    margin-right: -15%;
+  }
+}
+
+.button:before {
+  content: "";
+  width: 250%;
+  height: 250%;
+  pointer-events: auto;
+  position: absolute;
+}
+
+.button {
+  position: relative;
+  border-radius: 1000px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition-property: box-shadow, background, border, opacity;
+  transition-duration: 0.4s, 0.4s, 5s, 1s;
+  transition-timing-function: ease-in-out;
+  z-index: 1000;
+
+  @include global.glass($opacity: 0.7, $with-shadow: false);
+  animation: bubbleup ease-out 0.5s forwards;
+
+  margin-left: 2%;
+  margin-right: 2%;
+
+  &.next {
+    transform: rotateZ(180deg);
+  }
+
+  &.hidden {
+    opacity: 0;
+  }
+
+  img {
+    transform: rotateZ(-90deg);
+    width: 50%;
+    height: 50%;
+    position: absolute;
+  }
+
+  &:not(.hidden):hover {
+    box-shadow: 0 0 10px rgba(204, 160, 224, 1),
+    0 0 20px rgba(255, 255, 255, 0.25),
+    0 0 35px rgba(255, 255, 255, 0.15);
+    @include global.glass($opacity: 0.5, $with-shadow: false);
+  }
+}
+
+/*
+
+@keyframes bubbleup {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-120px);
+  }
+}
+*/
