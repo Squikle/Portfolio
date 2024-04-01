@@ -27,7 +27,7 @@ export default function PageSection({
   const backgroundControl = useCurrentPageContext();
 
   useEffect(() => {
-    if (isActive && backgroundControl?.backgroundControl?.setOpacity) {
+    if (isActive && backgroundControl?.backgroundControl?.setOpacity != null) {
       backgroundControl.backgroundControl.setOpacity(backgroundOpacity);
     }
   }, [isActive]);

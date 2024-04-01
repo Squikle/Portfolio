@@ -163,11 +163,7 @@ export default function LogoPage({
       >
         <SwiperSlide>
           {({ isActive }) => (
-            <PageSection
-              isActive={isActive}
-              backgroundControl={background.control}
-              isAlwaysVisible={true}
-            >
+            <PageSection isAlwaysVisible={true} isActive={isActive}>
               <Intro></Intro>
             </PageSection>
           )}
@@ -177,7 +173,7 @@ export default function LogoPage({
             <PageSection
               isAlwaysVisible={true}
               isActive={isActive}
-              backgroundOpacity={0.3}
+              backgroundOpacity={config.slides.style.backgroundOpacity}
             >
               <ExperienceUpswot></ExperienceUpswot>
             </PageSection>
@@ -188,7 +184,7 @@ export default function LogoPage({
             <PageSection
               isAlwaysVisible={true}
               isActive={isActive}
-              backgroundOpacity={0.3}
+              backgroundOpacity={config.slides.style.backgroundOpacity}
             >
               <ExperienceBtcs></ExperienceBtcs>
             </PageSection>

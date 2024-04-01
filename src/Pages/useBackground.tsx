@@ -24,7 +24,7 @@ export default function (
   const element = (
     <div
       style={{
-        opacity: opacity || undefined,
+        opacity: opacity!,
       }}
       className={classNames(className, styles.background)}
     >
