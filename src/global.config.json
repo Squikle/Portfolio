@@ -18,21 +18,22 @@
   },
   "resume": {
     "name": "Michael Dovhalov",
-    "position": "Software Engineer",
+    "position": "Fullstack Software Engineer",
     "contacts": {
       "email": "mmishaa1702@gmail.com",
       "linkedin": "https://www.linkedin.com/in/dovhalov/",
-      "phoneNumber": "+380956895173",
-      "location": "Bratislava, Slovakia"
+      "phoneNumber": "+1 (416) 414-6089",
+      "phoneNumberSecondary": "+380 (95) 689 51 73",
+      "location": "Toronto, Canada"
     },
-    "description": "I am dedicated to building scalable and well-documented code, leveraging the\nlatest tools and technologies. My approach is rooted in the\n'T-shaped'\nmodel,\nwith a strong focus on backend development, complemented by a growing\nexpertise in frontend development and deployment strategies. I am committed\nto staying abreast of modern technologies to ensure timely and effective tool\nselection for optimal results.",
+    "description": "Hello! Welcome to my portfolio site. It has been fully designed and developed by me.\nI am dedicated to building scalable and well-documented code, leveraging the latest tools and technologies. My approach is rooted in the 'T-shaped' model, with a strong focus on backend development, complemented by a growing expertise in frontend development and deployment strategies. I am committed to staying abreast of modern technologies to ensure timely and effective tool selection for optimal results.",
     "jobs": [
       {
         "title": "upSWOT",
         "period": "2020-2023",
         "location": "USA, South Carolina",
         "position": "Software Engineer",
-        "description": "Worked as a backend software developer on the fintech product, contributing to both\nthe product and customer support teams.",
+        "description": "Worked as a backend software developer on the fintech product, contributing to both the product and customer support teams.",
         "highlights": [
           {
             "title": "Product Team Highlights:",
@@ -43,13 +44,15 @@
               "Developed multiple OAuth2.0 RestAPI integrations with third-party services.",
               "Created a custom internal library for working with Kafka.",
               "Set up CI/CD for the test environment.",
-              "Practiced the principles of DDD architecture.",
+              "Followed the principles of DDD architecture.",
               "Implemented WebSockets communication.",
               "Built RESTful APIs.",
-              "Implemented SAML authorization.",
-              "Developed backend architecture for web components.",
+              "Implemented SSO authorization using SAML and OAuth protocols.",
+              "Designed architecture and developed backend services for web components.",
+              "Developed authentication mechanisms using JWT and Identity Provider Server.",
+              "Developed and adapted Swagger documentation with a focus on OpenAPI specification.",
               "Assumed frontend responsibilities to support the frontend team.",
-              "Made important strategic decisions to address complex challenges."
+              "Made important strategic decisions to address complex challenges.",
             ]
           },
           {
@@ -65,9 +68,10 @@
             "title": "Soft-skills Highlights:",
             "bullets": [
               "Mentored several newcomers to the team, providing guidance on technical and best practices.",
-              "Demonstrated adaptability when working with new colleagues.",
+              "Demonstrated initiative by suggesting improvements in development planning and team organization, actively participating in retrospectives and grooming sessions.",
               "Maintained composure and emotional control in high-stress situations.",
-              "Displayed a problem-solving approach, consistently seeking effective solutions rather than superficial fixes."
+              "Displayed a problem-solving approach, consistently seeking effective solutions rather than superficial fixes.",
+              "Demonstrated adaptability when working with new colleagues.",
             ]
           }
         ]
@@ -76,64 +80,93 @@
         "title": "Bitcoin Suisse",
         "period": "2023-2024",
         "location": "Zug, Switzerland",
-        "position": "Software Engineer",
-        "description": "Worked as a software developer on the fintech product, contributing to both\nthe product and customer support teams.",
+        "position": "Fullstack Software Engineer",
+        "description": "Employed as a Fullstack Software Engineer at Bitcoin Suisse, a Swiss financial services provider specializing in cryptocurrencies and trading services for clients. Bitcoin Suisse leads the market in cryptocurrency investments, offering institutional brokerage services, custody solutions, staking, and secured loans, alongside cutting-edge technical developments. With over 300 employees, Bitcoin Suisse maintains its position as a Swiss pioneer in the crypto industry.",
         "highlights": [
           {
-            "title": "Product Team Highlights:",
+            "title": "Technical Contributions Highlights:",
             "bullets": [
-              "Developed and deployed microservices, including integration and unit tests."
+              "Developed and supported a clustered Virtual Actor Model based on Microsoft's Orleans, significantly enhancing backend reliability and performance by scaling horizontally.",
+              "Developed event-sourcing architecture using Apache Kafka as an event queue.",
+              "Implemented integration tests for microservices communication via Kafka.",
+              "Configured Azure Pipelines CI/CD for deploying microservices to Kubernetes clusters.",
+              "Debugged and resolved issues in the production environment.",
+              "Developed React components using TypeScript.",
+              "Engaged in ASP.NET Core Blazor development for managing database records.",
+              "Conducted stress tests using JMeter and NBomber to assess system performance under high loads.",
+              "Implemented Kafka Message Handlers using MediatR library.",
+              "Utilized Azure Identity for SSO authentication.",
+              "Utilized Azure Monitor and Application Insights with OpenTelemetry framework.",
+              "Developed backend architecture documentation using UML."
             ]
           },
           {
-            "title": "Customers-support Team Highlights:",
+            "title": "Soft Skills Highlights:",
             "bullets": [
-              "Participated in pre-sales calls and provided support to clients in designing and implementing integration solutions, primarily in the fintech industry."
-            ]
-          },
-          {
-            "title": "Soft-skills Highlights:",
-            "bullets": [
-              "Mentored several newcomers to the team, providing guidance on technical and best practices.",
-              "Demonstrated adaptability when working with new colleagues."
+              "Quickly integrated into the project and contributed by developing code and updating outdated documentation.",
+              "Onboarded a newcomer senior developer to the project.",
+              "Displayed problem-solving skills by striving to understand the core issues and finding optimal solutions."
             ]
           }
         ]
       }
     ],
     "skills": [
-      "Critical Thinking",
-      "OOP",
-      "DDD",
-      "Design Patterns",
-      "CI/CD",
-      "AWS",
-      "SOLID",
-      "Clean architecture and code",
+      "Backend, Frontend",
       "Containerization",
       "Microservices Architecture",
-      "Integration and Unit testing",
-      "Multithreading"
+      "AWS, Azure",
+      "CI/CD",
+      "OOP, DDD, SOLID, Design Patterns",
+      "Clean architecture and code",
+      "Integration, Unit and Stress testing",
+      "Multithreading",
+      "Scrum",
+      "Jira, Azure DevOps",
+      "Critical Thinking"
     ],
-    "stack": [
-      "ASP.NET Core",
-      "Kafka",
-      "MySQL",
-      "RabbitMQ",
-      "Redis",
-      "ClickHouse",
-      "MongoDB",
-      "Docker",
-      "Jenkins",
-      "gRPC",
-      "NGinx",
-      "React",
-      "Redux (RTK)"
-    ],
+    "stack": {
+      "backend": [
+        "ASP.NET Core",
+        "Kafka",
+        "MySQL, PostgreSQL, MicrosoftSQL",
+        "RabbitMQ",
+        "Redis",
+        "ClickHouse",
+        "MongoDB",
+        "Elasticsearch",
+        "gRPC"
+      ],
+      "frontend": {
+        "tools": [
+          "React",
+          "Redux (RTK)",
+          "TypeScript",
+          "Blazor"
+        ],
+        "libs": [
+          "tsParticles (particles.js)",
+          "GSAP",
+          "Swiper"
+        ]
+      },
+      "devops": [
+        "Docker",
+        "kubernetes",
+        "Jenkins",
+        "NGinx",
+        "AWS (Amazon Web Services)",
+        "Azure",
+        "Grafana",
+        "Prometheus",
+        "GitHub Actions",
+        "GitLab CI/CD"
+      ]
+    },
     "education": {
       "title": "State University of Telecommunications",
       "degree": "Bachelor of Software Engineer",
-      "status": "Completed in 2023"
+      "status": "Completed in 2022"
     }
   }
 }
