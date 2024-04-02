@@ -15,7 +15,7 @@
       "period": "2020-2023",
       "location": "USA, South Carolina",
       "position": "Software Engineer",
-      "description": "Worked as a backend software developer on the fintech product, contributing to both the product and customer support teams.",
+      "description": "Worked as a backend software developer at upSWOT, contributing to product development and customer support. Worked on a fintech solution offering customizable embedded finance widgets and actionable insights for businesses. Trusted by 100+ multinational financial institutions and partnered with industry leaders like Mastercard, Visa, NCR, NerdWallet, Alkami, RedHat, Republic Bank, FSNB (First Southern National Bank), PwC, MX, Banno Jack Henry, CreditSafe, Equifax, Q2, Finastra, UPTIQ, OMB Bank, OnDeck and more.",
       "highlights": [
         {
           "title": "Product Team Highlights:",
@@ -142,8 +142,7 @@
       "Azure",
       "Grafana",
       "Prometheus",
-      "GitHub Actions",
-      "GitLab CI/CD"
+      "GitHub Actions, GitLab CI/CD"
     ]
   },
   "education": {
