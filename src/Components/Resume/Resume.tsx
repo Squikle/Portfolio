@@ -1,12 +1,10 @@
 import InfoCard from "../TextCard/InfoCard.tsx";
-import config from "../../global.config.json";
 import styles from "./Resume.module.scss";
 import JobList from "./JobList.tsx";
 import classNames from "classnames";
+import resume from "../../resume-data.json";
 
 function Intro() {
-  const resume = config.resume;
-
   return (
     <InfoCard className={classNames(styles.card, styles.introCard)}>
       <h3>{resume.name}</h3>
@@ -17,8 +15,6 @@ function Intro() {
 }
 
 function ExperienceUpswot() {
-  const resume = config.resume;
-
   return (
     <InfoCard className={classNames(styles.card, styles.jobCard)}>
       <JobList job={resume.jobs[0]}></JobList>
@@ -27,8 +23,6 @@ function ExperienceUpswot() {
 }
 
 function ExperienceBtcs() {
-  const resume = config.resume;
-
   return (
     <InfoCard className={classNames(styles.card, styles.jobCard)}>
       <JobList job={resume.jobs[1]}></JobList>
