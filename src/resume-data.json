@@ -6,16 +6,18 @@
     "linkedin": "https://www.linkedin.com/in/dovhalov/",
     "phoneNumber": "+1 (416) 414-6089",
     "phoneNumberSecondary": "+380 (95) 689 51 73",
-    "location": "Toronto, Canada"
+    "location": "Toronto, Canada",
+    "locationLink": "https://maps.app.goo.gl/CZQjbmQuShKgXZkA6"
   },
-  "description": "Hello! Welcome to my portfolio site. It has been fully designed and developed by me.\nI am dedicated to building scalable and well-documented code, leveraging the latest tools and technologies. My approach is rooted in the 'T-shaped' model, with a strong focus on backend development, complemented by a growing expertise in frontend development and deployment strategies. I am committed to staying abreast of modern technologies to ensure timely and effective tool selection for optimal results.",
+  "greeting": "Hello! Welcome to my portfolio site. It has been fully designed and developed by me.",
+  "description": "I am dedicated to building scalable and well-documented code, leveraging the latest tools and technologies. My approach is rooted in the 'T-shaped' model, with a strong focus on backend development, complemented by a growing expertise in frontend development and deployment strategies. I am committed to staying abreast of modern technologies to ensure timely and effective tool selection for optimal results.",
   "jobs": [
     {
       "title": "upSWOT",
       "period": "2020-2023",
       "location": "USA, South Carolina",
       "position": "Software Engineer",
-      "description": "Worked as a backend software developer at upSWOT, contributing to product development and customer support. Worked on a fintech solution offering customizable embedded finance widgets and actionable insights for businesses. Trusted by 100+ multinational financial institutions and partnered with industry leaders like Mastercard, Visa, NCR, NerdWallet, Alkami, RedHat, Republic Bank, FSNB (First Southern National Bank), PwC, MX, Banno Jack Henry, CreditSafe, Equifax, Q2, Finastra, UPTIQ, OMB Bank, OnDeck and more.",
+      "description": "Worked as a backend software developer at upSWOT, contributing to product development and customer support. Worked on a fintech solution offering customizable embedded finance widgets and actionable insights for businesses. Trusted by 100+ multinational financial institutions and partnered with industry leaders like Mastercard, Visa, NCR, NerdWallet, Alkami, RedHat, Republic Bank, FSNB, PwC, MX, Banno Jack Henry, CreditSafe, Equifax, Q2, Finastra, UPTIQ, OMB Bank, OnDeck and more.",
       "highlights": [
         {
           "title": "Product Team Highlights:",

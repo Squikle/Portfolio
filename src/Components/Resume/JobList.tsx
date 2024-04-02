@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import style from "./Resume.module.scss";
+import classNames from "classnames";
 
 type Highlight = {
   title: string;
@@ -15,7 +16,15 @@ type Job = {
   highlights: Highlight[];
 };
 
-export default function JobList({ job }: { job: Job }) {
+export default function JobList({
+  job,
+  isFirst,
+  isLast,
+}: {
+  job: Job;
+  isFirst: boolean;
+  isLast: boolean;
+}) {
   const buildHighlights = (highlights: Highlight[]) => {
     return highlights.map((x) => {
       return (
@@ -35,21 +44,28 @@ export default function JobList({ job }: { job: Job }) {
 
   return (
     <>
-      <Fragment key={job.title + job.period}>
-        <div className={style.storyLine}>
-          <div className={style.line}></div>
-        </div>
+      <div className={style.lineContainer}>
+        <div
+          className={classNames(
+            style.line,
+            { [style.lineStart]: isFirst },
+            { [style.lineEnd]: isLast },
+          )}
+        />
+      </div>
+      <div className={style.text}>
+        <div className={style.storyLine}></div>
         <div>
           <h3 className={style.period}>{job.period}</h3>
-          <h3 className={style.position}>{job.position}</h3>
+          <h3 className={style.title}>{job.title}</h3>
         </div>
         <div>
-          <h3 className={style.title}>{job.title}</h3>
+          <h3 className={style.position}>{job.position}</h3>
           <h3 className={style.location}>{job.location}</h3>
         </div>
         <h5 className={style.description}>{job.description}</h5>
         {buildHighlights(job.highlights)}
-      </Fragment>
+      </div>
     </>
   );
 }

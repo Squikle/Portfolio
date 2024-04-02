@@ -1,28 +1,100 @@
-h1 {
-
-}
-
 .card {
   max-width: 70%;
-  padding: 4% 4% 4% 8%;
+  --top-padding: 25px;
   font-size: 0.9rem;
-  --top-offset: 5%;
-  max-height: calc(100% - var(--top-offset) * 2);
-  top: var(--top-offset);
+  top: 3%;
   bottom: auto;
-  overflow-y: scroll;
-  position: absolute;
-  scrollbar-width: thin;
+  margin: auto;
+  position: relative;
+  display: flex;
+  padding: var(--top-padding) 0 var(--top-padding) 0;
+  overflow: visible;
+  max-height: 80%;
+}
+
+.introCard {
+  padding: 25px;
+}
+
+.text {
   font-weight: 100;
   line-height: 1.2em;
   font-family: "Barlow Semi Condensed", sans-serif;
+  margin: 0;
+  display: flex;
+  overflow-y: auto;
+  flex-direction: column;
+  padding-right: 25px;
 }
 
-.jobCard, .introCard {
+.lineContainer {
+  position: relative;
+  padding-left: 40px;
+}
+
+.line {
+  $line-color: white;
+
+  --line-width: 0.1em;
+  width: var(--line-width);
+  background-color: $line-color;
+  z-index: 1000;
+  position: absolute;
+  --top: calc(1em);
+  top: var(--top);
+  left: 0;
+  right: 0;
+  margin: calc(-1 * var(--top-padding)) auto auto auto;
+
+  &.lineStart.lineEnd {
+    height: 0;
+  }
+
+  &:not(.lineStart) {
+    height: calc(100% - var(--top) + var(--top-padding) * 2 + 1em);
+    top: 0;
+  }
+
+  &.lineEnd {
+     height: calc(var(--top-padding) * 2);
+     top: 0;
+  }
+
+  &.lineStart {
+    margin-top: auto;
+    height: calc(100% - var(--top) + var(--top-padding));
+  }
+
+  &::before {
+    content: "";
+    --size: 0.8em;
+    width: var(--size);
+    height: var(--size);
+    border-radius: 1000px;
+    position: absolute;
+    background-color: $line-color;
+  }
+
+  &.lineStart::before {
+    transform: translate(calc(-50% + (var(--line-width) / 2)));
+  }
+
+  &:not(.lineStart)::before {
+    transform: translate(calc(-50% + (var(--line-width) / 2)), calc(var(--top-padding) * 2));
+  }
+}
+
+.jobCard > .text, .introCard > .text {
+  h1 {
+    font-weight: Bold;
+    line-height: 1em;
+    font-size: 1.9em;
+  }
+
   h3 {
-    font-size: 1.4em;
     font-weight: 400;
-    line-height: 1.2em;
+    line-height: 1.4em;
+    font-size: 1.2em;
   }
 
   h4 {
@@ -31,72 +103,78 @@ h1 {
     font-weight: 400;
   }
 
-  li p {
-    padding-left: 0.5em;
-    margin: 0;
-  }
-
-  .description {
+  .description, .greeting {
     margin-top: 0.5em;
     padding: 0;
   }
 
-  .location, .position, .period, .title, p {
+  .location, .position, .period, .title {
     font-style: italic;
+  }
+
+  li {
+    font-style: italic;
+    margin-left: 1em;
+    list-style: none;
+    position: relative;
+  }
+
+  li::before {
+    content: "";
+    background-color: white;
+    width: 0.3em;
+    height: 0.3em;
+    position: absolute;
+    border-radius: 1000px;
+    transform: translate(-200%, 150%);
   }
 
   .highlight {
     position: relative;
-
-    &::before {
-      content: ">";
-      position: absolute;
-      border-radius: 1000px;
-      width: 0.5em;
-      height: 0.5em;
-      transform: translate(-1em);
-    }
   }
 
-  > * {
-    margin: 0;
-    padding: 0;
-  }
-
-  div:has(.period):has(.position) {
+  div:has(> .position):has(> .location) {
     display: flex;
     justify-content: space-between;
   }
 
-  .period {
-    display: flex;
-    justify-content: center;
-
-    &::after, &::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-color: white;
-      transform: translate(1em, 2.3em);
-    }
-
-    &::before {
-      width: 1em;
-      height: 1em;
-      border-radius: 1000px;
-      left: -0.45em;
-    }
-
-    &::after {
-      width: 2px;
-      height: calc(100% - 2.3em + 50vh);
-      vertical-align: -50%;
-    }
-  }
-
-  div:has(.title):has(.location) {
+  div:has(> .period):has(> .title) {
     display: flex;
     justify-content: space-between;
+  }
+}
+
+@media (min-width: 900px) {
+  .card {
+    max-width: 700px;
+    --top-padding: 35px;
+    font-size: 1em;
+    line-height: 1.2em;
+
+    .lineContainer {
+      padding-right: 20px;
+    }
+  }
+}
+@media (max-width: 650px) {
+  .card {
+    max-width: 85%;
+    font-size: 0.8rem;
+    --top-padding: 20px;
+  }
+}
+@media (max-width: 450px) {
+  .card {
+    font-size: 0.75rem;
+
+    h3 {
+      font-size: 1.2em;
+    }
+
+    h4 {
+      font-size: 1.1em;
+      margin: 0.7em 0;
+    }
   }
 }
 
@@ -115,35 +193,3 @@ h1 {
   border: solid 3px transparent;
   border-radius: 1000px;
 }*/
-
-@media (min-width: 900px) {
-  .card {
-    max-width: 700px;
-    padding: 35px 25px 35px 70px;
-    font-size: 1em;
-    line-height: 1.2em;
-  }
-}
-@media (max-width: 650px) {
-  .card {
-    max-width: 85%;
-    font-size: 0.8rem;
-    padding: 40px 25px 40px 50px;
-  }
-}
-@media (max-width: 450px) {
-  .card {
-    top: 3%;
-    padding-left: 50px;
-    font-size: 0.75rem;
-
-    h3 {
-      font-size: 1.2em;
-    }
-
-    h4 {
-      font-size: 1.1em;
-      margin: 0.7em 0;
-    }
-  }
-}

@@ -16,13 +16,9 @@ import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
 import SlidesPagination from "../Components/Slides/SlidesPagination.tsx";
 import { useSwiperPagination } from "../Components/Slides/useSwiperPagination.ts";
 import config from "../global.config.json";
-import {
-  Intro,
-  ExperienceUpswot,
-  ExperienceBtcs,
-} from "../Components/Resume/Resume.tsx";
 import useBackground from "./useBackground.tsx";
 import cardStyle from "../Components/TextCard/InfoCard.module.scss";
+import useResumeCards from "../Components/Resume/useResumeCards.tsx";
 
 export type ParticlesOptions = {
   global: any;
@@ -136,6 +132,7 @@ export default function LogoPage({
     ></SlidesPagination>
   );
 
+  const resumeCards = useResumeCards();
   return (
     <Page
       isActive={isActive}
@@ -159,37 +156,25 @@ export default function LogoPage({
           noMousewheelClass: cardStyle.card,
         }}
         onSlideChange={pagination.updateSlides}
-        noSwipingClass={cardStyle.card}
+        noSwipingClass={classNames(cardStyle.card)}
       >
-        <SwiperSlide>
-          {({ isActive }) => (
-            <PageSection isAlwaysVisible={true} isActive={isActive}>
-              <Intro></Intro>
-            </PageSection>
-          )}
-        </SwiperSlide>
-        <SwiperSlide>
-          {({ isActive }) => (
-            <PageSection
-              isAlwaysVisible={true}
-              isActive={isActive}
-              backgroundOpacity={config.slides.style.backgroundOpacity}
-            >
-              <ExperienceUpswot></ExperienceUpswot>
-            </PageSection>
-          )}
-        </SwiperSlide>
-        <SwiperSlide>
-          {({ isActive }) => (
-            <PageSection
-              isAlwaysVisible={true}
-              isActive={isActive}
-              backgroundOpacity={config.slides.style.backgroundOpacity}
-            >
-              <ExperienceBtcs></ExperienceBtcs>
-            </PageSection>
-          )}
-        </SwiperSlide>
+        {resumeCards.map((card, i) => {
+          const backgroundOpacity = i === 0 ? undefined : 0.5;
+
+          return (
+            <SwiperSlide key={i}>
+              {({ isActive }) => (
+                <PageSection
+                  isAlwaysVisible={true}
+                  isActive={isActive}
+                  backgroundOpacity={backgroundOpacity}
+                >
+                  {card}
+                </PageSection>
+              )}
+            </SwiperSlide>
+          );
+        })}
 
         {background.element}
         <SwiperSlide>
