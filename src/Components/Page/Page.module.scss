@@ -5,28 +5,11 @@
   transition: opacity 1s ease-in-out;
 }
 
-.section,
-.page,
-.content {
-  -webkit-user-drag: none;
-  -khtml-user-drag: none;
-  -moz-user-drag: none;
-  -o-user-drag: none;
-  user-drag: none;
-  -webkit-touch-callout: none; /* Safari */
-  -webkit-user-select: none; /* Chrome */
-  -moz-user-select: none; /* Firefox */
-  -ms-user-select: none; /* Internet Explorer/Edge */
-  user-select: none;
-}
-
 .section {
   scroll-snap-align: center;
   scroll-snap-stop: always;
   height: 100dvh;//var(--viewport-height);
   width: 100%;
-  //transition: height 0.1s ease-in-out;
-  overflow: visible;
 }
 
 .page {

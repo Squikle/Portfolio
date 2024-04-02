@@ -5,7 +5,7 @@ import { useCurrentPageContext } from "../Components/Page/CurrentPageContext/use
 import Emitters from "../Components/Particles/Emitters";
 import Particles from "../Components/Particles/Particles";
 import { ParticlesOptions } from "./LogoPage";
-import styles from "./LogoPage.module.css";
+import styles from "./LogoPage.module.scss";
 import { BackgroundControl } from "../Components/Page/Page.tsx";
 import classNames from "classnames";
 

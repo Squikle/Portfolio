@@ -10,7 +10,10 @@ type Props = {
 
 export default function InfoCard({ className, propsStyles, children }: Props) {
   return (
-    <div className={classNames(styles.card, className)} style={propsStyles}>
+    <div
+      className={classNames("swiper-no-swiping", styles.card, className)}
+      style={propsStyles}
+    >
       {children}
     </div>
   );

@@ -54,7 +54,7 @@ export default function App() {
         keyboard={true}
         onInit={pagination.setSwiper}
         onSlideChange={pagination.updateSlides}
-        noSwipingClass={"text"}
+        noSwipingClass={"swiper-no-swiping"}
       >
         <SwiperSlide>
           {({ isActive }) => <ParallaxPage isActive={isActive}></ParallaxPage>}

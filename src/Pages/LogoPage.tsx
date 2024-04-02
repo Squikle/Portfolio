@@ -9,7 +9,7 @@ import { useParticlesEngine } from "../hooks/useParticlesEngine";
 import { ImageData } from "../Components/Logo/types.ts";
 import { adaptParticles } from "../Components/Particles/retinaAdapter";
 import classNames from "classnames";
-import styles from "./LogoPage.module.css";
+import styles from "./LogoPage.module.scss";
 import { useCurrentSectionContext } from "../Components/Page/CurrentPageContext/useContexts.ts";
 import { Keyboard, Mousewheel } from "swiper/modules";
 import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
@@ -156,10 +156,10 @@ export default function LogoPage({
           noMousewheelClass: cardStyle.card,
         }}
         onSlideChange={pagination.updateSlides}
-        noSwipingClass={classNames(cardStyle.card)}
+        noSwipingClass={"swiper-no-swiping"}
       >
         {resumeCards.map((card, i) => {
-          const backgroundOpacity = i === 0 ? undefined : 0.5;
+          const backgroundOpacity = i === 0 ? undefined : 0.3;
 
           return (
             <SwiperSlide key={i}>
@@ -181,7 +181,10 @@ export default function LogoPage({
           {({ isActive }) => (
             <PageSection
               isActive={isActive}
-              className={classNames(styles.globalParticles)}
+              className={classNames(
+                styles.globalParticles,
+                "swiper-no-swiping",
+              )}
             >
               {isLoaded() && <StaticParticles options={options.current} />}
             </PageSection>

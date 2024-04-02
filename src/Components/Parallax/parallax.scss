@@ -1,19 +1,6 @@
-$default-scale: 0.316;
+@use "/src/global";
 
-%select-disabled {
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -o-user-select: none;
-  user-select: none;
-}
-%select-enabled {
-  -webkit-user-select: text;
-  -khtml-user-select: text;
-  -moz-user-select: text;
-  -o-user-select: text;
-  user-select: text;
-}
+$default-scale: 0.316;
 
 .parallax-layers, .parallax-container {
   aspect-ratio: 1/1;
@@ -23,15 +10,6 @@ $default-scale: 0.316;
   @extend %select-disabled;
   background-color: gray;
   overflow: hidden;
-}
-
-.parallax-container img {
-  -webkit-user-drag: none;
-  user-drag: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
 }
 
 .parallax {

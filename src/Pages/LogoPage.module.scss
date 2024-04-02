@@ -1,18 +1,9 @@
+@use "/src/global";
+
 .logoPage {
   position: relative;
   z-index: 0;
   height: 100%;
-
-  &::-moz-selection {
-    /* Code for Firefox */
-    color: red;
-    background: yellow;
-  }
-
-  &::selection {
-    color: red;
-    background: yellow;
-  }
 }
 
 .particlesContainer {
@@ -49,4 +40,9 @@
   position: relative;
   height: 100%;
   width: 100%;
+  @extend %select-disabled;
+
+  &:hover {
+    cursor: crosshair;
+  }
 }

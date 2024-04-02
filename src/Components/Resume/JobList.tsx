@@ -54,7 +54,6 @@ export default function JobList({
         />
       </div>
       <div className={style.text}>
-        <div className={style.storyLine}></div>
         <div>
           <h3 className={style.period}>{job.period}</h3>
           <h3 className={style.title}>{job.title}</h3>

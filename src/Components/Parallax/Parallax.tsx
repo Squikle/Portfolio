@@ -84,7 +84,7 @@ export default function Parallax({ isActive }: Props) {
           data-speed-z="0"
         />
         <div
-          className="parallax text"
+          className="parallax text swiper-no-swiping"
           data-speed-x="0.19"
           data-speed-y="0.13"
           data-speed-z="0"

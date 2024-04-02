@@ -17,7 +17,7 @@ $blur: 4px) {
     box-shadow: $box-shadow;
   }
   transition: backdrop-filter 0.5s ease-in-out;
-  backdrop-filter: blur($blur) brightness(0.6);
+  backdrop-filter: blur($blur) brightness(0.4);
   -webkit-backdrop-filter: blur(5px);
   border: $border-thickness solid rgba(255, 255, 255, $border-opacity);
   opacity: $opacity;
@@ -37,4 +37,20 @@ $blur: 4px) {
           0 0 10px white,
           0 0 20px white,
           0 0 30px white);
+}
+
+%select-disabled {
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+%select-enabled {
+  -webkit-user-select: text;
+  -khtml-user-select: text;
+  -moz-user-select: text;
+  -o-user-select: text;
+  user-select: text;
 }

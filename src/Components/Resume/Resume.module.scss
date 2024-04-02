@@ -1,19 +1,33 @@
 .card {
-  max-width: 70%;
   --top-padding: 25px;
   font-size: 0.9rem;
-  top: 3%;
+  --top-ofset: 3%;
+  top: var(--top-ofset);
   bottom: auto;
   margin: auto;
   position: relative;
   display: flex;
   padding: var(--top-padding) 0 var(--top-padding) 0;
   overflow: visible;
-  max-height: 80%;
+  max-height: calc(100% - var(--top-ofset) * 2);
+
+  a {
+    text-decoration-color: rgba(255, 255, 255, 0.54);
+  }
+
+  ::-moz-selection {
+    color: rgb(90, 192, 255);
+    background: rgba(233, 165, 255, 0.05);
+  }
+
+  ::selection {
+    color: rgb(90, 192, 255);
+    background: rgba(233, 165, 255, 0.05);
+  }
 }
 
 .introCard {
-  padding: 25px;
+  padding-left: 25px;
 }
 
 .text {
@@ -144,7 +158,7 @@
   }
 }
 
-@media (min-width: 900px) {
+@media (min-width: 850px) {
   .card {
     max-width: 700px;
     --top-padding: 35px;
@@ -156,11 +170,15 @@
     }
   }
 }
-@media (max-width: 650px) {
+@media (max-width: 850px) {
   .card {
     max-width: 85%;
-    font-size: 0.8rem;
     --top-padding: 20px;
+  }
+}
+@media (max-width: 650px) {
+  .card {
+    font-size: 0.9em;
   }
 }
 @media (max-width: 450px) {
