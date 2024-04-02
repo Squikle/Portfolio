@@ -13,7 +13,7 @@
   "description": "I am dedicated to building scalable and well-documented code, leveraging the latest tools and technologies. My approach is rooted in the 'T-shaped' model, with a strong focus on backend development, complemented by a growing expertise in frontend development and deployment strategies. I am committed to staying abreast of modern technologies to ensure timely and effective tool selection for optimal results.",
   "jobs": [
     {
-      "title": "upSWOT",
+      "company": "upSWOT",
       "period": "2020-2023",
       "location": "USA, South Carolina",
       "position": "Software Engineer",
@@ -61,7 +61,7 @@
       ]
     },
     {
-      "title": "Bitcoin Suisse",
+      "company": "Bitcoin Suisse",
       "period": "2023-2024",
       "location": "Zug, Switzerland",
       "position": "Fullstack Software Engineer",

@@ -39,6 +39,10 @@
   overflow-y: auto;
   flex-direction: column;
   padding-right: 25px;
+  mask-image: linear-gradient(to bottom,
+          transparent 0%, black 48px,
+          black calc(100% - 48px),
+          transparent 100%);
 }
 
 .lineContainer {
@@ -122,7 +126,7 @@
     padding: 0;
   }
 
-  .location, .position, .period, .title {
+  .location, .position, .period, .company {
     font-style: italic;
   }
 
@@ -147,14 +151,34 @@
     position: relative;
   }
 
-  div:has(> .position):has(> .location) {
+  .jobHeader {
     display: flex;
     justify-content: space-between;
-  }
 
-  div:has(> .period):has(> .title) {
-    display: flex;
-    justify-content: space-between;
+    .companyContainer {
+      position: relative;
+      overflow: visible;
+      display: flex;
+      justify-content: flex-end;
+
+      .heart {
+        height: 1.2em;
+        width: 1.2em;
+        position: relative;
+        right: 0;
+        top: 0;
+        transform: translate(30%, 10%) rotateZ(-15deg);
+
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+
+    :last-child {
+      text-align: right;
+    }
   }
 }
 

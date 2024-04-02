@@ -60,12 +60,7 @@ function IntroCard() {
 function SkillsCard() {
   return (
     <InfoCard className={classNames(styles.card, styles.introCard)}>
-      <div className={styles.text}>
-        <h1>{resume.name}</h1>
-        <h3>{resume.position}</h3>
-        <p className={styles.greeting}>{resume.greeting}</p>
-        <p className={styles.description}>{resume.description}</p>
-      </div>
+      <div className={styles.text}></div>
     </InfoCard>
   );
 }

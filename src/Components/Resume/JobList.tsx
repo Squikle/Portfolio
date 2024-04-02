@@ -1,6 +1,7 @@
 import { Fragment } from "react";
 import style from "./Resume.module.scss";
 import classNames from "classnames";
+import Heart from "../../Icons/Heart.tsx";
 
 type Highlight = {
   title: string;
@@ -8,7 +9,7 @@ type Highlight = {
 };
 
 type Job = {
-  title: string;
+  company: string;
   period: string;
   location: string;
   position: string;
@@ -54,13 +55,18 @@ export default function JobList({
         />
       </div>
       <div className={style.text}>
-        <div>
-          <h3 className={style.period}>{job.period}</h3>
-          <h3 className={style.title}>{job.title}</h3>
-        </div>
-        <div>
-          <h3 className={style.position}>{job.position}</h3>
-          <h3 className={style.location}>{job.location}</h3>
+        <div className={style.jobHeader}>
+          <div>
+            <h3 className={style.period}>{job.period}</h3>
+            <h3 className={style.position}>{job.position}</h3>
+          </div>
+          <div>
+            <div className={style.companyContainer}>
+              <Heart className={style.heart}></Heart>
+              <h3 className={style.company}>{job.company}</h3>
+            </div>
+            <h3 className={style.location}>{job.location}</h3>
+          </div>
         </div>
         <h5 className={style.description}>{job.description}</h5>
         {buildHighlights(job.highlights)}
