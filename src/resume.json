@@ -142,7 +142,8 @@
       "Azure",
       "Grafana",
       "Prometheus",
-      "GitHub Actions, GitLab CI/CD"
+      "GitHub Actions, GitLab CI/CD",
+      "Terraform"
     ]
   },
   "education": {
