@@ -3,9 +3,38 @@ import styles from "./Resume.module.scss";
 import JobList from "./JobList.tsx";
 import classNames from "classnames";
 import resume from "../../resume-data.json";
-import { useMemo } from "react";
+import { useCallback, useEffect, useMemo } from "react";
+import { SwiperClass } from "swiper/react";
 
-export default function useResumeCards() {
+export default function useResumeCards(swiper: SwiperClass | null) {
+  let scrolledOut = false;
+
+  const handleOverScroll = useCallback(
+    (percentage: number) => {
+      if (scrolledOut) return;
+
+      const threshold = 12.5;
+      if (percentage > threshold) {
+        swiper?.slideNext();
+        scrolledOut = true;
+      } else if (percentage < -threshold) {
+        swiper?.slidePrev();
+        scrolledOut = true;
+      }
+    },
+    [swiper, scrolledOut],
+  );
+
+  useEffect(() => {
+    if (!swiper) return;
+    const handleTransitionEnd = () => {
+      scrolledOut = false;
+    };
+
+    swiper.on("transitionEnd", handleTransitionEnd);
+    return () => swiper.off("transitionEnd", handleTransitionEnd);
+  }, [swiper]);
+
   const cards = useMemo(() => {
     const jobsCards = resume.jobs.map((job, i) => {
       const isFirst = i === 0;
@@ -13,19 +42,25 @@ export default function useResumeCards() {
 
       return (
         <InfoCard key={i} className={classNames(styles.card, styles.jobCard)}>
-          <JobList job={job} isFirst={isFirst} isLast={isLast}></JobList>
+          <JobList
+            onOverScroll={handleOverScroll}
+            job={job}
+            isFirst={isFirst}
+            isLast={isLast}
+          ></JobList>
         </InfoCard>
       );
     });
 
     return [<IntroCard />, ...jobsCards];
-  }, []);
+  }, [handleOverScroll]);
 
   return cards;
 }
 
 function IntroCard() {
   const contacts = resume.contacts;
+
   return (
     <InfoCard className={classNames(styles.card, styles.introCard)}>
       <div className={styles.text}>

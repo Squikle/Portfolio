@@ -50,7 +50,7 @@ $default-scale: 0.316;
   height: 100%;
   bottom: 0;
   left: 0;
-  background: radial-gradient(ellipse at center, rgba(0,0,0,0) 65%, rgba(0,0,0,0.7));
+  background: radial-gradient(ellipse at center, rgba(0,0,0,0) 60%, rgba(0,0,0,0.4));
   pointer-events: none;
 }
 .sky-overlap {
@@ -360,7 +360,7 @@ $default-scale: 0.316;
 }
 @media (max-aspect-ratio: 0.68/1) and (orientation: portrait){
   .birds {
-    right: 48%;
+    right: 45%;
   }
 }
 @media (max-aspect-ratio: 0.54/1) and (orientation: portrait){

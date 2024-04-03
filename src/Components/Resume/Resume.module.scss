@@ -39,11 +39,77 @@
   overflow-y: auto;
   flex-direction: column;
   padding-right: 25px;
-  mask-image: linear-gradient(to bottom,
-          transparent 0%, black 48px,
+
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, black var(--top-mask-size, 0), black calc(100% - var(--bottom-mask-size, 0)), transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0, black var(--top-mask-size, 0), black calc(100% - var(--bottom-mask-size, 0)), transparent 100%);
+  transition: mask-image 0.5s ease-in-out;
+
+  &.fadeTop {
+    --top-mask-size: 35px;
+  }
+
+  &.fadeBottom {
+    --bottom-mask-size: 35px;
+  }
+
+  /*mask-image: linear-gradient(to bottom,
+          rgba(0, 0, 0, var(--top-mask-opacity)), black 48px,
           black calc(100% - 48px),
-          transparent 100%);
+          rgba(0, 0, 0, var(--bottom-mask-opacity)) 100%);
+
+  &.fadeTop:not(.fadeBottom) {
+    animation: fadeTop 0.5s forwards;
+    animation-play-state: running;
+  }
+  &.fadeBottom:not(.fadeTop) {
+    animation: fadeBottom 0.5s forwards;
+    animation-play-state: running;
+  }
+  &.fadeTop.fadeBottom {
+    animation: fadeTopAndBottom 0.5s forwards;
+    animation-play-state: running;
+  }*/
 }
+
+/*@property --top-mask-opacity {
+  syntax: '<number>';
+  initial-value: 1;
+  inherits: false;
+}
+@property --bottom-mask-opacity {
+  syntax: '<number>';
+  initial-value: 1;
+  inherits: false;
+}
+
+@keyframes fadeTop {
+  0% {
+    --top-mask-opacity: 1;
+  }
+  100% {
+    --top-mask-opacity: 0;
+  }
+}
+
+@keyframes fadeBottom {
+  0% {
+    --bottom-mask-opacity: 1;
+  }
+  100% {
+    --bottom-mask-opacity: 0;
+  }
+}
+
+@keyframes fadeTopAndBottom {
+  0% {
+    --top-mask-opacity: 1;
+    --bottom-mask-opacity: 1;
+  }
+  100% {
+    --top-mask-opacity: 0;
+    --bottom-mask-opacity: 0;
+  }
+}*/
 
 .lineContainer {
   position: relative;

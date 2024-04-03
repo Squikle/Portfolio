@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, useRef } from "react";
 import style from "./Resume.module.scss";
 import classNames from "classnames";
 import Heart from "../../Icons/Heart.tsx";
@@ -21,11 +21,48 @@ export default function JobList({
   job,
   isFirst,
   isLast,
+  onOverScroll,
 }: {
   job: Job;
   isFirst: boolean;
   isLast: boolean;
+  onOverScroll: (percentage: number) => void;
 }) {
+  const textRef = useRef<HTMLDivElement>(null);
+
+  const handleScroll = () => {
+    const element = textRef.current;
+    if (!element) throw new Error("Text element ref must be set!");
+
+    const isScrollable = element.scrollHeight > element.clientHeight;
+
+    if (!isScrollable) {
+      element.classList.remove(style.fadeBottom, style.fadeTop);
+      return;
+    }
+
+    const scrollTop = element.scrollTop;
+    const scrollHeight = element.scrollHeight;
+    const clientHeight = element.clientHeight;
+
+    const maxScrollHeight = scrollHeight - clientHeight;
+    const currentScrollPercentage = (scrollTop / maxScrollHeight) * 100;
+
+    element.classList.toggle(style.fadeBottom, currentScrollPercentage < 100);
+    element.classList.toggle(style.fadeTop, currentScrollPercentage > 0);
+
+    if (scrollTop + clientHeight >= scrollHeight) {
+      const scrolledPastEnd =
+        ((scrollTop + clientHeight - scrollHeight) / scrollHeight) * 100;
+      if (onOverScroll) onOverScroll(scrolledPastEnd);
+    }
+
+    if (scrollTop < 0) {
+      const scrolledPastTop = (scrollTop / scrollHeight) * 100;
+      if (onOverScroll) onOverScroll(scrolledPastTop);
+    }
+  };
+
   const buildHighlights = (highlights: Highlight[]) => {
     return highlights.map((x) => {
       return (
@@ -42,7 +79,6 @@ export default function JobList({
       );
     });
   };
-
   return (
     <>
       <div className={style.lineContainer}>
@@ -54,7 +90,7 @@ export default function JobList({
           )}
         />
       </div>
-      <div className={style.text}>
+      <div className={style.text} onScroll={handleScroll} ref={textRef}>
         <div className={style.jobHeader}>
           <div>
             <h3 className={style.period}>{job.period}</h3>
