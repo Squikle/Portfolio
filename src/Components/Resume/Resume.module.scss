@@ -1,3 +1,5 @@
+@use "/src/Components/Slides/SlidesPagination.module";
+
 .card {
   --top-padding: 25px;
   font-size: 0.9rem;
@@ -23,6 +25,18 @@
   ::selection {
     color: rgb(90, 192, 255);
     background: rgba(233, 165, 255, 0.05);
+  }
+
+  ::-webkit-scrollbar {
+    scrollbar-width: thin;
+  }
+
+  ::-webkit-scrollbar {
+    @extend %slider;
+    width: 5px;
+  }
+  ::-webkit-scrollbar-thumb {
+    @extend %sliderThumb;
   }
 }
 
@@ -51,121 +65,6 @@
   &.fadeBottom {
     --bottom-mask-size: 35px;
   }
-
-  /*mask-image: linear-gradient(to bottom,
-          rgba(0, 0, 0, var(--top-mask-opacity)), black 48px,
-          black calc(100% - 48px),
-          rgba(0, 0, 0, var(--bottom-mask-opacity)) 100%);
-
-  &.fadeTop:not(.fadeBottom) {
-    animation: fadeTop 0.5s forwards;
-    animation-play-state: running;
-  }
-  &.fadeBottom:not(.fadeTop) {
-    animation: fadeBottom 0.5s forwards;
-    animation-play-state: running;
-  }
-  &.fadeTop.fadeBottom {
-    animation: fadeTopAndBottom 0.5s forwards;
-    animation-play-state: running;
-  }*/
-}
-
-/*@property --top-mask-opacity {
-  syntax: '<number>';
-  initial-value: 1;
-  inherits: false;
-}
-@property --bottom-mask-opacity {
-  syntax: '<number>';
-  initial-value: 1;
-  inherits: false;
-}
-
-@keyframes fadeTop {
-  0% {
-    --top-mask-opacity: 1;
-  }
-  100% {
-    --top-mask-opacity: 0;
-  }
-}
-
-@keyframes fadeBottom {
-  0% {
-    --bottom-mask-opacity: 1;
-  }
-  100% {
-    --bottom-mask-opacity: 0;
-  }
-}
-
-@keyframes fadeTopAndBottom {
-  0% {
-    --top-mask-opacity: 1;
-    --bottom-mask-opacity: 1;
-  }
-  100% {
-    --top-mask-opacity: 0;
-    --bottom-mask-opacity: 0;
-  }
-}*/
-
-.lineContainer {
-  position: relative;
-  padding-left: 40px;
-}
-
-.line {
-  $line-color: white;
-
-  --line-width: 0.1em;
-  width: var(--line-width);
-  background-color: $line-color;
-  z-index: 1000;
-  position: absolute;
-  --top: calc(1em);
-  top: var(--top);
-  left: 0;
-  right: 0;
-  margin: calc(-1 * var(--top-padding)) auto auto auto;
-
-  &.lineStart.lineEnd {
-    height: 0;
-  }
-
-  &:not(.lineStart) {
-    height: calc(100% - var(--top) + var(--top-padding) * 2 + 1em);
-    top: 0;
-  }
-
-  &.lineEnd {
-     height: calc(var(--top-padding) * 2);
-     top: 0;
-  }
-
-  &.lineStart {
-    margin-top: auto;
-    height: calc(100% - var(--top) + var(--top-padding));
-  }
-
-  &::before {
-    content: "";
-    --size: 0.8em;
-    width: var(--size);
-    height: var(--size);
-    border-radius: 1000px;
-    position: absolute;
-    background-color: $line-color;
-  }
-
-  &.lineStart::before {
-    transform: translate(calc(-50% + (var(--line-width) / 2)));
-  }
-
-  &:not(.lineStart)::before {
-    transform: translate(calc(-50% + (var(--line-width) / 2)), calc(var(--top-padding) * 2));
-  }
 }
 
 .jobCard > .text, .introCard > .text {
@@ -174,17 +73,54 @@
     line-height: 1em;
     font-size: 1.9em;
   }
-
   h3 {
     font-weight: 400;
     line-height: 1.4em;
     font-size: 1.2em;
   }
-
   h4 {
     font-size: 1.3em;
     margin: 0.75em 0;
     font-weight: 400;
+  }
+  h5 {
+    font-size: 1em;
+    font-weight: 400;
+  }
+  li {
+    font-style: italic;
+    margin-left: 1em;
+    list-style: none;
+    position: relative;
+
+    ::before {
+      content: "";
+      background-color: white;
+      width: 0.3em;
+      height: 0.3em;
+      position: absolute;
+      border-radius: 1000px;
+      transform: translate(-200%, 150%);
+    }
+  }
+
+  .features {
+    .skills {
+      ul {
+        columns: 2;
+        column-gap: 0;
+      }
+    }
+
+    .backendContainer, .frontendContainer {
+      display: flex;
+      flex: 1 1 0;
+      justify-content: space-between;
+
+      > * {
+        width: 50%;
+      }
+    }
   }
 
   .description, .greeting {
@@ -194,27 +130,6 @@
 
   .location, .position, .period, .company {
     font-style: italic;
-  }
-
-  li {
-    font-style: italic;
-    margin-left: 1em;
-    list-style: none;
-    position: relative;
-  }
-
-  li::before {
-    content: "";
-    background-color: white;
-    width: 0.3em;
-    height: 0.3em;
-    position: absolute;
-    border-radius: 1000px;
-    transform: translate(-200%, 150%);
-  }
-
-  .highlight {
-    position: relative;
   }
 
   .jobHeader {
@@ -283,6 +198,63 @@
       font-size: 1.1em;
       margin: 0.7em 0;
     }
+  }
+}
+
+.lineContainer {
+  position: relative;
+  padding-left: 40px;
+}
+
+.line {
+  $line-color: white;
+
+  --line-width: 0.1em;
+  width: var(--line-width);
+  background-color: $line-color;
+  z-index: 1000;
+  position: absolute;
+  --top: calc(1em);
+  top: var(--top);
+  left: 0;
+  right: 0;
+  margin: calc(-1 * var(--top-padding)) auto auto auto;
+
+  &.lineStart.lineEnd {
+    height: 0;
+  }
+
+  &:not(.lineStart) {
+    height: calc(100% - var(--top) + var(--top-padding) * 2 + 1em);
+    top: 0;
+  }
+
+  &.lineEnd {
+    height: calc(var(--top-padding) * 2);
+    top: 0;
+  }
+
+  &.lineStart {
+    margin-top: auto;
+    height: calc(100% - var(--top) + var(--top-padding));
+  }
+
+  &::before {
+    content: "";
+    --size: 0.8em;
+    width: var(--size);
+    height: var(--size);
+    border-radius: 1000px;
+    position: absolute;
+    background-color: $line-color;
+  }
+
+  &.lineStart::before {
+    transform: translate(calc(-50% + (var(--line-width) / 2)));
+  }
+
+  &:not(.lineStart)::before {
+    transform: translate(calc(-50% + (var(--line-width) / 2)), calc(var(--top-padding) * 2));
   }
 }
 

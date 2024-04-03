@@ -1,7 +1,9 @@
-import { Fragment, useRef } from "react";
+import { Fragment, useCallback, useRef } from "react";
 import style from "./Resume.module.scss";
 import classNames from "classnames";
 import Heart from "../../Icons/Heart.tsx";
+import useFadeScroll from "../../hooks/FadeScroll/useFadeScroll.ts";
+import { Delta, useSwipes } from "../../hooks/useSwipes.ts";
 
 type Highlight = {
   title: string;
@@ -21,19 +23,32 @@ export default function JobList({
   job,
   isFirst,
   isLast,
-  onOverScroll,
+  onSwipe,
 }: {
   job: Job;
   isFirst: boolean;
   isLast: boolean;
-  onOverScroll: (percentage: number) => void;
+  onSwipe: (percentage: number) => void;
 }) {
   const textRef = useRef<HTMLDivElement>(null);
+  useFadeScroll(textRef);
+
+  const handleSwipe = useCallback(
+    (e: Delta) => {
+      const element = getTextElement();
+
+      if (!element) throw new Error("Text element ref must be set!");
+      const isScrollable = element.scrollHeight > element.clientHeight;
+      if (isScrollable) return;
+
+      onSwipe(e.y);
+    },
+    [onSwipe],
+  );
+  useSwipes(textRef, handleSwipe);
 
   const handleScroll = () => {
-    const element = textRef.current;
-    if (!element) throw new Error("Text element ref must be set!");
-
+    const element = getTextElement();
     const isScrollable = element.scrollHeight > element.clientHeight;
 
     if (!isScrollable) {
@@ -45,22 +60,23 @@ export default function JobList({
     const scrollHeight = element.scrollHeight;
     const clientHeight = element.clientHeight;
 
-    const maxScrollHeight = scrollHeight - clientHeight;
-    const currentScrollPercentage = (scrollTop / maxScrollHeight) * 100;
-
-    element.classList.toggle(style.fadeBottom, currentScrollPercentage < 100);
-    element.classList.toggle(style.fadeTop, currentScrollPercentage > 0);
-
     if (scrollTop + clientHeight >= scrollHeight) {
       const scrolledPastEnd =
         ((scrollTop + clientHeight - scrollHeight) / scrollHeight) * 100;
-      if (onOverScroll) onOverScroll(scrolledPastEnd);
+      if (onSwipe) onSwipe(scrolledPastEnd);
     }
 
     if (scrollTop < 0) {
       const scrolledPastTop = (scrollTop / scrollHeight) * 100;
-      if (onOverScroll) onOverScroll(scrolledPastTop);
+      if (onSwipe) onSwipe(scrolledPastTop);
     }
+  };
+
+  const getTextElement = () => {
+    const element = textRef.current;
+    if (!element) throw new Error("Text element ref must be set!");
+
+    return element;
   };
 
   const buildHighlights = (highlights: Highlight[]) => {
@@ -79,6 +95,7 @@ export default function JobList({
       );
     });
   };
+
   return (
     <>
       <div className={style.lineContainer}>

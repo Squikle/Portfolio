@@ -159,7 +159,7 @@ export default function LogoPage({
         noSwipingClass={"swiper-no-swiping"}
       >
         {resumeCards.map((card, i) => {
-          const backgroundOpacity = i === 0 ? undefined : 0.3;
+          const backgroundOpacity = config.slides.style.backgroundOpacity;
 
           return (
             <SwiperSlide key={i}>

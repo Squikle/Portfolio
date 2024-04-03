@@ -15,47 +15,44 @@
     {
       "company": "upSWOT",
       "period": "2020-2023",
-      "location": "USA, South Carolina",
+      "location": "South Carolina, USA",
       "position": "Software Engineer",
-      "description": "Worked as a backend software developer at upSWOT, contributing to product development and customer support. Worked on a fintech solution offering customizable embedded finance widgets and actionable insights for businesses. Trusted by 100+ multinational financial institutions and partnered with industry leaders like Mastercard, Visa, NCR, NerdWallet, Alkami, RedHat, Republic Bank, FSNB, PwC, MX, Banno Jack Henry, CreditSafe, Equifax, Q2, Finastra, UPTIQ, OMB Bank, OnDeck and more.",
+      "description": "Worked as a backend software developer, contributing to product development and customer support. Fintech solution offering customizable embedded finance widgets and actionable insights for businesses. Trusted by 100+ multinational financial institutions and partnered with industry leaders like Mastercard, Visa, NCR, NerdWallet, Alkami, RedHat, Republic Bank, FSNB, PwC, MX, CreditSafe, Equifax and more.",
       "highlights": [
         {
           "title": "Product Team Highlights:",
           "bullets": [
-            "Developed and deployed microservices, including integration and unit tests.",
-            "Integrated AWS and GCP infrastructure solutions.",
-            "Worked on a multi-tenant SaaS application.",
-            "Developed multiple OAuth2.0 RestAPI integrations with third-party services.",
-            "Created a custom internal library for working with Kafka.",
-            "Set up CI/CD for the test environment.",
-            "Followed the principles of DDD architecture.",
-            "Implemented WebSockets communication.",
-            "Built RESTful APIs.",
-            "Implemented SSO authorization using SAML and OAuth protocols.",
-            "Designed architecture and developed backend services for web components.",
-            "Developed authentication mechanisms using JWT and Identity Provider Server.",
-            "Developed and adapted Swagger documentation with a focus on OpenAPI specification.",
-            "Assumed frontend responsibilities to support the frontend team.",
-            "Made important strategic decisions to address complex challenges."
+            "Multi-tenant SaaS with Microservice and DDD Architecture",
+            "Huge data flow using Kafka and ClickHouse",
+            "Horizontal Scalability",
+            "WebSockets",
+            "SSO using OAuth and SAML",
+            "CI/CD pipelines",
+            "RESTful APIs",
+            "Web components architecture and development",
+            "AWS and GCP infrastructure solutions integrations",
+            "Taking important strategic decisions to address complex challenges"
           ]
         },
         {
           "title": "Customers-support Team Highlights:",
           "bullets": [
-            "Participated in pre-sales calls and provided support to clients in designing and implementing integration solutions, primarily in the fintech industry.",
-            "Assisted clients in technical discussions and troubleshooting.",
-            "Created and presented workflow, deployment, architecture, use-case sequence, and data-flow diagrams to clients.",
-            "Supported and debugged client environments."
+            "Pre-sales calls participation",
+            "Supporting client environments code and infrastructure",
+            "Clients assistance in technical discussions and troubleshooting",
+            "Provided support to clients in designing and implementing integration solutions",
+            "Workflow, deployment, architecture, use-case sequence, and data-flow diagrams"
           ]
         },
         {
           "title": "Soft-skills Highlights:",
           "bullets": [
-            "Mentored several newcomers to the team, providing guidance on technical and best practices.",
-            "Demonstrated initiative by suggesting improvements in development planning and team organization, actively participating in retrospectives and grooming sessions.",
+            "Mentored newcomers to the team, providing guidance",
+            "Demonstrated initiative by suggesting improvements in development planning and team organization",
+            "Actively participated in retrospectives and grooming sessions",
             "Maintained composure and emotional control in high-stress situations.",
-            "Displayed a problem-solving approach, consistently seeking effective solutions rather than superficial fixes.",
-            "Demonstrated adaptability when working with new colleagues."
+            "Demonstrated adaptability when working with new colleagues.",
+            "Displayed a problem-solving approach, consistently seeking effective solutions rather than superficial fixes."
           ]
         }
       ]
@@ -70,18 +67,18 @@
         {
           "title": "Technical Contributions Highlights:",
           "bullets": [
-            "Developed and supported a clustered Virtual Actor Model based on Microsoft's Orleans, significantly enhancing backend reliability and performance by scaling horizontally.",
-            "Developed event-sourcing architecture using Apache Kafka as an event queue.",
-            "Implemented integration tests for microservices communication via Kafka.",
-            "Configured Azure Pipelines CI/CD for deploying microservices to Kubernetes clusters.",
-            "Debugged and resolved issues in the production environment.",
-            "Developed React components using TypeScript.",
-            "Engaged in ASP.NET Core Blazor development for managing database records.",
-            "Conducted stress tests using JMeter and NBomber to assess system performance under high loads.",
-            "Implemented Kafka Message Handlers using MediatR library.",
-            "Utilized Azure Identity for SSO authentication.",
-            "Utilized Azure Monitor and Application Insights with OpenTelemetry framework.",
-            "Developed backend architecture documentation using UML."
+            "Clustered Virtual Actor Model based on Microsoft's Orleans, significantly enhancing backend reliability and performance by scaling horizontally",
+            "Event-sourcing architecture using Apache Kafka",
+            "Integration tests for microservices communication via Kafka",
+            "Azure Pipelines for microservices and Kubernetes clusters",
+            "Resolving issues in the production environment",
+            "React components using TypeScript",
+            "ASP.NET Core Blazor development for managing database records.",
+            "Stress tests using JMeter and NBomber to assess system performance under high loads.",
+            "Kafka Message Handlers using MediatR library.",
+            "Azure Identity for SSO authentication.",
+            "Azure Monitor and Application Insights with OpenTelemetry framework.",
+            "Backend architecture documentation using UML."
           ]
         },
         {
@@ -119,7 +116,8 @@
       "ClickHouse",
       "MongoDB",
       "Elasticsearch",
-      "gRPC"
+      "gRPC",
+      "WebSockets"
     ],
     "frontend": {
       "tools": [
@@ -135,7 +133,7 @@
         "Swiper"
       ]
     },
-    "devops": [
+    "infrastructure": [
       "Docker",
       "kubernetes",
       "Jenkins",
@@ -148,9 +146,12 @@
       "Terraform"
     ]
   },
-  "education": {
-    "title": "State University of Telecommunications",
-    "degree": "Bachelor of Software Engineer",
-    "status": "Completed in 2022"
-  }
+  "educations": [
+    {
+      "title": "State University of Telecommunications",
+      "location": "Kyiv, Ukraine",
+      "degree": "Bachelor of Software Engineer",
+      "status": "Completed in 2022"
+    }
+  ]
 }
