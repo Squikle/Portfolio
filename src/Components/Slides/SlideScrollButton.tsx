@@ -1,6 +1,7 @@
 import styles from "./SlidesPagination.module.scss";
 import React from "react";
 import classNames from "classnames";
+import arrowIcon from "/public/arrow-icon.svg"
 
 type Props = {
   onClick: () => void;
@@ -19,7 +20,7 @@ export default function SlideScrollButton({
       className={classNames(styles.button, className)}
       onClick={onClick}
     >
-      <img alt="navigation arrow" src="/public/arrow-icon.svg" />
+      <img alt="navigation arrow" src={arrowIcon} />
     </div>
   );
 }

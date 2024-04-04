@@ -1,9 +1,10 @@
 import classNames from "classnames";
+import heartSvg from "/public/heart1.svg"
 
 export default function Heart({ className }: { className: string }) {
   return (
     <div className={classNames(className)}>
-      <img alt="heart" src="/public/heart1.svg" />
+      <img alt="heart" src={heartSvg} />
     </div>
   );
 }
