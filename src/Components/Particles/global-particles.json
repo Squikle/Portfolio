@@ -79,7 +79,7 @@
         "mode": "delete",
         "value": 0
       },
-      "value": 0.7
+      "value": 0.3
     },
     "opacity": {
       "value": {
@@ -182,7 +182,7 @@
         }
       },
       "trail": {
-        "delay": 0.05,
+        "delay": 0.075,
         "pauseOnStop": true,
         "quantity": 1
       },
