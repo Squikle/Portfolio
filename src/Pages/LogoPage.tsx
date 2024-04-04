@@ -19,7 +19,7 @@ import config from "../global.config.json";
 import useBackground from "./useBackground.tsx";
 import cardStyle from "../Components/TextCard/InfoCard.module.scss";
 import useResumeCards from "../Components/Resume/useResumeCards.tsx";
-import smallLogo from "/public/squik-small.png"
+import smallLogo from "/public/squik-canvas.png";
 
 export type ParticlesOptions = {
   global: any;
@@ -88,7 +88,10 @@ export default function LogoPage({
       return;
     }
     const newSize = { width: imageData.width, height: imageData.height };
-    const newCanvasParticlesOptions = adaptParticles(canvasParticlesOptions, newSize)
+    const newCanvasParticlesOptions = adaptParticles(
+      canvasParticlesOptions,
+      newSize,
+    );
     newCanvasParticlesOptions.canvasMask.image.src = smallLogo;
     options.current = {
       global: adaptParticles(globalParticlesOptions, newSize),

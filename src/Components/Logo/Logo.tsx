@@ -1,10 +1,12 @@
-import backgroundImage from "./squik.png";
+import backgroundImage from "../../../public/squik.png";
+import backgroundImageLow from "../../../public/squik-low.png";
 import { RefObject, useCallback, useRef } from "react";
 import styles from "./Logo.module.css";
 import { OnImageUpdate } from "./types.ts";
 import useResizeObserver from "@react-hook/resize-observer";
 import { debounceAndExecute } from "../../utils/debounce.ts";
 import { ImageData } from "./types.ts";
+import classNames from "classnames";
 
 type Props = {
   onImageResize: OnImageUpdate;
@@ -53,8 +55,9 @@ export default function Logo({ onImageResize, onLoad }: Props) {
   return (
     <div className={styles.container} ref={containerRef}>
       <img
-        src={backgroundImage}
-        className={styles.logo}
+        src={backgroundImageLow}
+        data-src={backgroundImage}
+        className={classNames("lazyload", styles.logo)}
         ref={imageRef}
         onLoad={() => onLoad(getImageData())}
         alt="logo"
