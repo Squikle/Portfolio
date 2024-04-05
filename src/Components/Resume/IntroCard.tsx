@@ -38,29 +38,29 @@ export default function IntroCard() {
                 <h3>{resume.position}</h3>
               </div>
               <p className={styles.phone}>
-                Email:{" "}
+                <span className={styles.key}>Email</span>:{" "}
                 <a href={`mailto:${contactsData.email}`}>
                   {contactsData.email}
                 </a>
               </p>
               <p className={styles.linkedIn}>
-                LinkedIn:{" "}
+                <span className={styles.key}>LinkedIn</span>:{" "}
                 <a href={contactsData.linkedin}>{contactsData.linkedin}</a>
               </p>
               <p className={styles.phone}>
-                Phone:{" "}
+                <span className={styles.key}>Phone</span>:{" "}
                 <a href={`tel:${contactsData.phoneNumber}`}>
                   {contactsData.phoneNumber}
                 </a>
               </p>
               <p className={styles.phone}>
-                Secondary Phone:{" "}
+                <span className={styles.key}>Secondary Phone</span>:{" "}
                 <a href={`tel:${contactsData.phoneNumberSecondary}`}>
                   {contactsData.phoneNumberSecondary}
                 </a>
               </p>
               <p className={styles.phone}>
-                Location:{" "}
+                <span className={styles.key}>Location</span>:{" "}
                 <a href={contactsData.locationLink}>{contactsData.location}</a>
               </p>
             </div>

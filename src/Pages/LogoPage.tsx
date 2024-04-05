@@ -138,7 +138,7 @@ export default function LogoPage({
     ></SlidesPagination>
   );
 
-  const resumeCards = useResumeCards(swiper);
+  const resumeCards = useResumeCards();
   return (
     <Page
       isActive={isActive}
