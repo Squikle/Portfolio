@@ -42,6 +42,13 @@
 
 .introCard {
   padding-left: 25px;
+
+  .name {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 .text {
@@ -142,6 +149,10 @@
       display: flex;
       justify-content: flex-end;
 
+      .company {
+        white-space: nowrap;
+      }
+
       .heart {
         height: 1.2em;
         width: 1.2em;
@@ -155,10 +166,6 @@
           height: 100%;
         }
       }
-    }
-
-    :last-child {
-      text-align: right;
     }
   }
 }
@@ -188,8 +195,6 @@
 }
 @media (max-width: 450px) {
   .card {
-    font-size: 0.75rem;
-
     h3 {
       font-size: 1.2em;
     }
@@ -203,16 +208,16 @@
 
 .lineContainer {
   position: relative;
-  padding-left: 40px;
+  padding-left: 35px;
 }
 
 .line {
   $line-color: white;
 
-  --line-width: 0.1em;
+  --line-width: 0.075em;
   width: var(--line-width);
   background-color: $line-color;
-  z-index: 1000;
+  z-index: 100;
   position: absolute;
   --top: calc(1em);
   top: var(--top);

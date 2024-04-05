@@ -2,6 +2,7 @@ import ResumeCard from "./ResumeCard";
 import { RefObject } from "react";
 import styles from "./Resume.module.scss";
 import resume from "../../resume-data.json";
+import s = CSS.s;
 
 export default function IntroCard() {
   const contactsData = resume.contacts;
@@ -31,32 +32,39 @@ export default function IntroCard() {
             className={styles.text}
             ref={scrollableElementRef as RefObject<HTMLDivElement>}
           >
-            <h1>{resume.name}</h1>
-            <h3>{resume.position}</h3>
-            <p className={styles.phone}>
-              Email:{" "}
-              <a href={`mailto:${contactsData.email}`}>{contactsData.email}</a>
-            </p>
-            <p className={styles.linkedIn}>
-              LinkedIn:{" "}
-              <a href={contactsData.linkedin}>{contactsData.linkedin}</a>
-            </p>
-            <p className={styles.phone}>
-              Phone:{" "}
-              <a href={`tel:${contactsData.phoneNumber}`}>
-                {contactsData.phoneNumber}
-              </a>
-            </p>
-            <p className={styles.phone}>
-              Secondary Phone:{" "}
-              <a href={`tel:${contactsData.phoneNumberSecondary}`}>
-                {contactsData.phoneNumberSecondary}
-              </a>
-            </p>
-            <p className={styles.phone}>
-              Location:{" "}
-              <a href={contactsData.locationLink}>{contactsData.location}</a>
-            </p>
+            <div className={styles.personal}>
+              <div className={styles.name}>
+                <h1>{resume.name}</h1>
+                <h3>{resume.position}</h3>
+              </div>
+              <p className={styles.phone}>
+                Email:{" "}
+                <a href={`mailto:${contactsData.email}`}>
+                  {contactsData.email}
+                </a>
+              </p>
+              <p className={styles.linkedIn}>
+                LinkedIn:{" "}
+                <a href={contactsData.linkedin}>{contactsData.linkedin}</a>
+              </p>
+              <p className={styles.phone}>
+                Phone:{" "}
+                <a href={`tel:${contactsData.phoneNumber}`}>
+                  {contactsData.phoneNumber}
+                </a>
+              </p>
+              <p className={styles.phone}>
+                Secondary Phone:{" "}
+                <a href={`tel:${contactsData.phoneNumberSecondary}`}>
+                  {contactsData.phoneNumberSecondary}
+                </a>
+              </p>
+              <p className={styles.phone}>
+                Location:{" "}
+                <a href={contactsData.locationLink}>{contactsData.location}</a>
+              </p>
+            </div>
+
             <p className={styles.greeting}>{resume.greeting}</p>
             <p className={styles.description}>{resume.description}</p>
             <div className={styles.features}>
