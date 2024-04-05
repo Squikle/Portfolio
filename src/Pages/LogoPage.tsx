@@ -19,7 +19,7 @@ import config from "../global.config.json";
 import useBackground from "./useBackground.tsx";
 import cardStyle from "../Components/TextCard/InfoCard.module.scss";
 import useResumeCards from "../Components/Resume/useResumeCards.tsx";
-import smallLogo from "/public/squik-canvas.png";
+import smallLogo from "/public/squik-canvas.webp";
 
 export type ParticlesOptions = {
   global: any;
