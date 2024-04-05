@@ -1,5 +1,5 @@
 import backgroundImage from "../../../public/squik.png";
-import backgroundImageLow from "../../../public/squik-low.png";
+import backgroundImageLow from "../../../public/squik-low.webp";
 import { RefObject, useCallback, useRef } from "react";
 import styles from "./Logo.module.css";
 import { OnImageUpdate } from "./types.ts";
