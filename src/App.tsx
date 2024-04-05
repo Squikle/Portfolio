@@ -5,7 +5,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "./main.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Keyboard, Mousewheel, Pagination } from "swiper/modules";
+import { Keyboard, Mousewheel } from "swiper/modules";
 import SlidesPagination from "./Components/Slides/SlidesPagination.tsx";
 import { useSwiperPagination } from "./Components/Slides/useSwiperPagination.ts";
 import config from "./global.config.json";
@@ -48,7 +48,7 @@ export default function App() {
         direction={"horizontal"}
         slidesPerView={1}
         mousewheel={{ enabled: true, forceToAxis: true }}
-        modules={[Mousewheel, Pagination, Keyboard]}
+        modules={[Mousewheel, Keyboard]}
         speed={config.slides.animation.speed}
         followFinger={false}
         keyboard={true}
