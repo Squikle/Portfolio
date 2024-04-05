@@ -319,11 +319,11 @@ $default-scale: 0.316;
 }
 .light {
   --width: 230%;
-  --from-left: -10%;
+  --from-left: -2%;
   --from-top: 35%;
   z-index: 41;
   opacity: 0.4;
-  filter: saturate(200%) hue-rotate(340deg);
+  filter: saturate(1000%) hue-rotate(360deg);
   mix-blend-mode: screen;
 }
 @media (max-aspect-ratio: 0.75/1) and (orientation: portrait){

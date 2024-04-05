@@ -8,7 +8,7 @@ export default function useFadeScroll(
     const element = scrollableElementRef.current;
     if (!element) throw new Error("Scrollable element ref must be set!");
 
-    const handleScroll = () => {
+    const updateFadeEffect = () => {
       const isScrollable = element.scrollHeight > element.clientHeight;
 
       if (!isScrollable) {
@@ -30,8 +30,9 @@ export default function useFadeScroll(
       element.classList.toggle(styles.fadeTop, currentScrollPercentage > 0);
     };
 
-    element.addEventListener("scroll", handleScroll);
+    element.addEventListener("scroll", updateFadeEffect);
+    updateFadeEffect();
 
-    return () => element.removeEventListener("scroll", handleScroll);
+    return () => element.removeEventListener("scroll", updateFadeEffect);
   }, [scrollableElementRef]);
 }

@@ -1,11 +1,9 @@
 import classNames from "classnames";
 import styles from "./SlidesPagination.module.scss";
-import React, { CSSProperties, useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Slider } from "./types.ts";
 import { SwiperClass } from "swiper/react";
-import { positions } from "./positions.ts";
-import SlideScrollButton from "./SlideScrollButton.tsx";
-import config from "../../global.config.json";
+import PaginationBlock from "./PaginationBlock.tsx";
 
 type Props = {
   onInit: (pagination: Pagination) => void;
@@ -26,75 +24,11 @@ export type Position = "top" | "right" | "bottom" | "left";
 export default function SlidesPagination({
   onInit,
   position,
+  offset,
   length = 5,
-  offset = 1,
   thickness = 1,
 }: Props) {
   const [sliders, setSliders] = useState<Slider[]>([]);
-
-  const drawBullet = (slider: Slider, index: number, parentSlide: number) => {
-    const children = slider.nested.map((x, i) =>
-      drawBullet(x, i, slider.currentSlide),
-    );
-
-    const bulletsStyle: CSSProperties = {};
-    if (slider.atParentSlide !== parentSlide && slider.atParentSlide !== -1) {
-      bulletsStyle.opacity = "0.8";
-    }
-
-    const activeBullet = (
-      <div
-        style={
-          {
-            ...bulletsStyle,
-            width: length,
-            height: thickness,
-            "--offset": slider.currentSlide,
-          } as CSSProperties
-        }
-        className={classNames(styles.bullet, styles.active)}
-      ></div>
-    );
-
-    const scrollButtonStyle: React.CSSProperties = {
-      width: config.slides.control.length,
-      height: config.slides.control.thickness,
-    };
-
-    const hasNext = slider.swiper.slides.length > parentSlide + 1;
-    const hasPrev = parentSlide > 0;
-
-    return (
-      <div
-        key={index}
-        className={classNames(styles.block, {
-          [styles.vertical]: slider.swiper.params.direction == "vertical",
-        })}
-      >
-        <SlideScrollButton
-          onClick={() => slider.swiper.slidePrev()}
-          style={scrollButtonStyle}
-          className={classNames(styles.prev, { [styles.hidden]: !hasPrev })}
-        ></SlideScrollButton>
-        <div
-          style={{
-            ...bulletsStyle,
-            width: length * slider.slides,
-            height: thickness,
-          }}
-          className={classNames(styles.bullet)}
-        >
-          {activeBullet}
-        </div>
-        {children}
-        <SlideScrollButton
-          onClick={() => slider.swiper.slideNext()}
-          style={scrollButtonStyle}
-          className={classNames(styles.next, { [styles.hidden]: !hasNext })}
-        ></SlideScrollButton>
-      </div>
-    );
-  };
 
   const toSlider = (
     swiper: SwiperClass,
@@ -191,14 +125,19 @@ export default function SlidesPagination({
   };
 
   return (
-    <div
-      className={classNames(styles.container)}
-      style={{
-        [position]: offset + "%",
-        ...positions[position],
-      }}
-    >
-      {sliders.map((s, i) => drawBullet(s, i, s.currentSlide))}
+    <div className={classNames(styles.container)}>
+      {sliders.map((s, i) => (
+        <PaginationBlock
+          slider={s}
+          key={i}
+          position={position}
+          offset={offset}
+          parentSlide={s.currentSlide}
+          index={i}
+          length={length}
+          thickness={thickness}
+        />
+      ))}
     </div>
   );
 }

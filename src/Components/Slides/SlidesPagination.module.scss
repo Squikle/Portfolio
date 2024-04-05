@@ -2,44 +2,24 @@
 
 %slider {
   border-radius: 10000px;
-  $box-shadow: 0 0 5px rgba(0, 0, 0, 1),
+  box-shadow: 0 0 5px rgba(0, 0, 0, 1),
   0 0 10px rgba(0, 0, 0, 0.5);
-  @include global.glass($box-shadow: $box-shadow, $opacity: 0.8);
+  @include global.glass($with-shadow: false, $opacity: 0.8, $border-thickness: 0.2px, $border-opacity: 0.1);
 }
 
 %sliderThumb {
   border-radius: 10000px;
-  transform: translate(calc(100% * var(--offset)));
   box-shadow: 0 0 15px rgba(0, 0, 0, 1);
-  background-color: rgba(216, 196, 224, 0.38);
+  background-color: rgba(227, 216, 232, 0.38);
 }
 
 .container {
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  justify-content: center;
   position: absolute;
   z-index: 1000;
   pointer-events: none;
-}
-
-.bullet {
-  width: 10px;
-  height: 10px;
-  display: flex;
-
-  transition: transform 0.6s cubic-bezier(.83,1.65,.57,.66);
-  --rotation: 0;
-}
-
-.bullet:not(.active) {
-  @extend %slider;
-}
-
-.bullet.active {
-  --offset: 0;
-  @extend %sliderThumb;
+  height: 100%;
+  width: 100%;
 }
 
 .block {
@@ -47,17 +27,49 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  position: absolute;
   width: 100%;
-  position: relative;
-}
+  transition: opacity 0.4s ease-in-out;
 
-.block.vertical {
-  right: -50%;
-  transform: rotateZ(90deg) translateY(50%);
+  &.vertical {
+    height: 100%;
+    width: auto;
+    flex-direction: column;
+    justify-content: center;
 
-  > .button {
-    margin-left: -5%;
-    margin-right: -5%;
+    .bullet.active {
+      transform: translateY(calc(100% * var(--offset)));
+    }
+  }
+
+  .button.next {
+    transform: rotateY(180deg);
+  }
+  &.vertical {
+    .button {
+      transform: rotateZ(90deg);
+      margin: 50px 0;
+    }
+    .button.next {
+      transform: rotateZ(-90deg);
+    }
+  }
+
+  .bullet {
+    transition: transform 0.6s cubic-bezier(.83,1.65,.57,.66);
+    width: 10px;
+    height: 10px;
+    display: flex;
+  }
+
+  .bullet:not(.active) {
+    @extend %slider;
+  }
+
+  .bullet.active {
+    --offset: 0;
+    @extend %sliderThumb;
+    transform: translate(calc(100% * var(--offset)));
   }
 }
 
@@ -71,30 +83,20 @@
 
 .button {
   position: relative;
-  border-radius: 1000px;
+  border-radius: 10000px;
   display: flex;
   justify-content: center;
   align-items: center;
   transition-property: box-shadow, background, border, opacity;
-  transition-duration: 0.4s, 0.4s, 0.5s, 0.5s;
+  transition-duration: 0.1s, 0.2s, 0.2s, 0.2s;
   transition-timing-function: ease-in-out;
   z-index: 1000;
 
-  $blur: 3px;
+  $blur: 2px;
   $opacity: 0.6;
-  $border-thickness: 0.1px;
-  @include global.glass(
-          $opacity: $opacity,
-          $blur: $blur);
-
-  animation: bubbleup ease-out 0.5s forwards;
-
-  margin-left: 2%;
-  margin-right: 2%;
-
-  &.next {
-    transform: rotateZ(180deg);
-  }
+  $box-shadow: 0 0 5px rgba(0, 0, 0, 1),
+  0 0 10px rgba(0, 0, 0, 0.5);
+  @include global.glass($with-shadow: false, $blur: $blur, $box-shadow: $box-shadow, $opacity: 0.8, $border-thickness: 0.5px, $border-opacity: 0.3);
 
   &.hidden {
     opacity: 0;
@@ -109,12 +111,8 @@
   }
 
   &:not(.hidden):hover {
-    box-shadow: 0 0 10px rgba(204, 160, 224, 0.2),
-    0 0 10px rgba(255, 255, 255, 0.2),
-    0 0 20px rgba(255, 255, 255, 0.1);
-    @include global.glass($opacity: 1,
-    $blur: $blur);
-    backdrop-filter: drop-shadow(
+    @include global.glass($with-shadow: false, $blur: $blur, $box-shadow: $box-shadow, $opacity: 1, $border-thickness: 0.8px, $border-opacity: 0.5);
+    backdrop-filter: blur($blur) drop-shadow(
                     0 0 6px rgba(255, 255, 255, 1)
                     0 0 6px rgba(255, 255, 255, 1)
                     0 0 6px rgba(255, 255, 255, 1));
