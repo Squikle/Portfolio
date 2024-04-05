@@ -38,6 +38,7 @@ export default function App() {
       onInit={pagination.setPagination}
       length={config.slides.progress.length}
       offset={config.slides.progress.offset}
+      offsetSide={config.slides.progress.offsetSide}
       thickness={config.slides.progress.thickness}
     ></SlidesPagination>
   );

@@ -14,6 +14,7 @@ type Props = {
   parentSlide: number;
   position: Position;
   offset: number;
+  offsetSide: number;
   length: number;
   thickness: number;
 };
@@ -24,11 +25,12 @@ export default function PaginationBlock({
   parentSlide,
   position,
   offset,
+  offsetSide,
   length,
   thickness,
 }: Props) {
   const isVertical = slider.swiper.params.direction == "vertical";
-  const blockRef = useRef<HTMLDivElement>();
+  const blockRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleTouch = () => {
@@ -100,7 +102,13 @@ export default function PaginationBlock({
           [styles.vertical]: isVertical,
         })}
         ref={blockRef}
-        style={{ padding: offset, ...positions[position] }}
+        style={{
+          paddingTop: offset,
+          paddingBottom: offset,
+          paddingRight: offsetSide,
+          paddingLeft: offsetSide,
+          ...positions[position],
+        }}
       >
         <SlideScrollButton
           onClick={() => slider.swiper.slidePrev()}

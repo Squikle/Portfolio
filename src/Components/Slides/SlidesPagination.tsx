@@ -9,6 +9,7 @@ type Props = {
   onInit: (pagination: Pagination) => void;
   position: Position;
   offset: number;
+  offsetSide: number;
   thickness: number;
   length: number;
 };
@@ -25,6 +26,7 @@ export default function SlidesPagination({
   onInit,
   position,
   offset,
+  offsetSide,
   length = 5,
   thickness = 1,
 }: Props) {
@@ -132,6 +134,7 @@ export default function SlidesPagination({
           key={i}
           position={position}
           offset={offset}
+          offsetSide={offsetSide}
           parentSlide={s.currentSlide}
           index={i}
           length={length}
