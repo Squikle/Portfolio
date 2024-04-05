@@ -51,7 +51,6 @@ export default function PaginationBlock({
     const handleMouseUp = () => {
       if (!blockRef.current) return;
 
-      console.log("up");
       blockRef.current.style.opacity = 1 + "";
     };
 
