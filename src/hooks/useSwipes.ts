@@ -92,5 +92,5 @@ export function useSwipes(
       element.removeEventListener("touchmove", handleTouchMove);
       element.removeEventListener("touchend", handleTouchEnd);
     };
-  }, [onSwipe, onSwipeEnd]);
+  }, [swipeElementRef, onSwipe, onSwipeEnd]);
 }
