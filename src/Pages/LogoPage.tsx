@@ -139,9 +139,10 @@ export default function LogoPage({
   );
 
   const resumeCards = useResumeCards();
+  const isPageActive = isActive;
   return (
     <Page
-      isActive={isActive}
+      isActive={isPageActive}
       className={classNames(className, styles.logoPage)}
       backgroundControl={background.control}
       isAlwaysVisible={isAlwaysActive}
@@ -172,7 +173,7 @@ export default function LogoPage({
               {({ isActive }) => (
                 <PageSection
                   isAlwaysVisible={true}
-                  isActive={isActive}
+                  isActive={isActive && isPageActive}
                   backgroundOpacity={backgroundOpacity}
                 >
                   {card}
@@ -186,7 +187,7 @@ export default function LogoPage({
         <SwiperSlide>
           {({ isActive }) => (
             <PageSection
-              isActive={isActive}
+              isActive={isActive && isPageActive}
               className={classNames(
                 styles.globalParticles,
                 "swiper-no-swiping",
