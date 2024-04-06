@@ -21,8 +21,8 @@ export default function useParallaxAnimation(onAnimationCompleted: () => void) {
     });
 
     elementsToUpdate.forEach((el) => {
-      const offsetDistanceX = +(el.dataset.revealDistanceX || 0) / 100;
-      const offsetDistanceY = +(el.dataset.revealDistanceY || 0) / 100;
+      const offsetDistanceX = +(el.dataset.revealDistanceX || 0) / 1000;
+      const offsetDistanceY = +(el.dataset.revealDistanceY || 0) / 1000;
       const absoluteOffsetX =
         container.clientWidth * Math.sign(offsetDistanceX);
       const absoluteOffsetY =
@@ -61,7 +61,7 @@ export default function useParallaxAnimation(onAnimationCompleted: () => void) {
         duration: config.textIn.duration,
         ease: config.textIn.ease,
       },
-      "2",
+      config.objects.duration,
     );
     timeline.from(
       ".name",

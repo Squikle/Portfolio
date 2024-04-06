@@ -453,7 +453,7 @@ export default function Parallax({ isActive }: Props) {
             data-speed-y="0.2"
             data-speed-z="0"
             data-reveal-distance-y="1"
-            data-reveal-speed="0.9"
+            data-reveal-speed="1.2"
           />
           <img
             src={waterLow}
