@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { throttle } from "../../utils/throttle.ts";
+import useParallaxAnimation from "./useParallaxAnimations.ts";
 
 const cssProps = {
   xOrigTranslate: "--origTranslateX",
@@ -20,6 +21,8 @@ interface ParallaxDataset {
 }
 
 export function useParallax(isActive: boolean) {
+  useParallaxAnimation();
+
   const handleUpdate = (
     clientX: number,
     clientY: number,

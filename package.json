@@ -11,6 +11,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@gsap/react": "^2.1.0",
     "@react-hook/resize-observer": "^1.2.6",
     "@tsparticles/basic": "^3.3.0",
     "@tsparticles/interaction-external-attract": "^3.3.0",
