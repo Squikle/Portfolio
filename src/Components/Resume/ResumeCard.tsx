@@ -62,7 +62,6 @@ export default function ResumeCard({
 
   const handleSwipeX = useCallback(
     (percentageX: number, percentageY: number) => {
-      console.log(percentageX, percentageY);
       if (!pageSwiper) return;
       if (scrolledOut) return;
       if (Math.abs(percentageY) > 5) return;
