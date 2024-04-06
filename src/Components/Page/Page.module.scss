@@ -17,7 +17,7 @@
   height: 100%;
   position: relative;
   z-index: 1;
-  touch-action: none;
+  touch-action: pinch-zoom;
   overflow: hidden;
 }
 

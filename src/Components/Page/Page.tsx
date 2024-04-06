@@ -2,6 +2,7 @@ import styles from "./Page.module.scss";
 import { ReactNode, useEffect, useRef } from "react";
 import { CurrentPageContextProvider } from "./CurrentPageContext/Contexts";
 import classNames from "classnames";
+import { SwiperClass } from "swiper/react";
 
 type Props = {
   isActive: boolean;
@@ -10,6 +11,7 @@ type Props = {
   onActiveUpdate?: (active: boolean) => void;
   backgroundControl?: BackgroundControl;
   isAlwaysVisible?: boolean;
+  swiper?: SwiperClass | null;
 };
 
 export type BackgroundControl = {
@@ -24,6 +26,7 @@ export default function Page({
   onActiveUpdate,
   backgroundControl,
   isAlwaysVisible,
+  swiper,
 }: Props) {
   const ref = useRef(null);
 
@@ -35,6 +38,7 @@ export default function Page({
     <CurrentPageContextProvider
       isActive={isActive}
       backgroundControl={backgroundControl}
+      swiper={swiper}
     >
       <div
         ref={ref}

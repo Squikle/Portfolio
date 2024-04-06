@@ -12,7 +12,7 @@ import classNames from "classnames";
 import styles from "./LogoPage.module.scss";
 import { useCurrentSectionContext } from "../Components/Page/CurrentPageContext/useContexts.ts";
 import { Keyboard, Mousewheel } from "swiper/modules";
-import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperClass, SwiperSlide, useSwiper } from "swiper/react";
 import SlidesPagination from "../Components/Slides/SlidesPagination.tsx";
 import { useSwiperPagination } from "../Components/Slides/useSwiperPagination.ts";
 import config from "../global.config.json";
@@ -77,6 +77,7 @@ export default function LogoPage({
   const [imageData, setImageData] = useState<ImageData>(initialImageData);
   const [loadState, dispatchLoad] = useReducer(stateReducer, initialLoadState);
   const [swiper, setSwiper] = useState<SwiperClass | null>(null);
+  const parentSwiper = useSwiper();
   const options = useRef(initialParticlesOptions);
   const pagination = useSwiperPagination();
   useParticlesEngine(useCallback(() => dispatchLoad("particles"), []));
@@ -134,6 +135,7 @@ export default function LogoPage({
       onInit={pagination.setPagination}
       length={config.slides.progress.length}
       offset={config.slides.progress.offset}
+      offsetSide={config.slides.progress.offsetSide}
       thickness={config.slides.progress.thickness}
     ></SlidesPagination>
   );
@@ -146,6 +148,7 @@ export default function LogoPage({
       className={classNames(className, styles.logoPage)}
       backgroundControl={background.control}
       isAlwaysVisible={isAlwaysActive}
+      swiper={parentSwiper}
     >
       {paginationElement}
       <Swiper

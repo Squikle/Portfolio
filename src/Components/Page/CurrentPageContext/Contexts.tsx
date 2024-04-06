@@ -1,9 +1,11 @@
 import { createContext, ReactNode } from "react";
 import { BackgroundControl } from "../Page.tsx";
+import { SwiperClass } from "swiper/react";
 
 type PageContextData = {
   isActive: boolean;
   backgroundControl?: BackgroundControl;
+  swiper?: SwiperClass;
 };
 
 type Props = PageContextData & {
@@ -16,10 +18,12 @@ export const CurrentPageContextProvider = ({
   isActive,
   children,
   backgroundControl,
+  swiper,
 }: Props) => {
   const contextValue = {
     isActive,
     backgroundControl,
+    swiper,
   };
 
   return (
@@ -35,9 +39,11 @@ export const CurrentSectionContext = createContext<PageContextData | null>(
 export const CurrentSectionContextProvider = ({
   isActive,
   children,
+  swiper,
 }: Props) => {
   const contextValue = {
     isActive,
+    swiper,
   };
 
   return (

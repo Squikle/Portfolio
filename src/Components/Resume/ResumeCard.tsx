@@ -6,6 +6,7 @@ import useFadeScroll from "../../hooks/FadeScroll/useFadeScroll.ts";
 import useOverScroll from "../../hooks/useOverScroll.ts";
 import { useSwiper } from "swiper/react";
 import { Delta, useSwipes } from "../../hooks/useSwipes.ts";
+import { useCurrentPageContext } from "../Page/CurrentPageContext/useContexts.ts";
 
 export type ResumeCardContentProps = {
   scrollableElementRef?: RefObject<HTMLElement>;
@@ -23,6 +24,7 @@ export default function ResumeCard({
   cardClassName: string;
 }) {
   const swiper = useSwiper();
+  const pageSwiper = useCurrentPageContext().swiper;
 
   let scrolledOut = false;
   useEffect(() => {
@@ -32,28 +34,52 @@ export default function ResumeCard({
     };
 
     swiper.on("transitionEnd", handleTransitionEnd);
-    return () => swiper.off("transitionEnd", handleTransitionEnd);
+    pageSwiper?.on("transitionEnd", handleTransitionEnd);
+    return () => {
+      swiper.off("transitionEnd", handleTransitionEnd);
+      pageSwiper?.off("transitionEnd", handleTransitionEnd);
+    };
   }, [swiper]);
 
   const handleScroll = useCallback(
-    (percentage: number) => {
+    (percentageY: number) => {
       if (scrolledOut) return;
 
-      const threshold = 12.5;
+      const thresholdY = 12.5;
       if (
-        percentage > threshold &&
+        percentageY > thresholdY &&
         swiper.activeIndex < swiper.slides.length - 1
       ) {
-        console.log(swiper.activeIndex);
         swiper?.slideNext();
         scrolledOut = true;
-      } else if (percentage < -threshold && swiper.activeIndex > 0) {
-        console.log(swiper.activeIndex);
+      } else if (percentageY < -thresholdY && swiper.activeIndex > 0) {
         swiper?.slidePrev();
         scrolledOut = true;
       }
     },
     [scrolledOut, swiper, swiper.slides.length],
+  );
+
+  const handleSwipeX = useCallback(
+    (percentageX: number, percentageY: number) => {
+      console.log(percentageX, percentageY);
+      if (!pageSwiper) return;
+      if (scrolledOut) return;
+      if (Math.abs(percentageY) > 5) return;
+
+      const thresholdX = 12.5;
+      if (
+        percentageX > thresholdX &&
+        pageSwiper.activeIndex < pageSwiper.slides.length - 1
+      ) {
+        pageSwiper?.slideNext();
+        scrolledOut = true;
+      } else if (percentageX < -thresholdX && pageSwiper.activeIndex > 0) {
+        pageSwiper?.slidePrev();
+        scrolledOut = true;
+      }
+    },
+    [pageSwiper, scrolledOut],
   );
 
   const scrollableElementRef = useRef<HTMLElement>(null);
@@ -64,11 +90,10 @@ export default function ResumeCard({
       if (!element) throw new Error("Scrollable element ref must be set!");
 
       const isScrollable = element.scrollHeight > element.clientHeight;
-      if (isScrollable) return;
-
-      handleScroll(e.y);
+      if (!isScrollable) handleScroll(e.y);
+      handleSwipeX(e.x, e.y);
     },
-    [handleScroll],
+    [handleScroll, handleSwipeX],
   );
 
   useOverScroll(scrollableElementRef, handleScroll);
