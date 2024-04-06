@@ -8,8 +8,14 @@ export default function useFadeScroll(
     const element = scrollableElementRef.current;
     if (!element) throw new Error("Scrollable element ref must be set!");
 
-    const updateFadeEffect = () => {
-      const isScrollable = element.scrollHeight > element.clientHeight;
+    const handleScroll = () => {
+      updateFadeEffect(element.scrollHeight, element.clientHeight);
+    };
+
+    const updateFadeEffect = (scrollHeight: number, clientHeight: number) => {
+      scrollHeight ??= element.scrollHeight;
+      clientHeight ??= element.clientHeight;
+      const isScrollable = scrollHeight > clientHeight;
 
       if (!isScrollable) {
         element.classList.remove(styles.fadeBottom, styles.fadeTop);
@@ -17,8 +23,6 @@ export default function useFadeScroll(
       }
 
       const scrollTop = element.scrollTop;
-      const scrollHeight = element.scrollHeight;
-      const clientHeight = element.clientHeight;
 
       const maxScrollHeight = scrollHeight - clientHeight;
       const currentScrollPercentage = (scrollTop / maxScrollHeight) * 100;
@@ -30,9 +34,17 @@ export default function useFadeScroll(
       element.classList.toggle(styles.fadeTop, currentScrollPercentage > 0);
     };
 
-    element.addEventListener("scroll", updateFadeEffect);
-    updateFadeEffect();
+    element.addEventListener("scroll", handleScroll);
+    handleScroll();
 
-    return () => element.removeEventListener("scroll", updateFadeEffect);
+    const handleResize = (entries: ResizeObserverEntry[]) => {
+      const { scrollHeight, clientHeight } = entries[0]?.target;
+      updateFadeEffect(scrollHeight, clientHeight);
+      resizeObserver.disconnect();
+    };
+    const resizeObserver = new ResizeObserver(handleResize);
+    resizeObserver.observe(element);
+
+    return () => element.removeEventListener("scroll", handleScroll);
   }, [scrollableElementRef]);
 }
