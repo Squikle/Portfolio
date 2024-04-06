@@ -98,6 +98,8 @@ export default function Parallax({ isActive }: Props) {
           data-speed-x="0.3"
           data-speed-y="0.25"
           data-speed-z="0.2"
+          data-reveal-distance-x="1000"
+          data-reveal-speed="0.7"
         />
         <img
           src={personLow}
@@ -106,6 +108,9 @@ export default function Parallax({ isActive }: Props) {
           data-speed-x="0.05"
           data-speed-y="0.10"
           data-speed-z="1"
+          data-reveal-distance-x="-0.1"
+          data-reveal-distance-y="5"
+          data-reveal-speed="0.7"
         />
         <img
           src={light}
@@ -113,6 +118,8 @@ export default function Parallax({ isActive }: Props) {
           data-speed-x="0.2"
           data-speed-y="0.2"
           data-speed-z="0.5"
+          data-reveal-distance-x="-30"
+          data-reveal-speed="0.4"
         />
         <div className="lazyload blur-up parallax-layers">
           <img
@@ -147,6 +154,8 @@ export default function Parallax({ isActive }: Props) {
             data-speed-x="0.26"
             data-speed-y="0.13"
             data-speed-z="0"
+            data-reveal-distance-y="-1"
+            data-reveal-speed="1.1"
           />
           <img
             src={sky1}
@@ -155,6 +164,8 @@ export default function Parallax({ isActive }: Props) {
             data-speed-x="0.22"
             data-speed-y="0.1"
             data-speed-z="0"
+            data-reveal-distance-y="-20"
+            data-reveal-speed="0.7"
           />
           <img src={skyOverlap} className="parallax sky-overlap" />
           <img
@@ -164,6 +175,9 @@ export default function Parallax({ isActive }: Props) {
             data-speed-x="0.25"
             data-speed-y="0.165"
             data-speed-z="0.1"
+            data-reveal-distance-x="200"
+            data-reveal-distance-y="5"
+            data-reveal-speed="0.8"
           />
           <img
             src={left9Low}
@@ -172,6 +186,8 @@ export default function Parallax({ isActive }: Props) {
             data-speed-x="0.19"
             data-speed-y="0.17"
             data-speed-z="0.2"
+            data-reveal-distance-y="20"
+            data-reveal-speed="0.7"
           />
           <img
             src={left8Low}
@@ -180,6 +196,8 @@ export default function Parallax({ isActive }: Props) {
             data-speed-x="0.2"
             data-speed-y="0.18"
             data-speed-z="0.21"
+            data-reveal-distance-y="19"
+            data-reveal-speed="0.6"
           />
           <img
             src={left7Low}
@@ -188,6 +206,8 @@ export default function Parallax({ isActive }: Props) {
             data-speed-x="0.2"
             data-speed-y="0.185"
             data-speed-z="0.215"
+            data-reveal-distance-y="18"
+            data-reveal-speed="0.55"
           />
           <img
             src={left6Low}
@@ -196,6 +216,8 @@ export default function Parallax({ isActive }: Props) {
             data-speed-x="0.19"
             data-speed-y="0.17"
             data-speed-z="0.2"
+            data-reveal-distance-y="17"
+            data-reveal-speed="0.5"
           />
           <img
             src={left5Low}
@@ -204,6 +226,8 @@ export default function Parallax({ isActive }: Props) {
             data-speed-x="0.18"
             data-speed-y="0.16"
             data-speed-z="0.19"
+            data-reveal-distance-y="16"
+            data-reveal-speed="0.6"
           />
           <img
             src={left4Low}
@@ -212,6 +236,8 @@ export default function Parallax({ isActive }: Props) {
             data-speed-x="0.14"
             data-speed-y="0.13"
             data-speed-z="0.16"
+            data-reveal-distance-y="15"
+            data-reveal-speed="0.7"
           />
           <img
             src={left3Low}
@@ -220,6 +246,8 @@ export default function Parallax({ isActive }: Props) {
             data-speed-x="0.2"
             data-speed-y="0.18"
             data-speed-z="0.21"
+            data-reveal-distance-y="14"
+            data-reveal-speed="0.8"
           />
           <img
             src={left2Low}
@@ -228,6 +256,8 @@ export default function Parallax({ isActive }: Props) {
             data-speed-x="0.19"
             data-speed-y="0.16"
             data-speed-z="0.19"
+            data-reveal-distance-y="13"
+            data-reveal-speed="0.8"
           />
           <img
             src={fogLeft}
@@ -235,6 +265,8 @@ export default function Parallax({ isActive }: Props) {
             data-speed-x="0.2"
             data-speed-y="0.21"
             data-speed-z="0.215"
+            data-reveal-distance-x="-12"
+            data-reveal-speed="1"
           />
           <img
             src={right11Low}
@@ -243,6 +275,8 @@ export default function Parallax({ isActive }: Props) {
             data-speed-x="0.14"
             data-speed-y="0.13"
             data-speed-z="0.185"
+            data-reveal-distance-y="20"
+            data-reveal-speed="0.55"
           />
           <img
             src={right10Low}
@@ -251,6 +285,8 @@ export default function Parallax({ isActive }: Props) {
             data-speed-x="0.15"
             data-speed-y="0.13"
             data-speed-z="0.16"
+            data-reveal-distance-y="19"
+            data-reveal-speed="0.55"
           />
           <img
             src={right9Low}
@@ -259,6 +295,8 @@ export default function Parallax({ isActive }: Props) {
             data-speed-x="0.15"
             data-speed-y="0.16"
             data-speed-z="0.19"
+            data-reveal-distance-y="18"
+            data-reveal-speed="0.55"
           />
           <img
             src={right8Low}
@@ -267,6 +305,8 @@ export default function Parallax({ isActive }: Props) {
             data-speed-x="0.17"
             data-speed-y="0.15"
             data-speed-z="0.18"
+            data-reveal-distance-y="17"
+            data-reveal-speed="0.5"
           />
           <img
             src={right7Low}
@@ -275,6 +315,8 @@ export default function Parallax({ isActive }: Props) {
             data-speed-x="0.18"
             data-speed-y="0.18"
             data-speed-z="0.21"
+            data-reveal-distance-y="16"
+            data-reveal-speed="0.6"
           />
           <img
             src={fogRight6}
@@ -282,6 +324,8 @@ export default function Parallax({ isActive }: Props) {
             data-speed-x="0.2"
             data-speed-y="0.18"
             data-speed-z="0.21"
+            data-reveal-distance-x="30"
+            data-reveal-speed="0.7"
           />
           <img
             src={right5Low}
@@ -290,6 +334,8 @@ export default function Parallax({ isActive }: Props) {
             data-speed-x="0.2"
             data-speed-y="0.2"
             data-speed-z="0.215"
+            data-reveal-distance-y="20"
+            data-reveal-speed="0.65"
           />
           <img
             src={right4Low}
@@ -298,6 +344,8 @@ export default function Parallax({ isActive }: Props) {
             data-speed-x="0.18"
             data-speed-y="0.19"
             data-speed-z="0.22"
+            data-reveal-distance-y="14"
+            data-reveal-speed="0.7"
           />
           <img
             src={right3Low}
@@ -306,6 +354,8 @@ export default function Parallax({ isActive }: Props) {
             data-speed-x="0.21"
             data-speed-y="0.215"
             data-speed-z="0.215"
+            data-reveal-distance-y="13"
+            data-reveal-speed="0.8"
           />
           <img
             src={right2Low}
@@ -314,6 +364,8 @@ export default function Parallax({ isActive }: Props) {
             data-speed-x="0.17"
             data-speed-y="0.18"
             data-speed-z="0.165"
+            data-reveal-distance-y="12"
+            data-reveal-speed="0.65"
           />
           <img
             src={right1Low}
@@ -322,6 +374,8 @@ export default function Parallax({ isActive }: Props) {
             data-speed-x="0.2"
             data-speed-y="0.2"
             data-speed-z="0.2"
+            data-reveal-distance-y="11"
+            data-reveal-speed="0.7"
           />
           <img
             src={fogRight0}
@@ -329,6 +383,8 @@ export default function Parallax({ isActive }: Props) {
             data-speed-x="0.22"
             data-speed-y="0.15"
             data-speed-z="0.17"
+            data-reveal-distance-y="10"
+            data-reveal-speed="0.8"
           />
           <img
             src={middle5Low}
@@ -337,6 +393,8 @@ export default function Parallax({ isActive }: Props) {
             data-speed-x="0.15"
             data-speed-y="0.12"
             data-speed-z="0.14"
+            data-reveal-distance-y="20"
+            data-reveal-speed="0.6"
           />
           <img
             src={middle4Low}
@@ -345,6 +403,8 @@ export default function Parallax({ isActive }: Props) {
             data-speed-x="0.19"
             data-speed-y="0.13"
             data-speed-z="0.15"
+            data-reveal-distance-y="1"
+            data-reveal-speed="0.55"
           />
           <img
             src={fogMiddleLow}
@@ -352,6 +412,8 @@ export default function Parallax({ isActive }: Props) {
             data-speed-x="0.23"
             data-speed-y="0.15"
             data-speed-z="0.17"
+            data-reveal-distance-y="15"
+            data-reveal-speed="0.7"
           />
           <img
             src={middle2Low}
@@ -360,6 +422,8 @@ export default function Parallax({ isActive }: Props) {
             data-speed-x="0.18"
             data-speed-y="0.15"
             data-speed-z="0.17"
+            data-reveal-distance-y="17"
+            data-reveal-speed="0.6"
           />
           <img
             src={middle1Low}
@@ -368,6 +432,8 @@ export default function Parallax({ isActive }: Props) {
             data-speed-x="0.175"
             data-speed-y="0.16"
             data-speed-z="0.21"
+            data-reveal-distance-y="16"
+            data-reveal-speed="0.7"
           />
           <img
             src={middle0Low}
@@ -376,6 +442,8 @@ export default function Parallax({ isActive }: Props) {
             data-speed-x="0.2"
             data-speed-y="0.2"
             data-speed-z="0.2"
+            data-reveal-distance-y="15"
+            data-reveal-speed="0.7"
           />
           <img
             src={buildingsFrontLow}
@@ -384,6 +452,8 @@ export default function Parallax({ isActive }: Props) {
             data-speed-x="0.19"
             data-speed-y="0.2"
             data-speed-z="0"
+            data-reveal-distance-y="1"
+            data-reveal-speed="0.9"
           />
           <img
             src={waterLow}
@@ -400,6 +470,8 @@ export default function Parallax({ isActive }: Props) {
             data-speed-x="0.23"
             data-speed-y="0.21"
             data-speed-z="0.1"
+            data-reveal-distance-x="-1"
+            data-reveal-speed="0.6"
           />
           <img
             src={waterBoatRightLow}
@@ -408,6 +480,8 @@ export default function Parallax({ isActive }: Props) {
             data-speed-x="0.29"
             data-speed-y="0.2"
             data-speed-z="0.1"
+            data-reveal-distance-x="-1"
+            data-reveal-speed="0.8"
           />
           <img
             src={waterBoatLeftLow}
@@ -416,6 +490,8 @@ export default function Parallax({ isActive }: Props) {
             data-speed-x="0.15"
             data-speed-y="0.21"
             data-speed-z="0.21"
+            data-reveal-distance-x="-1"
+            data-reveal-speed="0.3"
           />
           <img
             src={fogSmallFront}
@@ -423,6 +499,9 @@ export default function Parallax({ isActive }: Props) {
             data-speed-x="0.23"
             data-speed-y="0.18"
             data-speed-z="0.21"
+            data-reveal-distance-x="-20"
+            data-reveal-distance-y="20"
+            data-reveal-speed="0.8"
           />
           <img
             src={fogFrontLow}
@@ -431,6 +510,9 @@ export default function Parallax({ isActive }: Props) {
             data-speed-x="0.25"
             data-speed-y="0.25"
             data-speed-z="0.23"
+            data-reveal-distance-x="20"
+            data-reveal-distance-y="20"
+            data-reveal-speed="0.5"
           />
           <img
             src={raysLeft}
@@ -438,6 +520,9 @@ export default function Parallax({ isActive }: Props) {
             data-speed-x="0.11"
             data-speed-y="0.05"
             data-speed-z="0.15"
+            data-reveal-distance-y="-20"
+            data-reveal-distance-x="-5"
+            data-reveal-speed="1"
           />
         </div>
       </div>

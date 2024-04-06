@@ -35,7 +35,7 @@ $default-scale: 0.316;
     rotateY(var(--rotateY))
     rotateX(var(--rotateX));
 
-  transition: 
+  transition:
           transform 1s cubic-bezier(0.15, 0.43, 0.15, 0.71),
           filter 1s ease-in-out;
   width: calc(var(--width) * var(--scale));
@@ -303,6 +303,7 @@ $default-scale: 0.316;
   --from-left: -26.97%;
   --from-top: 210.15%;
   z-index: 38;
+  opacity: 0.6;
 }
 .birds {
   --width: 34%;

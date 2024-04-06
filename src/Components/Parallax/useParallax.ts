@@ -1,6 +1,7 @@
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { throttle } from "../../utils/throttle.ts";
 import useParallaxAnimation from "./useParallaxAnimations.ts";
+import { element } from "prop-types";
 
 const cssProps = {
   xOrigTranslate: "--origTranslateX",
@@ -21,7 +22,7 @@ interface ParallaxDataset {
 }
 
 export function useParallax(isActive: boolean) {
-  useParallaxAnimation();
+  const [zEnabled, setZEnabled] = useState(false);
 
   const handleUpdate = (
     clientX: number,
@@ -36,7 +37,7 @@ export function useParallax(isActive: boolean) {
   };
 
   function update(x: number, y: number, elementsToUpdate: HTMLElement[]): void {
-    if (elementsToUpdate == null || !isActive) return;
+    if (!isActive) return;
 
     elementsToUpdate.forEach((el) => {
       const dataset = el.dataset as unknown as ParallaxDataset;
@@ -52,7 +53,7 @@ export function useParallax(isActive: boolean) {
 
       const xOffsetX = x * xSpeed;
       const yOffset = y * ySpeed;
-      const zOffset = zValue * zSpeed;
+      const zOffset = zEnabled ? zValue * zSpeed : 0;
 
       window.requestAnimationFrame(() => {
         el.style.setProperty(cssProps.xTranslate, `${xOffsetX}px`);
@@ -88,11 +89,17 @@ export function useParallax(isActive: boolean) {
     }
   }
 
-  useEffect(() => {
+  const getContainerAndElements: () => [Element, HTMLElement[]] = () => {
     const container = document.querySelector(".parallax-container")!;
     const elementsToUpdate = Array.from(
       container.querySelectorAll<HTMLElement>(".parallax"),
     );
+
+    return [container, elementsToUpdate];
+  };
+
+  useLayoutEffect(() => {
+    const [container, elementsToUpdate] = getContainerAndElements();
 
     const handleMouseUpdate = throttle((e: MouseEvent) => {
       handleUpdate(e.clientX, e.clientY, elementsToUpdate);
@@ -122,4 +129,6 @@ export function useParallax(isActive: boolean) {
       container.removeEventListener("touchend", reset);
     };
   }, [isActive]);
+
+  useParallaxAnimation(() => setZEnabled(true));
 }
