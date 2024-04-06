@@ -1,4 +1,3 @@
-import { useEffect, useLayoutEffect } from "react";
 import ParallaxPage from "./Pages/ParallaxPage.tsx";
 import LogoPage from "./Pages/LogoPage.tsx";
 import "swiper/css";
@@ -12,25 +11,6 @@ import config from "./global.config.json";
 
 export default function App() {
   const pagination = useSwiperPagination();
-
-  useEffect(() => {
-    window.onbeforeunload = function () {
-      window.scrollTo(0, 0);
-    };
-  }, []);
-
-  useLayoutEffect(() => {
-    const updateViewportHeight = () => {
-      document.documentElement.style.setProperty(
-        "--viewport-height",
-        `${window.innerHeight}px`,
-      );
-    };
-
-    updateViewportHeight();
-    window.addEventListener("resize", updateViewportHeight);
-    return window.removeEventListener("resize", updateViewportHeight);
-  }, []);
 
   const paginationElement = (
     <SlidesPagination
@@ -56,6 +36,7 @@ export default function App() {
         onInit={pagination.setSwiper}
         onSlideChange={pagination.updateSlides}
         noSwipingClass={"swiper-no-swiping"}
+        updateOnWindowResize={false}
       >
         <SwiperSlide>
           {({ isActive }) => <ParallaxPage isActive={isActive}></ParallaxPage>}
