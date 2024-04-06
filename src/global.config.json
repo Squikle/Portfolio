@@ -17,5 +17,13 @@
     "style": {
       "backgroundOpacity": 0.4
     }
+  },
+  "parallax": {
+    "animation": {
+      "textIn": {
+        "duration": 3,
+        "ease": "power4.out"
+      }
+    }
   }
 }
