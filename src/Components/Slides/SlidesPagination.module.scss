@@ -84,9 +84,6 @@
 .button {
   position: relative;
   border-radius: 10000px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   transition-property: box-shadow, background, border, opacity;
   transition-duration: 0.1s, 0.2s, 0.2s, 0.8s;
   transition-timing-function: ease-in-out;
@@ -104,10 +101,12 @@
 
   img {
     transform: rotateZ(-90deg);
-    width: 50%;
-    height: 50%;
+    width: 70%;
+    height: 70%;
+    inset: 0;
+    margin: auto;
     position: absolute;
-    transition: filter 0.5s ease-in-out;
+    transition: filter 0.2s ease-in-out;
   }
 
   &:not(.hidden):hover {
@@ -119,8 +118,10 @@
 
     img {
       filter:
-              drop-shadow(0 0 2px rgba(255, 255, 255, 0.8))
-              drop-shadow(0 0 4px rgba(255, 255, 255, 0.6));
+              drop-shadow(0 0 2px rgba(255, 255, 255, 1))
+              drop-shadow(0 0 2px rgba(255, 255, 255, 0.5))
+              drop-shadow(0 0 4px rgba(255, 255, 255, 0.8))
+              drop-shadow(0 0 6px rgba(255, 255, 255, 0.7));
     }
   }
 }
