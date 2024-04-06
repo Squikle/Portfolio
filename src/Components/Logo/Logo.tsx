@@ -55,6 +55,7 @@ export default function Logo({ onImageResize, onLoad }: Props) {
   return (
     <div className={styles.container} ref={containerRef}>
       <img
+        fetchPriority={"high"}
         src={backgroundImageLow}
         data-src={backgroundImage}
         className={classNames("lazyload", styles.logo)}

@@ -102,6 +102,7 @@ export default function Parallax({ isActive }: Props) {
           data-reveal-speed="0.7"
         />
         <img
+          fetchPriority={"high"}
           src={personLow}
           data-src={person}
           className="lazyload blur-up parallax person"
@@ -123,6 +124,7 @@ export default function Parallax({ isActive }: Props) {
         />
         <div className="lazyload blur-up parallax-layers">
           <img
+            fetchPriority={"high"}
             src={sky3Low}
             data-src={sky3}
             className="lazyload blur-up parallax sky-3"
@@ -148,6 +150,7 @@ export default function Parallax({ isActive }: Props) {
             </div>
           </div>
           <img
+            fetchPriority={"high"}
             src={sky2}
             data-src={sky2Low}
             className="lazyload blur-up parallax sky-2"
@@ -158,6 +161,7 @@ export default function Parallax({ isActive }: Props) {
             data-reveal-speed="1.1"
           />
           <img
+            fetchPriority={"high"}
             src={sky1}
             data-src={sky1Low}
             className="lazyload blur-up parallax sky-1"
@@ -167,7 +171,11 @@ export default function Parallax({ isActive }: Props) {
             data-reveal-distance-y="-20"
             data-reveal-speed="0.7"
           />
-          <img src={skyOverlap} className="parallax sky-overlap" />
+          <img
+            fetchPriority={"high"}
+            src={skyOverlap}
+            className="parallax sky-overlap"
+          />
           <img
             src={traceLow}
             data-src={trace}
@@ -456,6 +464,7 @@ export default function Parallax({ isActive }: Props) {
             data-reveal-speed="1.2"
           />
           <img
+            fetchPriority={"high"}
             src={waterLow}
             data-src={water}
             className="lazyload blur-up parallax water"
@@ -515,6 +524,7 @@ export default function Parallax({ isActive }: Props) {
             data-reveal-speed="0.5"
           />
           <img
+            fetchPriority={"high"}
             src={raysLeft}
             className="parallax rays-left"
             data-speed-x="0.11"
