@@ -1,6 +1,6 @@
 import styles from "./Resume.module.scss";
 import classNames from "classnames";
-import { ReactNode, useCallback, useEffect, useRef, useState } from "react";
+import { ReactNode, useEffect, useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useSwiper } from "swiper/react";
@@ -10,7 +10,6 @@ type Props = {
   children?: ReactNode;
   isFirst: boolean;
   isLast: boolean;
-  length?: string;
   withDot?: boolean;
 };
 
@@ -29,15 +28,7 @@ export function ExperienceLine({
   );
   const swiper = useSwiper();
   const sectionContext = useCurrentSectionContext();
-  const lineRef = useRef<HTMLDivElement | null>(null);
-  const [lineTopOffset, setLineTopOffset] = useState<number>();
-  const handleLineRect = useCallback((line: HTMLDivElement) => {
-    if (!line) return;
-
-    lineRef.current = line;
-    const rect = line?.getBoundingClientRect();
-    setLineTopOffset(line.offsetTop - rect?.top);
-  }, []);
+  const lineRef = useRef<HTMLDivElement>(null);
 
   const { contextSafe } = useGSAP({
     dependencies: [lineRef],
@@ -49,16 +40,15 @@ export function ExperienceLine({
       if (!sectionContext.isActive) return;
 
       timeline.to(lineRef.current, {
-        duration: 1,
+        duration: 2,
         [LINE_HEIGHT_PROP]: window.innerHeight,
+        ease: "power3.out",
       });
       await timeline.play();
     });
 
     const handlePrevTransitionEnd = async () => {
-      if (sectionContext.isActive) return;
-
-      console.log(lineRef.current);
+      if (cardIndex) return;
       await timeline.reverse();
     };
 
@@ -74,14 +64,14 @@ export function ExperienceLine({
   return (
     <div className={styles.lineContainer}>
       <div
-        ref={handleLineRect}
+        ref={lineRef}
         className={classNames(styles.line, {
           [styles.lineStart]: isFirst,
           [styles.lineEnd]: isLast,
           [styles.dot]: withDot,
         })}
       >
-        <div className={styles.ending}>{children}</div>
+        {children}
       </div>
     </div>
   );
