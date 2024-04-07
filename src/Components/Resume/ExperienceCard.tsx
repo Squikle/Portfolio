@@ -1,6 +1,5 @@
 import { Fragment, RefObject } from "react";
 import style from "./Resume.module.scss";
-import classNames from "classnames";
 import Heart from "../../Icons/Heart.tsx";
 import styles from "./Resume.module.scss";
 import ResumeCard from "./ResumeCard.tsx";

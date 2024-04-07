@@ -61,7 +61,6 @@ export default function OfferSection(
 const ButtonEmitter = React.memo(({ isActive }: { isActive: boolean }) => {
   const buttonEmitters = [emitter];
 
-  console.log(buttonEmitters);
   return (
     <div className={styles.particlesContainer}>
       <Emitters

@@ -244,11 +244,8 @@
   margin: calc(-1 * var(--top-padding)) auto auto auto;
 
   width: var(--line-width);
-  height: calc(100% - var(--top) + var(--top-padding) + 1em + var(--additional-height));
+  height: var(--additional-height);
 
-  &.lineStart.lineEnd {
-    height: 0;
-  }
 
   &:not(.lineStart) {
     top: 0;
@@ -261,7 +258,6 @@
 
   &.lineStart {
     margin-top: auto;
-    height: calc(100% - var(--top) + var(--top-padding) + var(--additional-height));
   }
 
   &.dot::before {
@@ -281,17 +277,6 @@
   &:not(.lineStart)::before {
     transform: translate(calc(-50% + (var(--line-width) / 2)), calc(var(--top-padding) * 2));
   }
-}
-
-.ending {
-  position: absolute;
-  left: 0;
-  right: 0;
-  margin: auto;
-  display: flex;
-  justify-content: center;
-  width: 0;
-  height: 0;
 }
 
 /*.resumeCard::-webkit-scrollbar {
