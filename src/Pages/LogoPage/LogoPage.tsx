@@ -145,7 +145,6 @@ export default function LogoPage({
   const resumeCards = useResumeCards();
   const isPageActive = isActive;
 
-  const [currentCardActive, setCurrentCardActive] = useState(0);
   return (
     <Page<{}>
       isActive={isPageActive}
@@ -177,17 +176,14 @@ export default function LogoPage({
 
           return (
             <SwiperSlide key={i}>
-              {({ isActive }) => (
+              {({ isActive, isPrev, isNext }) => (
                 <PageSection<ResumeSectionContext>
                   index={i}
                   isActive={isActive && isPageActive}
                   isAlwaysVisible={true}
                   backgroundOpacity={backgroundOpacity}
-                  activeIndex={currentCardActive}
-                  onActiveChange={(active, index) =>
-                    active && setCurrentCardActive(index || -1)
-                  }
-                  totalCards={resumeCards.length}
+                  isNext={isNext}
+                  isPrev={isPrev}
                 >
                   {card}
                 </PageSection>
@@ -197,17 +193,14 @@ export default function LogoPage({
         })}
 
         <SwiperSlide>
-          {({ isActive }) => (
+          {({ isActive, isPrev, isNext }) => (
             <PageSection<ResumeSectionContext>
               index={resumeCards.length}
               isActive={isActive && isPageActive}
               isAlwaysVisible={true}
               backgroundOpacity={1}
-              activeIndex={currentCardActive}
-              onActiveChange={(active, index) =>
-                active && setCurrentCardActive(index || -1)
-              }
-              totalCards={resumeCards.length}
+              isNext={isNext}
+              isPrev={isPrev}
             >
               <OfferSection
                 darkBackgroundOpacity={config.slides.style.backgroundOpacity}

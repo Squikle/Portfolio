@@ -14,7 +14,6 @@ export type PageSectionProps<TContextData> = {
   isAlwaysVisible?: boolean;
   backgroundControl?: BackgroundControl;
   backgroundOpacity?: number;
-  onActiveChange?: (active: boolean, index?: number) => void;
 } & TContextData;
 
 export default function PageSection<TContextData>({
@@ -25,7 +24,6 @@ export default function PageSection<TContextData>({
   isAlwaysVisible,
   backgroundOpacity = 1,
   index,
-  onActiveChange,
   ...contextData
 }: PageSectionProps<TContextData>) {
   const ref = useRef(null);
@@ -35,8 +33,6 @@ export default function PageSection<TContextData>({
     if (isActive && pageContext?.backgroundControl?.setOpacity != null) {
       pageContext.backgroundControl.setOpacity(backgroundOpacity!);
     }
-
-    if (onActiveChange) onActiveChange(isActive, index);
   }, [isActive]);
 
   const overriddenStyles = {

@@ -1,5 +1,4 @@
 export type ResumeSectionContext = {
-  index: number;
-  activeIndex: number;
-  totalCards: number;
+  isPrev: boolean;
+  isNext: boolean;
 };

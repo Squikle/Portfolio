@@ -37,22 +37,27 @@ export function ExperienceLine({
   });
 
   useEffect(() => {
-    const handleNextTransitionStart = contextSafe(async () => {
-      if (!sectionContext.isActive) return;
-
+    contextSafe(async () => {
+      timeline.pause();
       timeline.to(lineRef.current, {
         duration: 1,
         [LINE_HEIGHT_PROP]: window.innerHeight,
         ease: "power3.out",
       });
-      timeline.play();
-    });
+    })();
+  }, []);
+
+  useEffect(() => {
+    const handleNextTransitionStart = async () => {
+      if (sectionContext.isActive) {
+        await timeline.play();
+      }
+    };
 
     const handlePrevTransitionStart = async () => {
-      const nextActive = sectionContext.activeIndex - 1;
-      console.log(nextActive);
-
-      if (nextActive === sectionContext.index) timeline.reverse();
+      if (sectionContext.isPrev) {
+        timeline.reversed(true);
+      }
     };
 
     swiper.on("slideNextTransitionStart", handleNextTransitionStart);
