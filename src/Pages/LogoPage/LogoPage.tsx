@@ -10,7 +10,7 @@ import { ImageData } from "../../Components/Logo/types.ts";
 import { adaptParticles } from "../../Components/Particles/retinaAdapter";
 import classNames from "classnames";
 import styles from "./LogoPage.module.scss";
-import { useCurrentSectionContext } from "../../Components/Page/CurrentPageContext/useContexts.ts";
+import { useCurrentSectionContext } from "../../Components/Page/CurrentPageContext/Contexts.tsx";
 import { Keyboard, Mousewheel } from "swiper/modules";
 import { Swiper, SwiperClass, SwiperSlide, useSwiper } from "swiper/react";
 import SlidesPagination from "../../Components/Slides/SlidesPagination.tsx";
@@ -21,6 +21,7 @@ import cardStyle from "../../Components/TextCard/InfoCard.module.scss";
 import useResumeCards from "../../Components/Resume/useResumeCards.tsx";
 import smallLogo from "/public/squik-canvas.webp";
 import OfferSection from "../../Components/Resume/OfferSection/OfferSection.tsx";
+import { ResumePageContext, ResumeSectionContext } from "./types.ts";
 
 export type ParticlesOptions = {
   global: any;
@@ -117,7 +118,7 @@ export default function LogoPage({
   useEffect(() => {
     if (!swiper) return;
 
-    if (isActive) setTimeout(() => swiper.mousewheel.enable(), 1500);
+    if (isActive) setTimeout(() => swiper.mousewheel?.enable(), 1500);
     else {
       swiper.mousewheel.disable();
     }
@@ -143,13 +144,17 @@ export default function LogoPage({
 
   const resumeCards = useResumeCards();
   const isPageActive = isActive;
+
+  const [currentCardActive, setCurrentCardActive] = useState(0);
+
   return (
-    <Page
+    <Page<ResumePageContext>
       isActive={isPageActive}
       className={classNames(className, styles.logoPage)}
       backgroundControl={background.control}
       isAlwaysVisible={isAlwaysActive}
       swiper={parentSwiper}
+      setActiveIndex={setCurrentCardActive}
     >
       {paginationElement}
       <Swiper
@@ -175,10 +180,16 @@ export default function LogoPage({
           return (
             <SwiperSlide key={i}>
               {({ isActive }) => (
-                <PageSection
+                <PageSection<ResumeSectionContext>
                   isAlwaysVisible={true}
                   isActive={isActive && isPageActive}
                   backgroundOpacity={backgroundOpacity}
+                  index={i}
+                  totalCards={resumeCards.length}
+                  activeIndex={currentCardActive}
+                  onActiveChange={(active, index) =>
+                    active && setCurrentCardActive(index || -1)
+                  }
                 >
                   {card}
                 </PageSection>
@@ -194,11 +205,14 @@ export default function LogoPage({
               isActive={isActive && isPageActive}
               backgroundOpacity={1}
               darkBackgroundOpacity={config.slides.style.backgroundOpacity}
+              onActiveChange={(active, _) =>
+                active && setCurrentCardActive(resumeCards.length)
+              }
             />
           )}
         </SwiperSlide>
         {background.element}
-        <SwiperSlide>
+        {/*<SwiperSlide>
           {({ isActive }) => (
             <PageSection
               isActive={isActive && isPageActive}
@@ -210,7 +224,7 @@ export default function LogoPage({
               {isLoaded() && <StaticParticles options={options.current} />}
             </PageSection>
           )}
-        </SwiperSlide>
+        </SwiperSlide>*/}
       </Swiper>
     </Page>
   );

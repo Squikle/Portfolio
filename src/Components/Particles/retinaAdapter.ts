@@ -1,4 +1,4 @@
-import { ImageSize } from "../../types/imageData";
+import { ImageSize } from "../Logo/types.ts";
 
 const idealScreens = [
   [306, 228, 2, 2.2],

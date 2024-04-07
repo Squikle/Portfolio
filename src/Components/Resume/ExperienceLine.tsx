@@ -4,7 +4,8 @@ import { ReactNode, useEffect, useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useSwiper } from "swiper/react";
-import { useCurrentSectionContext } from "../Page/CurrentPageContext/useContexts.ts";
+import { useCurrentSectionContext } from "../Page/CurrentPageContext/Contexts.tsx";
+import { ResumeSectionContext } from "../../Pages/LogoPage/types.ts";
 
 type Props = {
   children?: ReactNode;
@@ -27,7 +28,7 @@ export function ExperienceLine({
     }),
   );
   const swiper = useSwiper();
-  const sectionContext = useCurrentSectionContext();
+  const sectionContext = useCurrentSectionContext<ResumeSectionContext>();
   const lineRef = useRef<HTMLDivElement>(null);
 
   const { contextSafe } = useGSAP({
@@ -40,24 +41,25 @@ export function ExperienceLine({
       if (!sectionContext.isActive) return;
 
       timeline.to(lineRef.current, {
-        duration: 2,
+        duration: 1,
         [LINE_HEIGHT_PROP]: window.innerHeight,
         ease: "power3.out",
       });
-      await timeline.play();
+      timeline.play();
     });
 
-    const handlePrevTransitionEnd = async () => {
-      if (cardIndex) return;
-      await timeline.reverse();
+    const handlePrevTransitionStart = async () => {
+      const nextActive = sectionContext.activeIndex - 1;
+
+      if (nextActive === sectionContext.index) timeline.reverse();
     };
 
     swiper.on("slideNextTransitionStart", handleNextTransitionStart);
-    swiper.on("slidePrevTransitionStart", handlePrevTransitionEnd);
+    swiper.on("slidePrevTransitionStart", handlePrevTransitionStart);
 
     return () => {
       swiper.off("slideNextTransitionStart", handleNextTransitionStart);
-      swiper.off("slidePrevTransitionStart", handlePrevTransitionEnd);
+      swiper.off("slidePrevTransitionStart", handlePrevTransitionStart);
     };
   }, [sectionContext, timeline, swiper]);
 

@@ -4,7 +4,7 @@ import PageSection, { PageSectionProps } from "../../Page/PageSection";
 import classNames from "classnames";
 import ResumeCard from "../ResumeCard.tsx";
 import { ExperienceLine } from "../ExperienceLine.tsx";
-import { useCurrentPageContext } from "../../Page/CurrentPageContext/useContexts.ts";
+import { useCurrentPageContext } from "../../Page/CurrentPageContext/Contexts.tsx";
 import options from "./button-emitter-particles.json";
 import { adaptParticles } from "../../Particles/retinaAdapter.ts";
 import emitter from "./emitter.json";
@@ -16,7 +16,7 @@ type Props = {
 };
 
 export default function OfferSection(
-  pageSectionProps: PageSectionProps & Props,
+  pageSectionProps: Omit<PageSectionProps<{}>, "index"> & Props,
 ) {
   const backgroundControl = useCurrentPageContext().backgroundControl;
   const top = "50px";
@@ -26,19 +26,14 @@ export default function OfferSection(
   };
 
   return (
-    <PageSection {...pageSectionProps}>
+    <PageSection index={0} {...pageSectionProps}>
       <ResumeCard
         cardClassName={classNames(
           styles.layoutCard,
           resumeCardStyles.experienceCard,
         )}
       >
-        <ExperienceLine
-          isLast={true}
-          isFirst={false}
-          withDot={false}
-          length={top}
-        >
+        <ExperienceLine isLast={true} isFirst={false} withDot={false}>
           <div className={styles.container} style={{ top: top }}>
             <ButtonEmitter isActive={pageSectionProps.isActive}></ButtonEmitter>
             <button

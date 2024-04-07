@@ -3,33 +3,40 @@ import classNames from "classnames";
 import { ReactNode, useEffect, useRef } from "react";
 import { CurrentSectionContextProvider } from "./CurrentPageContext/Contexts";
 import { BackgroundControl } from "./Page.tsx";
-import { useCurrentPageContext } from "./CurrentPageContext/useContexts.ts";
+import { useCurrentPageContext } from "./CurrentPageContext/Contexts";
 
-export type PageSectionProps = {
+export type PageSectionProps<TContextData> = {
   isActive: boolean;
+  index?: number;
   className?: string;
   children?: ReactNode;
   height?: string;
   isAlwaysVisible?: boolean;
   backgroundControl?: BackgroundControl;
   backgroundOpacity?: number;
-};
+  onActiveChange?: (active: boolean, index?: number) => void;
+} & TContextData;
 
-export default function PageSection({
+export default function PageSection<TContextData>({
   isActive,
   className,
   children,
   height,
   isAlwaysVisible,
   backgroundOpacity = 1,
-}: PageSectionProps) {
+  index,
+  onActiveChange,
+  ...contextData
+}: PageSectionProps<TContextData>) {
   const ref = useRef(null);
-  const backgroundControl = useCurrentPageContext();
+  const pageContext = useCurrentPageContext();
 
   useEffect(() => {
-    if (isActive && backgroundControl?.backgroundControl?.setOpacity != null) {
-      backgroundControl.backgroundControl.setOpacity(backgroundOpacity);
+    if (isActive && pageContext?.backgroundControl?.setOpacity != null) {
+      pageContext.backgroundControl.setOpacity(backgroundOpacity);
     }
+
+    if (onActiveChange) onActiveChange(isActive, index);
   }, [isActive]);
 
   const overriddenStyles = {
@@ -37,7 +44,11 @@ export default function PageSection({
   };
 
   return (
-    <CurrentSectionContextProvider isActive={isActive}>
+    <CurrentSectionContextProvider
+      isActive={isActive}
+      index={index}
+      {...contextData}
+    >
       <div
         ref={ref}
         className={classNames(className, styles.section, {

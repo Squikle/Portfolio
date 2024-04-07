@@ -4,7 +4,7 @@ import { CurrentPageContextProvider } from "./CurrentPageContext/Contexts";
 import classNames from "classnames";
 import { SwiperClass } from "swiper/react";
 
-type Props = {
+type Props<TContextData> = {
   isActive: boolean;
   className?: string;
   children?: ReactNode;
@@ -12,14 +12,14 @@ type Props = {
   backgroundControl?: BackgroundControl;
   isAlwaysVisible?: boolean;
   swiper?: SwiperClass | null;
-};
+} & TContextData;
 
 export type BackgroundControl = {
   setOpacity: (opacity: number) => void;
   setClassName: (classNames: classNames.ArgumentArray) => void;
 };
 
-export default function Page({
+export default function Page<TContextData>({
   isActive,
   className,
   children,
@@ -27,7 +27,8 @@ export default function Page({
   backgroundControl,
   isAlwaysVisible,
   swiper,
-}: Props) {
+  ...contextData
+}: Props<TContextData>) {
   const ref = useRef(null);
 
   useEffect(() => {
@@ -39,6 +40,7 @@ export default function Page({
       isActive={isActive}
       backgroundControl={backgroundControl}
       swiper={swiper || undefined}
+      {...contextData}
     >
       <div
         ref={ref}

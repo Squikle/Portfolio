@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Logo from "../Components/Logo/Logo";
 import { ImageData, OnImageUpdate } from "../Components/Logo/types";
-import { useCurrentPageContext } from "../Components/Page/CurrentPageContext/useContexts";
+import { useCurrentPageContext } from "../Components/Page/CurrentPageContext/Contexts.tsx";
 import LogoEmitters from "../Components/Particles/LogoEmitters.tsx";
 import Particles from "../Components/Particles/Particles";
 import { ParticlesOptions } from "../Pages/LogoPage/LogoPage";

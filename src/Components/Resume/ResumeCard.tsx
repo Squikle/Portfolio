@@ -6,7 +6,7 @@ import useFadeScroll from "../../hooks/FadeScroll/useFadeScroll.ts";
 import useOverScroll from "../../hooks/useOverScroll.ts";
 import { useSwiper } from "swiper/react";
 import { Delta, useSwipes } from "../../hooks/useSwipes.ts";
-import { useCurrentPageContext } from "../Page/CurrentPageContext/useContexts.ts";
+import { useCurrentPageContext } from "../Page/CurrentPageContext/Contexts.tsx";
 
 export type ResumeCardContentProps = {
   scrollableElementRef?: RefObject<HTMLElement>;

@@ -1,7 +1,6 @@
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import { throttle } from "../../utils/throttle.ts";
 import useParallaxAnimation from "./useParallaxAnimations.ts";
-import { element } from "prop-types";
 
 const cssProps = {
   xOrigTranslate: "--origTranslateX",
