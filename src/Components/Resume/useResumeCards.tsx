@@ -7,13 +7,12 @@ export default function useResumeCards() {
   const cards = useMemo(() => {
     const jobsCards = resume.jobs.map((job, i) => {
       const isFirst = i === 0;
-      const isLast = i == resume.jobs.length - 1;
 
       return (
         <ExperienceCard
           job={job}
           isFirst={isFirst}
-          isLast={isLast}
+          isLast={false}
         ></ExperienceCard>
       );
     });

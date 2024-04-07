@@ -3,15 +3,15 @@
 .card {
   --top-padding: 25px;
   font-size: 0.9rem;
-  --top-ofset: 5%;
-  top: var(--top-ofset);
+  --top-offset: 20px;
+  top: var(--top-offset);
   bottom: auto;
   margin: auto;
   position: relative;
   display: flex;
   padding: var(--top-padding) 0 var(--top-padding) 0;
   overflow: visible;
-  max-height: calc(100% - var(--top-ofset) * 2);
+  max-height: calc(100% - var(--top-offset) * 2);
 
   a {
     text-decoration-color: rgba(255, 255, 255, 0.54);
@@ -232,65 +232,47 @@
   $line-color: white;
 
   --additional-height: 0px;
+  --dot-offset: 1.5em;
+  --dot-size: 0.8em;
   --line-width: 0.075em;
-  --top: 1em;
+  --line-margin: 0px;
 
   background-color: $line-color;
   z-index: 100;
   position: absolute;
-  top: var(--top);
   left: 0;
   right: 0;
-  margin: calc(-1 * var(--top-padding)) auto auto auto;
 
   width: var(--line-width);
-  height: var(--additional-height);
-
-
-  &:not(.lineStart) {
-    top: 0;
-  }
+  height: calc(var(--additional-height) - var(--top-offset) / 2);
+  top: var(--dot-offset);
+  margin: var(--line-margin) auto 0 auto;
 
   &.lineEnd {
-    height: calc(var(--top-padding) * 2 + var(--additional-height));
-    top: 0;
+    --line-margin: calc(-1 * (var(--top-padding) + var(--dot-offset)));
+    height: calc(var(--top-padding) / 2 + var(--dot-offset) + var(--additional-height) - var(--top-offset) / 2);
   }
 
-  &.lineStart {
-    margin-top: auto;
+  &:not(.lineStart):not(.lineEnd) {
+    --line-margin: calc(-1 * (var(--dot-offset) + var(--top-padding)));
+    height: calc(var(--top-padding) + var(--dot-offset) + var(--additional-height));
   }
 
   &.dot::before {
     content: "";
-    --size: 0.8em;
-    width: var(--size);
-    height: var(--size);
+    width: var(--dot-size);
+    height: var(--dot-size);
     border-radius: 1000px;
     position: absolute;
     background-color: $line-color;
   }
 
-  &.lineStart::before {
-    transform: translate(calc(-50% + (var(--line-width) / 2)));
-  }
-
   &:not(.lineStart)::before {
-    transform: translate(calc(-50% + (var(--line-width) / 2)), calc(var(--top-padding) * 2));
+    transform: translateX(calc(-50% + (var(--line-width) / 2)))
+                translateY(calc(-1 * var(--line-margin) - var(--top-offset) / 2));
+  }
+
+  &::before {
+    transform: translateX(calc(-50% + (var(--line-width) / 2)))
   }
 }
-
-/*.resumeCard::-webkit-scrollbar {
-  width: 12px;
-}
-
-.resumeCard::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 10px 10px rgba(145, 145, 145, 0.47);
-  border: solid 3px transparent;
-  border-radius: 1000px;
-}
-
-.resumeCard::-webkit-scrollbar-thumb {
-  box-shadow: inset 0 0 10px 10px rgba(212, 157, 232, 0.61);
-  border: solid 3px transparent;
-  border-radius: 1000px;
-}*/

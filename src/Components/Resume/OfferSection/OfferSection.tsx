@@ -34,7 +34,7 @@ export default function OfferSection(
         )}
       >
         <ExperienceLine
-          isLast={false}
+          isLast={true}
           isFirst={false}
           withDot={false}
           length={top}
