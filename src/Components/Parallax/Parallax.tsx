@@ -4,7 +4,6 @@ import sky2 from "../../../public/layers-mid/9-2-sky.webp";
 import sky2Low from "../../../public/layers-low/9-2-sky.webp";
 import sky1 from "../../../public/layers-mid/9-1-sky.webp";
 import sky1Low from "../../../public/layers-low/9-1-sky.webp";
-import skyOverlap from "../../../public/layers-mid/9-0-sky-overlap.png";
 import trace from "../../../public/layers-mid/8-0-trace.webp";
 import traceLow from "../../../public/layers-low/8-0-trace.webp";
 import left9 from "../../../public/layers-mid/7-9-left.webp";
@@ -170,11 +169,6 @@ export default function Parallax({ isActive }: Props) {
             data-speed-z="0"
             data-reveal-distance-y="-20"
             data-reveal-speed="0.7"
-          />
-          <img
-            fetchPriority={"high"}
-            src={skyOverlap}
-            className="parallax sky-overlap"
           />
           <img
             src={traceLow}
