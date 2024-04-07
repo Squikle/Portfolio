@@ -50,6 +50,7 @@ export function ExperienceLine({
 
     const handlePrevTransitionStart = async () => {
       const nextActive = sectionContext.activeIndex - 1;
+      console.log(nextActive);
 
       if (nextActive === sectionContext.index) timeline.reverse();
     };

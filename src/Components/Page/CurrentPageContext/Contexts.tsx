@@ -21,7 +21,7 @@ export const CurrentPageContextProvider = <T,>({
   swiper,
   ...contextData
 }: Props<T>) => {
-  const PageContext = createStateContext<T>();
+  const PageContext = createPageStateContext<T>();
   const contextValue = {
     isActive,
     backgroundControl,
@@ -37,7 +37,7 @@ export const CurrentPageContextProvider = <T,>({
 };
 
 export function useCurrentPageContext<T>() {
-  const value = useContext(createStateContext<T>());
+  const value = useContext(createPageStateContext<T>());
 
   if (value == null)
     throw new Error("Should be within CurrentPageContextProvider");
@@ -45,13 +45,17 @@ export function useCurrentPageContext<T>() {
   return value;
 }
 
+export const createPageStateContext = once(<T,>() =>
+  createContext<PageContextData<T> | null>(null),
+);
+
 export const CurrentSectionContextProvider = <T,>({
   isActive,
   children,
   swiper,
   ...contextData
 }: Props<T>) => {
-  const SectionContext = createStateContext<T>();
+  const SectionContext = createSectionStateContext<T>();
   const contextValue = {
     isActive,
     swiper,
@@ -64,13 +68,12 @@ export const CurrentSectionContextProvider = <T,>({
     </SectionContext.Provider>
   );
 };
-
-export const createStateContext = once(<T,>() =>
+export const createSectionStateContext = once(<T,>() =>
   createContext<PageContextData<T> | null>(null),
 );
 
 export function useCurrentSectionContext<T>() {
-  const value = useContext(createStateContext<T>());
+  const value = useContext(createSectionStateContext<T>());
 
   if (value == null)
     throw new Error("Should be within CurrentSectionContextProvider");

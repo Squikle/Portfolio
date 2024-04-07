@@ -37,9 +37,9 @@ export default function App() {
         onSlideChange={pagination.updateSlides}
         noSwipingClass={"swiper-no-swiping"}
       >
-        {/*<SwiperSlide>
+        <SwiperSlide>
           {({ isActive }) => <ParallaxPage isActive={isActive}></ParallaxPage>}
-        </SwiperSlide>*/}
+        </SwiperSlide>
         <SwiperSlide>
           {({ isActive }) => (
             <LogoPage isAlwaysActive={true} isActive={isActive}></LogoPage>

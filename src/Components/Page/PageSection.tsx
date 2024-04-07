@@ -33,7 +33,7 @@ export default function PageSection<TContextData>({
 
   useEffect(() => {
     if (isActive && pageContext?.backgroundControl?.setOpacity != null) {
-      pageContext.backgroundControl.setOpacity(backgroundOpacity);
+      pageContext.backgroundControl.setOpacity(backgroundOpacity!);
     }
 
     if (onActiveChange) onActiveChange(isActive, index);

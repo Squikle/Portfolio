@@ -1,5 +1,5 @@
 import styles from "./Page.module.scss";
-import { ReactNode, useEffect, useRef } from "react";
+import { ReactNode, useRef, useState } from "react";
 import { CurrentPageContextProvider } from "./CurrentPageContext/Contexts";
 import classNames from "classnames";
 import { SwiperClass } from "swiper/react";
@@ -23,7 +23,6 @@ export default function Page<TContextData>({
   isActive,
   className,
   children,
-  onActiveUpdate,
   backgroundControl,
   isAlwaysVisible,
   swiper,
@@ -31,15 +30,12 @@ export default function Page<TContextData>({
 }: Props<TContextData>) {
   const ref = useRef(null);
 
-  useEffect(() => {
-    if (onActiveUpdate) onActiveUpdate(isActive);
-  }, [isActive]);
-
   return (
     <CurrentPageContextProvider
       isActive={isActive}
       backgroundControl={backgroundControl}
       swiper={swiper || undefined}
+      setCurrentCardActive
       {...contextData}
     >
       <div

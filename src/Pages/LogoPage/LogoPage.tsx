@@ -21,7 +21,7 @@ import cardStyle from "../../Components/TextCard/InfoCard.module.scss";
 import useResumeCards from "../../Components/Resume/useResumeCards.tsx";
 import smallLogo from "/public/squik-canvas.webp";
 import OfferSection from "../../Components/Resume/OfferSection/OfferSection.tsx";
-import { ResumePageContext, ResumeSectionContext } from "./types.ts";
+import { ResumeSectionContext } from "./types.ts";
 
 export type ParticlesOptions = {
   global: any;
@@ -146,15 +146,13 @@ export default function LogoPage({
   const isPageActive = isActive;
 
   const [currentCardActive, setCurrentCardActive] = useState(0);
-
   return (
-    <Page<ResumePageContext>
+    <Page<{}>
       isActive={isPageActive}
       className={classNames(className, styles.logoPage)}
       backgroundControl={background.control}
       isAlwaysVisible={isAlwaysActive}
       swiper={parentSwiper}
-      setActiveIndex={setCurrentCardActive}
     >
       {paginationElement}
       <Swiper
@@ -181,15 +179,15 @@ export default function LogoPage({
             <SwiperSlide key={i}>
               {({ isActive }) => (
                 <PageSection<ResumeSectionContext>
-                  isAlwaysVisible={true}
-                  isActive={isActive && isPageActive}
-                  backgroundOpacity={backgroundOpacity}
                   index={i}
-                  totalCards={resumeCards.length}
+                  isActive={isActive && isPageActive}
+                  isAlwaysVisible={true}
+                  backgroundOpacity={backgroundOpacity}
                   activeIndex={currentCardActive}
                   onActiveChange={(active, index) =>
                     active && setCurrentCardActive(index || -1)
                   }
+                  totalCards={resumeCards.length}
                 >
                   {card}
                 </PageSection>
@@ -200,19 +198,25 @@ export default function LogoPage({
 
         <SwiperSlide>
           {({ isActive }) => (
-            <OfferSection
-              isAlwaysVisible={true}
+            <PageSection<ResumeSectionContext>
+              index={resumeCards.length}
               isActive={isActive && isPageActive}
+              isAlwaysVisible={true}
               backgroundOpacity={1}
-              darkBackgroundOpacity={config.slides.style.backgroundOpacity}
-              onActiveChange={(active, _) =>
-                active && setCurrentCardActive(resumeCards.length)
+              activeIndex={currentCardActive}
+              onActiveChange={(active, index) =>
+                active && setCurrentCardActive(index || -1)
               }
-            />
+              totalCards={resumeCards.length}
+            >
+              <OfferSection
+                darkBackgroundOpacity={config.slides.style.backgroundOpacity}
+              />
+            </PageSection>
           )}
         </SwiperSlide>
         {background.element}
-        {/*<SwiperSlide>
+        <SwiperSlide>
           {({ isActive }) => (
             <PageSection
               isActive={isActive && isPageActive}
@@ -224,7 +228,7 @@ export default function LogoPage({
               {isLoaded() && <StaticParticles options={options.current} />}
             </PageSection>
           )}
-        </SwiperSlide>*/}
+        </SwiperSlide>
       </Swiper>
     </Page>
   );
