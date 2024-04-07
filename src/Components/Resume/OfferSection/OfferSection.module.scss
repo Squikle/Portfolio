@@ -72,20 +72,3 @@
   width: 100%;
   height: 100%;
 }
-
-#global-particles {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-}
-
-.globalParticlesContainer {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  @extend %select-disabled;
-
-  &:hover {
-    cursor: crosshair;
-  }
-}

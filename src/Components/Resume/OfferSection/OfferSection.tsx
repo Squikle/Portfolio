@@ -5,13 +5,11 @@ import classNames from "classnames";
 import ResumeCard from "../ResumeCard.tsx";
 import { ExperienceLine } from "../ExperienceLine.tsx";
 import { useCurrentPageContext } from "../../Page/CurrentPageContext/useContexts.ts";
+import options from "./button-emitter-particles.json";
 import { adaptParticles } from "../../Particles/retinaAdapter.ts";
 import emitter from "./emitter.json";
 import Emitters from "../../Particles/Emitters.tsx";
 import React from "react";
-import Particles from "../../Particles/Particles.tsx";
-import buttonParticlesoptions from "./button-emitter-particles.json";
-import globalParticlesOptions from "../../Particles/global-particles.json";
 
 type Props = {
   darkBackgroundOpacity: number;
@@ -29,7 +27,6 @@ export default function OfferSection(
 
   return (
     <PageSection {...pageSectionProps}>
-      <GlobalParticles isActive={pageSectionProps.isActive}></GlobalParticles>
       <ResumeCard
         cardClassName={classNames(
           styles.layoutCard,
@@ -62,28 +59,19 @@ export default function OfferSection(
 }
 
 const ButtonEmitter = React.memo(({ isActive }: { isActive: boolean }) => {
+  const buttonEmitters = [emitter];
+
+  console.log(buttonEmitters);
   return (
     <div className={styles.particlesContainer}>
       <Emitters
         id={styles["offer-button-particles"]}
-        options={adaptParticles(buttonParticlesoptions, {
+        options={adaptParticles(options, {
           width: 100,
           height: 100,
         })}
         isActive={isActive}
-        emitters={[emitter]}
-      />
-    </div>
-  );
-});
-
-const GlobalParticles = React.memo(({ isActive }: { isActive: boolean }) => {
-  return (
-    <div className={styles.globalParticlesContainer}>
-      <Particles
-        id={styles["global-particles"]}
-        options={adaptParticles(globalParticlesOptions)}
-        isActive={isActive}
+        emitters={buttonEmitters}
       />
     </div>
   );
