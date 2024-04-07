@@ -6,7 +6,7 @@ export default function useOverScroll(
 ) {
   useEffect(() => {
     const element = swipeElementRef.current;
-    if (!element) throw new Error("Swipe element ref must be set!");
+    if (!element) return;
 
     const handleScroll = () => {
       const scrollTop = element.scrollTop;

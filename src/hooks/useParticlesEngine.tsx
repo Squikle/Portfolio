@@ -19,6 +19,8 @@ import { loadStrokeColorUpdater } from "@tsparticles/updater-stroke-color";
 import { loadDestroyUpdater } from "@tsparticles/updater-destroy";
 import { loadBasic } from "@tsparticles/basic";
 import { loadTriangleShape } from "@tsparticles/shape-polygon";
+import { loadEmittersShapeCircle } from "@tsparticles/plugin-emitters-shape-circle";
+import { loadExternalRepulseInteraction } from "@tsparticles/interaction-external-repulse";
 
 export function useParticlesEngine(onLoaded: () => void) {
   useEffect(() => {
@@ -41,6 +43,8 @@ export function useParticlesEngine(onLoaded: () => void) {
       await loadStrokeColorUpdater(engine);
       await loadDestroyUpdater(engine);
       await loadBasic(engine);
+      await loadEmittersShapeCircle(engine);
+      await loadExternalRepulseInteraction(engine);
     }).then(() => {
       if (onLoaded) onLoaded();
     });

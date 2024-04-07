@@ -1,6 +1,9 @@
 {
   "s-emitter": {
     "name": "s-emitter",
+    "shape": {
+      "type": "circle"
+    },
     "particles": {
       "rotate": {
         "value": {
@@ -86,6 +89,9 @@
   },
   "k-emitter": {
     "name": "k-emitter",
+    "shape": {
+      "type": "circle"
+    },
     "particles": {
       "rotate": {
         "value": {

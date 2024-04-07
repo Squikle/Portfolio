@@ -1,5 +1,5 @@
-import ParallaxPage from "./Pages/ParallaxPage.tsx";
-import LogoPage from "./Pages/LogoPage.tsx";
+import ParallaxPage from "./Pages/ParallaxPage/ParallaxPage.tsx";
+import LogoPage from "./Pages/LogoPage/LogoPage.tsx";
 import "swiper/css";
 import "swiper/css/pagination";
 import "./main.scss";

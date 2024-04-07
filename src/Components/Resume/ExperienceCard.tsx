@@ -4,6 +4,7 @@ import classNames from "classnames";
 import Heart from "../../Icons/Heart.tsx";
 import styles from "./Resume.module.scss";
 import ResumeCard from "./ResumeCard.tsx";
+import { ExperienceLine } from "./ExperienceLine.tsx";
 
 type Highlight = {
   title: string;
@@ -46,24 +47,16 @@ export default function ExperienceCard({
   };
 
   return (
-    <ResumeCard cardClassName={styles.jobCard}>
+    <ResumeCard cardClassName={styles.experienceCard}>
       {({ scrollableElementRef }) => {
         return (
           <>
-            <div className={style.lineContainer}>
-              <div
-                className={classNames(
-                  style.line,
-                  { [style.lineStart]: isFirst },
-                  { [style.lineEnd]: isLast },
-                )}
-              />
-            </div>
+            <ExperienceLine isFirst={isFirst} isLast={isLast}></ExperienceLine>
             <div
               className={style.text}
               ref={scrollableElementRef as RefObject<HTMLDivElement>}
             >
-              <div className={style.jobHeader}>
+              <div className={style.experienceHeader}>
                 <div>
                   <h3 className={style.period}>{job.period}</h3>
                   <h3 className={style.position}>{job.position}</h3>

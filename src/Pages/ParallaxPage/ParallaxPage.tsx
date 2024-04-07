@@ -1,9 +1,9 @@
-import PageSection from "../Components/Page/PageSection";
-import Parallax from "../Components/Parallax/Parallax";
-import Page from "../Components/Page/Page";
+import PageSection from "../../Components/Page/PageSection";
+import Parallax from "../../Components/Parallax/Parallax";
+import Page from "../../Components/Page/Page";
 import styles from "./ParallaxPage.module.css";
 import classNames from "classnames";
-import { useCurrentSectionContext } from "../Components/Page/CurrentPageContext/useContexts.ts";
+import { useCurrentSectionContext } from "../../Components/Page/CurrentPageContext/useContexts.ts";
 
 type Props = {
   isActive: boolean;

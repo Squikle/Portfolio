@@ -2,10 +2,10 @@ import { useState } from "react";
 import Logo from "../Components/Logo/Logo";
 import { ImageData, OnImageUpdate } from "../Components/Logo/types";
 import { useCurrentPageContext } from "../Components/Page/CurrentPageContext/useContexts";
-import Emitters from "../Components/Particles/Emitters";
+import LogoEmitters from "../Components/Particles/LogoEmitters.tsx";
 import Particles from "../Components/Particles/Particles";
-import { ParticlesOptions } from "./LogoPage";
-import styles from "./LogoPage.module.scss";
+import { ParticlesOptions } from "../Pages/LogoPage/LogoPage";
+import styles from "../Pages/LogoPage/LogoPage.module.scss";
 import { BackgroundControl } from "../Components/Page/Page.tsx";
 import classNames from "classnames";
 
@@ -55,7 +55,7 @@ const FixedParticles = ({
   const isActive = useCurrentPageContext().isActive;
   return (
     <div className={styles.particlesContainer}>
-      <Emitters
+      <LogoEmitters
         id="emitters-particles"
         options={options.emitters}
         imgData={imageData}

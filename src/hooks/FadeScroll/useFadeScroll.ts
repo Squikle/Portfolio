@@ -6,7 +6,7 @@ export default function useFadeScroll(
 ) {
   useEffect(() => {
     const element = scrollableElementRef.current;
-    if (!element) throw new Error("Scrollable element ref must be set!");
+    if (!element) return;
 
     const handleScroll = () => {
       updateFadeEffect(element.scrollHeight, element.clientHeight);

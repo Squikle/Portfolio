@@ -5,7 +5,7 @@ import { CurrentSectionContextProvider } from "./CurrentPageContext/Contexts";
 import { BackgroundControl } from "./Page.tsx";
 import { useCurrentPageContext } from "./CurrentPageContext/useContexts.ts";
 
-type Props = {
+export type PageSectionProps = {
   isActive: boolean;
   className?: string;
   children?: ReactNode;
@@ -22,7 +22,7 @@ export default function PageSection({
   height,
   isAlwaysVisible,
   backgroundOpacity = 1,
-}: Props) {
+}: PageSectionProps) {
   const ref = useRef(null);
   const backgroundControl = useCurrentPageContext();
 

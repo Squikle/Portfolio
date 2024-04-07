@@ -38,7 +38,7 @@ export default function Page({
     <CurrentPageContextProvider
       isActive={isActive}
       backgroundControl={backgroundControl}
-      swiper={swiper}
+      swiper={swiper || undefined}
     >
       <div
         ref={ref}

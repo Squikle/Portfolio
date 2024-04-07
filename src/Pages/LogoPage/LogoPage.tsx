@@ -1,25 +1,26 @@
-import PageSection from "../Components/Page/PageSection";
-import Page from "../Components/Page/Page";
-import Particles from "../Components/Particles/Particles";
+import PageSection from "../../Components/Page/PageSection";
+import Page from "../../Components/Page/Page";
+import Particles from "../../Components/Particles/Particles";
 import { useCallback, useEffect, useReducer, useRef, useState } from "react";
-import globalParticlesOptions from "../Components/Particles/global-particles.json";
-import emittersParticlesOptions from "../Components/Particles/emitters-particles.json";
-import canvasParticlesOptions from "../Components/Particles/canvas-particles.json";
-import { useParticlesEngine } from "../hooks/useParticlesEngine";
-import { ImageData } from "../Components/Logo/types.ts";
-import { adaptParticles } from "../Components/Particles/retinaAdapter";
+import globalParticlesOptions from "../../Components/Particles/global-particles.json";
+import emittersParticlesOptions from "../../Components/Particles/emitters-particles.json";
+import canvasParticlesOptions from "../../Components/Particles/canvas-particles.json";
+import { useParticlesEngine } from "../../hooks/useParticlesEngine";
+import { ImageData } from "../../Components/Logo/types.ts";
+import { adaptParticles } from "../../Components/Particles/retinaAdapter";
 import classNames from "classnames";
 import styles from "./LogoPage.module.scss";
-import { useCurrentSectionContext } from "../Components/Page/CurrentPageContext/useContexts.ts";
+import { useCurrentSectionContext } from "../../Components/Page/CurrentPageContext/useContexts.ts";
 import { Keyboard, Mousewheel } from "swiper/modules";
 import { Swiper, SwiperClass, SwiperSlide, useSwiper } from "swiper/react";
-import SlidesPagination from "../Components/Slides/SlidesPagination.tsx";
-import { useSwiperPagination } from "../Components/Slides/useSwiperPagination.ts";
-import config from "../global.config.json";
-import useBackground from "./useBackground.tsx";
-import cardStyle from "../Components/TextCard/InfoCard.module.scss";
-import useResumeCards from "../Components/Resume/useResumeCards.tsx";
+import SlidesPagination from "../../Components/Slides/SlidesPagination.tsx";
+import { useSwiperPagination } from "../../Components/Slides/useSwiperPagination.ts";
+import config from "../../global.config.json";
+import useBackground from "../../hooks/useBackground.tsx";
+import cardStyle from "../../Components/TextCard/InfoCard.module.scss";
+import useResumeCards from "../../Components/Resume/useResumeCards.tsx";
 import smallLogo from "/public/squik-canvas.webp";
+import OfferSection from "../../Components/Resume/OfferSection/OfferSection.tsx";
 
 export type ParticlesOptions = {
   global: any;
@@ -186,6 +187,16 @@ export default function LogoPage({
           );
         })}
 
+        <SwiperSlide>
+          {({ isActive }) => (
+            <OfferSection
+              isAlwaysVisible={true}
+              isActive={isActive && isPageActive}
+              backgroundOpacity={1}
+              darkBackgroundOpacity={config.slides.style.backgroundOpacity}
+            />
+          )}
+        </SwiperSlide>
         {background.element}
         <SwiperSlide>
           {({ isActive }) => (

@@ -88,12 +88,15 @@
   transition-duration: 0.1s, 0.2s, 0.2s, 0.8s;
   transition-timing-function: ease-in-out;
   z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   $blur: 2px;
   $opacity: 0.6;
-  $box-shadow: 0 0 5px rgba(0, 0, 0, 1),
+  box-shadow: 0 0 5px rgba(0, 0, 0, 1),
   0 0 10px rgba(0, 0, 0, 0.5);
-  @include global.glass($with-shadow: false, $blur: $blur, $box-shadow: $box-shadow, $opacity: 0.8, $border-thickness: 0.5px, $border-opacity: 0.3);
+  @include global.glass($with-shadow: false, $blur: $blur, $opacity: 0.8, $border-thickness: 0.5px, $border-opacity: 0.3);
 
   &.hidden {
     opacity: 0;
@@ -110,11 +113,12 @@
   }
 
   &:not(.hidden):hover {
-    @include global.glass($with-shadow: false, $blur: $blur, $box-shadow: $box-shadow, $opacity: 1, $border-thickness: 0.8px, $border-opacity: 0.5);
+    @include global.glass($with-shadow: false, $blur: $blur, $opacity: 1, $border-thickness: 0.8px, $border-opacity: 0.5);
     backdrop-filter: blur($blur) drop-shadow(
                     0 0 6px rgba(255, 255, 255, 1)
                     0 0 6px rgba(255, 255, 255, 1)
                     0 0 6px rgba(255, 255, 255, 1));
+    cursor: pointer;
 
     img {
       filter:

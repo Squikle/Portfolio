@@ -67,7 +67,6 @@
 .text {
   font-weight: 100;
   line-height: 1.2em;
-  font-family: "Barlow Semi Condensed", sans-serif;
   letter-spacing: 0.01em;
   margin: 0;
   display: flex;
@@ -88,7 +87,7 @@
   }
 }
 
-.jobCard > .text, .introCard > .text {
+.experienceCard > .text, .introCard > .text {
   h1 {
     font-weight: Bold;
     line-height: 1em;
@@ -153,7 +152,7 @@
     font-style: italic;
   }
 
-  .jobHeader {
+  .experienceHeader {
     display: flex;
     justify-content: space-between;
 
@@ -225,42 +224,47 @@
 .lineContainer {
   position: relative;
   padding-left: 35px;
+  display: flex;
+  justify-items: center;
 }
 
 .line {
   $line-color: white;
 
+  --additional-height: 0px;
   --line-width: 0.075em;
-  width: var(--line-width);
+  --top: 1em;
+
   background-color: $line-color;
   z-index: 100;
   position: absolute;
-  --top: calc(1em);
   top: var(--top);
   left: 0;
   right: 0;
   margin: calc(-1 * var(--top-padding)) auto auto auto;
+
+  width: var(--line-width);
+  height: calc(100% - var(--top) + var(--top-padding) + 1em + var(--additional-height));
 
   &.lineStart.lineEnd {
     height: 0;
   }
 
   &:not(.lineStart) {
-    height: calc(100% - var(--top) + var(--top-padding) * 2 + 1em);
     top: 0;
   }
 
   &.lineEnd {
-    height: calc(var(--top-padding) * 2);
+    height: calc(var(--top-padding) * 2 + var(--additional-height));
     top: 0;
   }
 
   &.lineStart {
     margin-top: auto;
-    height: calc(100% - var(--top) + var(--top-padding));
+    height: calc(100% - var(--top) + var(--top-padding) + var(--additional-height));
   }
 
-  &::before {
+  &.dot::before {
     content: "";
     --size: 0.8em;
     width: var(--size);
@@ -277,6 +281,17 @@
   &:not(.lineStart)::before {
     transform: translate(calc(-50% + (var(--line-width) / 2)), calc(var(--top-padding) * 2));
   }
+}
+
+.ending {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  width: 0;
+  height: 0;
 }
 
 /*.resumeCard::-webkit-scrollbar {

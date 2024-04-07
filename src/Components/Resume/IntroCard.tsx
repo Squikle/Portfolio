@@ -2,7 +2,6 @@ import ResumeCard from "./ResumeCard";
 import { RefObject } from "react";
 import styles from "./Resume.module.scss";
 import resume from "../../resume-data.json";
-import s = CSS.s;
 
 export default function IntroCard() {
   const contactsData = resume.contacts;

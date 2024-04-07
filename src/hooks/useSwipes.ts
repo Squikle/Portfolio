@@ -21,7 +21,7 @@ export function useSwipes(
 
   useEffect(() => {
     const element = swipeElementRef.current;
-    if (!element) throw new Error("Swipe element ref must be set!");
+    if (!element) return;
 
     let xDown: number | null;
     let yDown: number | null;

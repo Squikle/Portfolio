@@ -1,0 +1,95 @@
+{
+  "name": "offer-button-emitter",
+  "fill": false,
+  "shape": {
+    "type": "circle"
+  },
+  "position": {
+    "x": 50,
+    "y": 50
+  },
+  "size": {
+    "height": 25,
+    "width": 25,
+    "mode": "percent"
+  },
+  "particles": {
+    "rotate": {
+      "value": {
+        "min": 0,
+        "max": 360
+      },
+      "animation": {
+        "enable": true,
+        "speed": 60,
+        "decay": 0,
+        "sync": false
+      },
+      "direction": "random"
+    },
+    "move": {
+      "angle": {
+        "offset": 0,
+        "value": 10
+      },
+      "direction": "outside",
+      "speed": {
+        "min": 0.5,
+        "max": 1.2
+      },
+      "distance": {
+        "horizontal": 0,
+        "vertical": 0
+      }
+    },
+    "life": {
+      "duration": {
+        "sync": true,
+        "value": 2
+      },
+      "count": 1
+    },
+    "opacity": {
+      "value": {
+        "min": 0,
+        "max": 1
+      },
+      "animation": {
+        "count": 0,
+        "enable": true,
+        "speed": 10,
+        "decay": 0,
+        "delay": 1.5,
+        "sync": true,
+        "startValue": "max",
+        "destroy": "min"
+      }
+    },
+    "shape": {
+      "close": true,
+      "fill": true,
+      "options": {},
+      "type": "triangle"
+    },
+    "size": {
+      "value": {
+        "min": 0.5,
+        "max": 1
+      },
+      "animation": {
+        "count": 0,
+        "enable": true,
+        "speed": 13,
+        "decay": 0,
+        "delay": 2.5,
+        "sync": false,
+        "mode": "decrease",
+        "startValue": "max",
+        "destroy": "min"
+      }
+    }
+  },
+  "rate": {
+    "quantity": 5
+  }
+}
