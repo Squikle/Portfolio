@@ -198,34 +198,7 @@ export default function LogoPage({
           )}
         </SwiperSlide>
         {background.element}
-        <SwiperSlide>
-          {({ isActive }) => (
-            <PageSection
-              isActive={isActive && isPageActive}
-              className={classNames(
-                styles.globalParticles,
-                "swiper-no-swiping",
-              )}
-            >
-              {isLoaded() && <StaticParticles options={options.current} />}
-            </PageSection>
-          )}
-        </SwiperSlide>
       </Swiper>
     </Page>
   );
 }
-
-const StaticParticles = ({ options }: { options: ParticlesOptions }) => {
-  const isActive = useCurrentSectionContext().isActive;
-
-  return (
-    <div className={styles.globalParticlesContainer}>
-      <Particles
-        id={styles["global-particles"]}
-        options={options.global}
-        isActive={isActive}
-      />
-    </div>
-  );
-};

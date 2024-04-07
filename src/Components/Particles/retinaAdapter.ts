@@ -130,7 +130,7 @@ export function adaptEmitter(emitterOptions: any) {
 
 export function adaptParticles(
   defaultOptions: any,
-  { width, height }: ImageSize,
+  { width, height }: ImageSize = { width: screen.width, height: screen.height },
 ) {
   const newOptions = structuredClone(defaultOptions);
 
@@ -148,10 +148,6 @@ export function adaptParticles(
 
   const powAdapt = (exp: number = 1.5, flat: number = 0.1) => {
     return Math.pow(normalize(diagonal, 1, 500), exp) * flat;
-  };
-
-  const logAdapt = (offset: number = 1, flat: number = 0.1) => {
-    return flat * Math.log(diagonal) + offset;
   };
 
   const rationalAdapt = (offset: number = 1, flat: number = 1) => {

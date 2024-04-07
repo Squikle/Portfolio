@@ -29,20 +29,3 @@
   position: absolute;
   inset: 0;
 }
-
-#global-particles {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-}
-
-.globalParticlesContainer {
-  position: relative;
-  height: 100%;
-  width: 100%;
-  @extend %select-disabled;
-
-  &:hover {
-    cursor: crosshair;
-  }
-}
