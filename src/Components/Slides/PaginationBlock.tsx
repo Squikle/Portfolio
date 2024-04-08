@@ -57,11 +57,13 @@ export default function PaginationBlock({
     window.addEventListener("mousedown", handleTouch);
     window.addEventListener("mouseup", handleMouseUp);
     window.addEventListener("touchmove", handleTouch);
+    window.addEventListener("touchstart", handleTouch);
     window.addEventListener("touchend", handleTouchEnd);
     return () => {
       window.addEventListener("mousedown", handleTouch);
       window.removeEventListener("mouseup", handleMouseUp);
       window.removeEventListener("touchmove", handleTouch);
+      window.removeEventListener("touchstart", handleTouch);
       window.removeEventListener("touchend", handleTouchEnd);
     };
   }, []);

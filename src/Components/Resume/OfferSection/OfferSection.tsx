@@ -12,6 +12,9 @@ import { adaptParticles } from "../../Particles/retinaAdapter.ts";
 import emitter from "./emitter.json";
 import Emitters from "../../Particles/Emitters.tsx";
 import React, { useEffect, useRef } from "react";
+import useLongPress from "../../../hooks/useLongPress.ts";
+import { useSwiper } from "swiper/react";
+import config from "../../../global.config.json";
 
 type Props = {
   darkBackgroundOpacity: number;
@@ -22,25 +25,76 @@ export default function OfferSection(offerSectionProps: Props) {
   const top = "50px";
   const buttonRef = useRef<HTMLButtonElement>(null);
   const sectionContext = useCurrentSectionContext();
+  const swiper = useSwiper();
+
+  const handlePressAction = () => {
+    if (!sectionContext.isActive) return;
+
+    const currentSlide = swiper.activeIndex;
+
+    const scroll = (delay: number) => {
+      setTimeout(() => {
+        swiper.slidePrev(config.slides.animation.duration * 1000 * 0.8);
+      }, delay);
+    };
+
+    for (let i = 0; i < currentSlide; i++) {
+      scroll(900 * i * 0.8);
+    }
+  };
+
+  const { onTouchStart: onLongTouchStart, onTouchEnd: onLongTouchEnd } =
+    useLongPress(handlePressAction, undefined, {
+      delay: config.slides.animation.offerButtonDelay,
+    });
 
   const switchBackground = (opacity: number) => {
     backgroundControl?.setOpacity(opacity);
   };
 
-  const lightOff = () =>
+  const glowOff = () => {
+    switchBackground(1);
+
+    if (buttonRef.current) {
+      buttonRef.current.classList.toggle(styles.glow, false);
+      setTimeout(() => {
+        buttonRef.current!.classList.toggle(styles.animated, true);
+      }, 1);
+    }
+  };
+  const glowOn = () => {
     switchBackground(offerSectionProps.darkBackgroundOpacity || 1);
-  const lightOn = () => switchBackground(1);
+
+    if (buttonRef.current) {
+      buttonRef.current.classList.toggle(styles.animated, false);
+      setTimeout(() => {
+        buttonRef.current!.classList.toggle(styles.glow, true);
+      }, 1);
+    }
+  };
 
   useEffect(() => {
     const handleOutOfButtonClick = (e: MouseEvent) => {
       if (!sectionContext.isActive) return;
-      if (e.target !== buttonRef.current) lightOn();
+      if (e.target !== buttonRef.current) glowOff();
     };
 
     window.addEventListener("click", handleOutOfButtonClick);
     return () => window.removeEventListener("click", handleOutOfButtonClick);
   }, [sectionContext]);
 
+  const handleTouchStart = (
+    e:
+      | React.MouseEvent<HTMLButtonElement>
+      | React.TouchEvent<HTMLButtonElement>,
+  ) => {
+    glowOn();
+    onLongTouchStart(e.nativeEvent);
+  };
+  const handleTouchEnd = (e: React.MouseEvent<HTMLButtonElement>) => {
+    glowOff();
+    onLongTouchEnd(e.nativeEvent);
+  };
   return (
     <ResumeCard
       cardClassName={classNames(
@@ -53,9 +107,8 @@ export default function OfferSection(offerSectionProps: Props) {
           <ButtonEmitter isActive={sectionContext.isActive}></ButtonEmitter>
           <button
             ref={buttonRef}
-            onMouseOver={lightOff}
-            onMouseLeave={lightOn}
-            style={{ top: top }}
+            onPointerDown={handleTouchStart}
+            onPointerUp={handleTouchEnd}
             className={styles.button}
           >
             <p>Offer a Job</p>

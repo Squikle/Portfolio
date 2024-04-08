@@ -44,6 +44,7 @@ export function ExperienceLine({
         duration: config.slides.animation.experienceLine.duration,
         [LINE_HEIGHT_PROP]: window.innerHeight,
         ease: config.slides.animation.experienceLine.ease,
+        yoyoEase: true,
       });
     })();
   }, [timeline, lineRef]);
