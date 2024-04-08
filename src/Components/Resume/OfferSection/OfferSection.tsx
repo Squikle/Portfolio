@@ -83,6 +83,15 @@ export default function OfferSection(offerSectionProps: Props) {
     return () => window.removeEventListener("click", handleOutOfButtonClick);
   }, [sectionContext]);
 
+  useEffect(() => {
+    if (!buttonRef.current) return;
+
+    if (sectionContext.isActive) {
+      buttonRef.current.classList.toggle(styles.animated, false);
+      buttonRef.current.classList.toggle(styles.animated, true);
+    }
+  }, [sectionContext.isActive]);
+
   const handleTouchStart = (
     e:
       | React.MouseEvent<HTMLButtonElement>
@@ -109,9 +118,9 @@ export default function OfferSection(offerSectionProps: Props) {
             ref={buttonRef}
             onPointerDown={handleTouchStart}
             onPointerUp={handleTouchEnd}
-            className={styles.button}
+            className={classNames(styles.button)}
           >
-            <p>Offer a Job</p>
+            <p>Let's work together!</p>
           </button>
         </div>
       </ExperienceLine>
