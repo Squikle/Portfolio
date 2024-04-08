@@ -13,6 +13,7 @@ type Props = {
   isFirst: boolean;
   isLast: boolean;
   withDot?: boolean;
+  height?: number;
 };
 
 const LINE_HEIGHT_PROP = "--additional-height";
@@ -39,26 +40,21 @@ export function ExperienceLine({
 
   useEffect(() => {
     contextSafe(async () => {
-      timeline.pause();
       timeline.to(lineRef.current, {
         duration: config.slides.animation.experienceLine.duration,
         [LINE_HEIGHT_PROP]: window.innerHeight,
         ease: config.slides.animation.experienceLine.ease,
       });
     })();
-  }, []);
+  }, [timeline, lineRef]);
 
   useEffect(() => {
     const handleNextTransitionStart = async () => {
-      if (sectionContext.isActive) {
-        await timeline.play();
-      }
+      if (sectionContext.isActive) await timeline.play();
     };
 
     const handlePrevTransitionStart = async () => {
-      if (sectionContext.isPrev) {
-        timeline.reversed(true);
-      }
+      if (sectionContext.isPrev) timeline.reversed(true);
     };
 
     swiper.on("slideNextTransitionStart", handleNextTransitionStart);
