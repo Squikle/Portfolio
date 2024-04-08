@@ -34,7 +34,7 @@ export function ExperienceLine({
   const lineRef = useRef<HTMLDivElement>(null);
 
   const { contextSafe } = useGSAP({
-    dependencies: [lineRef],
+    dependencies: [lineRef, window.innerHeight],
     scope: lineRef,
   });
 

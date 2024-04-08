@@ -8,7 +8,7 @@ import {
   useCurrentSectionContext,
 } from "../../Page/CurrentPageContext/Contexts.tsx";
 import options from "./button-emitter-particles.json";
-import { adaptParticles } from "../../Particles/retinaAdapter.ts";
+import { adaptEmitter, adaptParticles } from "../../Particles/retinaAdapter.ts";
 import emitter from "./emitter.json";
 import Emitters from "../../Particles/Emitters.tsx";
 import React, { useEffect, useRef } from "react";
@@ -129,7 +129,7 @@ export default function OfferSection(offerSectionProps: Props) {
 }
 
 const ButtonEmitter = React.memo(({ isActive }: { isActive: boolean }) => {
-  const buttonEmitters = [emitter];
+  const buttonEmitters = [adaptEmitter(emitter)];
 
   return (
     <div className={styles.particlesContainer}>
