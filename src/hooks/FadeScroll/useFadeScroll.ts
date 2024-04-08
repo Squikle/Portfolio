@@ -1,10 +1,10 @@
-import { RefObject, useEffect } from "react";
+import { RefObject, useLayoutEffect } from "react";
 import styles from "./FadeScroll.module.scss";
 
 export default function useFadeScroll(
   scrollableElementRef: RefObject<HTMLElement>,
 ) {
-  useEffect(() => {
+  useLayoutEffect(() => {
     const element = scrollableElementRef.current;
     if (!element) return;
 
