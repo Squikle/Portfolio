@@ -157,7 +157,7 @@ export default function LogoPage({
       <Swiper
         direction={"vertical"}
         modules={[Mousewheel, Keyboard]}
-        speed={config.slides.animation.speed}
+        speed={config.slides.animation.duration * 1000}
         followFinger={true}
         keyboard={true}
         onInit={(s) => {

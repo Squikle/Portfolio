@@ -30,7 +30,7 @@ export default function App() {
         slidesPerView={1}
         mousewheel={{ enabled: true, forceToAxis: true }}
         modules={[Mousewheel, Keyboard]}
-        speed={config.slides.animation.speed}
+        speed={config.slides.animation.duration * 1000}
         followFinger={false}
         keyboard={true}
         onInit={pagination.setSwiper}

@@ -6,6 +6,7 @@ import gsap from "gsap";
 import { useSwiper } from "swiper/react";
 import { useCurrentSectionContext } from "../Page/CurrentPageContext/Contexts.tsx";
 import { ResumeSectionContext } from "../../Pages/LogoPage/types.ts";
+import config from "../../global.config.json";
 
 type Props = {
   children?: ReactNode;
@@ -40,9 +41,9 @@ export function ExperienceLine({
     contextSafe(async () => {
       timeline.pause();
       timeline.to(lineRef.current, {
-        duration: 1,
+        duration: config.slides.animation.experienceLine.duration,
         [LINE_HEIGHT_PROP]: window.innerHeight,
-        ease: "power3.out",
+        ease: config.slides.animation.experienceLine.ease,
       });
     })();
   }, []);
