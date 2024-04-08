@@ -47,7 +47,7 @@ export function ExperienceLine({
         yoyoEase: true,
       });
     })();
-  }, [timeline, lineRef]);
+  }, [timeline, lineRef, window.innerHeight]);
 
   useEffect(() => {
     const handleNextTransitionStart = async () => {
