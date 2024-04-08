@@ -68,7 +68,8 @@
   font-weight: 100;
   line-height: 1.2em;
   letter-spacing: 0.01em;
-  margin: 0;
+  padding-top: 20px;
+  margin-top: -20px;
   display: flex;
   overflow-y: auto;
   flex-direction: column;
@@ -174,6 +175,16 @@
         top: 0;
         transform: translate(25%, -5%) rotateZ(-15deg);
 
+        filter: drop-shadow(0px 0px 8px red);
+        transition: filter 0.5s ease-in-out;
+        will-change: filter;
+
+        &:hover {
+          filter:
+                  drop-shadow(0px 0px 5px rgba(255, 22, 152, 0.88))
+                  drop-shadow(0px 0px 12px red);
+        }
+
         img {
           width: 100%;
           height: 100%;
@@ -230,6 +241,10 @@
 
 .line {
   $line-color: white;
+  box-shadow:
+          0 0 10px 1px rgba(255, 255, 255, 0.1),
+          0 0 15px 2px rgba(255, 0, 255, 0.1),
+          0 0 20px 4px rgba(0, 255, 255, 0.1);
 
   --additional-height: 0px;
   --dot-offset: 1.5em;
@@ -265,6 +280,10 @@
     border-radius: 1000px;
     position: absolute;
     background-color: $line-color;
+    box-shadow:
+            0 0 10px 1px rgba(255, 255, 255, 0.4),
+            0 0 15px 2px rgba(255, 0, 255, 0.4),
+            0 0 20px 4px rgba(0, 255, 255, 0.4);
   }
 
   &:not(.lineStart)::before {

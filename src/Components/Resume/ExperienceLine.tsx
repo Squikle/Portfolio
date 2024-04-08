@@ -75,6 +75,7 @@ export function ExperienceLine({
           [styles.lineStart]: isFirst,
           [styles.lineEnd]: isLast,
           [styles.dot]: withDot,
+          [styles.active]: sectionContext.isActive,
         })}
       >
         {children}
