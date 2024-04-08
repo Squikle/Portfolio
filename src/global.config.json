@@ -9,7 +9,15 @@
     "control": {
       "length": 2.4,
       "thickness": 1.5,
-      "opacityOnTouch": 0.3
+      "opacityOnTouch": 0.3,
+      "customWheelThreshold": 60,
+      "customScrollThreshold": {
+        "y": 12.5
+      },
+      "customSwipeThreshold": {
+        "x": 12.5,
+        "y": 5
+      }
     },
     "animation": {
       "duration": 1.8,

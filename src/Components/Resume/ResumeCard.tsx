@@ -10,6 +10,7 @@ import useResumeWheelScroll from "./hooks/useResumeWheelScroll.ts";
 import useResumeSwipes from "./hooks/useResumeSwipes.ts";
 import useResumeScrolledOut from "./hooks/useResumeScrolledOut.ts";
 import useResumeScrollReset from "./hooks/useResumeScrollReset.ts";
+import config from "../../global.config.json";
 
 export type ResumeCardContentProps = {
   scrollableElementRef?: RefObject<HTMLElement>;
@@ -44,7 +45,7 @@ export default function ResumeCard({
     (percentageY: number) => {
       if (scrolledOut.current) return;
 
-      const thresholdY = 12.5;
+      const thresholdY = config.slides.control.customScrollThreshold.y;
       const slides = swiper.slides.length;
       if (percentageY > thresholdY && swiper.activeIndex < slides - 1)
         slideNext();

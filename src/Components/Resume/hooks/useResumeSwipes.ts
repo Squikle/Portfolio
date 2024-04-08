@@ -1,6 +1,7 @@
 import { RefObject, useCallback } from "react";
 import { Delta, useSwipes } from "../../../hooks/useSwipes";
 import { SwiperClass } from "swiper/react";
+import config from "../../../global.config.json";
 
 export default function useResumeSwipes(
   scrollableElementRef: RefObject<HTMLElement>,
@@ -16,9 +17,12 @@ export default function useResumeSwipes(
       const handleSwipeX = (percentageX: number, percentageY: number) => {
         if (!pageSwiper) return;
         if (scrolledOut.current) return;
-        if (Math.abs(percentageY) > 5) return;
+        if (
+          Math.abs(percentageY) > config.slides.control.customSwipeThreshold.y
+        )
+          return;
 
-        const thresholdX = 12.5;
+        const thresholdX = config.slides.control.customSwipeThreshold.x;
         const slides = swiper.slides.length;
         if (percentageX > thresholdX && pageSwiper.activeIndex < slides - 1)
           slideNext();

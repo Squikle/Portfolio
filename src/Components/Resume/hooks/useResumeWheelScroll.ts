@@ -17,7 +17,7 @@ export default function useResumeWheelScroll(
   const handleWheelScroll = useCallback(
     (direction: Direction, yDelta: number) => {
       if (scrolledOut.current) return;
-      if (Math.abs(yDelta) < 15) return;
+      if (Math.abs(yDelta) < config.slides.control.customWheelThreshold) return;
 
       executeAndDebounce(() => {
         const slides = swiper.slides.length;
