@@ -1,7 +1,7 @@
 import backgroundImage from "../../../public/squik.png";
 import backgroundImageLow from "../../../public/squik-low.webp";
 import { RefObject, useCallback, useRef } from "react";
-import styles from "./Logo.module.css";
+import styles from "./Logo.module.scss";
 import { OnImageUpdate } from "./types.ts";
 import useResizeObserver from "@react-hook/resize-observer";
 import { debounceAndExecute } from "../../utils/debounce.ts";

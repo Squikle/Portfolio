@@ -126,9 +126,8 @@
       },
       "repulse": {
         "distance": 200,
-        "duration": 0,
         "factor": 100,
-        "maxSpeed": 2,
+        "maxSpeed": 3,
         "speed": 2
       }
     }

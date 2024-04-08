@@ -20,6 +20,7 @@
   pointer-events: none;
   height: 100%;
   width: 100%;
+  @extend %select-disabled;
 }
 
 .block {

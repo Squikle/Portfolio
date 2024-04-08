@@ -9,4 +9,5 @@
   $background-opacity: 0.02,
   $border-opacity: 0.1,
   $blur: 10px);
+  @extend %select-enabled;
 }
