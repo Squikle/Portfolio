@@ -1,12 +1,15 @@
-import React, { RefObject, useCallback, useEffect, useRef } from "react";
+import React, { RefObject, useCallback, useRef } from "react";
 import InfoCard from "../TextCard/InfoCard";
 import classNames from "classnames";
 import styles from "./Resume.module.scss";
 import useFadeScroll from "../../hooks/FadeScroll/useFadeScroll.ts";
 import useOverScroll from "../../hooks/useOverScroll.ts";
 import { useSwiper } from "swiper/react";
-import { Delta, useSwipes } from "../../hooks/useSwipes.ts";
 import { useCurrentPageContext } from "../Page/CurrentPageContext/Contexts.tsx";
+import useResumeWheelScroll from "./hooks/useResumeWheelScroll.ts";
+import useResumeSwipes from "./hooks/useResumeSwipes.ts";
+import useResumeScrolledOut from "./hooks/useResumeScrolledOut.ts";
+import useResumeScrollReset from "./hooks/useResumeScrollReset.ts";
 
 export type ResumeCardContentProps = {
   scrollableElementRef?: RefObject<HTMLElement>;
@@ -25,79 +28,58 @@ export default function ResumeCard({
 }) {
   const swiper = useSwiper();
   const pageSwiper = useCurrentPageContext().swiper;
+  const scrolledOut = useResumeScrolledOut(swiper, pageSwiper);
 
-  let scrolledOut = false;
-  useEffect(() => {
-    if (!swiper) return;
-    const handleTransitionEnd = () => {
-      scrolledOut = false;
-    };
+  const slidePrev = useCallback(() => {
+    swiper.slidePrev();
+    scrolledOut.current = true;
+  }, [swiper, scrolledOut.current]);
 
-    swiper.on("transitionEnd", handleTransitionEnd);
-    pageSwiper?.on("transitionEnd", handleTransitionEnd);
-    return () => {
-      swiper.off("transitionEnd", handleTransitionEnd);
-      pageSwiper?.off("transitionEnd", handleTransitionEnd);
-    };
-  }, [swiper]);
+  const slideNext = useCallback(() => {
+    swiper.slideNext();
+    scrolledOut.current = true;
+  }, [swiper, scrolledOut.current]);
 
   const handleScroll = useCallback(
     (percentageY: number) => {
-      if (scrolledOut) return;
+      if (scrolledOut.current) return;
 
       const thresholdY = 12.5;
-      if (
-        percentageY > thresholdY &&
-        swiper.activeIndex < swiper.slides.length - 1
-      ) {
-        swiper?.slideNext();
-        scrolledOut = true;
-      } else if (percentageY < -thresholdY && swiper.activeIndex > 0) {
-        swiper?.slidePrev();
-        scrolledOut = true;
-      }
+      const slides = swiper.slides.length;
+      if (percentageY > thresholdY && swiper.activeIndex < slides - 1)
+        slideNext();
+      else if (percentageY < -thresholdY && swiper.activeIndex > 0) slidePrev();
     },
-    [scrolledOut, swiper, swiper.slides.length],
-  );
-
-  const handleSwipeX = useCallback(
-    (percentageX: number, percentageY: number) => {
-      if (!pageSwiper) return;
-      if (scrolledOut) return;
-      if (Math.abs(percentageY) > 5) return;
-
-      const thresholdX = 12.5;
-      if (
-        percentageX > thresholdX &&
-        pageSwiper.activeIndex < pageSwiper.slides.length - 1
-      ) {
-        pageSwiper?.slideNext();
-        scrolledOut = true;
-      } else if (percentageX < -thresholdX && pageSwiper.activeIndex > 0) {
-        pageSwiper?.slidePrev();
-        scrolledOut = true;
-      }
-    },
-    [pageSwiper, scrolledOut],
+    [
+      swiper.slides.length,
+      swiper.activeIndex,
+      scrolledOut.current,
+      slideNext,
+      slidePrev,
+    ],
   );
 
   const scrollableElementRef = useRef<HTMLElement>(null);
 
-  const handleSwipe = useCallback(
-    (e: Delta) => {
-      const element = scrollableElementRef.current;
-      if (!element) throw new Error("Scrollable element ref must be set!");
-
-      const isScrollable = element.scrollHeight > element.clientHeight;
-      if (!isScrollable) handleScroll(e.y);
-      handleSwipeX(e.x, e.y);
-    },
-    [handleScroll, handleSwipeX],
-  );
-
   useOverScroll(scrollableElementRef, handleScroll);
-  useSwipes(scrollableElementRef, handleSwipe);
   useFadeScroll(scrollableElementRef);
+  useResumeScrollReset(scrollableElementRef);
+  useResumeSwipes(
+    scrollableElementRef,
+    scrolledOut,
+    slideNext,
+    slidePrev,
+    handleScroll,
+    swiper,
+    pageSwiper,
+  );
+  useResumeWheelScroll(
+    scrollableElementRef,
+    scrolledOut,
+    swiper,
+    slideNext,
+    slidePrev,
+  );
 
   const renderChildren = () => {
     return typeof children === "function"
