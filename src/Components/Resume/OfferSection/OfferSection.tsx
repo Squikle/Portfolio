@@ -92,13 +92,10 @@ export default function OfferSection(offerSectionProps: Props) {
     }
   }, [sectionContext.isActive]);
 
-  const handleTouchStart = (
-    e:
-      | React.MouseEvent<HTMLButtonElement>
-      | React.TouchEvent<HTMLButtonElement>,
-  ) => {
+  const handleTouchStart = (e: React.PointerEvent) => {
     glowOn();
-    onLongTouchStart(e.nativeEvent);
+    if (e.pointerType === "mouse") handlePressAction();
+    else onLongTouchStart(e.nativeEvent);
   };
   const handleTouchEnd = (e: React.MouseEvent<HTMLButtonElement>) => {
     glowOff();
@@ -118,6 +115,8 @@ export default function OfferSection(offerSectionProps: Props) {
             ref={buttonRef}
             onPointerDown={handleTouchStart}
             onPointerUp={handleTouchEnd}
+            onMouseOver={glowOn}
+            onMouseLeave={glowOff}
             className={classNames(styles.button)}
           >
             <p>Let's work together!</p>
