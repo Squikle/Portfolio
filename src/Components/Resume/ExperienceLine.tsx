@@ -40,7 +40,8 @@ export function ExperienceLine({
 
   useEffect(() => {
     contextSafe(async () => {
-      timeline.to(lineRef.current, {
+      await timeline.clear();
+      await timeline.to(lineRef.current, {
         duration: config.slides.animation.experienceLine.duration,
         [LINE_HEIGHT_PROP]: window.innerHeight,
         ease: config.slides.animation.experienceLine.ease,
@@ -51,11 +52,17 @@ export function ExperienceLine({
 
   useEffect(() => {
     const handleNextTransitionStart = async () => {
-      if (sectionContext.isActive) await timeline.play();
+      if (!sectionContext.isActive) return;
+
+      await contextSafe(async () => {
+        await timeline.play();
+      })();
     };
 
     const handlePrevTransitionStart = async () => {
-      if (sectionContext.isPrev) timeline.reversed(true);
+      if (!sectionContext.isPrev) return;
+
+      await contextSafe(async () => await timeline.reversed(true))();
     };
 
     swiper.on("slideNextTransitionStart", handleNextTransitionStart);
