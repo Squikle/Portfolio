@@ -39,6 +39,7 @@
       },
       "objects": {
         "duration": 1.4,
+        "delay": 0.1,
         "ease": "power2.out"
       }
     }

@@ -107,6 +107,7 @@ export default function Parallax({ isActive }: Props) {
             "data-speed-y": "0.16",
             "data-reveal-distance-y": "-1",
             "data-reveal-speed": "1",
+            "data-reveal-stage": "1",
           }}
         >
           <p>It's interactive!</p>
@@ -117,8 +118,9 @@ export default function Parallax({ isActive }: Props) {
           dataProps={{
             "data-speed-x": "0.19",
             "data-speed-y": "0.16",
-            "data-reveal-distance-x": "1",
-            "data-reveal-speed": "1",
+            "data-reveal-distance-x": "-1",
+            "data-reveal-speed": "1.1",
+            "data-reveal-stage": "3",
           }}
           tailClassName={styles.tail}
           position={"right"}
@@ -169,8 +171,9 @@ export default function Parallax({ isActive }: Props) {
                 "data-speed-y": "0.16",
                 "data-speed-rot-y": "16",
                 "data-speed-rot-x": "8",
-                "data-reveal-distance-x": "-1",
+                "data-reveal-distance-x": "1",
                 "data-reveal-speed": "1",
+                "data-reveal-stage": "2",
               }}
               tailClassName={styles.tail}
             >

@@ -7,7 +7,7 @@ export default function useParallaxAnimation(onAnimationCompleted: () => void) {
 
   useGSAP(() => {
     const container = document.querySelector(".parallax-container")!;
-    const elementsToUpdate = Array.from(
+    const animatedElements = Array.from(
       document.querySelectorAll<HTMLElement>(".parallax"),
     );
 
@@ -18,7 +18,7 @@ export default function useParallaxAnimation(onAnimationCompleted: () => void) {
       },
     });
 
-    elementsToUpdate.forEach((el) => {
+    const runAnimation = (el: HTMLElement, delay: number | string) => {
       const offsetDistanceX = +(el.dataset.revealDistanceX || 0) / 1000;
       const offsetDistanceY = +(el.dataset.revealDistanceY || 0) / 1000;
       const absoluteOffsetX =
@@ -41,9 +41,21 @@ export default function useParallaxAnimation(onAnimationCompleted: () => void) {
           ease: config.objects.ease,
           duration: config.objects.duration / speed,
         },
-        1,
+        delay,
       );
-    });
+    };
+
+    animatedElements
+      .filter((el) => !el.classList.contains("text"))
+      .filter((el) => !el.dataset.revealStage)
+      .forEach((el) => runAnimation(el, config.objects.delay));
+    animatedElements
+      .filter((el) => el.dataset.revealStage)
+      .sort((el1, el2) => +el1.dataset.revealStage! - +el2.dataset.revealStage!)
+      .forEach((el, i) => {
+        const delay = i === 0 ? config.objects.delay + 1 : ">";
+        runAnimation(el, delay);
+      });
     timeline.from(
       ".dev",
       {
@@ -51,7 +63,7 @@ export default function useParallaxAnimation(onAnimationCompleted: () => void) {
         duration: config.textIn.duration,
         ease: config.textIn.ease,
       },
-      config.objects.duration,
+      config.objects.delay + config.objects.duration / 3,
     );
     timeline.from(
       ".name",
