@@ -10,6 +10,8 @@ export default function useLongPress(
 
   const start = useCallback(
     (event: TouchEvent | MouseEvent) => {
+      if (timeout.current) return;
+
       timeout.current = setTimeout(() => {
         onLongPress(event);
         setLongPressTriggered(true);
@@ -20,7 +22,10 @@ export default function useLongPress(
 
   const clear = useCallback(
     (event: TouchEvent | MouseEvent, shouldTriggerClick = true) => {
-      timeout.current && clearTimeout(timeout.current);
+      if (timeout.current) {
+        clearTimeout(timeout.current);
+        timeout.current = undefined;
+      }
       shouldTriggerClick && !longPressTriggered && onClick && onClick(event);
       setLongPressTriggered(false);
     },

@@ -80,56 +80,41 @@ import "./parallax.text.scss";
 import { useParallax } from "./useParallax.ts";
 import classNames from "classnames";
 import overlayStyles from "./ParallaxOverlay.module.scss";
-import Tooltip from "../Tooltip/Tooltip.tsx";
-import styles from "./ParallaxOverlay.module.scss";
+import useTooltips from "./useTooltips.tsx";
+import { useRef } from "react";
 
 type Props = {
   isActive: boolean;
 };
 
-export type ParallaxDataProps = {
-  "data-speed-x": string;
-  "data-speed-y": string;
-  "data-speed-z": string;
-};
-
 export default function Parallax({ isActive }: Props) {
-  useParallax(isActive);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const timelineControl = useParallax(containerRef, isActive);
+  const {
+    tooltips,
+    onTextClick,
+    onTouchStart,
+    onTouchEnd,
+    onPointerEnter,
+    onPointerLeave,
+  } = useTooltips(timelineControl);
 
   return (
     <>
       <div className="vignette"></div>
       <div className={classNames(overlayStyles.overlay)}>
-        <Tooltip
-          className={classNames(styles.tip, styles.interactive, "parallax")}
-          dataProps={{
-            "data-speed-x": "0.19",
-            "data-speed-y": "0.16",
-            "data-reveal-distance-y": "-1",
-            "data-reveal-speed": "1",
-            "data-reveal-stage": "1",
-          }}
-        >
-          <p>It's interactive!</p>
-          <p>Hover the screen!</p>
-        </Tooltip>
-        <Tooltip
-          className={classNames(styles.tip, styles.more, "parallax")}
-          dataProps={{
-            "data-speed-x": "0.19",
-            "data-speed-y": "0.16",
-            "data-reveal-distance-x": "-1",
-            "data-reveal-speed": "1.1",
-            "data-reveal-stage": "3",
-          }}
-          tailClassName={styles.tail}
-          position={"right"}
-        >
-          <p>There's more!</p>
-          <p>Swipe!</p>
-        </Tooltip>
+        <tooltips.InteractiveTooltip />
+        <tooltips.MoreTooltip />
       </div>
-      <div className="parallax-container">
+      <div
+        className="parallax-container"
+        onTouchStart={onTouchStart}
+        onTouchEnd={onTouchEnd}
+        onPointerEnter={onPointerEnter}
+        onPointerLeave={onPointerLeave}
+        ref={containerRef}
+      >
         <img
           src={birdsLow}
           data-src={birds}
@@ -163,22 +148,7 @@ export default function Parallax({ isActive }: Props) {
         />
         <div className="lazyload blur-up parallax-layers">
           <div className={classNames(overlayStyles.overlayFixed)}>
-            <Tooltip
-              position={"bottom"}
-              className={classNames(styles.tip, styles.tapMe, "parallax")}
-              dataProps={{
-                "data-speed-x": "0.19",
-                "data-speed-y": "0.16",
-                "data-speed-rot-y": "16",
-                "data-speed-rot-x": "8",
-                "data-reveal-distance-x": "1",
-                "data-reveal-speed": "1",
-                "data-reveal-stage": "2",
-              }}
-              tailClassName={styles.tail}
-            >
-              <p>What's that?</p>
-            </Tooltip>
+            <tooltips.TextTooltip />
           </div>
           <img
             fetchPriority={"high"}
@@ -196,6 +166,7 @@ export default function Parallax({ isActive }: Props) {
             data-speed-z="0"
             data-speed-rot-y="8"
             data-speed-rot-x="4"
+            onClick={onTextClick}
           >
             <div className="dev">
               <h1 className="filled">Fullstack</h1>

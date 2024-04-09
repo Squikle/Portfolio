@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState } from "react";
+import { RefObject, useLayoutEffect, useState } from "react";
 import { throttle } from "../../utils/throttle.ts";
 import useParallaxAnimation from "./useParallaxAnimations.ts";
 
@@ -20,7 +20,10 @@ interface ParallaxDataset {
   speedRotX: number;
 }
 
-export function useParallax(isActive: boolean) {
+export function useParallax(
+  containerRef: RefObject<HTMLElement>,
+  isActive: boolean,
+) {
   const [zEnabled, setZEnabled] = useState(false);
 
   const handleUpdate = (
@@ -91,7 +94,7 @@ export function useParallax(isActive: boolean) {
   }
 
   const getContainerAndElements: () => [Element, HTMLElement[]] = () => {
-    const container = document.querySelector(".parallax-container")!;
+    const container = containerRef.current!;
     const elementsToUpdate = Array.from(
       container.querySelectorAll<HTMLElement>(".parallax"),
     );
@@ -131,5 +134,8 @@ export function useParallax(isActive: boolean) {
     };
   }, [isActive]);
 
-  useParallaxAnimation(() => setZEnabled(true));
+  const timelineControl = useParallaxAnimation(containerRef, () =>
+    setZEnabled(true),
+  );
+  return timelineControl;
 }
