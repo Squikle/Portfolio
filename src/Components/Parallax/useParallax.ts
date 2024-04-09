@@ -76,9 +76,11 @@ export function useParallax(isActive: boolean) {
     const strength = 0.04;
     const rotateDegreeY = x * speedRotY * strength;
 
-    window.requestAnimationFrame(() => {
-      el.style.setProperty(cssProps.yRotate, `${rotateDegreeY}deg`);
-    });
+    if (rotateDegreeY) {
+      window.requestAnimationFrame(() => {
+        el.style.setProperty(cssProps.yRotate, `${rotateDegreeY}deg`);
+      });
+    }
 
     if (speedRotX) {
       const rotateDegreeX = y * speedRotX * strength;

@@ -8,7 +8,7 @@ export default function useParallaxAnimation(onAnimationCompleted: () => void) {
   useGSAP(() => {
     const container = document.querySelector(".parallax-container")!;
     const elementsToUpdate = Array.from(
-      container.querySelectorAll<HTMLElement>(".parallax"),
+      document.querySelectorAll<HTMLElement>(".parallax"),
     );
 
     const timeline = gsap.timeline({

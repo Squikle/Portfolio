@@ -4,7 +4,7 @@ $default-scale: 0.316;
 
 .parallax-layers, .parallax-container {
   aspect-ratio: 1/1;
-  min-height: 100vh; //todo: 100svh and check iphone centring
+  min-height: 100vh;
   position: absolute;
   inset: auto 0 0;
   @extend %select-disabled;

@@ -97,9 +97,12 @@ export default function OfferSection(offerSectionProps: Props) {
     if (e.pointerType === "mouse") handlePressAction();
     else onLongTouchStart(e.nativeEvent);
   };
-  const handleTouchEnd = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleTouchEnd = (e: React.TouchEvent<HTMLButtonElement>) => {
     glowOff();
     onLongTouchEnd(e.nativeEvent);
+  };
+  const handlePointerOver = (e: React.PointerEvent) => {
+    if (e.pointerType === "mouse") glowOn();
   };
   return (
     <ResumeCard
@@ -114,8 +117,8 @@ export default function OfferSection(offerSectionProps: Props) {
           <button
             ref={buttonRef}
             onPointerDown={handleTouchStart}
-            onPointerUp={handleTouchEnd}
-            onMouseOver={glowOn}
+            onTouchEnd={handleTouchEnd}
+            onPointerOver={handlePointerOver}
             onMouseLeave={glowOff}
             className={classNames(styles.button)}
           >

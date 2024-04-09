@@ -78,9 +78,19 @@ import light from "../../../public/layers-mid/0-0-light.webp";
 import "./parallax.scss";
 import "./parallax.text.scss";
 import { useParallax } from "./useParallax.ts";
+import classNames from "classnames";
+import overlayStyles from "./ParallaxOverlay.module.scss";
+import Tooltip from "../Tooltip/Tooltip.tsx";
+import styles from "./ParallaxOverlay.module.scss";
 
 type Props = {
   isActive: boolean;
+};
+
+export type ParallaxDataProps = {
+  "data-speed-x": string;
+  "data-speed-y": string;
+  "data-speed-z": string;
 };
 
 export default function Parallax({ isActive }: Props) {
@@ -89,6 +99,34 @@ export default function Parallax({ isActive }: Props) {
   return (
     <>
       <div className="vignette"></div>
+      <div className={classNames(overlayStyles.overlay)}>
+        <Tooltip
+          className={classNames(styles.tip, styles.interactive, "parallax")}
+          dataProps={{
+            "data-speed-x": "0.19",
+            "data-speed-y": "0.16",
+            "data-reveal-distance-y": "-1",
+            "data-reveal-speed": "1",
+          }}
+        >
+          <p>It's interactive!</p>
+          <p>Hover the screen!</p>
+        </Tooltip>
+        <Tooltip
+          className={classNames(styles.tip, styles.more, "parallax")}
+          dataProps={{
+            "data-speed-x": "0.19",
+            "data-speed-y": "0.16",
+            "data-reveal-distance-x": "1",
+            "data-reveal-speed": "1",
+          }}
+          tailClassName={styles.tail}
+          position={"right"}
+        >
+          <p>There's more!</p>
+          <p>Swipe!</p>
+        </Tooltip>
+      </div>
       <div className="parallax-container">
         <img
           src={birdsLow}
@@ -122,6 +160,23 @@ export default function Parallax({ isActive }: Props) {
           data-reveal-speed="0.4"
         />
         <div className="lazyload blur-up parallax-layers">
+          <div className={classNames(overlayStyles.overlayFixed)}>
+            <Tooltip
+              position={"bottom"}
+              className={classNames(styles.tip, styles.tapMe, "parallax")}
+              dataProps={{
+                "data-speed-x": "0.19",
+                "data-speed-y": "0.16",
+                "data-speed-rot-y": "16",
+                "data-speed-rot-x": "8",
+                "data-reveal-distance-x": "-1",
+                "data-reveal-speed": "1",
+              }}
+              tailClassName={styles.tail}
+            >
+              <p>What's that?</p>
+            </Tooltip>
+          </div>
           <img
             fetchPriority={"high"}
             src={sky3Low}

@@ -1,0 +1,116 @@
+.overlay, .overlayFixed {
+  z-index: 100;
+  position: absolute;
+  pointer-events: none;
+}
+
+.overlay {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  inset: 0;
+  position: fixed;
+}
+
+.overlayFixed {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.tip {
+  position: absolute !important;
+  padding: 10px 10px;
+  width: 12vmax;
+  min-width: 10vmax;
+  max-width: 120px;
+  aspect-ratio: 2 / 1;
+  border-radius: 1.5vmax;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  align-items: center;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  opacity: 1;
+  --color: rgba(0, 0, 0, 0.1);
+
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.8),
+              inset 5px 5px 20px rgba(255,255,255,0.2);
+  border: 0.1px solid rgba(255, 255, 255, 1);
+
+  p {
+    color: white;
+    font-family: "Barlow Semi Condensed", sans-serif;
+    filter: drop-shadow(2px 2px 5px black);
+    text-align: center;
+    font-size: 0.8em;
+    line-height: 1em;
+  }
+
+  .tail {
+    --color: none;
+  }
+}
+
+.tapMe {
+  top: 54.5%;
+  left: 48%;
+
+  .tail {
+    width: 32px;
+    height: 12px;
+    border-bottom: 8px solid white;
+    animation: vertical-arrow-move 0.4s ease-in-out infinite alternate;
+
+    @keyframes vertical-arrow-move {
+      100% {
+        height: 15px;
+        width: 26px;
+      }
+    }
+  }
+}
+
+.interactive {
+  bottom: 55%;
+  left: 20%
+}
+
+.more {
+  top: 80%;
+  right: 13%;
+
+  .tail {
+    height: 26px;
+    width: 14px;
+    border-right: 10px solid white;
+    animation: horizontal-arrow-move 0.4s ease-in-out infinite alternate;
+
+    @keyframes horizontal-arrow-move {
+      100% {
+        height: 20px;
+        width: 18px;
+      }
+    }
+  }
+}
+
+@media (max-aspect-ratio: 0.54/1) and (orientation: portrait){
+  .tapMe {
+    top: 54.5%;
+    left: 45%;
+  }
+}
+@media (max-aspect-ratio: 0.44/1) and (orientation: portrait) {
+  .tip {
+    width: 10%;
+  }
+  .tapMe {
+    top: 55.7%;
+    left: 44%;
+  }
+}
+@media (max-aspect-ratio: 0.35/1) and (orientation: portrait){
+}
