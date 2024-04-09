@@ -7,16 +7,10 @@ import lazySizes from "lazysizes";
 lazySizes.cfg.blurupMode = "auto";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import createStore from "./store/createStore.ts";
-import { Provider } from "react-redux";
 gsap.registerPlugin(useGSAP);
-
-const store = createStore();
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <App />
   </StrictMode>,
 );
