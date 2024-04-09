@@ -102,12 +102,12 @@ export function useParallax(isActive: boolean) {
 
     const handleMouseUpdate = throttle((e: MouseEvent) => {
       handleUpdate(e.clientX, e.clientY, elementsToUpdate);
-    }, 0);
+    }, 5);
 
     const handleTouchUpdate = throttle((e: TouchEvent) => {
       const lastTouch = e.changedTouches[e.changedTouches.length - 1];
       handleUpdate(lastTouch.clientX, lastTouch.clientY, elementsToUpdate);
-    }, 0);
+    }, 5);
 
     const reset = () => {
       update(0, 0, elementsToUpdate);

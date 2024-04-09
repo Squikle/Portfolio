@@ -323,9 +323,9 @@ $default-scale: 0.316;
   --from-left: -2%;
   --from-top: 35%;
   z-index: 41;
-  opacity: 0.4;
-  filter: saturate(1000%) hue-rotate(360deg);
+  filter: saturate(1.5) hue-rotate(340deg) !important;
   mix-blend-mode: screen;
+  opacity: 0.4;
 }
 @media (max-aspect-ratio: 0.75/1) and (orientation: portrait){
   .birds {
