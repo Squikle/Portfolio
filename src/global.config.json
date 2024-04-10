@@ -44,8 +44,9 @@
       }
     },
     "userInteraction": {
-      "hovering": 1.5,
-      "swipeDelay": 6
+      "hoveringTouch": 1.5,
+      "hoveringMouse": 3,
+      "swipeDelay": 12
     }
   }
 }

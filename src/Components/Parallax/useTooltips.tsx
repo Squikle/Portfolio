@@ -15,7 +15,7 @@ const defaultUserInteraction: UserInteraction = {
   HoverFinished: false,
   SwipeDelayFinished: false,
   TextTapFinished: false,
-};
+} as const;
 
 const reduceUserInteraction = (
   prevState: UserInteraction,
@@ -61,19 +61,16 @@ export default function useTooltips(timelineControl: StagedAnimationTimelines) {
   }, [userInteractionConfig.swipeDelay]);
 
   const handleContainerEnter = useCallback(
-    (event: React.PointerEvent | React.TouchEvent) => {
+    (delaySeconds: number, event: React.PointerEvent | React.TouchEvent) => {
       if (
         (event as React.PointerEvent).pointerType === "touch" ||
         timeout.current
       )
         return;
 
-      timeout.current = setTimeout(
-        hoverCompleted,
-        userInteractionConfig.hovering * 1000,
-      );
+      timeout.current = setTimeout(hoverCompleted, delaySeconds * 1000);
     },
-    [userInteractionConfig.hovering, hoverCompleted],
+    [hoverCompleted],
   );
 
   const handleContainerLeave = () => {
@@ -83,11 +80,23 @@ export default function useTooltips(timelineControl: StagedAnimationTimelines) {
     }
   };
 
+  const handlePointerEnter = useCallback(
+    (e: React.PointerEvent) =>
+      handleContainerEnter(userInteractionConfig.hoveringMouse, e),
+    [handleContainerEnter, userInteractionConfig.hoveringMouse],
+  );
+
+  const handleTouchStart = useCallback(
+    (e: React.TouchEvent) =>
+      handleContainerEnter(userInteractionConfig.hoveringTouch, e),
+    [handleContainerEnter, userInteractionConfig.hoveringTouch],
+  );
+
   return {
     tooltips: { InteractiveTooltip, MoreTooltip, TextTooltip },
     onTextClick: textTapCompleted,
-    onPointerEnter: handleContainerEnter,
-    onTouchStart: handleContainerEnter,
+    onPointerEnter: handlePointerEnter,
+    onTouchStart: handleTouchStart,
     onPointerLeave: handleContainerLeave,
     onTouchEnd: handleContainerLeave,
     onTextPointerEnter: textTapCompleted,
