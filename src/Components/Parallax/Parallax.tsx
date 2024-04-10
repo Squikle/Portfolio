@@ -98,6 +98,7 @@ export default function Parallax({ isActive }: Props) {
     onTouchEnd,
     onPointerEnter,
     onPointerLeave,
+    onTextPointerEnter,
   } = useTooltips(timelineControl);
 
   return (
@@ -166,13 +167,20 @@ export default function Parallax({ isActive }: Props) {
             data-speed-z="0"
             data-speed-rot-y="8"
             data-speed-rot-x="4"
-            onClick={onTextClick}
           >
-            <div className="dev">
+            <div
+              className="dev"
+              onClick={onTextClick}
+              onPointerEnter={onTextPointerEnter}
+            >
               <h1 className="filled">Fullstack</h1>
               <h1 className="filled">Developer</h1>
             </div>
-            <div className="name">
+            <div
+              className="name"
+              onClick={onTextClick}
+              onPointerEnter={onTextPointerEnter}
+            >
               <h1 className="empty">Michael</h1>
               <h1 className="empty">Dovhalov</h1>
             </div>

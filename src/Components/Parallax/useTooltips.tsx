@@ -90,6 +90,7 @@ export default function useTooltips(timelineControl: StagedAnimationTimelines) {
     onTouchStart: handleContainerEnter,
     onPointerLeave: handleContainerLeave,
     onTouchEnd: handleContainerLeave,
+    onTextPointerEnter: textTapCompleted,
   };
 }
 
