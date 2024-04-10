@@ -42,4 +42,11 @@ div {
     clip-path: polygon(0 0, 100% 50%, 0 100%);
     margin: auto;
   }
+
+  &.right-bottom .tail {
+    aspect-ratio: 1 / 2;
+    clip-path: polygon(0 0, 100% 50%, 0 100%);
+    transform: rotateZ(45deg);
+    inset: 100% auto auto 100%;
+  }
 }

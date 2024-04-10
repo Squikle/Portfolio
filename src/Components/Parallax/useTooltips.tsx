@@ -113,7 +113,7 @@ const InteractiveTooltip = () => (
     dataProps={{
       "data-speed-x": "0.19",
       "data-speed-y": "0.16",
-      "data-reveal-distance-x": "-1",
+      "data-reveal-distance-y": "-1",
       "data-reveal-speed": "1",
       "data-reveal-stage": "1",
       "data-reveal-stage-name": tooltipRevealStages.HOVER,
@@ -130,16 +130,16 @@ const MoreTooltip = () => (
     dataProps={{
       "data-speed-x": "0.19",
       "data-speed-y": "0.16",
-      "data-reveal-distance-x": "1",
+      "data-reveal-distance-y": "1",
       "data-reveal-speed": "1",
       "data-reveal-stage": "3",
       "data-reveal-stage-name": tooltipRevealStages.SWIPE,
     }}
     tailClassName={tooltipStyles.tail}
-    position={"right"}
+    position={"right-bottom"}
   >
     <p>There's more!</p>
-    <p>Swipe!</p>
+    <p>Click!</p>
   </Tooltip>
 );
 
@@ -152,13 +152,13 @@ const TextTooltip = () => (
       "data-speed-y": "0.16",
       "data-speed-rot-y": "16",
       "data-speed-rot-x": "8",
-      "data-reveal-distance-y": "-1",
+      "data-reveal-distance-x": "-1",
       "data-reveal-speed": "1",
       "data-reveal-stage": "2",
       "data-reveal-stage-name": tooltipRevealStages.TEXT,
     }}
     tailClassName={tooltipStyles.tail}
   >
-    <p>What's that?</p>
+    <p>Who's that?</p>
   </Tooltip>
 );

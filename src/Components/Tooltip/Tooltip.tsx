@@ -14,7 +14,13 @@ type Options = {
   color?: string;
 };
 
-type ArrowPosition = "top" | "right" | "bottom" | "left" | "none";
+type ArrowPosition =
+  | "top"
+  | "right"
+  | "bottom"
+  | "left"
+  | "right-bottom"
+  | "none";
 type StyleCustomization = {
   "--color"?: string;
 };
