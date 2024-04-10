@@ -16,9 +16,7 @@ export default function useParallaxAnimation(
 
   const { contextSafe } = useGSAP(() => {
     const timeline = gsap.timeline({
-      onComplete: () => {
-        onAnimationCompleted();
-      },
+      onComplete: onAnimationCompleted,
     });
 
     const container = containerRef.current!;

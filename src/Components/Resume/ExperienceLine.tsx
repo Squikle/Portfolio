@@ -1,6 +1,6 @@
 import styles from "./Resume.module.scss";
 import classNames from "classnames";
-import { ReactNode, useEffect, useRef, useState } from "react";
+import { ReactNode, useEffect, useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useSwiper } from "swiper/react";
@@ -24,46 +24,37 @@ export function ExperienceLine({
   isLast,
   withDot = true,
 }: Props) {
-  const [timeline] = useState<gsap.core.Timeline>(
+  const timeline = useRef<gsap.core.Timeline>(
     gsap.timeline({
       paused: true,
     }),
   );
   const swiper = useSwiper();
-  const sectionContext = useCurrentSectionContext<ResumeSectionContext>();
+  const currentSectionContext =
+    useCurrentSectionContext<ResumeSectionContext>();
+  const { isActive, isPrev } = currentSectionContext;
   const lineRef = useRef<HTMLDivElement>(null);
 
-  const { contextSafe } = useGSAP({
-    dependencies: [lineRef, window.innerHeight],
-    scope: lineRef,
-  });
-
-  useEffect(() => {
-    contextSafe(async () => {
-      await timeline.clear();
-      await timeline.to(lineRef.current, {
+  const { contextSafe } = useGSAP(
+    async () => {
+      timeline.current.to(lineRef.current, {
         duration: config.slides.animation.experienceLine.duration,
         [LINE_HEIGHT_PROP]: window.innerHeight,
         ease: config.slides.animation.experienceLine.ease,
         yoyoEase: true,
       });
-    })();
-  }, [timeline, lineRef, window.innerHeight]);
+    },
+    {
+      dependencies: [lineRef, window.innerHeight],
+      revertOnUpdate: true,
+    },
+  );
 
   useEffect(() => {
-    const handleNextTransitionStart = async () => {
-      if (!sectionContext.isActive) return;
-
-      await contextSafe(async () => {
-        await timeline.play();
-      })();
-    };
-
-    const handlePrevTransitionStart = async () => {
-      if (!sectionContext.isPrev) return;
-
-      await contextSafe(async () => await timeline.reversed(true))();
-    };
+    const handleNextTransitionStart = async () =>
+      isActive && contextSafe(async () => await timeline.current.play())();
+    const handlePrevTransitionStart = async () =>
+      isPrev && contextSafe(async () => await timeline.current.reverse())();
 
     swiper.on("slideNextTransitionStart", handleNextTransitionStart);
     swiper.on("slidePrevTransitionStart", handlePrevTransitionStart);
@@ -72,7 +63,7 @@ export function ExperienceLine({
       swiper.off("slideNextTransitionStart", handleNextTransitionStart);
       swiper.off("slidePrevTransitionStart", handlePrevTransitionStart);
     };
-  }, [sectionContext, timeline, swiper]);
+  }, [currentSectionContext, timeline, swiper]); //todo: why doesn't work without currentSectionContext?
 
   return (
     <div className={styles.lineContainer}>
@@ -82,7 +73,7 @@ export function ExperienceLine({
           [styles.lineStart]: isFirst,
           [styles.lineEnd]: isLast,
           [styles.dot]: withDot,
-          [styles.active]: sectionContext.isActive,
+          [styles.active]: isActive,
         })}
       >
         {children}
