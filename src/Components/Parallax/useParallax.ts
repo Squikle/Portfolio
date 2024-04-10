@@ -134,8 +134,6 @@ export function useParallax(
     };
   }, [isActive]);
 
-  const timelineControl = useParallaxAnimation(containerRef, () =>
-    setZEnabled(true),
-  );
-  return timelineControl;
+  const tweens = useParallaxAnimation(containerRef, () => setZEnabled(true));
+  return tweens;
 }

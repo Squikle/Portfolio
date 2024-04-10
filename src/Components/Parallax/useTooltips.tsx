@@ -3,7 +3,7 @@ import Tooltip from "../Tooltip/Tooltip";
 import tooltipStyles from "./ParallaxOverlay.module.scss";
 import React, { useCallback, useEffect, useReducer, useRef } from "react";
 import config from "../../global.config.json";
-import { StagedAnimationTimelines } from "./useParallaxAnimations.ts";
+import { StagedAnimationTweens } from "./useParallaxAnimations.ts";
 
 type UserInteraction = {
   TextTapFinished: boolean;
@@ -33,7 +33,7 @@ const tooltipRevealStages = {
   TEXT: "textTooltip",
 };
 
-export default function useTooltips(timelineControl: StagedAnimationTimelines) {
+export default function useTooltips(tweens: StagedAnimationTweens) {
   const timeout = useRef<NodeJS.Timeout>();
   const [userInteraction, dispatchUserInteraction] = useReducer(
     reduceUserInteraction,
@@ -43,18 +43,18 @@ export default function useTooltips(timelineControl: StagedAnimationTimelines) {
 
   const hoverCompleted = useCallback(() => {
     dispatchUserInteraction("HoverFinished");
-    timelineControl[tooltipRevealStages.HOVER].reverse();
-  }, [timelineControl]);
+    tweens[tooltipRevealStages.HOVER].reverse();
+  }, [tweens]);
 
   const swipeCompleted = useCallback(() => {
     dispatchUserInteraction("SwipeDelayFinished");
-    timelineControl[tooltipRevealStages.SWIPE].reverse();
-  }, [timelineControl]);
+    tweens[tooltipRevealStages.SWIPE].reverse();
+  }, [tweens]);
 
   const textTapCompleted = useCallback(() => {
     dispatchUserInteraction("TextTapFinished");
-    timelineControl[tooltipRevealStages.TEXT].reverse();
-  }, [timelineControl]);
+    tweens[tooltipRevealStages.TEXT].reverse();
+  }, [tweens]);
 
   useEffect(() => {
     setTimeout(swipeCompleted, userInteractionConfig.swipeDelay * 1000);

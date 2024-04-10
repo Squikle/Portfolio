@@ -90,7 +90,7 @@ type Props = {
 export default function Parallax({ isActive }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const timelineControl = useParallax(containerRef, isActive);
+  const tweens = useParallax(containerRef, isActive);
   const {
     tooltips,
     onTextClick,
@@ -99,7 +99,7 @@ export default function Parallax({ isActive }: Props) {
     onPointerEnter,
     onPointerLeave,
     onTextPointerEnter,
-  } = useTooltips(timelineControl);
+  } = useTooltips(tweens);
 
   return (
     <>

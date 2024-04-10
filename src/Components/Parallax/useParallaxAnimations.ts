@@ -3,8 +3,8 @@ import gsap from "gsap";
 import globalConfig from "../../global.config.json";
 import { RefObject, useRef } from "react";
 
-export type StagedAnimationTimelines = {
-  [key: string]: { timeline: gsap.core.Timeline; reverse: () => void };
+export type StagedAnimationTweens = {
+  [key: string]: { reverse: () => void };
 };
 
 export default function useParallaxAnimation(
@@ -12,9 +12,9 @@ export default function useParallaxAnimation(
   onAnimationCompleted: () => void,
 ) {
   const config = globalConfig.parallax.animation;
-  const stagesTimeline = useRef<StagedAnimationTimelines>({});
+  const stagedTweens = useRef<StagedAnimationTweens>({});
 
-  const { contextSafe } = useGSAP(() => {
+  useGSAP((_, contextSafe) => {
     const timeline = gsap.timeline({
       onComplete: onAnimationCompleted,
     });
@@ -25,6 +25,14 @@ export default function useParallaxAnimation(
     );
 
     animatedElements
+      .filter((el) => !el.classList.contains("text"))
+      .filter((el) => !el.dataset.revealStage)
+      .forEach((el) => {
+        const tween = createTween(container, el);
+        timeline.add(tween, 0);
+      });
+
+    animatedElements
       .filter((el) => el.dataset.revealStage)
       .sort((el1, el2) => +el1.dataset.revealStage! - +el2.dataset.revealStage!)
       .forEach((el) => {
@@ -33,24 +41,15 @@ export default function useParallaxAnimation(
           console.warn("stage name not set for element", el);
           return;
         }
-        const stagedTimeline = gsap.timeline({ id: stageName, paused: true });
 
-        stagesTimeline.current[stageName] = {
-          timeline: stagedTimeline,
-          reverse: contextSafe(() => {
-            stagedTimeline.reverse();
-          }),
+        const tween = createTween(container, el);
+        timeline.add(tween, ">");
+        stagedTweens.current[stageName] = {
+          reverse: contextSafe!(
+            () => !tween.reversed() && gsap.timeline().add(tween.reverse()),
+          ),
         };
-        runAnimation(container, el, stagedTimeline!, ">");
-        timeline.add(stagedTimeline.tweenTo(2), "<=+1");
       });
-
-    animatedElements
-      .filter((el) => !el.classList.contains("text"))
-      .filter((el) => !el.dataset.revealStage)
-      .forEach((el) =>
-        runAnimation(container, el, timeline, config.objects.delay),
-      );
 
     timeline.from(
       ".dev",
@@ -72,12 +71,7 @@ export default function useParallaxAnimation(
     );
   });
 
-  const runAnimation = (
-    container: HTMLElement,
-    el: HTMLElement,
-    timeline: gsap.core.Timeline,
-    delay: number | string,
-  ) => {
+  const createTween = (container: HTMLElement, el: HTMLElement) => {
     const offsetDistanceX = +(el.dataset.revealDistanceX || 0) / 1000;
     const offsetDistanceY = +(el.dataset.revealDistanceY || 0) / 1000;
     const absoluteOffsetX = container.clientWidth * Math.sign(offsetDistanceX);
@@ -89,16 +83,12 @@ export default function useParallaxAnimation(
 
     const speed = (el.dataset.revealSpeed as any as number) || 1;
 
-    timeline.from(
-      el,
-      {
-        ...offset,
-        ease: config.objects.ease,
-        duration: config.objects.duration / speed,
-      },
-      delay,
-    );
+    return gsap.from(el, {
+      ...offset,
+      ease: config.objects.ease,
+      duration: config.objects.duration / speed,
+    });
   };
 
-  return stagesTimeline.current;
+  return stagedTweens.current;
 }
