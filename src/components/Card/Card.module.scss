@@ -1,0 +1,12 @@
+@use "../../global.templates";
+
+.card {
+  border-radius: 30px;
+  font-family: Arial, Helvetica, sans-serif;
+  @include global.glass(
+  $opacity: 1,
+  $border-thickness: 1px,
+  $background-opacity: 0.02,
+  $border-opacity: 0.1,
+  $blur: 10px);
+}
