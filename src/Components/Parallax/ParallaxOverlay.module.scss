@@ -1,21 +1,19 @@
 .overlay, .overlayFixed {
   z-index: 100;
-  position: absolute;
+  position: relative;
   pointer-events: none;
 }
 
 .overlay {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   margin: 0;
   inset: 0;
-  position: fixed;
 }
 
 .overlayFixed {
   width: 100%;
   height: 100%;
-  position: absolute;
 }
 
 .tip {
@@ -45,7 +43,7 @@
     font-family: "Barlow Semi Condensed", sans-serif;
     filter: drop-shadow(1px 1px 2px black);
     text-align: center;
-    font-size: 0.9em;
+    font-size: 0.8em;
     line-height: 1em;
   }
 
@@ -74,14 +72,14 @@
 }
 
 .interactive {
-  top: 45%;
-  right: 23%;
+  top: 35%;
+  right: 20%;
   transform: scale(1.2);
 }
 
 .more {
-  bottom: 55px;
-  right: 55px;
+  bottom: 50px;
+  right: 50px;
 
   .tail {
     height: 15px;

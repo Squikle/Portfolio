@@ -88,7 +88,13 @@
   }
 }
 
+.card.active > .text {
+  @extend %select-enabled;
+}
+
 .experienceCard > .text, .introCard > .text {
+  @extend %select-disabled;
+
   h1 {
     font-weight: Bold;
     line-height: 1em;

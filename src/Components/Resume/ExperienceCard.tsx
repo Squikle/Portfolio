@@ -4,6 +4,8 @@ import Heart from "../../Icons/Heart.tsx";
 import styles from "./Resume.module.scss";
 import ResumeCard from "./ResumeCard.tsx";
 import { ExperienceLine } from "./ExperienceLine.tsx";
+import { useCurrentSectionContext } from "../Page/CurrentPageContext/Contexts.tsx";
+import classNames from "classnames";
 
 type Highlight = {
   title: string;
@@ -28,6 +30,8 @@ export default function ExperienceCard({
   isFirst: boolean;
   isLast: boolean;
 }) {
+  const { isActive } = useCurrentSectionContext();
+
   const buildHighlights = (highlights: Highlight[]) => {
     return highlights.map((x) => {
       return (
@@ -46,7 +50,11 @@ export default function ExperienceCard({
   };
 
   return (
-    <ResumeCard cardClassName={styles.experienceCard}>
+    <ResumeCard
+      cardClassName={classNames(styles.experienceCard, {
+        [styles.active]: isActive,
+      })}
+    >
       {({ scrollableElementRef }) => {
         return (
           <>

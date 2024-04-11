@@ -18,6 +18,10 @@ export default function useParallaxAnimation(
     const timeline = gsap.timeline({
       onComplete: () => {
         onAnimationCompleted();
+        timeline.revert();
+      },
+      defaults: {
+        ease: "power3.inOut",
       },
     });
 
@@ -25,6 +29,15 @@ export default function useParallaxAnimation(
     const animatedElements = Array.from(
       document.querySelectorAll<HTMLElement>(".parallax"),
     );
+
+    animatedElements
+      .filter((el) => !el.classList.contains("text"))
+      .filter((el) => !el.dataset.revealStage)
+      .forEach((el) => {
+        const tween = createTwin(container, el);
+        timeline.add(tween, "0.3");
+      });
+
     timeline.from(
       ".dev",
       {
@@ -45,26 +58,18 @@ export default function useParallaxAnimation(
     );
 
     animatedElements
-      .filter((el) => !el.classList.contains("text"))
-      .filter((el) => !el.dataset.revealStage)
-      .forEach((el) => {
-        const tween = createTween(container, el);
-        timeline.add(tween, "0.3");
-      });
-
-    animatedElements
       .filter((el) => el.dataset.revealStage)
       .sort((el1, el2) => +el1.dataset.revealStage! - +el2.dataset.revealStage!)
-      .forEach((el, i) => {
+      .forEach((el) => {
         const stageName = el.dataset.revealStageName;
         if (!stageName) {
           console.warn("stage name not set for element", el);
           return;
         }
 
-        const tween = createTween(container, el);
-        const position = i === 0 ? ">=-0.5" : ">";
-        timeline.add(tween, position);
+        const tween = createTwin(container, el);
+
+        timeline.add(tween, ">=-0.5");
         stagedTweens.current[stageName] = {
           reverse: contextSafe!(
             () => !tween.reversed() && gsap.timeline().add(tween.reverse()),
@@ -73,22 +78,29 @@ export default function useParallaxAnimation(
       });
   });
 
-  const createTween = (container: HTMLElement, el: HTMLElement) => {
+  const calcInitialPosition = (container: HTMLElement, el: HTMLElement) => {
     const offsetDistanceX = +(el.dataset.revealDistanceX || 0) / 1000;
     const offsetDistanceY = +(el.dataset.revealDistanceY || 0) / 1000;
     const absoluteOffsetX = container.clientWidth * Math.sign(offsetDistanceX);
     const absoluteOffsetY = container.clientHeight * Math.sign(offsetDistanceY);
-
-    const offset: { top?: string; left?: string } = {};
-    if (offsetDistanceX) offset.left = `${absoluteOffsetX + offsetDistanceX}px`;
-    if (offsetDistanceY) offset.top = `${absoluteOffsetY + offsetDistanceY}px`;
-
     const speed = (el.dataset.revealSpeed as any as number) || 1;
+
+    return {
+      x: absoluteOffsetX + offsetDistanceX,
+      y: absoluteOffsetY + offsetDistanceY,
+      duration: config.objects.duration / speed,
+    };
+  };
+
+  const createTwin = (container: HTMLElement, el: HTMLElement) => {
+    const initPos = calcInitialPosition(container, el);
+    const offset: { top?: number; left?: number } = {};
+    if (initPos.x) offset.left = initPos.x;
+    if (initPos.y) offset.top = initPos.y;
 
     return gsap.from(el, {
       ...offset,
-      ease: config.objects.ease,
-      duration: config.objects.duration / speed,
+      duration: initPos.duration,
     });
   };
 

@@ -1,4 +1,4 @@
-import { RefObject, useLayoutEffect, useState } from "react";
+import { RefObject, useEffect, useLayoutEffect, useState } from "react";
 import { throttle } from "../../utils/throttle.ts";
 import useParallaxAnimation from "./useParallaxAnimations.ts";
 
@@ -24,7 +24,15 @@ export function useParallax(
   containerRef: RefObject<HTMLElement>,
   isActive: boolean,
 ) {
-  const [zEnabled, setZEnabled] = useState(false);
+  const [animationFinished, setAnimationFinished] = useState(false);
+
+  useEffect(() => {
+    if (!animationFinished) return;
+
+    getContainerAndElements()[1].forEach((x) =>
+      x.classList.toggle("transition", true),
+    );
+  }, [animationFinished]);
 
   const handleUpdate = (
     clientX: number,
@@ -55,7 +63,7 @@ export function useParallax(
 
       const xOffsetX = x * xSpeed;
       const yOffset = y * ySpeed;
-      const zOffset = zEnabled ? zValue * zSpeed : 0;
+      const zOffset = animationFinished ? zValue * zSpeed : 0;
 
       window.requestAnimationFrame(() => {
         el.style.setProperty(cssProps.xTranslate, `${xOffsetX}px`);
@@ -134,6 +142,8 @@ export function useParallax(
     };
   }, [isActive]);
 
-  const tweens = useParallaxAnimation(containerRef, () => setZEnabled(true));
+  const tweens = useParallaxAnimation(containerRef, () =>
+    setAnimationFinished(true),
+  );
   return tweens;
 }

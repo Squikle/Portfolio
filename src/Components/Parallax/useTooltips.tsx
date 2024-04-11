@@ -4,6 +4,7 @@ import tooltipStyles from "./ParallaxOverlay.module.scss";
 import React, { useCallback, useEffect, useReducer, useRef } from "react";
 import config from "../../global.config.json";
 import { StagedAnimationTweens } from "./useParallaxAnimations.ts";
+import { useSwiper } from "swiper/react";
 
 type UserInteraction = {
   TextTapFinished: boolean;
@@ -29,11 +30,13 @@ const reduceUserInteraction = (
 
 const tooltipRevealStages = {
   HOVER: "hoverTooltip",
-  SWIPE: "swipeTooltip",
+  MORE: "moreTooltip",
   TEXT: "textTooltip",
 };
 
 export default function useTooltips(tweens: StagedAnimationTweens) {
+  const swiper = useSwiper();
+
   const timeout = useRef<NodeJS.Timeout>();
   const [userInteraction, dispatchUserInteraction] = useReducer(
     reduceUserInteraction,
@@ -46,9 +49,9 @@ export default function useTooltips(tweens: StagedAnimationTweens) {
     tweens[tooltipRevealStages.HOVER].reverse();
   }, [tweens]);
 
-  const swipeCompleted = useCallback(() => {
+  const moreCompleted = useCallback(() => {
     dispatchUserInteraction("SwipeDelayFinished");
-    tweens[tooltipRevealStages.SWIPE].reverse();
+    tweens[tooltipRevealStages.MORE].reverse();
   }, [tweens]);
 
   const textTapCompleted = useCallback(() => {
@@ -57,8 +60,13 @@ export default function useTooltips(tweens: StagedAnimationTweens) {
   }, [tweens]);
 
   useEffect(() => {
-    setTimeout(swipeCompleted, userInteractionConfig.swipeDelay * 1000);
+    setTimeout(moreCompleted, userInteractionConfig.swipeDelay * 1000);
   }, [userInteractionConfig.swipeDelay]);
+
+  useEffect(() => {
+    swiper.on("slideChangeTransitionStart", moreCompleted);
+    return () => swiper.off("slideChangeTransitionStart", moreCompleted);
+  }, [swiper, moreCompleted]);
 
   const handleContainerEnter = useCallback(
     (delaySeconds: number, event: React.PointerEvent | React.TouchEvent) => {
@@ -130,10 +138,10 @@ const MoreTooltip = () => (
     dataProps={{
       "data-speed-x": "0.19",
       "data-speed-y": "0.16",
-      "data-reveal-distance-y": "1",
+      "data-reveal-distance-x": "1",
       "data-reveal-speed": "1",
       "data-reveal-stage": "3",
-      "data-reveal-stage-name": tooltipRevealStages.SWIPE,
+      "data-reveal-stage-name": tooltipRevealStages.MORE,
     }}
     tailClassName={tooltipStyles.tail}
     position={"right-bottom"}
