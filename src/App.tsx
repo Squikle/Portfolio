@@ -1,13 +1,13 @@
-import ParallaxPage from "./Pages/ParallaxPage/ParallaxPage.tsx";
-import LogoPage from "./Pages/LogoPage/LogoPage.tsx";
+import ParallaxPage from "./pages/ParallaxPage/ParallaxPage.tsx";
+import LogoPage from "./pages/LogoPage/LogoPage.tsx";
 import "swiper/css";
 import "swiper/css/pagination";
 import "./main.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Keyboard } from "swiper/modules";
-import SlidesPagination from "./Components/Slides/SlidesPagination.tsx";
-import { useSwiperPagination } from "./Components/Slides/useSwiperPagination.ts";
-import config from "./global.config.json";
+import SlidesPagination from "./components/Slides/SlidesPagination.tsx";
+import { useSwiperPagination } from "./components/Slides/hooks/useSwiperPagination.ts";
+import config from "./configs/global.config.json";
 
 export default function App() {
   const pagination = useSwiperPagination();
