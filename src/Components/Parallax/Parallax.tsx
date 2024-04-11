@@ -109,7 +109,7 @@ export default function Parallax({ isActive }: Props) {
         <tooltips.MoreTooltip />
       </div>
       <div
-        className="parallax-container"
+        className="parallax-container swiper-no-swiping"
         onTouchStart={onTouchStart}
         onTouchEnd={onTouchEnd}
         onPointerEnter={onPointerEnter}

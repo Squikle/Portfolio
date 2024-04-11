@@ -14,46 +14,17 @@ export default function useParallaxAnimation(
   const config = globalConfig.parallax.animation;
   const stagedTweens = useRef<StagedAnimationTweens>({});
 
-  useGSAP((_, contextSafe) => {
+  useGSAP(async (_, contextSafe) => {
     const timeline = gsap.timeline({
       onComplete: () => {
         onAnimationCompleted();
-        timeline.revert();
       },
     });
 
     const container = containerRef.current!;
     const animatedElements = Array.from(
-      container.parentNode!.querySelectorAll<HTMLElement>(".parallax"),
+      document.querySelectorAll<HTMLElement>(".parallax"),
     );
-
-    animatedElements
-      .filter((el) => !el.classList.contains("text"))
-      .filter((el) => !el.dataset.revealStage)
-      .forEach((el) => {
-        const tween = createTween(container, el);
-        timeline.add(tween, 0);
-      });
-
-    animatedElements
-      .filter((el) => el.dataset.revealStage)
-      .sort((el1, el2) => +el1.dataset.revealStage! - +el2.dataset.revealStage!)
-      .forEach((el) => {
-        const stageName = el.dataset.revealStageName;
-        if (!stageName) {
-          console.warn("stage name not set for element", el);
-          return;
-        }
-
-        const tween = createTween(container, el);
-        timeline.add(tween, ">");
-        stagedTweens.current[stageName] = {
-          reverse: contextSafe!(
-            () => !tween.reversed() && gsap.timeline().add(tween.reverse()),
-          ),
-        };
-      });
-
     timeline.from(
       ".dev",
       {
@@ -72,6 +43,34 @@ export default function useParallaxAnimation(
       },
       "<",
     );
+
+    animatedElements
+      .filter((el) => !el.classList.contains("text"))
+      .filter((el) => !el.dataset.revealStage)
+      .forEach((el) => {
+        const tween = createTween(container, el);
+        timeline.add(tween, "0.3");
+      });
+
+    animatedElements
+      .filter((el) => el.dataset.revealStage)
+      .sort((el1, el2) => +el1.dataset.revealStage! - +el2.dataset.revealStage!)
+      .forEach((el, i) => {
+        const stageName = el.dataset.revealStageName;
+        if (!stageName) {
+          console.warn("stage name not set for element", el);
+          return;
+        }
+
+        const tween = createTween(container, el);
+        const position = i === 0 ? ">=-0.5" : ">";
+        timeline.add(tween, position);
+        stagedTweens.current[stageName] = {
+          reverse: contextSafe!(
+            () => !tween.reversed() && gsap.timeline().add(tween.reverse()),
+          ),
+        };
+      });
   });
 
   const createTween = (container: HTMLElement, el: HTMLElement) => {
