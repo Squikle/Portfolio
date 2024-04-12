@@ -1,7 +1,10 @@
 import { RefObject, useCallback } from "react";
-import { Delta, useSwipes } from "../../../hooks/userControl/useSwipes.ts";
+import {
+  Delta,
+  useSwipes,
+} from "../../../../../hooks/userControl/useSwipes.ts";
 import { SwiperClass } from "swiper/react";
-import config from "../../../configs/global.config.json";
+import config from "../../../../../configs/global.config.json";
 
 export default function useResumeSwipes(
   scrollableElementRef: RefObject<HTMLElement>,

@@ -6,15 +6,18 @@ import { ExperienceLine } from "../Card/ExperienceLine.tsx";
 import {
   useCurrentPageContext,
   useCurrentSectionContext,
-} from "../../Page/CurrentPageContext/Contexts.tsx";
-import options from "../../../configs/button-emitter-particles.json";
-import { adaptEmitter, adaptParticles } from "../../Particles/retinaAdapter.ts";
+} from "../../../../../components/Page/CurrentPageContext/Contexts.tsx";
+import options from "../../../../../configs/button-emitter-particles.json";
+import {
+  adaptEmitter,
+  adaptParticles,
+} from "../../../../../components/Particles/retinaAdapter.ts";
 import emitter from "./emitter.json";
-import Emitters from "../../Particles/Emitters.tsx";
+import Emitters from "../../../../../components/Particles/Emitters.tsx";
 import React, { useEffect, useRef } from "react";
-import useLongPress from "../../../hooks/userControl/useLongPress.ts";
+import useLongPress from "../../../../../hooks/userControl/useLongPress.ts";
 import { useSwiper } from "swiper/react";
-import config from "../../../configs/global.config.json";
+import config from "../../../../../configs/global.config.json";
 
 type Props = {
   darkBackgroundOpacity: number;

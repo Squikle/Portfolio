@@ -2,10 +2,10 @@ import { RefObject, useCallback } from "react";
 import {
   Direction,
   useCustomWheelScroll,
-} from "../../../hooks/userControl/useCustomWheelScroll.ts";
-import { executeAndDebounce } from "../../../utils/debounce";
+} from "../../../../../hooks/userControl/useCustomWheelScroll.ts";
+import { executeAndDebounce } from "../../../../../utils/debounce";
 import { SwiperClass } from "swiper/react";
-import config from "../../../configs/global.config.json";
+import config from "../../../../../configs/global.config.json";
 
 export default function useResumeWheelScroll(
   scrollableElementRef: RefObject<HTMLElement>,

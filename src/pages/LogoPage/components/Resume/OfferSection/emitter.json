@@ -9,8 +9,8 @@
     "y": 50
   },
   "size": {
-    "height": 25,
-    "width": 25,
+    "height": 15,
+    "width": 15,
     "mode": "percent"
   },
   "particles": {
@@ -90,6 +90,6 @@
     }
   },
   "rate": {
-    "quantity": 5
+    "quantity": 3
   }
 }

@@ -1,16 +1,19 @@
 import ResumeCard from "./ResumeCard.tsx";
 import { RefObject } from "react";
 import styles from "./ResumeCard.module.scss";
-import resume from "../../../configs/resume-data.json";
+import resume from "../../../../../configs/resume-data.json";
+import classNames from "classnames";
+import { useCurrentSectionContext } from "../../../../../components/Page/CurrentPageContext/Contexts.tsx";
 
 export default function IntroCard() {
   const contactsData = resume.contacts;
   const skillsData = resume.skills;
   const stackData = resume.stack;
   const educationsData = resume.educations;
+  const { isActive } = useCurrentSectionContext();
 
   const educations = (
-    <div className={styles.educations}>
+    <div className={classNames(styles.educations)}>
       {educationsData.map((x, i) => {
         return (
           <div key={i} className={styles.education}>
@@ -24,7 +27,11 @@ export default function IntroCard() {
   );
 
   return (
-    <ResumeCard cardClassName={styles.introCard}>
+    <ResumeCard
+      cardClassName={classNames(styles.introCard, {
+        [styles.active]: isActive,
+      })}
+    >
       {({ scrollableElementRef }) => {
         return (
           <div

@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { SwiperClass } from "swiper/react";
-import { useCurrentSectionContext } from "../../Page/CurrentPageContext/Contexts";
+import { useCurrentSectionContext } from "../../../../../components/Page/CurrentPageContext/Contexts";
 
 export default function useResumeScrolledOut(
   swiper: SwiperClass,

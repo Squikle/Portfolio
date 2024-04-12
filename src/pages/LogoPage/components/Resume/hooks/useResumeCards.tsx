@@ -1,5 +1,5 @@
 import ExperienceCard from "../Card/ExperienceCard.tsx";
-import resume from "../../../configs/resume-data.json";
+import resume from "../../../../../configs/resume-data.json";
 import { useMemo } from "react";
 import IntroCard from "../Card/IntroCard.tsx";
 

@@ -1,10 +1,10 @@
 import { Fragment, RefObject } from "react";
 import style from "./ResumeCard.module.scss";
-import Heart from "../../../icons/Heart.tsx";
+import Heart from "../../../../../icons/Heart.tsx";
 import styles from "./ResumeCard.module.scss";
 import ResumeCard from "./ResumeCard.tsx";
 import { ExperienceLine } from "./ExperienceLine.tsx";
-import { useCurrentSectionContext } from "../../Page/CurrentPageContext/Contexts.tsx";
+import { useCurrentSectionContext } from "../../../../../components/Page/CurrentPageContext/Contexts.tsx";
 import classNames from "classnames";
 
 type Highlight = {

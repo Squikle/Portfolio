@@ -1,4 +1,4 @@
-import { RefObject, useEffect, useLayoutEffect, useState } from "react";
+import React, { RefObject, useEffect, useLayoutEffect, useState } from "react";
 import { throttle } from "../../../utils/throttle.ts";
 import useParallaxAnimation from "./useParallaxAnimations.ts";
 
@@ -113,21 +113,23 @@ export function useParallax(
   useLayoutEffect(() => {
     const [container, elementsToUpdate] = getContainerAndElements();
 
-    const handleMouseUpdate = throttle((e: MouseEvent) => {
+    const handlePointerUpdate = throttle((e: React.PointerEvent) => {
+      if (e.pointerType === "touch") return;
+
       handleUpdate(e.clientX, e.clientY, elementsToUpdate);
     }, 5);
 
     const handleTouchUpdate = throttle((e: TouchEvent) => {
       const lastTouch = e.changedTouches[e.changedTouches.length - 1];
       handleUpdate(lastTouch.clientX, lastTouch.clientY, elementsToUpdate);
-    }, 5);
+    }, 10);
 
     const reset = () => {
       update(0, 0, elementsToUpdate);
     };
 
     reset();
-    container.addEventListener("mousemove", handleMouseUpdate);
+    container.addEventListener("pointermove", handlePointerUpdate);
     container.addEventListener("touchmove", handleTouchUpdate, {
       passive: true,
     });
@@ -135,7 +137,7 @@ export function useParallax(
     container.addEventListener("touchend", reset);
 
     return () => {
-      container.removeEventListener("mousemove", handleMouseUpdate);
+      container.removeEventListener("pointermove", handlePointerUpdate);
       container.removeEventListener("touchmove", handleTouchUpdate);
       container.removeEventListener("mouseleave", reset);
       container.removeEventListener("touchend", reset);

@@ -1,16 +1,16 @@
 import React, { RefObject, useCallback, useRef } from "react";
-import Card from "../../Card/Card.tsx";
+import Card from "../../../../../components/Card/Card.tsx";
 import classNames from "classnames";
 import styles from "./ResumeCard.module.scss";
-import useFadeScroll from "../../../hooks/useFadeScroll/useFadeScroll.ts";
-import useOverScroll from "../../../hooks/userControl/useOverScroll.ts";
+import useFadeScroll from "../../../../../hooks/useFadeScroll/useFadeScroll.ts";
+import useOverScroll from "../../../../../hooks/userControl/useOverScroll.ts";
 import { useSwiper } from "swiper/react";
-import { useCurrentPageContext } from "../../Page/CurrentPageContext/Contexts.tsx";
+import { useCurrentPageContext } from "../../../../../components/Page/CurrentPageContext/Contexts.tsx";
 import useResumeWheelScroll from "../hooks/useResumeWheelScroll.ts";
 import useResumeSwipes from "../hooks/useResumeSwipes.ts";
 import useResumeScrolledOut from "../hooks/useResumeScrolledOut.ts";
 import useResumeScrollReset from "../hooks/useResumeScrollReset.ts";
-import config from "../../../configs/global.config.json";
+import config from "../../../../../configs/global.config.json";
 
 export type ResumeCardContentProps = {
   scrollableElementRef?: RefObject<HTMLElement>;

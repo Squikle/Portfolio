@@ -4,9 +4,9 @@ import { ReactNode, useEffect, useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useSwiper } from "swiper/react";
-import { useCurrentSectionContext } from "../../Page/CurrentPageContext/Contexts.tsx";
-import { ResumeSectionContext } from "../../../pages/LogoPage/types.ts";
-import config from "../../../configs/global.config.json";
+import { useCurrentSectionContext } from "../../../../../components/Page/CurrentPageContext/Contexts.tsx";
+import { ResumeSectionContext } from "../../../types.ts";
+import config from "../../../../../configs/global.config.json";
 
 type Props = {
   children?: ReactNode;

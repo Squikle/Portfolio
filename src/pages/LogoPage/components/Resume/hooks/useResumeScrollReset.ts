@@ -1,5 +1,5 @@
 import { RefObject, useEffect } from "react";
-import { useCurrentSectionContext } from "../../Page/CurrentPageContext/Contexts";
+import { useCurrentSectionContext } from "../../../../../components/Page/CurrentPageContext/Contexts";
 
 export default function useResumeScrollReset(
   scrollableElementRef: RefObject<HTMLElement>,

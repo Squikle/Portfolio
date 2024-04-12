@@ -18,9 +18,9 @@ import { useSwiperPagination } from "../../components/Slides/hooks/useSwiperPagi
 import config from "../../configs/global.config.json";
 import useBackground from "../../components/Page/hooks/useBackground.tsx";
 import cardStyle from "../../components/Card/Card.module.scss";
-import useResumeCards from "../../components/Resume/hooks/useResumeCards.tsx";
+import useResumeCards from "./components/Resume/hooks/useResumeCards.tsx";
 import smallLogo from "/assets/squik-canvas.webp";
-import OfferSection from "../../components/Resume/OfferSection/OfferSection.tsx";
+import OfferSection from "./components/Resume/OfferSection/OfferSection.tsx";
 import { ResumeSectionContext } from "./types.ts";
 
 export type ParticlesOptions = {
