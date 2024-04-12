@@ -23,7 +23,6 @@ interface ParallaxDataset {
 export function useParallax(
   containerRef: RefObject<HTMLElement>,
   isActive: boolean,
-  onAnimationFinished: () => void,
 ) {
   const [animationFinished, setAnimationFinished] = useState(false);
 
@@ -145,7 +144,6 @@ export function useParallax(
 
   const tweens = useParallaxAnimation(containerRef, () => {
     setAnimationFinished(true);
-    onAnimationFinished && onAnimationFinished();
   });
   return tweens;
 }

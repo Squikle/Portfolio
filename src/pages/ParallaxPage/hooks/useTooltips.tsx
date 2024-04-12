@@ -12,30 +12,34 @@ const tooltipRevealStages = {
   TEXT: "textTooltip",
 };
 
-export default function useTooltips(
-  animationFinished: boolean,
-  tweens: StagedAnimationTweens,
-) {
+export default function useTooltips(tweens: StagedAnimationTweens) {
   const swiper = useSwiper();
 
   const timeout = useRef<NodeJS.Timeout>();
   const userInteractionConfig = config.parallax.userInteraction;
 
   const hoverCompleted = useCallback(() => {
-    animationFinished && tweens[tooltipRevealStages.HOVER].reverse();
-  }, [tweens, animationFinished]);
+    const hoverTween = tweens[tooltipRevealStages.HOVER];
+    console.log(hoverTween.completed);
+    hoverTween.completed && hoverTween.reverse();
+  }, [tweens]);
 
   const moreCompleted = useCallback(() => {
-    animationFinished && tweens[tooltipRevealStages.MORE].reverse();
-  }, [tweens, animationFinished]);
+    const moreTween = tweens[tooltipRevealStages.MORE];
+    moreTween.reverse();
+  }, [tweens]);
 
   const textTapCompleted = useCallback(() => {
-    animationFinished && tweens[tooltipRevealStages.TEXT].reverse();
-  }, [tweens, animationFinished]);
+    const textTween = tweens[tooltipRevealStages.TEXT];
+    textTween.completed && textTween.reverse();
+  }, [tweens]);
 
   useEffect(() => {
-    animationFinished &&
-      setTimeout(moreCompleted, userInteractionConfig.swipeDelay * 1000);
+    const timeout = setTimeout(
+      moreCompleted,
+      userInteractionConfig.swipeDelay * 1000,
+    );
+    return () => clearTimeout(timeout);
   }, [userInteractionConfig.swipeDelay]);
 
   useEffect(() => {
@@ -48,13 +52,33 @@ export default function useTooltips(
       if (
         (event as React.PointerEvent).pointerType === "touch" ||
         timeout.current ||
-        !animationFinished
+        !tweens[tooltipRevealStages.HOVER].completed
       )
         return;
 
       timeout.current = setTimeout(hoverCompleted, delaySeconds * 1000);
     },
-    [hoverCompleted, animationFinished],
+    [hoverCompleted, tweens],
+  );
+
+  const handleContainerPointerMove = useCallback(
+    (event: React.PointerEvent) => {
+      if (timeout.current || !tweens[tooltipRevealStages.HOVER].completed)
+        return;
+
+      const delaySeconds =
+        event.pointerType === "mouse"
+          ? userInteractionConfig.hoveringMouse
+          : userInteractionConfig.hoveringTouch;
+
+      timeout.current = setTimeout(hoverCompleted, delaySeconds * 1000);
+    },
+    [
+      tweens,
+      userInteractionConfig.hoveringTouch,
+      userInteractionConfig.hoveringMouse,
+      hoverCompleted,
+    ],
   );
 
   const handleContainerLeave = () => {
@@ -80,6 +104,7 @@ export default function useTooltips(
     tooltips: { InteractiveTooltip, MoreTooltip, TextTooltip },
     onTextClick: textTapCompleted,
     onPointerEnter: handlePointerEnter,
+    onPointerMove: handleContainerPointerMove,
     onTouchStart: handleTouchStart,
     onPointerLeave: handleContainerLeave,
     onTouchEnd: handleContainerLeave,

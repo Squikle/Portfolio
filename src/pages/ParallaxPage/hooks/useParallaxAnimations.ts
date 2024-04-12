@@ -4,7 +4,10 @@ import globalConfig from "../../../configs/global.config.json";
 import { RefObject, useRef } from "react";
 
 export type StagedAnimationTweens = {
-  [key: string]: { reverse: () => void };
+  [key: string]: {
+    reverse: () => void;
+    completed: boolean;
+  };
 };
 
 export default function useParallaxAnimation(
@@ -69,12 +72,22 @@ export default function useParallaxAnimation(
 
         const tween = createTwin(container, el);
 
-        timeline.add(tween, ">=-0.5");
-        stagedTweens.current[stageName] = {
+        const nestedTimeline = gsap
+          .timeline({
+            onComplete: () => {
+              stagedTween.completed = true;
+            },
+          })
+          .add(tween);
+        timeline.add(nestedTimeline, ">=-0.5");
+
+        const stagedTween = {
           reverse: contextSafe!(
             () => !tween.reversed() && gsap.timeline().add(tween.reverse()),
           ),
+          completed: false,
         };
+        stagedTweens.current[stageName] = stagedTween;
       });
   });
 

@@ -81,7 +81,7 @@ import { useParallax } from "../../hooks/useParallax.ts";
 import classNames from "classnames";
 import overlayStyles from "./ParallaxOverlay.module.scss";
 import useTooltips from "../../hooks/useTooltips.tsx";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 
 type Props = {
   isActive: boolean;
@@ -89,11 +89,8 @@ type Props = {
 
 export default function Parallax({ isActive }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [isAnimationFinished, setIsAnimationFinished] = useState(false);
 
-  const tweens = useParallax(containerRef, isActive, () =>
-    setIsAnimationFinished(true),
-  );
+  const tweens = useParallax(containerRef, isActive);
   const {
     tooltips,
     onTextClick,
@@ -102,7 +99,8 @@ export default function Parallax({ isActive }: Props) {
     onPointerEnter,
     onPointerLeave,
     onTextPointerEnter,
-  } = useTooltips(isAnimationFinished, tweens);
+    onPointerMove,
+  } = useTooltips(tweens);
 
   return (
     <>
@@ -117,6 +115,7 @@ export default function Parallax({ isActive }: Props) {
         onTouchEnd={onTouchEnd}
         onPointerEnter={onPointerEnter}
         onPointerLeave={onPointerLeave}
+        onPointerMove={onPointerMove}
         ref={containerRef}
       >
         <img
