@@ -12,26 +12,30 @@ const tooltipRevealStages = {
   TEXT: "textTooltip",
 };
 
-export default function useTooltips(tweens: StagedAnimationTweens) {
+export default function useTooltips(
+  animationFinished: boolean,
+  tweens: StagedAnimationTweens,
+) {
   const swiper = useSwiper();
 
   const timeout = useRef<NodeJS.Timeout>();
   const userInteractionConfig = config.parallax.userInteraction;
 
   const hoverCompleted = useCallback(() => {
-    tweens[tooltipRevealStages.HOVER].reverse();
-  }, [tweens]);
+    animationFinished && tweens[tooltipRevealStages.HOVER].reverse();
+  }, [tweens, animationFinished]);
 
   const moreCompleted = useCallback(() => {
-    tweens[tooltipRevealStages.MORE].reverse();
-  }, [tweens]);
+    animationFinished && tweens[tooltipRevealStages.MORE].reverse();
+  }, [tweens, animationFinished]);
 
   const textTapCompleted = useCallback(() => {
-    tweens[tooltipRevealStages.TEXT].reverse();
-  }, [tweens]);
+    animationFinished && tweens[tooltipRevealStages.TEXT].reverse();
+  }, [tweens, animationFinished]);
 
   useEffect(() => {
-    setTimeout(moreCompleted, userInteractionConfig.swipeDelay * 1000);
+    animationFinished &&
+      setTimeout(moreCompleted, userInteractionConfig.swipeDelay * 1000);
   }, [userInteractionConfig.swipeDelay]);
 
   useEffect(() => {
@@ -43,13 +47,14 @@ export default function useTooltips(tweens: StagedAnimationTweens) {
     (delaySeconds: number, event: React.PointerEvent | React.TouchEvent) => {
       if (
         (event as React.PointerEvent).pointerType === "touch" ||
-        timeout.current
+        timeout.current ||
+        !animationFinished
       )
         return;
 
       timeout.current = setTimeout(hoverCompleted, delaySeconds * 1000);
     },
-    [hoverCompleted],
+    [hoverCompleted, animationFinished],
   );
 
   const handleContainerLeave = () => {
