@@ -8,8 +8,10 @@ import { Keyboard } from "swiper/modules";
 import SlidesPagination from "./components/Slides/SlidesPagination.tsx";
 import { useSwiperPagination } from "./components/Slides/hooks/useSwiperPagination.ts";
 import config from "./configs/global.config.json";
+import useAnalytics from "./hooks/useAnalytics.ts";
 
 export default function App() {
+  useAnalytics();
   const pagination = useSwiperPagination();
 
   const paginationElement = (
