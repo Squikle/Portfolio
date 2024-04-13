@@ -1,4 +1,3 @@
-import ParallaxPage from "./pages/ParallaxPage/ParallaxPage.tsx";
 import "swiper/css";
 import "./main.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -8,6 +7,7 @@ import config from "./configs/global.config.json";
 import SlidesPagination from "./components/Slides/SlidesPagination.tsx";
 import Page from "./components/Page/Page.tsx";
 import { lazy, Suspense } from "react";
+import LoadingOverlay from "./components/LoadingOverlay/LoadingOverlay.tsx";
 
 export default function App() {
   const pagination = useSwiperPagination();
@@ -34,23 +34,29 @@ export default function App() {
         noSwipingClass={"swiper-no-swiping"}
       >
         <SwiperSlide>
-          {({ isActive }) => <ParallaxPage isActive={isActive}></ParallaxPage>}
+          {({ isActive }) => (
+            <Suspense fallback={<LoadingOverlay />}>
+              <LazyParallaxPage isActive={isActive}></LazyParallaxPage>
+            </Suspense>
+          )}
         </SwiperSlide>
         <SwiperSlide>
-          {({ isActive }) =>
-            isActive && (
-              <Suspense>
-                <LazyLogoPage
-                  isAlwaysActive={true}
-                  isActive={isActive}
-                ></LazyLogoPage>
-              </Suspense>
-            )
-          }
+          {({ isActive }) => (
+            <Suspense fallback={<LoadingOverlay />}>
+              <LazyLogoPage
+                isAlwaysVisible={true}
+                isActive={isActive}
+              ></LazyLogoPage>
+            </Suspense>
+          )}
         </SwiperSlide>
       </Swiper>
     </Page>
   );
 }
+
+const LazyParallaxPage = lazy(
+  () => import("./pages/ParallaxPage/ParallaxPage.tsx"),
+);
 
 const LazyLogoPage = lazy(() => import("./pages/LogoPage/LogoPage.tsx"));

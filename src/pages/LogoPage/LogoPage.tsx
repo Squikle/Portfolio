@@ -70,11 +70,11 @@ const stateReducer = (state: LoadState, action: stateUpdatedAction) => {
 export default function LogoPage({
   isActive,
   className,
-  isAlwaysActive = false,
+  isAlwaysVisible = false,
 }: {
   isActive: boolean;
   className?: string;
-  isAlwaysActive?: boolean;
+  isAlwaysVisible?: boolean;
 }) {
   const [imageData, setImageData] = useState<ImageData>(initialImageData);
   const [loadState, dispatchLoad] = useReducer(stateReducer, initialLoadState);
@@ -140,7 +140,7 @@ export default function LogoPage({
       isActive={isPageActive}
       className={classNames(className, styles.logoPage)}
       backgroundControl={background.control}
-      isAlwaysVisible={isAlwaysActive}
+      isAlwaysVisible={isAlwaysVisible}
       swiper={parentSwiper}
       pageName={"logo"}
     >
