@@ -19,7 +19,7 @@ let scriptSet = false;
 
 export default function useAnalyticsInit(): Analytics {
   useEffect(() => {
-    //if (import.meta.env.DEV) return;
+    if (import.meta.env.DEV) return;
 
     let _paq = (window._paq = window._paq || []);
 

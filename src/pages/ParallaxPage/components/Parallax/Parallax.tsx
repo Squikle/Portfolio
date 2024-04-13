@@ -495,6 +495,7 @@ export default function Parallax({ isActive }: Props) {
             data-speed-z="0"
             data-reveal-distance-y="1"
             data-reveal-speed="1.2"
+            fetchPriority={"high"}
           />
           <img
             fetchPriority={"high"}
