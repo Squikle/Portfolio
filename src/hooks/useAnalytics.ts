@@ -3,6 +3,8 @@ import config from "../configs/global.config.json";
 
 export default function useAnalytics() {
   useEffect(() => {
+    if (import.meta.env.DEV) return;
+
     const _paq = (window._paq = window._paq || []);
     /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
     _paq.push(["trackPageView"]);
