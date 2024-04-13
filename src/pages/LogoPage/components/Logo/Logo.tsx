@@ -1,4 +1,5 @@
-import backgroundImage from "../../../../../assets/squik.png";
+import backgroundImage from "../../../../../assets/squik.webp";
+import backgroundImageLow from "../../../../../assets/squik-low.webp";
 import { RefObject, useCallback, useRef } from "react";
 import styles from "./Logo.module.scss";
 import { OnImageUpdate } from "./types.ts";
@@ -55,8 +56,9 @@ export default function Logo({ onImageResize, onLoad }: Props) {
     <div className={styles.container} ref={containerRef}>
       <img
         fetchPriority={"high"}
-        src={backgroundImage}
-        className={classNames("lazyload", styles.logo)}
+        src={backgroundImageLow}
+        data-src={backgroundImage}
+        className={classNames("lazyload", "blur-up", styles.logo)}
         ref={imageRef}
         onLoad={() => onLoad(getImageData())}
         alt="logo"
