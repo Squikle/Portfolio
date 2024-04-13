@@ -14,7 +14,7 @@
 
 .text {
   z-index: 30;
-  font-weight: normal;
+  font-weight: 400;
   font-style: normal;
   text-decoration: none;
   pointer-events: auto;
@@ -98,7 +98,7 @@ h1 {
   font-size: calc(5vmax * var(--font-size ));
   h1 {
     @include selection(transparent, rgb(0, 0, 0));
-    font-family: "Knewave", "Lilita One", "Roboto", sans-serif;
+    font-family: "Knewave", "Roboto", sans-serif;
     font-weight: 500;
   }
   &:hover h1 {
@@ -116,7 +116,7 @@ h1 {
 
   h1 {
     @include selection(transparent, rgb(0, 0, 0));
-    font-family: "Six Caps", "Pacifico", "Roboto", sans-serif;
+    font-family: "Six Caps", "Roboto", sans-serif;
     font-weight: 300;
     transform: scale(1.3, 0.6) skewX(-5deg);
   }
