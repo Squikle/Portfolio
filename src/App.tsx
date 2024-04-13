@@ -1,7 +1,5 @@
 import ParallaxPage from "./pages/ParallaxPage/ParallaxPage.tsx";
-import LogoPage from "./pages/LogoPage/LogoPage.tsx";
 import "swiper/css";
-import "swiper/css/pagination";
 import "./main.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Keyboard } from "swiper/modules";
@@ -9,6 +7,7 @@ import { useSwiperPagination } from "./components/Slides/hooks/useSwiperPaginati
 import config from "./configs/global.config.json";
 import SlidesPagination from "./components/Slides/SlidesPagination.tsx";
 import Page from "./components/Page/Page.tsx";
+import { lazy, Suspense } from "react";
 
 export default function App() {
   const pagination = useSwiperPagination();
@@ -38,11 +37,20 @@ export default function App() {
           {({ isActive }) => <ParallaxPage isActive={isActive}></ParallaxPage>}
         </SwiperSlide>
         <SwiperSlide>
-          {({ isActive }) => (
-            <LogoPage isAlwaysActive={true} isActive={isActive}></LogoPage>
-          )}
+          {({ isActive }) =>
+            isActive && (
+              <Suspense>
+                <LazyLogoPage
+                  isAlwaysActive={true}
+                  isActive={isActive}
+                ></LazyLogoPage>
+              </Suspense>
+            )
+          }
         </SwiperSlide>
       </Swiper>
     </Page>
   );
 }
+
+const LazyLogoPage = lazy(() => import("./pages/LogoPage/LogoPage.tsx"));
