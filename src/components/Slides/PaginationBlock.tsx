@@ -1,5 +1,5 @@
 import { Slider } from "./types";
-import React, { CSSProperties, useEffect, useRef } from "react";
+import React, { CSSProperties, useCallback, useEffect, useRef } from "react";
 import classNames from "classnames";
 import SlideScrollButton from "./SlideScrollButton";
 import { Position } from "./SlidesPagination";
@@ -7,6 +7,8 @@ import config from "../../configs/global.config.json";
 import styles from "./SlidesPagination.module.scss";
 import getCssDimensions from "./utils.ts";
 import { positions } from "./positions.ts";
+import { useAnalytics } from "../Analytics/AnalyticsContext.tsx";
+import { EventActions, EventCategories } from "../../hooks/useAnalytics.ts";
 
 type Props = {
   slider: Slider;
@@ -31,6 +33,7 @@ export default function PaginationBlock({
 }: Props) {
   const isVertical = slider.swiper.params.direction == "vertical";
   const blockRef = useRef<HTMLDivElement>(null);
+  const analytics = useAnalytics();
 
   useEffect(() => {
     const handleTouch = () => {
@@ -96,6 +99,24 @@ export default function PaginationBlock({
     const hasNext = slider.swiper.slides.length > parentSlide + 1;
     const hasPrev = parentSlide > 0;
 
+    const slidePrev = useCallback(() => {
+      analytics.pushEvent(
+        EventCategories.button,
+        EventActions.click,
+        "slidePrev",
+      );
+      slider.swiper.slidePrev();
+    }, [slider.swiper, analytics]);
+
+    const slideNext = useCallback(() => {
+      analytics.pushEvent(
+        EventCategories.button,
+        EventActions.click,
+        "slideNext",
+      );
+      slider.swiper.slideNext();
+    }, [slider.swiper, analytics]);
+
     return (
       <div
         key={index}
@@ -112,7 +133,7 @@ export default function PaginationBlock({
         }}
       >
         <SlideScrollButton
-          onClick={() => slider.swiper.slidePrev()}
+          onClick={slidePrev}
           style={scrollButtonStyle}
           className={classNames(styles.prev, { [styles.hidden]: !hasPrev })}
         ></SlideScrollButton>
@@ -127,7 +148,7 @@ export default function PaginationBlock({
         </div>
         {children}
         <SlideScrollButton
-          onClick={() => slider.swiper.slideNext()}
+          onClick={slideNext}
           style={scrollButtonStyle}
           className={classNames(styles.next, { [styles.hidden]: !hasNext })}
         ></SlideScrollButton>

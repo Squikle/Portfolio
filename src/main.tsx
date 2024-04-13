@@ -7,10 +7,13 @@ import lazySizes from "lazysizes";
 lazySizes.cfg.blurupMode = "auto";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import { AnalyticsContextProvider } from "./components/Analytics/AnalyticsContext.tsx";
 gsap.registerPlugin(useGSAP);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <App />
+    <AnalyticsContextProvider>
+      <App />
+    </AnalyticsContextProvider>
   </StrictMode>,
 );

@@ -18,6 +18,11 @@ import React, { useEffect, useRef } from "react";
 import useLongPress from "../../../../../hooks/userControl/useLongPress.ts";
 import { useSwiper } from "swiper/react";
 import config from "../../../../../configs/global.config.json";
+import { useAnalytics } from "../../../../../components/Analytics/AnalyticsContext.tsx";
+import {
+  EventActions,
+  EventCategories,
+} from "../../../../../hooks/useAnalytics.ts";
 
 type Props = {
   darkBackgroundOpacity: number;
@@ -29,10 +34,16 @@ export default function OfferSection(offerSectionProps: Props) {
   const buttonRef = useRef<HTMLButtonElement>(null);
   const sectionContext = useCurrentSectionContext();
   const swiper = useSwiper();
+  const analytics = useAnalytics();
 
   const handlePressAction = () => {
     if (!sectionContext.isActive) return;
 
+    analytics.pushEvent(
+      EventCategories.button,
+      EventActions.click,
+      "WorkTogether",
+    );
     const currentSlide = swiper.activeIndex;
 
     const scroll = (delay: number) => {
@@ -98,7 +109,14 @@ export default function OfferSection(offerSectionProps: Props) {
   const handleTouchStart = (e: React.PointerEvent) => {
     glowOn();
     if (e.pointerType === "mouse") handlePressAction();
-    else onLongTouchStart(e.nativeEvent);
+    else {
+      analytics.pushEvent(
+        EventCategories.button,
+        EventActions.startHold,
+        "WorkTogether",
+      );
+      onLongTouchStart(e.nativeEvent);
+    }
   };
   const handleTouchEnd = (e: React.TouchEvent<HTMLButtonElement>) => {
     glowOff();
