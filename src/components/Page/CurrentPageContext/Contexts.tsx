@@ -5,6 +5,7 @@ import { once } from "lodash";
 
 type PageContextData<T> = {
   isActive: boolean;
+  contextName?: string;
   backgroundControl?: BackgroundControl;
   swiper?: SwiperClass;
   index?: number;

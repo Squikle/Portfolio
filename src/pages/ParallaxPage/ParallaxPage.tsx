@@ -15,8 +15,9 @@ export default function ParallaxPage({ isActive, className }: Props) {
     <Page
       isActive={isActive}
       className={classNames(className, styles.parallaxPage)}
+      pageName={"parallax"}
     >
-      <PageSection isActive={isActive}>
+      <PageSection isActive={isActive} sectionName={"parallax"}>
         <ParallaxInContext></ParallaxInContext>
       </PageSection>
     </Page>

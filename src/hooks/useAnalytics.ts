@@ -1,8 +1,9 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect } from "react";
 import config from "../configs/global.config.json";
 
 export type Analytics = {
   pushEvent: (category: string, action: string, name: string) => void;
+  setDocumentTitle: (title: string) => void;
 };
 
 export const EventCategories = {
@@ -23,7 +24,6 @@ export default function useAnalyticsInit(): Analytics {
     let _paq = (window._paq = window._paq || []);
 
     _paq.push(["trackPageView"]);
-    _paq.push(["enableLinkTracking"]);
     (function () {
       if (scriptSet) return;
 
@@ -31,6 +31,8 @@ export default function useAnalyticsInit(): Analytics {
       _paq.push(["setTrackerUrl", u + "matomo.php"]);
       _paq.push(["setSiteId", "1"]);
       _paq.push(["requireCookieConsent"]);
+      _paq.push(["enableHeartBeatTimer"]);
+      _paq.push(["enableLinkTracking"]);
       const d = document,
         g = d.createElement("script"),
         s = d.getElementsByTagName("script")[0];
@@ -48,7 +50,13 @@ export default function useAnalyticsInit(): Analytics {
     [],
   );
 
+  const setDocumentTitle = useCallback((title: string) => {
+    window._paq?.push(["setDocumentTitle", title]);
+    window._paq?.push(["trackPageView"]);
+  }, []);
+
   return {
     pushEvent,
+    setDocumentTitle,
   };
 }

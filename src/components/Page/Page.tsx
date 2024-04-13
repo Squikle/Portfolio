@@ -1,11 +1,12 @@
 import styles from "./Page.module.scss";
-import { ReactNode, useRef, useState } from "react";
+import { ReactNode, useRef } from "react";
 import { CurrentPageContextProvider } from "./CurrentPageContext/Contexts";
 import classNames from "classnames";
 import { SwiperClass } from "swiper/react";
 
 type Props<TContextData> = {
   isActive: boolean;
+  pageName?: string;
   className?: string;
   children?: ReactNode;
   onActiveUpdate?: (active: boolean) => void;
@@ -21,6 +22,7 @@ export type BackgroundControl = {
 
 export default function Page<TContextData>({
   isActive,
+  pageName,
   className,
   children,
   backgroundControl,
@@ -36,6 +38,7 @@ export default function Page<TContextData>({
       backgroundControl={backgroundControl}
       swiper={swiper || undefined}
       setCurrentCardActive
+      contextName={pageName}
       {...contextData}
     >
       <div

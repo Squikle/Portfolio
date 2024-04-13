@@ -131,16 +131,6 @@ export default function LogoPage({
     options.current,
     imageData,
   );
-  const paginationElement = (
-    <SlidesPagination
-      position={"right"}
-      onInit={pagination.setPagination}
-      length={config.slides.progress.length}
-      offset={config.slides.progress.offset}
-      offsetSide={config.slides.progress.offsetSide}
-      thickness={config.slides.progress.thickness}
-    ></SlidesPagination>
-  );
 
   const resumeCards = useResumeCards();
   const isPageActive = isActive;
@@ -152,8 +142,16 @@ export default function LogoPage({
       backgroundControl={background.control}
       isAlwaysVisible={isAlwaysActive}
       swiper={parentSwiper}
+      pageName={"logo"}
     >
-      {paginationElement}
+      <SlidesPagination
+        position={"right"}
+        onInit={pagination.setPagination}
+        length={config.slides.progress.length}
+        offset={config.slides.progress.offset}
+        offsetSide={config.slides.progress.offsetSide}
+        thickness={config.slides.progress.thickness}
+      ></SlidesPagination>
       <Swiper
         direction={"vertical"}
         modules={[Mousewheel, Keyboard]}
@@ -184,6 +182,7 @@ export default function LogoPage({
                   backgroundOpacity={backgroundOpacity}
                   isNext={isNext}
                   isPrev={isPrev}
+                  sectionName={"resume/" + i}
                 >
                   {card}
                 </PageSection>
@@ -201,6 +200,7 @@ export default function LogoPage({
               backgroundOpacity={1}
               isNext={isNext}
               isPrev={isPrev}
+              sectionName={"offer"}
             >
               <OfferSection
                 darkBackgroundOpacity={config.slides.style.backgroundOpacity}
@@ -217,6 +217,7 @@ export default function LogoPage({
                 styles.globalParticles,
                 "swiper-no-swiping",
               )}
+              sectionName={"global-particles"}
             >
               {isLoaded() && <StaticParticles options={options.current} />}
             </PageSection>

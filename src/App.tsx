@@ -5,26 +5,24 @@ import "swiper/css/pagination";
 import "./main.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Keyboard } from "swiper/modules";
-import SlidesPagination from "./components/Slides/SlidesPagination.tsx";
 import { useSwiperPagination } from "./components/Slides/hooks/useSwiperPagination.ts";
 import config from "./configs/global.config.json";
+import SlidesPagination from "./components/Slides/SlidesPagination.tsx";
+import Page from "./components/Page/Page.tsx";
 
 export default function App() {
   const pagination = useSwiperPagination();
 
-  const paginationElement = (
-    <SlidesPagination
-      position={"bottom"}
-      onInit={pagination.setPagination}
-      length={config.slides.progress.length}
-      offset={config.slides.progress.offset}
-      offsetSide={config.slides.progress.offsetSide}
-      thickness={config.slides.progress.thickness}
-    ></SlidesPagination>
-  );
   return (
-    <>
-      {paginationElement}
+    <Page isActive={true} pageName={"master"}>
+      <SlidesPagination
+        position={"bottom"}
+        onInit={pagination.setPagination}
+        length={config.slides.progress.length}
+        offset={config.slides.progress.offset}
+        offsetSide={config.slides.progress.offsetSide}
+        thickness={config.slides.progress.thickness}
+      ></SlidesPagination>
       <Swiper
         direction={"horizontal"}
         slidesPerView={1}
@@ -45,6 +43,6 @@ export default function App() {
           )}
         </SwiperSlide>
       </Swiper>
-    </>
+    </Page>
   );
 }
