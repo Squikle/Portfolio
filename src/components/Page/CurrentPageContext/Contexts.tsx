@@ -42,7 +42,7 @@ export function useCurrentPageContext<T>() {
   if (value == null)
     throw new Error("Should be within CurrentPageContextProvider");
 
-  return value;
+  return value as PageContextData<T>;
 }
 
 let pageStateContext: any;
@@ -87,5 +87,5 @@ export function useCurrentSectionContext<T>() {
   if (value == null)
     throw new Error("Should be within CurrentSectionContextProvider");
 
-  return value;
+  return value as PageContextData<T>;
 }
