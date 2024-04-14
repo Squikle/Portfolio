@@ -83,11 +83,10 @@
   },
   "name": "Emitters",
   "backgroundMode": {
-    "enable": true,
-    "zIndex": 0
+    "enable": false
   },
   "interactivity": {
-    "detectsOn": "window",
+    "detectsOn": "canvas",
     "events": {
       "onHover": {
         "enable": true,
