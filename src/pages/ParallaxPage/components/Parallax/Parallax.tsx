@@ -193,8 +193,8 @@ export default function Parallax({ isActive }: Props) {
           </div>
           <img
             fetchPriority={"high"}
-            src={sky2}
-            data-src={sky2Low}
+            src={sky2Low}
+            data-src={sky2}
             alt="sky2Low"
             className="lazyload blur-up parallax sky-2"
             data-speed-x="0.26"
@@ -205,8 +205,8 @@ export default function Parallax({ isActive }: Props) {
           />
           <img
             fetchPriority={"high"}
-            src={sky1}
-            data-src={sky1Low}
+            src={sky1Low}
+            data-src={sky1}
             alt="sky1Low"
             className="lazyload blur-up parallax sky-1"
             data-speed-x="0.22"
