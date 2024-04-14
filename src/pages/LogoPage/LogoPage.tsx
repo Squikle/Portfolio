@@ -112,17 +112,8 @@ export default function LogoPage({
   );
 
   const isLoaded = () => {
-    return loadState?.image === true && loadState?.particles === true;
+    return loadState?.image && loadState?.particles;
   };
-
-  useEffect(() => {
-    if (!swiper) return;
-
-    if (isActive) setTimeout(() => swiper.mousewheel?.enable(), 1500);
-    else {
-      swiper.mousewheel.disable();
-    }
-  }, [isActive]);
 
   const background = useBackground(
     isLoaded(),
