@@ -22,7 +22,7 @@ import left3 from "../../../../../assets/layers-mid/7-3-left.webp";
 import left3Low from "../../../../../assets/layers-low/7-3-left.webp";
 import left2 from "../../../../../assets/layers-mid/7-2-left.webp";
 import left2Low from "../../../../../assets/layers-low/7-2-left.webp";
-import raysLeft from "../../../../../assets/layers-mid/7-1-rays-left.png";
+import raysLeft from "../../../../../assets/layers-mid/7-1-rays-left.webp";
 import fogLeft from "../../../../../assets/layers-mid/7-0-fog-left.webp";
 import right11 from "../../../../../assets/layers-mid/6-11-right.webp";
 import right11Low from "../../../../../assets/layers-low/6-11-right.webp";
@@ -120,6 +120,7 @@ export default function Parallax({ isActive }: Props) {
       >
         <img
           src={birdsLow}
+          alt="birdsLow"
           data-src={birds}
           className="lazyload blur-up parallax birds"
           data-speed-x="0.3"
@@ -132,6 +133,7 @@ export default function Parallax({ isActive }: Props) {
           fetchPriority={"high"}
           src={personLow}
           data-src={person}
+          alt="person"
           className="lazyload blur-up parallax person"
           data-speed-x="0.05"
           data-speed-y="0.10"
@@ -142,6 +144,7 @@ export default function Parallax({ isActive }: Props) {
         />
         <img
           src={light}
+          alt="light"
           className="lazyload blur-up parallax light"
           data-speed-x="0.2"
           data-speed-y="0.2"
@@ -157,6 +160,7 @@ export default function Parallax({ isActive }: Props) {
             fetchPriority={"high"}
             src={sky3Low}
             data-src={sky3}
+            alt="sky3"
             className="lazyload blur-up parallax sky-3"
             data-speed-x="0.19"
             data-speed-y="0.16"
@@ -191,6 +195,7 @@ export default function Parallax({ isActive }: Props) {
             fetchPriority={"high"}
             src={sky2}
             data-src={sky2Low}
+            alt="sky2Low"
             className="lazyload blur-up parallax sky-2"
             data-speed-x="0.26"
             data-speed-y="0.13"
@@ -202,6 +207,7 @@ export default function Parallax({ isActive }: Props) {
             fetchPriority={"high"}
             src={sky1}
             data-src={sky1Low}
+            alt="sky1Low"
             className="lazyload blur-up parallax sky-1"
             data-speed-x="0.22"
             data-speed-y="0.1"
@@ -212,6 +218,7 @@ export default function Parallax({ isActive }: Props) {
           <img
             src={traceLow}
             data-src={trace}
+            alt="trace"
             className="lazyload blur-up parallax trace"
             data-speed-x="0.25"
             data-speed-y="0.165"
@@ -223,6 +230,7 @@ export default function Parallax({ isActive }: Props) {
           <img
             src={left9Low}
             data-src={left9}
+            alt="left9"
             className="lazyload blur-up parallax left-9"
             data-speed-x="0.19"
             data-speed-y="0.17"
@@ -233,6 +241,7 @@ export default function Parallax({ isActive }: Props) {
           <img
             src={left8Low}
             data-src={left8}
+            alt="left8"
             className="lazyload blur-up parallax left-8"
             data-speed-x="0.2"
             data-speed-y="0.18"
@@ -243,6 +252,7 @@ export default function Parallax({ isActive }: Props) {
           <img
             src={left7Low}
             data-src={left7}
+            alt="left7"
             className="lazyload blur-up parallax left-7"
             data-speed-x="0.2"
             data-speed-y="0.185"
@@ -253,6 +263,7 @@ export default function Parallax({ isActive }: Props) {
           <img
             src={left6Low}
             data-src={left6}
+            alt="left6"
             className="lazyload blur-up parallax left-6"
             data-speed-x="0.19"
             data-speed-y="0.17"
@@ -263,6 +274,7 @@ export default function Parallax({ isActive }: Props) {
           <img
             src={left5Low}
             data-src={left5}
+            alt="left5"
             className="lazyload blur-up parallax left-5"
             data-speed-x="0.18"
             data-speed-y="0.16"
@@ -273,6 +285,7 @@ export default function Parallax({ isActive }: Props) {
           <img
             src={left4Low}
             data-src={left4}
+            alt="left4"
             className="lazyload blur-up parallax left-4"
             data-speed-x="0.14"
             data-speed-y="0.13"
@@ -283,6 +296,7 @@ export default function Parallax({ isActive }: Props) {
           <img
             src={left3Low}
             data-src={left3}
+            alt="left3"
             className="lazyload blur-up parallax left-3"
             data-speed-x="0.2"
             data-speed-y="0.18"
@@ -293,6 +307,7 @@ export default function Parallax({ isActive }: Props) {
           <img
             src={left2Low}
             data-src={left2}
+            alt="left2"
             className="lazyload blur-up parallax left-2"
             data-speed-x="0.19"
             data-speed-y="0.16"
@@ -302,6 +317,7 @@ export default function Parallax({ isActive }: Props) {
           />
           <img
             src={fogLeft}
+            alt="fogLeft"
             className="parallax fog-left"
             data-speed-x="0.2"
             data-speed-y="0.21"
@@ -312,6 +328,7 @@ export default function Parallax({ isActive }: Props) {
           <img
             src={right11Low}
             data-src={right11}
+            alt="right11"
             className="lazyload blur-up parallax right-11"
             data-speed-x="0.14"
             data-speed-y="0.13"
@@ -322,6 +339,7 @@ export default function Parallax({ isActive }: Props) {
           <img
             src={right10Low}
             data-src={right10}
+            alt="right10"
             className="lazyload blur-up parallax right-10"
             data-speed-x="0.15"
             data-speed-y="0.13"
@@ -332,6 +350,7 @@ export default function Parallax({ isActive }: Props) {
           <img
             src={right9Low}
             data-src={right9}
+            alt="right9"
             className="lazyload blur-up parallax right-9"
             data-speed-x="0.15"
             data-speed-y="0.16"
@@ -342,6 +361,7 @@ export default function Parallax({ isActive }: Props) {
           <img
             src={right8Low}
             data-src={right8}
+            alt="right8"
             className="lazyload blur-up parallax right-8"
             data-speed-x="0.17"
             data-speed-y="0.15"
@@ -352,6 +372,7 @@ export default function Parallax({ isActive }: Props) {
           <img
             src={right7Low}
             data-src={right7}
+            alt="right7"
             className="lazyload blur-up parallax right-7"
             data-speed-x="0.18"
             data-speed-y="0.18"
@@ -361,6 +382,7 @@ export default function Parallax({ isActive }: Props) {
           />
           <img
             src={fogRight6}
+            alt="fogRight6"
             className="parallax fog-right-6"
             data-speed-x="0.2"
             data-speed-y="0.18"
@@ -371,6 +393,7 @@ export default function Parallax({ isActive }: Props) {
           <img
             src={right5Low}
             data-src={right5}
+            alt="right5"
             className="lazyload blur-up parallax right-5"
             data-speed-x="0.2"
             data-speed-y="0.2"
@@ -381,6 +404,7 @@ export default function Parallax({ isActive }: Props) {
           <img
             src={right4Low}
             data-src={right4}
+            alt="right4"
             className="lazyload blur-up parallax right-4"
             data-speed-x="0.18"
             data-speed-y="0.19"
@@ -391,6 +415,7 @@ export default function Parallax({ isActive }: Props) {
           <img
             src={right3Low}
             data-src={right3}
+            alt="right3"
             className="lazyload blur-up parallax right-3"
             data-speed-x="0.21"
             data-speed-y="0.215"
@@ -401,6 +426,7 @@ export default function Parallax({ isActive }: Props) {
           <img
             src={right2Low}
             data-src={right2}
+            alt="right2"
             className="lazyload blur-up parallax right-2"
             data-speed-x="0.17"
             data-speed-y="0.18"
@@ -411,6 +437,7 @@ export default function Parallax({ isActive }: Props) {
           <img
             src={right1Low}
             data-src={right1}
+            alt="right1"
             className="lazyload blur-up parallax right-1"
             data-speed-x="0.2"
             data-speed-y="0.2"
@@ -420,6 +447,7 @@ export default function Parallax({ isActive }: Props) {
           />
           <img
             src={fogRight0}
+            alt="fogRight0"
             className="parallax fog-right-0"
             data-speed-x="0.22"
             data-speed-y="0.15"
@@ -430,6 +458,7 @@ export default function Parallax({ isActive }: Props) {
           <img
             src={middle5Low}
             data-src={middle5}
+            alt="middle5"
             className="lazyload blur-up parallax middle-5"
             data-speed-x="0.15"
             data-speed-y="0.12"
@@ -440,6 +469,7 @@ export default function Parallax({ isActive }: Props) {
           <img
             src={middle4Low}
             data-src={middle4}
+            alt="middle4"
             className="lazyload blur-up parallax middle-4"
             data-speed-x="0.19"
             data-speed-y="0.13"
@@ -449,6 +479,7 @@ export default function Parallax({ isActive }: Props) {
           />
           <img
             src={fogMiddleLow}
+            alt="fogMiddleLow"
             className="parallax fog-middle"
             data-speed-x="0.23"
             data-speed-y="0.15"
@@ -459,6 +490,7 @@ export default function Parallax({ isActive }: Props) {
           <img
             src={middle2Low}
             data-src={middle2}
+            alt="middle2"
             className="lazyload blur-up parallax middle-2"
             data-speed-x="0.18"
             data-speed-y="0.15"
@@ -469,6 +501,7 @@ export default function Parallax({ isActive }: Props) {
           <img
             src={middle1Low}
             data-src={middle1}
+            alt="middle1"
             className="lazyload blur-up parallax middle-1"
             data-speed-x="0.175"
             data-speed-y="0.16"
@@ -479,6 +512,7 @@ export default function Parallax({ isActive }: Props) {
           <img
             src={middle0Low}
             data-src={middle0}
+            alt="middle0"
             className="lazyload blur-up parallax middle-0"
             data-speed-x="0.2"
             data-speed-y="0.2"
@@ -489,6 +523,7 @@ export default function Parallax({ isActive }: Props) {
           <img
             src={buildingsFrontLow}
             data-src={buildingsFront}
+            alt="buildingsFront"
             className="lazyload blur-up parallax buildings-front"
             data-speed-x="0.19"
             data-speed-y="0.2"
@@ -501,6 +536,7 @@ export default function Parallax({ isActive }: Props) {
             fetchPriority={"high"}
             src={waterLow}
             data-src={water}
+            alt="water"
             className="lazyload blur-up parallax water"
             data-speed-x="0.2"
             data-speed-y="0.2"
@@ -509,6 +545,7 @@ export default function Parallax({ isActive }: Props) {
           <img
             src={waterYachtLow}
             data-src={waterYacht}
+            alt="waterYacht"
             className="lazyload blur-up parallax water-yacht"
             data-speed-x="0.23"
             data-speed-y="0.21"
@@ -519,6 +556,7 @@ export default function Parallax({ isActive }: Props) {
           <img
             src={waterBoatRightLow}
             data-src={waterBoatRight}
+            alt="waterBoatRight"
             className="lazyload blur-up parallax water-boat-right"
             data-speed-x="0.29"
             data-speed-y="0.2"
@@ -529,6 +567,7 @@ export default function Parallax({ isActive }: Props) {
           <img
             src={waterBoatLeftLow}
             data-src={waterBoatLeft}
+            alt="waterBoatLeft"
             className="lazyload blur-up parallax water-boat-left"
             data-speed-x="0.15"
             data-speed-y="0.21"
@@ -538,6 +577,7 @@ export default function Parallax({ isActive }: Props) {
           />
           <img
             src={fogSmallFront}
+            alt="fogSmallFront"
             className="parallax fog-front-small"
             data-speed-x="0.23"
             data-speed-y="0.18"
@@ -549,6 +589,7 @@ export default function Parallax({ isActive }: Props) {
           <img
             src={fogFrontLow}
             data-src={fogFront}
+            alt="fogFront"
             className="lazyload blur-up parallax fog-front"
             data-speed-x="0.25"
             data-speed-y="0.25"
@@ -560,6 +601,7 @@ export default function Parallax({ isActive }: Props) {
           <img
             fetchPriority={"high"}
             src={raysLeft}
+            alt="raysLeft"
             className="parallax rays-left"
             data-speed-x="0.11"
             data-speed-y="0.05"
