@@ -2,6 +2,7 @@ import { useParticlesComponent } from "../../hooks/useParticlesEngine";
 import { useCallback, useEffect, useState } from "react";
 import { Container, ISourceOptions } from "@tsparticles/engine";
 import { EmitterContainer } from "@tsparticles/plugin-emitters";
+// @ts-ignore
 import { IEmitter } from "@tsparticles/plugin-emitters/types/Options/Interfaces/IEmitter";
 
 type Props = {

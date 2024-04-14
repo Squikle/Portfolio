@@ -59,7 +59,7 @@
     "sass": "^1.72.0",
     "sharp": "^0.33.3",
     "terser": "^5.30.3",
-    "typescript": "^5.4.3",
+    "typescript": "^5.4.5",
     "vite": "^5.2.8",
     "vite-plugin-compression2": "^1.0.0",
     "vite-plugin-image-optimizer": "^1.1.7"

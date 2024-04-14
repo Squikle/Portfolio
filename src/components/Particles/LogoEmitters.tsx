@@ -13,8 +13,9 @@ const kEmitterPosition: position = { x: 2435, y: 612 };
 import { useCallback, useEffect, useState } from "react";
 import { Container, ISourceOptions } from "@tsparticles/engine";
 import { adaptEmitter } from "./retinaAdapter.js";
+// @ts-ignore
 import { IEmitterOptions } from "@tsparticles/plugin-emitters/types/types";
-import { ImageData } from "../../pages/LogoPage/components/Logo/types.ts";
+import { ImageData } from "@/pages/LogoPage/components/Logo/types.ts";
 import { EmitterContainer } from "@tsparticles/plugin-emitters";
 
 type Props = {
