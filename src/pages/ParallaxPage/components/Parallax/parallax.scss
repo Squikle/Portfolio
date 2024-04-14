@@ -171,8 +171,8 @@ $default-scale: 0.316;
 }
 .right-8 {
   --width: 17.116%;
-  --from-left: 315%;
-  --from-top: 218.52%;
+  --from-left: 313.5%;
+  --from-top: 221.52%;
   z-index: 17;
 }
 .right-7 {
@@ -197,7 +197,7 @@ $default-scale: 0.316;
 .right-4 {
   --width: 14.504%;
   --from-left: 324.32%;
-  --from-top: 242.66%;
+  --from-top: 245.66%;
   z-index: 21;
 }
 .right-3 {
@@ -459,7 +459,7 @@ $default-scale: 0.316;
 }
 @media (min-aspect-ratio: 1.9/1) and (orientation: landscape){
   .parallax-layers, .parallax-container {
-    transform: translateY(13vh);
+    transform: translateY(10vh);
   }
   .person {
     max-width: 19vmax;
