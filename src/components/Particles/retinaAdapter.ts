@@ -150,10 +150,6 @@ export function adaptParticles(
     return Math.pow(normalize(diagonal, 1, 500), exp) * flat;
   };
 
-  const logAdapt = (offset: number = 1, flat: number = 0.1) => {
-    return flat * Math.log(diagonal) + offset;
-  };
-
   const rationalAdapt = (offset: number = 1, flat: number = 1) => {
     return (1 / diagonal - offset) * flat;
   };

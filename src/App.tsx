@@ -6,11 +6,37 @@ import { useSwiperPagination } from "./components/Slides/hooks/useSwiperPaginati
 import config from "./configs/global.config.json";
 import SlidesPagination from "./components/Slides/SlidesPagination.tsx";
 import Page from "./components/Page/Page.tsx";
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect, useMemo, useState } from "react";
 import LoadingOverlay from "./components/LoadingOverlay/LoadingOverlay.tsx";
 
 export default function App() {
   const pagination = useSwiperPagination();
+  const [firstPageLoaded, setFirstPageLoaded] = useState(false);
+  const [nextPageLoaded, setNextPageLoaded] = useState(false);
+
+  const LazyParallaxPage = useMemo(
+    () =>
+      lazy(async () => {
+        const component = await import("./pages/ParallaxPage/ParallaxPage.tsx");
+        setFirstPageLoaded(true);
+        return component;
+      }),
+    [],
+  );
+
+  const LazyLogoPage = useMemo(
+    () =>
+      lazy(async () => {
+        const component = await import("./pages/LogoPage/LogoPage.tsx");
+        setNextPageLoaded(true);
+        return component;
+      }),
+    [],
+  );
+
+  useEffect(() => {
+    if (firstPageLoaded) setTimeout(() => setNextPageLoaded(true), 4000);
+  }, [firstPageLoaded]);
 
   return (
     <Page isActive={true} pageName={"master"}>
@@ -43,10 +69,12 @@ export default function App() {
         <SwiperSlide>
           {({ isActive }) => (
             <Suspense fallback={<LoadingOverlay />}>
-              <LazyLogoPage
-                isAlwaysVisible={true}
-                isActive={isActive}
-              ></LazyLogoPage>
+              {(isActive || nextPageLoaded) && (
+                <LazyLogoPage
+                  isAlwaysVisible={true}
+                  isActive={isActive}
+                ></LazyLogoPage>
+              )}
             </Suspense>
           )}
         </SwiperSlide>
@@ -54,9 +82,3 @@ export default function App() {
     </Page>
   );
 }
-
-const LazyParallaxPage = lazy(
-  () => import("./pages/ParallaxPage/ParallaxPage.tsx"),
-);
-
-const LazyLogoPage = lazy(() => import("./pages/LogoPage/LogoPage.tsx"));
