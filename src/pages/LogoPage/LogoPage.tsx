@@ -1,7 +1,7 @@
 import PageSection from "../../components/Page/PageSection";
 import Page from "../../components/Page/Page";
 import Particles from "../../components/Particles/Particles";
-import { useCallback, useEffect, useReducer, useRef, useState } from "react";
+import { useCallback, useReducer, useRef, useState } from "react";
 import globalParticlesOptions from "../../configs/global-particles.json";
 import emittersParticlesOptions from "../../configs/emitters-particles.json";
 import canvasParticlesOptions from "../../configs/canvas-particles.json";
@@ -12,7 +12,7 @@ import classNames from "classnames";
 import styles from "./LogoPage.module.scss";
 import { useCurrentSectionContext } from "../../components/Page/CurrentPageContext/Contexts.tsx";
 import { Keyboard, Mousewheel } from "swiper/modules";
-import { Swiper, SwiperClass, SwiperSlide, useSwiper } from "swiper/react";
+import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 import SlidesPagination from "../../components/Slides/SlidesPagination.tsx";
 import { useSwiperPagination } from "../../components/Slides/hooks/useSwiperPagination.ts";
 import config from "../../configs/global.config.json";
@@ -78,7 +78,6 @@ export default function LogoPage({
 }) {
   const [imageData, setImageData] = useState<ImageData>(initialImageData);
   const [loadState, dispatchLoad] = useReducer(stateReducer, initialLoadState);
-  const [swiper, setSwiper] = useState<SwiperClass | null>(null);
   const parentSwiper = useSwiper();
   const options = useRef(initialParticlesOptions);
   const pagination = useSwiperPagination();
@@ -151,7 +150,6 @@ export default function LogoPage({
         keyboard={true}
         onInit={(s) => {
           pagination.setSwiper(s);
-          setSwiper(s);
         }}
         mousewheel={{
           enabled: true,
