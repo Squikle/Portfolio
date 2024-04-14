@@ -16,7 +16,7 @@
     },
     "location": "Toronto, Canada",
     "locationLink": "https://maps.app.goo.gl/CZQjbmQuShKgXZkA6",
-    "pdfResume": "/Michael Dovhalov CV.pdf"
+    "pdfResume": "./Michael Dovhalov CV.pdf"
   },
   "greeting": "Hey there! Thank you for visiting my portfolio page. It has been fully designed and developed by me.",
   "description": "I am dedicated to building scalable and well-documented code, leveraging the latest tools and technologies. My approach is rooted in the 'T-shaped' model, with a strong focus on backend development, complemented by a growing expertise in frontend development and deployment strategies. I am committed to staying abreast of modern technologies to ensure timely and effective tool selection for optimal results.",
@@ -127,7 +127,8 @@
       "MongoDB",
       "Elasticsearch",
       "gRPC",
-      "WebSockets"
+      "WebSockets",
+      "Orleans Framework"
     ],
     "frontend": {
       "tools": [
