@@ -6,16 +6,15 @@ import { ViteImageOptimizer } from "vite-plugin-image-optimizer";
 
 const imageOptimizer = ViteImageOptimizer({
   png: {
-    quality: 50,
+    quality: 40,
     compressionLevel: 9,
     effort: 9,
   },
   webp: {
-    quality: 50,
+    quality: 40,
     lossless: false,
     effort: 6,
   },
-  exclude: /.*sky.*/,
 });
 
 // https://vitejs.dev/config/
@@ -37,6 +36,6 @@ export default defineConfig({
   build: {
     sourcemap: false,
     minify: "terser",
-    cssMinify: "lightningcss",
+    cssMinify: "esbuild",
   },
 });

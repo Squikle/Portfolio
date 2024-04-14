@@ -1,7 +1,6 @@
 import { createContext, ReactNode, useContext } from "react";
 import { BackgroundControl } from "../Page.tsx";
 import { SwiperClass } from "swiper/react";
-import { once } from "lodash";
 
 type PageContextData<T> = {
   isActive: boolean;
@@ -46,9 +45,13 @@ export function useCurrentPageContext<T>() {
   return value;
 }
 
-export const createPageStateContext = once(<T,>() =>
-  createContext<PageContextData<T> | null>(null),
-);
+let pageStateContext: any;
+export const createPageStateContext = <T,>() => {
+  if (!pageStateContext)
+    pageStateContext = createContext<PageContextData<T> | null>(null);
+
+  return pageStateContext;
+};
 
 export const CurrentSectionContextProvider = <T,>({
   isActive,
@@ -56,7 +59,7 @@ export const CurrentSectionContextProvider = <T,>({
   swiper,
   ...contextData
 }: Props<T>) => {
-  const SectionContext = createSectionStateContext<T>();
+  const SectionContext = createPageSectionStateContext<T>();
   const contextValue = {
     isActive,
     swiper,
@@ -69,12 +72,17 @@ export const CurrentSectionContextProvider = <T,>({
     </SectionContext.Provider>
   );
 };
-export const createSectionStateContext = once(<T,>() =>
-  createContext<PageContextData<T> | null>(null),
-);
+
+let pageSectionStateContext: any;
+export const createPageSectionStateContext = <T,>() => {
+  if (!pageSectionStateContext)
+    pageSectionStateContext = createContext<PageContextData<T> | null>(null);
+
+  return pageSectionStateContext;
+};
 
 export function useCurrentSectionContext<T>() {
-  const value = useContext(createSectionStateContext<T>());
+  const value = useContext(createPageSectionStateContext<T>());
 
   if (value == null)
     throw new Error("Should be within CurrentSectionContextProvider");

@@ -113,9 +113,7 @@ export function useParallax(
   useLayoutEffect(() => {
     const [container, elementsToUpdate] = getContainerAndElements();
 
-    const handlePointerUpdate = throttle((e: React.PointerEvent) => {
-      if (e.pointerType === "touch") return;
-
+    const handleMouseUpdate = throttle((e: MouseEvent) => {
       handleUpdate(e.clientX, e.clientY, elementsToUpdate);
     }, 5);
 
@@ -129,7 +127,7 @@ export function useParallax(
     };
 
     reset();
-    container.addEventListener("pointermove", handlePointerUpdate);
+    container.addEventListener("mousemove", handleMouseUpdate);
     container.addEventListener("touchmove", handleTouchUpdate, {
       passive: true,
     });
@@ -137,7 +135,7 @@ export function useParallax(
     container.addEventListener("touchend", reset);
 
     return () => {
-      container.removeEventListener("pointermove", handlePointerUpdate);
+      container.removeEventListener("mousemove", handleMouseUpdate);
       container.removeEventListener("touchmove", handleTouchUpdate);
       container.removeEventListener("mouseleave", reset);
       container.removeEventListener("touchend", reset);
