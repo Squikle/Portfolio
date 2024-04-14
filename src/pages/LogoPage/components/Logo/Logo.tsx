@@ -61,7 +61,7 @@ export default function Logo({ onImageResize, onLoad }: Props) {
         className={classNames("lazyload", "blur-up", styles.logo)}
         ref={imageRef}
         onLoad={() => onLoad(getImageData())}
-        alt="logo"
+        alt="squik-logo"
       />
     </div>
   );
