@@ -24,7 +24,7 @@ export default function useAnalyticsInit(): Analytics {
     let _paq = (window._paq = window._paq || []);
 
     _paq.push(["trackPageView"]);
-    (function () {
+    (async () => {
       if (scriptSet) return;
 
       const u = config.analytics.url;
