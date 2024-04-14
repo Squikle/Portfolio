@@ -5,18 +5,12 @@
   },
   "detectRetina": true,
   "duration": 0,
-  "fpsLimit": 30,
+  "fpsLimit": 120,
   "particles": {
     "rotate": {
       "value": {
         "min": 0,
         "max": 360
-      },
-      "animation": {
-        "enable": true,
-        "speed": 60,
-        "decay": 0,
-        "sync": false
       },
       "direction": "random",
       "path": false
@@ -35,8 +29,7 @@
       "speed": {
         "min": 1,
         "max": 1
-      },
-      "warp": true
+      }
     },
     "number": {
       "density": {
@@ -60,7 +53,7 @@
         "speed": 150,
         "decay": 1,
         "delay": 0,
-        "sync": true,
+        "sync": false,
         "mode": "random",
         "startValue": "random",
         "destroy": "none"
@@ -130,11 +123,10 @@
       "color": true,
       "opacity": true
     },
-    "scale": 3.5
+    "scale": 1.5
   },
   "backgroundMode": {
-    "enable": true,
-    "zIndex": 0
+    "enable": true
   },
   "interactivity": {
     "detectsOn": "window",

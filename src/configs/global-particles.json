@@ -5,7 +5,7 @@
     "enable": false
   },
   "detectRetina": true,
-  "fpsLimit": 30,
+  "fpsLimit": 120,
   "particles": {
     "rotate": {
       "value": {
@@ -14,51 +14,20 @@
       },
       "animation": {
         "enable": true,
-        "speed": 60,
-        "decay": 0,
-        "sync": false
+        "speed": 60
       },
-      "direction": "random",
-      "path": false
+      "direction": "random"
     },
     "color": {
       "value": ["#ff1ce7", "#1cddff"]
     },
     "move": {
-      "angle": {
-        "offset": 0,
-        "value": 0
-      },
-      "attract": {
-        "distance": 50,
-        "enable": false,
-        "rotate": {
-          "x": 100,
-          "y": 100
-        }
-      },
-      "decay": 0,
       "distance": {
         "horizontal": 75,
         "vertical": 75
       },
       "direction": "none",
-      "drift": 0,
       "enable": true,
-      "gravity": {
-        "acceleration": 9.81,
-        "enable": false,
-        "inverse": false,
-        "maxSpeed": 50
-      },
-      "path": {
-        "clamp": true,
-        "delay": {
-          "value": 0
-        },
-        "enable": true,
-        "options": {}
-      },
       "outModes": {
         "default": "none"
       },
@@ -67,12 +36,7 @@
       "speed": {
         "min": 1,
         "max": 1
-      },
-      "spin": {
-        "acceleration": 0,
-        "enable": false
-      },
-      "warp": true
+      }
     },
     "number": {
       "limit": {
@@ -92,7 +56,6 @@
         "speed": 150,
         "decay": 1,
         "delay": 0,
-        "sync": true,
         "mode": "random",
         "startValue": "random",
         "destroy": "none"
@@ -101,7 +64,6 @@
     "shape": {
       "close": true,
       "fill": true,
-      "options": {},
       "type": "triangle"
     },
     "size": {
@@ -143,8 +105,7 @@
         "enable": true,
         "frequency": 1
       },
-      "width": 1,
-      "warp": false
+      "width": 1
     }
   },
   "zLayers": 100,

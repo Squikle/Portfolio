@@ -165,20 +165,20 @@ export function adaptParticles(
     newOptions.particles.move.speed.max *= powAdapt(2, 0.005) * 1.2 + 0.3;
     newOptions.particles.number.value *= clamp(
       powAdapt(2, 0.05) * 350,
-      200,
+      250,
       1200,
     );
     newOptions.particles.size.value.min *= powAdapt(2, 0.03) * 0.4 + 0.4;
     newOptions.particles.size.value.max *= powAdapt(2, 0.03) * 1.2 + 0.4;
     newOptions.particles.stroke.width *= powAdapt(2, 0.001) + 0.1;
-    newOptions.particles.links.distance *= powAdapt(2, 0.01) * 30 + 16;
+    newOptions.particles.links.distance *= powAdapt(2, 0.001) * 40 + 25;
     newOptions.particles.links.width *= powAdapt(2, 0.03) + 0.4;
 
     if (newOptions.interactivity) {
       if (newOptions.interactivity.modes?.bubble) {
-        newOptions.interactivity.modes.bubble.distance *= powAdapt(2, 2) + 200;
+        newOptions.interactivity.modes.bubble.distance *= powAdapt(2, 2) + 300;
         newOptions.interactivity.modes.bubble.size *= clamp(
-          rationalAdapt(0, 1500),
+          rationalAdapt(0, 1000),
           newOptions.particles.size.value.max * 1.1,
           newOptions.particles.size.value.max * 4,
         );

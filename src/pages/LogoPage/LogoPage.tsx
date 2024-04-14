@@ -19,7 +19,7 @@ import config from "../../configs/global.config.json";
 import useBackground from "../../components/Page/hooks/useBackground.tsx";
 import cardStyle from "../../components/Card/Card.module.scss";
 import useResumeCards from "./components/Resume/hooks/useResumeCards.tsx";
-import smallLogo from "/assets/squik-canvas.webp";
+import canvasLogo from "../../../assets/squik-canvas.png";
 import OfferSection from "./components/Resume/OfferSection/OfferSection.tsx";
 import { ResumeSectionContext } from "./types.ts";
 
@@ -95,7 +95,7 @@ export default function LogoPage({
       canvasParticlesOptions,
       newSize,
     );
-    newCanvasParticlesOptions.canvasMask.image.src = smallLogo;
+    newCanvasParticlesOptions.canvasMask.image.src = canvasLogo;
     options.current = {
       global: adaptParticles(globalParticlesOptions, newSize),
       emitters: adaptParticles(emittersParticlesOptions, newSize),
