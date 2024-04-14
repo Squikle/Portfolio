@@ -1,4 +1,4 @@
-import React, { RefObject, useEffect, useLayoutEffect, useState } from "react";
+import { RefObject, useEffect, useLayoutEffect, useState } from "react";
 import { throttle } from "../../../utils/throttle.ts";
 import useParallaxAnimation from "./useParallaxAnimations.ts";
 

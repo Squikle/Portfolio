@@ -9,7 +9,7 @@ export default function IntroCard() {
   const contactsData = resume.contacts;
   const skillsData = resume.skills;
   const stackData = resume.stack;
-  const educationsData = resume.educations;
+  const educationsData = resume.education;
   const { isActive } = useCurrentSectionContext();
 
   const educations = (
@@ -43,36 +43,56 @@ export default function IntroCard() {
                 <h1>{resume.name}</h1>
                 <h3>{resume.position}</h3>
               </div>
-              <p className={styles.phone}>
-                <span className={styles.key}>Email</span>:{" "}
-                <a href={`mailto:${contactsData.email}`}>
-                  {contactsData.email}
-                </a>
-              </p>
-              <p className={styles.linkedIn}>
-                <span className={styles.key}>LinkedIn</span>:{" "}
-                <a href={contactsData.linkedin}>{contactsData.linkedin}</a>
-              </p>
-              <p className={styles.phone}>
-                <span className={styles.key}>Phone</span>:{" "}
-                <a href={`tel:${contactsData.phoneNumber}`}>
-                  {contactsData.phoneNumber}
-                </a>
-              </p>
-              <p className={styles.phone}>
-                <span className={styles.key}>Secondary Phone</span>:{" "}
-                <a href={`tel:${contactsData.phoneNumberSecondary}`}>
-                  {contactsData.phoneNumberSecondary}
-                </a>
-              </p>
-              <p className={styles.phone}>
-                <span className={styles.key}>Location</span>:{" "}
-                <a href={contactsData.locationLink}>{contactsData.location}</a>
-              </p>
-            </div>
 
-            <p className={styles.greeting}>{resume.greeting}</p>
-            <p className={styles.description}>{resume.description}</p>
+              <div className={styles.personalDetails}>
+                <div className={styles.keysContainer}>
+                  <p className={styles.phone}>
+                    <span className={styles.key}>Email:</span>{" "}
+                    <a href={`mailto:${contactsData.email}`}>
+                      {contactsData.email}
+                    </a>
+                  </p>
+                  <p className={styles.linkedIn}>
+                    <span className={styles.key}>LinkedIn:</span>{" "}
+                    <a href={contactsData.linkedin.link}>
+                      {contactsData.linkedin.label}
+                    </a>
+                  </p>
+                  <p className={styles.phone}>
+                    <span className={styles.key}>Phone:</span>{" "}
+                    <a href={`tel:${contactsData.phoneNumber}`}>
+                      {contactsData.phoneNumber}
+                    </a>
+                  </p>
+                  <p className={styles.phone}>
+                    <span className={styles.key}>Secondary:</span>{" "}
+                    <a href={`tel:${contactsData.phoneNumberSecondary}`}>
+                      {contactsData.phoneNumberSecondary}
+                    </a>
+                  </p>
+                  <p className={styles.telegram}>
+                    <span className={styles.key}>Telegram:</span>{" "}
+                    <a href={contactsData.telegram.link}>
+                      {contactsData.telegram.label}
+                    </a>
+                  </p>
+                  <p className={styles.location}>
+                    <span className={styles.key}>Location:</span>{" "}
+                    <a href={contactsData.locationLink}>
+                      {contactsData.location}
+                    </a>
+                  </p>
+                  <p className={styles.resume}>
+                    <span className={styles.key}>CV:</span>{" "}
+                    <a href={contactsData.pdfResume}>PDF format</a>
+                  </p>
+                </div>
+                <div className={styles.descriptionContainer}>
+                  <p className={styles.greeting}>{resume.greeting}</p>
+                  <p className={styles.description}>{resume.description}</p>
+                </div>
+              </div>
+            </div>
             <div className={styles.features}>
               <div className={styles.skillsContainer}>
                 <h4>Skills:</h4>

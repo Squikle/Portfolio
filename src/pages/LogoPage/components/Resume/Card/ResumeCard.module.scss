@@ -51,15 +51,17 @@
       align-items: center;
       margin: 0.75em 0;
     }
-
+    .key {
+      width: 5em;
+      display: inline-block;
+    }
     .key {
       font-weight: 400;
+      line-height: 1.2em;
     }
 
-    .email, .linkedin, .phone, .secondaryPhone, .location {
-      :not(span) {
-        font-size: 1.1em;
-      }
+    p:not(span) {
+      font-size: 1.1em;
     }
   }
 }
@@ -152,16 +154,15 @@
 
   .description, .greeting {
     margin-top: 0.5em;
-    padding: 0;
-  }
-
-  .location, .position, .period, .company {
-    font-style: italic;
   }
 
   .experienceHeader {
     display: flex;
     justify-content: space-between;
+
+    .location, .position, .period, .company {
+      font-style: italic;
+    }
 
     .companyContainer {
       position: relative;

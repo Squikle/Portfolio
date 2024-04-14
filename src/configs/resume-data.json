@@ -1,15 +1,24 @@
 {
   "name": "Michael Dovhalov",
-  "position": "Fullstack Software Engineer",
+  "position": "FullStack Software Engineer",
   "contacts": {
     "email": "mmishaa1702@gmail.com",
-    "linkedin": "https://www.linkedin.com/in/dovhalov/",
+    "linkedinLabel": "linkedin.com/in/dovhalov/",
+    "linkedin": {
+      "link": "https://www.linkedin.com/in/dovhalov/",
+      "label": "linkedin.com/in/dovhalov/"
+    },
     "phoneNumber": "+1 (416) 414-6089",
-    "phoneNumberSecondary": "+380 (95) 689 51 73",
+    "phoneNumberSecondary": "+380 (95) 689-51-73",
+    "telegram": {
+      "link": "https://t.me/squikle",
+      "label": "t.me/squikle"
+    },
     "location": "Toronto, Canada",
-    "locationLink": "https://maps.app.goo.gl/CZQjbmQuShKgXZkA6"
+    "locationLink": "https://maps.app.goo.gl/CZQjbmQuShKgXZkA6",
+    "pdfResume": "/Michael Dovhalov CV.pdf"
   },
-  "greeting": "Hello! Welcome to my portfolio site. It has been fully designed and developed by me.",
+  "greeting": "Hey there! Thank you for visiting my portfolio page. It has been fully designed and developed by me.",
   "description": "I am dedicated to building scalable and well-documented code, leveraging the latest tools and technologies. My approach is rooted in the 'T-shaped' model, with a strong focus on backend development, complemented by a growing expertise in frontend development and deployment strategies. I am committed to staying abreast of modern technologies to ensure timely and effective tool selection for optimal results.",
   "jobs": [
     {
@@ -22,7 +31,7 @@
         {
           "title": "Product Team Highlights:",
           "bullets": [
-            "Multi-tenant SaaS with Microservice and DDD Architecture",
+            "Multi-tenant SaaS with Microservices and DDD Architecture",
             "Huge data flow using Kafka and ClickHouse",
             "Horizontal Scalability",
             "WebSockets",
@@ -35,7 +44,7 @@
           ]
         },
         {
-          "title": "Customers-support Team Highlights:",
+          "title": "Customer-Support Team Highlights:",
           "bullets": [
             "Pre-sales calls participation",
             "Supporting client environments code and infrastructure",
@@ -61,8 +70,8 @@
       "company": "Bitcoin Suisse",
       "period": "2023-2024",
       "location": "Zug, Switzerland",
-      "position": "Fullstack Software Engineer",
-      "description": "Employed as a Fullstack Software Engineer at Bitcoin Suisse, a Swiss financial services provider specializing in cryptocurrencies and trading services for clients. Bitcoin Suisse leads the market in cryptocurrency investments, offering institutional brokerage services, custody solutions, staking, and secured loans, alongside cutting-edge technical developments. With over 300 employees, Bitcoin Suisse maintains its position as a Swiss pioneer in the crypto industry.",
+      "position": "FullStack Software Engineer",
+      "description": "Employed as a FullStack Software Engineer at Bitcoin Suisse, a Swiss financial services provider specializing in cryptocurrencies and trading services for clients. Bitcoin Suisse leads the market in cryptocurrency investments, offering institutional brokerage services, custody solutions, staking, and secured loans, alongside cutting-edge technical developments. With over 300 employees, Bitcoin Suisse maintains its position as a Swiss pioneer in the crypto industry.",
       "highlights": [
         {
           "title": "Technical Contributions Highlights:",
@@ -78,6 +87,7 @@
             "Kafka Message Handlers using MediatR library.",
             "Azure Identity for SSO authentication.",
             "Azure Monitor and Application Insights with OpenTelemetry framework.",
+            "Setting up Grafana dashboard.",
             "Backend architecture documentation using UML."
           ]
         },
@@ -146,7 +156,7 @@
       "Terraform"
     ]
   },
-  "educations": [
+  "education": [
     {
       "title": "State University of Telecommunications",
       "location": "Kyiv, Ukraine",
