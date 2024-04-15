@@ -320,12 +320,12 @@ $default-scale: 0.316;
 }
 .light {
   --width: 230%;
-  --from-left: -2%;
+  --from-left: 5%;
   --from-top: 35%;
   z-index: 41;
   filter: saturate(1.5) hue-rotate(340deg) !important;
   mix-blend-mode: screen;
-  opacity: 0.4;
+  opacity: 0.5;
 }
 @media (max-aspect-ratio: 0.75/1) and (orientation: portrait){
   .birds {
@@ -337,7 +337,7 @@ $default-scale: 0.316;
   .light {
     right: auto;
     min-width: 75vmax;
-    left: -8vmax;
+    left: -7vmax;
     bottom: -15%;
     top: auto;
   }
@@ -452,7 +452,7 @@ $default-scale: 0.316;
   .light {
     right: auto;
     min-width: 75vmax;
-    left: -12vmax;
+    left: -10vmax;
     bottom: -25%;
     top: auto;
   }

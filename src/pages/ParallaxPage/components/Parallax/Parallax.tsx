@@ -150,7 +150,7 @@ export default function Parallax({ isActive }: Props) {
           data-speed-y="0.2"
           data-speed-z="0.5"
           data-reveal-distance-x="-30"
-          data-reveal-speed="0.4"
+          data-reveal-speed="0.8"
         />
         <div className="lazyload blur-up parallax-layers">
           <div className={classNames(overlayStyles.overlayFixed)}>

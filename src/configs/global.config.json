@@ -34,13 +34,13 @@
   "parallax": {
     "animation": {
       "textIn": {
-        "duration": 1.2,
-        "ease": "power2.out"
+        "duration": 3,
+        "ease": "power4.out"
       },
       "objects": {
-        "duration": 1.4,
-        "delay": 0.1,
-        "ease": "power2.inOut"
+        "duration": 1.8,
+        "delay": 0.3,
+        "ease": "power4.out"
       }
     },
     "userInteraction": {

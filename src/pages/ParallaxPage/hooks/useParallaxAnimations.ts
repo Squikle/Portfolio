@@ -25,7 +25,7 @@ export default function useParallaxAnimation(
       },
       defaults: {
         ease: "power3.inOut",
-      },
+      }
     });
 
     const container = containerRef.current!;
@@ -63,7 +63,7 @@ export default function useParallaxAnimation(
     animatedElements
       .filter((el) => el.dataset.revealStage)
       .sort((el1, el2) => +el1.dataset.revealStage! - +el2.dataset.revealStage!)
-      .forEach((el) => {
+      .forEach((el, i) => {
         const stageName = el.dataset.revealStageName;
         if (!stageName) {
           console.warn("stage name not set for element", el);
@@ -79,7 +79,8 @@ export default function useParallaxAnimation(
             },
           })
           .add(tween);
-        timeline.add(nestedTimeline, ">=-0.5");
+        const position = i === 0 ? config.objects.delay : ">=-0.8";
+        timeline.add(nestedTimeline, position);
 
         const stagedTween = {
           reverse: contextSafe!(

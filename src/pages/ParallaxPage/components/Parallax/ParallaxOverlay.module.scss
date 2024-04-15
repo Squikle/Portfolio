@@ -30,7 +30,6 @@
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   background-color: rgba(87, 58, 70, 0.21);
-  opacity: 1;
   gap: 0.3em;
 
   box-shadow: 2px 2px 3px 1px rgba(0,0,0,0.4),
@@ -89,7 +88,6 @@
 .interactive {
   top: 25%;
   right: 14%;
-  transform: scale(1.2);
 
   p:first-of-type::after {
     white-space: pre;
@@ -139,5 +137,10 @@
 @media (max-aspect-ratio: 0.35/1) and (orientation: portrait){
   .tapMe {
     left: 42%;
+  }
+}
+@media (min-width: 950px) {
+  .interactive {
+    transform: scale(1.3);
   }
 }
