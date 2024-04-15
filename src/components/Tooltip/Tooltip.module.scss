@@ -6,10 +6,8 @@ div {
 
 .tooltip {
   position: relative;
-  background-color: var(--color);
 
   .tail {
-    background-color: var(--color);
     position: absolute;
     z-index: 100;
   }

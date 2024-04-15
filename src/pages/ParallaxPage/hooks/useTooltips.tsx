@@ -124,12 +124,13 @@ const InteractiveTooltip = () => (
       "data-speed-y": "0.16",
       "data-reveal-distance-y": "-1",
       "data-reveal-speed": "1",
+      "data-reveal-opacity": "-3",
       "data-reveal-stage": "1",
       "data-reveal-stage-name": tooltipRevealStages.HOVER,
     }}
   >
-    <p>It's interactive!</p>
-    <p>Hover the screen!</p>
+    <p>It's interactive</p>
+    <p>Slide over the screen!</p>
   </Tooltip>
 );
 
@@ -141,6 +142,7 @@ const MoreTooltip = () => (
       "data-speed-y": "0.16",
       "data-reveal-distance-x": "1",
       "data-reveal-speed": "1",
+      "data-reveal-opacity": "-3",
       "data-reveal-stage": "3",
       "data-reveal-stage-name": tooltipRevealStages.MORE,
     }}
@@ -148,7 +150,6 @@ const MoreTooltip = () => (
     position={"right-bottom"}
   >
     <p>There's more!</p>
-    <p>Click!</p>
   </Tooltip>
 );
 
@@ -163,6 +164,7 @@ const TextTooltip = () => (
       "data-speed-rot-x": "8",
       "data-reveal-distance-x": "-1",
       "data-reveal-speed": "1",
+      "data-reveal-opacity": "-3",
       "data-reveal-stage": "2",
       "data-reveal-stage-name": tooltipRevealStages.TEXT,
     }}

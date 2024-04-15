@@ -91,29 +91,32 @@ export default function useParallaxAnimation(
       });
   });
 
-  const calcInitialPosition = (container: HTMLElement, el: HTMLElement) => {
+  const calcInitialPositionAndStyle = (container: HTMLElement, el: HTMLElement) => {
     const offsetDistanceX = +(el.dataset.revealDistanceX || 0) / 1000;
     const offsetDistanceY = +(el.dataset.revealDistanceY || 0) / 1000;
     const absoluteOffsetX = container.clientWidth * Math.sign(offsetDistanceX);
     const absoluteOffsetY = container.clientHeight * Math.sign(offsetDistanceY);
-    const speed = (el.dataset.revealSpeed as any as number) || 1;
+    const speed = el.dataset.revealSpeed as any as number || 1;
+    const opacity = el.dataset.revealOpacity as any as number || 1;
 
     return {
       x: absoluteOffsetX + offsetDistanceX,
       y: absoluteOffsetY + offsetDistanceY,
+      opacity: opacity,
       duration: config.objects.duration / speed,
     };
   };
 
   const createTwin = (container: HTMLElement, el: HTMLElement) => {
-    const initPos = calcInitialPosition(container, el);
+    const initProps = calcInitialPositionAndStyle(container, el);
     const offset: { top?: number; left?: number } = {};
-    if (initPos.x) offset.left = initPos.x;
-    if (initPos.y) offset.top = initPos.y;
+    if (initProps.x) offset.left = initProps.x;
+    if (initProps.y) offset.top = initProps.y;
 
     return gsap.from(el, {
       ...offset,
-      duration: initPos.duration,
+      opacity: initProps.opacity,
+      duration: initProps.duration,
     });
   };
 

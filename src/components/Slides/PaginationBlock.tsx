@@ -100,20 +100,10 @@ export default function PaginationBlock({
     const hasPrev = parentSlide > 0;
 
     const slidePrev = useCallback(() => {
-      analytics.pushEvent(
-        EventCategories.button,
-        EventActions.click,
-        "slidePrev",
-      );
       slider.swiper.slidePrev();
     }, [slider.swiper, analytics]);
 
     const slideNext = useCallback(() => {
-      analytics.pushEvent(
-        EventCategories.button,
-        EventActions.click,
-        "slideNext",
-      );
       slider.swiper.slideNext();
     }, [slider.swiper, analytics]);
 
