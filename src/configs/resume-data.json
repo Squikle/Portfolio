@@ -18,15 +18,15 @@
     "locationLink": "https://maps.app.goo.gl/CZQjbmQuShKgXZkA6",
     "pdfResume": "./Michael Dovhalov CV.pdf"
   },
-  "greeting": "Hey there! Thank you for visiting my portfolio page. It has been fully designed and developed by me.",
-  "description": "I am dedicated to building scalable and well-documented code, leveraging the latest tools and technologies. My approach is rooted in the 'T-shaped' model, with a strong focus on backend development, complemented by a growing expertise in frontend development and deployment strategies. I am committed to staying abreast of modern technologies to ensure timely and effective tool selection for optimal results.",
+  "greeting": "Hey there! Thank you for visiting my portfolio page. It has been fully designed and developed by me",
+  "description": "I am dedicated to building scalable and well-documented code, leveraging the latest tools and technologies. My approach is rooted in the 'T-shaped' model, with a strong focus on backend development, complemented by a growing expertise in frontend development and deployment strategies. I am committed to staying abreast of modern technologies to ensure timely and effective tool selection for optimal results",
   "jobs": [
     {
       "company": "upSWOT",
       "period": "2020-2023",
       "location": "South Carolina, USA",
       "position": "Software Engineer",
-      "description": "Worked as a backend software developer, contributing to product development and customer support. Fintech solution offering customizable embedded finance widgets and actionable insights for businesses. Trusted by 100+ multinational financial institutions and partnered with industry leaders like Mastercard, Visa, NCR, NerdWallet, Alkami, RedHat, Republic Bank, FSNB, PwC, MX, CreditSafe, Equifax and more.",
+      "description": "Worked as a backend software developer, contributing to product development and customer support. Fintech solution offering customizable embedded finance widgets and actionable insights for businesses. Trusted by 100+ multinational financial institutions and partnered with industry leaders like Mastercard, Visa, NCR, NerdWallet, Alkami, RedHat, Republic Bank, FSNB, PwC, MX, CreditSafe, Equifax and more",
       "highlights": [
         {
           "title": "Product Team Highlights:",
@@ -40,7 +40,7 @@
             "RESTful APIs",
             "Web components architecture and development",
             "AWS and GCP infrastructure solutions integrations",
-            "Taking important strategic decisions to address complex challenges"
+            "Making important strategic decisions to address complex challenges"
           ]
         },
         {
@@ -59,9 +59,9 @@
             "Mentored newcomers to the team, providing guidance",
             "Demonstrated initiative by suggesting improvements in development planning and team organization",
             "Actively participated in retrospectives and grooming sessions",
-            "Maintained composure and emotional control in high-stress situations.",
-            "Demonstrated adaptability when working with new colleagues.",
-            "Displayed a problem-solving approach, consistently seeking effective solutions rather than superficial fixes."
+            "Maintained composure and emotional control in high-stress situations",
+            "Demonstrated adaptability when working with new colleagues",
+            "Displayed a problem-solving approach, consistently seeking effective solutions rather than superficial fixes"
           ]
         }
       ]
@@ -71,7 +71,7 @@
       "period": "2023-2024",
       "location": "Zug, Switzerland",
       "position": "FullStack Software Engineer",
-      "description": "Employed as a FullStack Software Engineer at Bitcoin Suisse, a Swiss financial services provider specializing in cryptocurrencies and trading services for clients. Bitcoin Suisse leads the market in cryptocurrency investments, offering institutional brokerage services, custody solutions, staking, and secured loans, alongside cutting-edge technical developments. With over 300 employees, Bitcoin Suisse maintains its position as a Swiss pioneer in the crypto industry.",
+      "description": "Employed as a FullStack Software Engineer at Bitcoin Suisse, a Swiss financial services provider specializing in cryptocurrencies and trading services for clients. Bitcoin Suisse leads the market in cryptocurrency investments, offering institutional brokerage services, custody solutions, staking, and secured loans, alongside cutting-edge technical developments. With over 300 employees, Bitcoin Suisse maintains its position as a Swiss pioneer in the crypto industry",
       "highlights": [
         {
           "title": "Technical Contributions Highlights:",
@@ -82,21 +82,21 @@
             "Azure Pipelines for microservices and Kubernetes clusters",
             "Resolving issues in the production environment",
             "React components using TypeScript",
-            "ASP.NET Core Blazor development for managing database records.",
-            "Stress tests using JMeter and NBomber to assess system performance under high loads.",
-            "Kafka Message Handlers using MediatR library.",
-            "Azure Identity for SSO authentication.",
-            "Azure Monitor and Application Insights with OpenTelemetry framework.",
-            "Setting up Grafana dashboard.",
-            "Backend architecture documentation using UML."
+            "ASP.NET Core Blazor development for managing database records",
+            "Stress tests using JMeter and NBomber to assess system performance under high loads",
+            "Kafka Message Handlers using MediatR library",
+            "Azure Identity for SSO authentication",
+            "Azure Monitor and Application Insights with OpenTelemetry framework",
+            "Setting up a Grafana dashboard",
+            "Backend architecture documentation using UML"
           ]
         },
         {
           "title": "Soft Skills Highlights:",
           "bullets": [
-            "Quickly integrated into the project and contributed by developing code and updating outdated documentation.",
-            "Onboarded a newcomer senior developer to the project.",
-            "Displayed problem-solving skills by striving to understand the core issues and finding optimal solutions."
+            "Quickly integrated into the project and contributed by developing code and updating outdated documentation",
+            "Onboarded a newcomer senior developer to the project",
+            "Displayed problem-solving skills by striving to understand the core issues and finding optimal solutions"
           ]
         }
       ]
