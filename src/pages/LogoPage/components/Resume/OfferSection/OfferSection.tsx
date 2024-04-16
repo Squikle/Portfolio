@@ -2,39 +2,45 @@ import styles from "./OfferSection.module.scss";
 import resumeCardStyles from "../Card/ResumeCard.module.scss";
 import classNames from "classnames";
 import ResumeCard from "../Card/ResumeCard.tsx";
-import { ExperienceLine } from "../Card/ExperienceLine.tsx";
+import {ExperienceLine} from "../Card/ExperienceLine.tsx";
 import {
   useCurrentPageContext,
   useCurrentSectionContext,
 } from "../../../../../components/Page/CurrentPageContext/Contexts.tsx";
 import options from "../../../../../configs/button-emitter-particles.json";
-import {
-  adaptEmitter,
-  adaptParticles,
-} from "../../../../../components/Particles/retinaAdapter.ts";
+import {adaptEmitter, adaptParticles,} from "../../../../../components/Particles/retinaAdapter.ts";
 import emitter from "./emitter.json";
 import Emitters from "../../../../../components/Particles/Emitters.tsx";
-import React, { useEffect, useRef } from "react";
+import React, {useCallback, useEffect, useRef} from "react";
 import useLongPress from "../../../../../hooks/userControl/useLongPress.ts";
-import { useSwiper } from "swiper/react";
+import {useSwiper} from "swiper/react";
 import config from "../../../../../configs/global.config.json";
-import { useAnalytics } from "../../../../../components/Analytics/AnalyticsContext.tsx";
-import {
-  EventActions,
-  EventCategories,
-} from "../../../../../hooks/useAnalytics.ts";
+import {useAnalytics} from "../../../../../components/Analytics/AnalyticsContext.tsx";
+import {EventActions, EventCategories,} from "../../../../../hooks/useAnalytics.ts";
 
 type Props = {
   darkBackgroundOpacity: number;
 };
 
+type HoldTextRef = {
+  element: HTMLElement,
+  timeout?: NodeJS.Timeout
+}
+
 export default function OfferSection(offerSectionProps: Props) {
   const backgroundControl = useCurrentPageContext().backgroundControl;
   const top = "50px";
   const buttonRef = useRef<HTMLButtonElement>(null);
+  const holdTextRef = useRef<HoldTextRef | null>(null);
   const sectionContext = useCurrentSectionContext();
   const swiper = useSwiper();
   const analytics = useAnalytics();
+
+  const setHoldTextRef = useCallback((el: HTMLElement) => {
+    holdTextRef.current = {
+      element: el
+    }
+  }, [])
 
   const handlePressAction = () => {
     if (!sectionContext.isActive) return;
@@ -110,6 +116,14 @@ export default function OfferSection(offerSectionProps: Props) {
     glowOn();
     if (e.pointerType === "mouse") handlePressAction();
     else {
+      if (holdTextRef.current) {
+        if (holdTextRef.current.timeout) {
+          clearTimeout(holdTextRef.current.timeout);
+        }
+
+        holdTextRef.current?.element.classList.toggle(styles.active, true)
+      }
+      console.log(holdTextRef)
       analytics.pushEvent(
         EventCategories.button,
         EventActions.startHold,
@@ -119,6 +133,10 @@ export default function OfferSection(offerSectionProps: Props) {
     }
   };
   const handleTouchEnd = (e: React.TouchEvent<HTMLButtonElement>) => {
+    if (holdTextRef.current) {
+      holdTextRef.current.timeout = setTimeout(() => holdTextRef.current?.element.classList.toggle(styles.active, false), 500);
+    }
+
     glowOff();
     onLongTouchEnd(e.nativeEvent);
   };
@@ -136,14 +154,15 @@ export default function OfferSection(offerSectionProps: Props) {
         <div className={styles.container} style={{ top: top }}>
           <ButtonEmitter isActive={sectionContext.isActive}></ButtonEmitter>
           <button
-            ref={buttonRef}
-            onPointerDown={handleTouchStart}
-            onTouchEnd={handleTouchEnd}
-            onPointerOver={handlePointerOver}
-            onMouseLeave={glowOff}
-            className={classNames(styles.button)}
+              ref={buttonRef}
+              onPointerDown={handleTouchStart}
+              onTouchEnd={handleTouchEnd}
+              onPointerOver={handlePointerOver}
+              onMouseLeave={glowOff}
+              className={classNames(styles.button)}
           >
             <p>Let's work together!</p>
+            <p ref={(el) => {setHoldTextRef(el as HTMLElement)}} className={styles.holdText}>Hold it!</p>
           </button>
         </div>
       </ExperienceLine>
