@@ -117,11 +117,8 @@ export default function OfferSection(offerSectionProps: Props) {
     if (e.pointerType === "mouse") handlePressAction();
     else {
       if (holdTextRef.current) {
-        if (holdTextRef.current.timeout) {
           clearTimeout(holdTextRef.current.timeout);
-        }
-
-        holdTextRef.current?.element.classList.toggle(styles.active, true)
+          holdTextRef.current?.element.classList.toggle(styles.active, true)
       }
       console.log(holdTextRef)
       analytics.pushEvent(
@@ -134,6 +131,7 @@ export default function OfferSection(offerSectionProps: Props) {
   };
   const handleTouchEnd = (e: React.TouchEvent<HTMLButtonElement>) => {
     if (holdTextRef.current) {
+      clearTimeout(holdTextRef.current.timeout);
       holdTextRef.current.timeout = setTimeout(() => holdTextRef.current?.element.classList.toggle(styles.active, false), 500);
     }
 
