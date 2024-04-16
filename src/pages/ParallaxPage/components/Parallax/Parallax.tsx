@@ -152,7 +152,7 @@ export default function Parallax({ isActive }: Props) {
           data-reveal-distance-x="-30"
           data-reveal-speed="0.8"
         />
-        <div className="lazyload blur-up parallax-layers">
+        <div className="parallax-layers">
           <div className={classNames(overlayStyles.overlayFixed)}>
             <tooltips.TextTooltip />
           </div>
@@ -167,7 +167,7 @@ export default function Parallax({ isActive }: Props) {
             data-speed-z="0"
           />
           <div
-            className="lazyload blur-up parallax text swiper-no-swiping"
+            className="parallax text swiper-no-swiping"
             data-speed-x="0.19"
             data-speed-y="0.13"
             data-speed-z="0"

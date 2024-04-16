@@ -20,7 +20,6 @@ export default function useTooltips(tweens: StagedAnimationTweens) {
 
   const hoverCompleted = useCallback(() => {
     const hoverTween = tweens[tooltipRevealStages.HOVER];
-    console.log(hoverTween.completed);
     hoverTween.completed && hoverTween.reverse();
   }, [tweens]);
 
