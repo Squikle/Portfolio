@@ -82,15 +82,6 @@
       font-size: 3em;
     }
   }
-
-  /*&:hover {
-    .holdText {
-      transform: translate(calc(var(--size) - 50%), calc((var(--size) * -1) / 2))
-      rotateZ(50deg);
-      opacity: 1;
-      font-size: 3em;
-    }
-  }*/
 }
 
 @keyframes glowing {
