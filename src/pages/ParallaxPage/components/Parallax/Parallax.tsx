@@ -528,8 +528,6 @@ export default function Parallax({ isActive }: Props) {
             data-speed-x="0.19"
             data-speed-y="0.2"
             data-speed-z="0"
-            data-reveal-distance-y="1"
-            data-reveal-speed="1.2"
             fetchPriority={"high"}
           />
           <img
