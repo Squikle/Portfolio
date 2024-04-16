@@ -179,16 +179,16 @@ export default function Parallax({ isActive }: Props) {
               onClick={onTextClick}
               onPointerEnter={onTextPointerEnter}
             >
-              <h1 className="filled">Fullstack</h1>
-              <h1 className="filled">Developer</h1>
+              <h1>Fullstack</h1>
+              <h1>Developer</h1>
             </div>
             <div
               className="name"
               onClick={onTextClick}
               onPointerEnter={onTextPointerEnter}
             >
-              <h1 className="empty">Michael</h1>
-              <h1 className="empty">Dovhalov</h1>
+              <h1>Michael</h1>
+              <h1>Dovhalov</h1>
             </div>
           </div>
           <img

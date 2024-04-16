@@ -53,7 +53,7 @@ export default function useParallaxAnimation(
     timeline.from(
       ".name",
       {
-        left: "-80%",
+        left: "-120%",
         duration: config.textIn.duration,
         ease: config.textIn.ease,
       },

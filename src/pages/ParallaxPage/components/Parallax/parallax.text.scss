@@ -26,13 +26,10 @@
 
   perspective-origin: bottom;
   transform-origin: center;
-}
 
-.filled {
-  color: rgba(0, 0, 0, 1);
-}
-.empty {
-  color: rgba(0, 0, 0, 1);
+  h1 {
+    color: rgba(0, 0, 0, 0.6);
+  }
 }
 
 .name, .dev {
