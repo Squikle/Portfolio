@@ -51,9 +51,9 @@ export function useParallax(
 
     elementsToUpdate.forEach((el) => {
       const dataset = el.dataset as unknown as ParallaxDataset;
-      const xSpeed = dataset.speedX * 5.5;
-      const ySpeed = dataset.speedY * 4;
-      const zSpeed = dataset.speedZ * 4;
+      const xSpeed = (dataset.speedX || 0) * 5.5;
+      const ySpeed = (dataset.speedY || 0) * 4;
+      const zSpeed = (dataset.speedZ || 0) * 4;
 
       const leftOfEl =
         parseFloat(getComputedStyle(el).left) - el.offsetWidth / 2;
@@ -66,9 +66,9 @@ export function useParallax(
       const zOffset = animationFinished ? zValue * zSpeed : 0;
 
       window.requestAnimationFrame(() => {
-        el.style.setProperty(cssProps.xTranslate, `${xOffsetX}px`);
-        el.style.setProperty(cssProps.yTranslate, `${yOffset}px`);
-        el.style.setProperty(cssProps.zTranslate, `${zOffset}px`);
+        cssProps.xTranslate && el.style.setProperty(cssProps.xTranslate, `${xOffsetX}px`);
+        cssProps.yTranslate && el.style.setProperty(cssProps.yTranslate, `${yOffset}px`);
+        cssProps.zTranslate && el.style.setProperty(cssProps.zTranslate, `${zOffset}px`);
       });
 
       const speedRotY = dataset.speedRotY || zSpeed;
