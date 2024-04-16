@@ -4,7 +4,6 @@ import { StrictMode } from "react";
 import "lazysizes/plugins/blur-up/ls.blur-up";
 // @ts-ignore
 import lazySizes from "lazysizes";
-lazySizes.cfg.blurupMode = "auto";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { AnalyticsContextProvider } from "./components/Analytics/AnalyticsContext.tsx";
