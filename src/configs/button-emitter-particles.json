@@ -124,7 +124,7 @@
         "radius": 60
       },
       "repulse": {
-        "distance": 200,
+        "distance": 3,
         "factor": 100,
         "maxSpeed": 3,
         "speed": 2

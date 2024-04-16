@@ -206,6 +206,20 @@ export function adaptParticles(
           newOptions.interactivity.modes.grab.links.opacity *= screenMultiplier;
         }
       }
+      if (newOptions.interactivity.modes?.repulse) {
+        newOptions.interactivity.modes.repulse.distance *=
+            clamp(rationalAdapt(0, 2000), 0, 300) + 100;
+        newOptions.interactivity.modes.repulse.speed *= clamp(
+            rationalAdapt(0, 2000),
+            0,
+            300,
+        );
+        newOptions.interactivity.modes.repulse.maxSpeed *= clamp(
+            rationalAdapt(0, 2000),
+            0,
+            300,
+        );
+      }
     }
 
     return newOptions;
