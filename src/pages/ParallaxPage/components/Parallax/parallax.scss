@@ -320,7 +320,7 @@ $default-scale: 0.316;
 }
 .light {
   --width: 230%;
-  --from-left: 5%;
+  --from-left: -10%;
   --from-top: 35%;
   z-index: 41;
   filter: saturate(1.5) hue-rotate(340deg) !important;
