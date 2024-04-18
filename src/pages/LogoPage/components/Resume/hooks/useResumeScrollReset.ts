@@ -2,14 +2,14 @@ import {RefObject, useEffect} from "react";
 import {useCurrentSectionContext} from "../../../../../components/Page/CurrentPageContext/Contexts";
 
 export default function useResumeScrollReset(
-    scrollableElementRef: RefObject<HTMLElement>,
+  scrollableElementRef: RefObject<HTMLElement>,
 ) {
-    const {isActive} = useCurrentSectionContext();
+  const {isActive} = useCurrentSectionContext();
 
-    useEffect(() => {
-        if (!scrollableElementRef.current) return;
+  useEffect(() => {
+    if (!scrollableElementRef.current) return;
 
-        if (isActive)
-            scrollableElementRef.current.scrollTo({top: 0, behavior: "smooth"});
-    }, [isActive, scrollableElementRef]);
+    if (isActive)
+      scrollableElementRef.current.scrollTo({top: 0, behavior: "smooth"});
+  }, [isActive, scrollableElementRef]);
 }

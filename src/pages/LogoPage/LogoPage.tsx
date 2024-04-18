@@ -24,209 +24,209 @@ import OfferSection from "./components/Resume/OfferSection/OfferSection.tsx";
 import {ResumeSectionContext} from "./types.ts";
 
 export type ParticlesOptions = {
-    global: any;
-    emitters: any;
-    canvas: any;
+  global: any;
+  emitters: any;
+  canvas: any;
 };
 
 const initialParticlesOptions: ParticlesOptions = {
-    global: null,
-    canvas: null,
-    emitters: null,
+  global: null,
+  canvas: null,
+  emitters: null,
 };
 const initialImageData: ImageData = {
-    height: 0,
-    width: 0,
-    top: 0,
-    left: 0,
+  height: 0,
+  width: 0,
+  top: 0,
+  left: 0,
 };
 
 type LoadState = {
-    particles: boolean;
-    image: boolean;
+  particles: boolean;
+  image: boolean;
 };
 const initialLoadState: LoadState = {
-    particles: false,
-    image: false,
+  particles: false,
+  image: false,
 };
 type stateUpdatedAction = "image" | "particles";
 const stateReducer = (state: LoadState, action: stateUpdatedAction) => {
-    switch (action) {
-        case "image":
-            return {
-                ...state,
-                image: true,
-            };
-        case "particles":
-            return {
-                ...state,
-                particles: true,
-            };
-        default:
-            return state;
-    }
+  switch (action) {
+  case "image":
+    return {
+      ...state,
+      image: true,
+    };
+  case "particles":
+    return {
+      ...state,
+      particles: true,
+    };
+  default:
+    return state;
+  }
 };
 
 export default function LogoPage({
-                                     isActive,
-                                     className,
-                                     isAlwaysVisible = false,
-                                 }: {
-    isActive: boolean;
-    className?: string;
-    isAlwaysVisible?: boolean;
+  isActive,
+  className,
+  isAlwaysVisible = false,
+}: {
+  isActive: boolean;
+  className?: string;
+  isAlwaysVisible?: boolean;
 }) {
-    const [imageData, setImageData] = useState<ImageData>(initialImageData);
-    const [loadState, dispatchLoad] = useReducer(stateReducer, initialLoadState);
-    const parentSwiper = useSwiper();
-    const options = useRef(initialParticlesOptions);
-    const pagination = useSwiperPagination();
-    useParticlesEngine(useCallback(() => dispatchLoad("particles"), []));
+  const [imageData, setImageData] = useState<ImageData>(initialImageData);
+  const [loadState, dispatchLoad] = useReducer(stateReducer, initialLoadState);
+  const parentSwiper = useSwiper();
+  const options = useRef(initialParticlesOptions);
+  const pagination = useSwiperPagination();
+  useParticlesEngine(useCallback(() => dispatchLoad("particles"), []));
 
-    const updateImage = useCallback((imageData: ImageData) => {
-        setImageData(imageData);
+  const updateImage = useCallback((imageData: ImageData) => {
+    setImageData(imageData);
 
-        if (!imageData?.width && !imageData?.height) {
-            return;
-        }
-        const newSize = {width: imageData.width, height: imageData.height};
-        const newCanvasParticlesOptions = adaptParticles(
-            canvasParticlesOptions,
-            newSize,
-        );
-        newCanvasParticlesOptions.canvasMask.image.src = canvasLogo;
-        options.current = {
-            global: adaptParticles(globalParticlesOptions, newSize),
-            emitters: adaptParticles(emittersParticlesOptions, newSize),
-            canvas: newCanvasParticlesOptions,
-        };
-    }, []);
-
-    const onImageLoad = useCallback(
-        (imageData: ImageData) => {
-            updateImage(imageData);
-            dispatchLoad("image");
-        },
-        [updateImage],
+    if (!imageData?.width && !imageData?.height) {
+      return;
+    }
+    const newSize = {width: imageData.width, height: imageData.height};
+    const newCanvasParticlesOptions = adaptParticles(
+      canvasParticlesOptions,
+      newSize,
     );
-
-    const isLoaded = () => {
-        return loadState?.image && loadState?.particles;
+    newCanvasParticlesOptions.canvasMask.image.src = canvasLogo;
+    options.current = {
+      global: adaptParticles(globalParticlesOptions, newSize),
+      emitters: adaptParticles(emittersParticlesOptions, newSize),
+      canvas: newCanvasParticlesOptions,
     };
+  }, []);
 
-    const background = useBackground(
-        isLoaded(),
-        onImageLoad,
-        updateImage,
-        options.current,
-        imageData,
-    );
+  const onImageLoad = useCallback(
+    (imageData: ImageData) => {
+      updateImage(imageData);
+      dispatchLoad("image");
+    },
+    [updateImage],
+  );
 
-    const resumeCards = useResumeCards();
-    const isPageActive = isActive;
+  const isLoaded = () => {
+    return loadState?.image && loadState?.particles;
+  };
 
-    return (
-        <Page<{}>
-            isActive={isPageActive}
-            className={classNames(className, styles.logoPage)}
-            backgroundControl={background.control}
-            isAlwaysVisible={isAlwaysVisible}
-            swiper={parentSwiper}
-            pageName={"logo"}
-        >
-            <SlidesPagination
-                position={"right"}
-                onInit={pagination.setPagination}
-                length={config.slides.progress.length}
-                offset={config.slides.progress.offset}
-                offsetSide={config.slides.progress.offsetSide}
-                thickness={config.slides.progress.thickness}
-            ></SlidesPagination>
-            <Swiper
-                direction={"vertical"}
-                modules={[Mousewheel, Keyboard]}
-                speed={config.slides.animation.duration * 1000}
-                followFinger={true}
-                keyboard={true}
-                onInit={(s) => {
-                    pagination.setSwiper(s);
-                }}
-                mousewheel={{
-                    enabled: true,
-                    noMousewheelClass: cardStyle.card,
-                }}
-                onSlideChange={pagination.updateSlides}
-                noSwipingClass={"swiper-no-swiping"}
+  const background = useBackground(
+    isLoaded(),
+    onImageLoad,
+    updateImage,
+    options.current,
+    imageData,
+  );
+
+  const resumeCards = useResumeCards();
+  const isPageActive = isActive;
+
+  return (
+    <Page<{}>
+      isActive={isPageActive}
+      className={classNames(className, styles.logoPage)}
+      backgroundControl={background.control}
+      isAlwaysVisible={isAlwaysVisible}
+      swiper={parentSwiper}
+      pageName={"logo"}
+    >
+      <SlidesPagination
+        position={"right"}
+        onInit={pagination.setPagination}
+        length={config.slides.progress.length}
+        offset={config.slides.progress.offset}
+        offsetSide={config.slides.progress.offsetSide}
+        thickness={config.slides.progress.thickness}
+      ></SlidesPagination>
+      <Swiper
+        direction={"vertical"}
+        modules={[Mousewheel, Keyboard]}
+        speed={config.slides.animation.duration * 1000}
+        followFinger={true}
+        keyboard={true}
+        onInit={(s) => {
+          pagination.setSwiper(s);
+        }}
+        mousewheel={{
+          enabled: true,
+          noMousewheelClass: cardStyle.card,
+        }}
+        onSlideChange={pagination.updateSlides}
+        noSwipingClass={"swiper-no-swiping"}
+      >
+        {resumeCards.map((card, i) => {
+          const backgroundOpacity = config.slides.style.backgroundOpacity;
+
+          return (
+            <SwiperSlide key={i}>
+              {({isActive, isPrev, isNext}) => (
+                <PageSection<ResumeSectionContext>
+                  index={i}
+                  isActive={isActive && isPageActive}
+                  isAlwaysVisible={true}
+                  backgroundOpacity={backgroundOpacity}
+                  isNext={isNext}
+                  isPrev={isPrev}
+                  sectionName={"resume/" + i}
+                >
+                  {card}
+                </PageSection>
+              )}
+            </SwiperSlide>
+          );
+        })}
+
+        <SwiperSlide>
+          {({isActive, isPrev, isNext}) => (
+            <PageSection<ResumeSectionContext>
+              index={resumeCards.length}
+              isActive={isActive && isPageActive}
+              isAlwaysVisible={true}
+              backgroundOpacity={1}
+              isNext={isNext}
+              isPrev={isPrev}
+              sectionName={"offer"}
             >
-                {resumeCards.map((card, i) => {
-                    const backgroundOpacity = config.slides.style.backgroundOpacity;
-
-                    return (
-                        <SwiperSlide key={i}>
-                            {({isActive, isPrev, isNext}) => (
-                                <PageSection<ResumeSectionContext>
-                                    index={i}
-                                    isActive={isActive && isPageActive}
-                                    isAlwaysVisible={true}
-                                    backgroundOpacity={backgroundOpacity}
-                                    isNext={isNext}
-                                    isPrev={isPrev}
-                                    sectionName={"resume/" + i}
-                                >
-                                    {card}
-                                </PageSection>
-                            )}
-                        </SwiperSlide>
-                    );
-                })}
-
-                <SwiperSlide>
-                    {({isActive, isPrev, isNext}) => (
-                        <PageSection<ResumeSectionContext>
-                            index={resumeCards.length}
-                            isActive={isActive && isPageActive}
-                            isAlwaysVisible={true}
-                            backgroundOpacity={1}
-                            isNext={isNext}
-                            isPrev={isPrev}
-                            sectionName={"offer"}
-                        >
-                            <OfferSection
-                                darkBackgroundOpacity={config.slides.style.backgroundOpacity}
-                            />
-                        </PageSection>
-                    )}
-                </SwiperSlide>
-                {background.element}
-                <SwiperSlide>
-                    {({isActive}) => (
-                        <PageSection
-                            isActive={isActive && isPageActive}
-                            className={classNames(
-                                styles.globalParticles,
-                                "swiper-no-swiping",
-                            )}
-                            sectionName={"global-particles"}
-                        >
-                            {isLoaded() && <StaticParticles options={options.current}/>}
-                        </PageSection>
-                    )}
-                </SwiperSlide>
-            </Swiper>
-        </Page>
-    );
+              <OfferSection
+                darkBackgroundOpacity={config.slides.style.backgroundOpacity}
+              />
+            </PageSection>
+          )}
+        </SwiperSlide>
+        {background.element}
+        <SwiperSlide>
+          {({isActive}) => (
+            <PageSection
+              isActive={isActive && isPageActive}
+              className={classNames(
+                styles.globalParticles,
+                "swiper-no-swiping",
+              )}
+              sectionName={"global-particles"}
+            >
+              {isLoaded() && <StaticParticles options={options.current}/>}
+            </PageSection>
+          )}
+        </SwiperSlide>
+      </Swiper>
+    </Page>
+  );
 }
 
 const StaticParticles = ({options}: { options: ParticlesOptions }) => {
-    const isActive = useCurrentSectionContext().isActive;
+  const isActive = useCurrentSectionContext().isActive;
 
-    return (
-        <div className={styles.globalParticlesContainer}>
-            <Particles
-                id={styles["global-particles"]}
-                options={options.global}
-                isActive={isActive}
-            />
-        </div>
-    );
+  return (
+    <div className={styles.globalParticlesContainer}>
+      <Particles
+        id={styles["global-particles"]}
+        options={options.global}
+        isActive={isActive}
+      />
+    </div>
+  );
 };

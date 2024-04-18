@@ -1,7 +1,7 @@
 export {};
 
 declare global {
-    interface Window {
-        _paq: string[][];
-    }
+  interface Window {
+    _paq: string[][];
+  }
 }

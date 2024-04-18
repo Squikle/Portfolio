@@ -6,25 +6,25 @@ import classNames from "classnames";
 import {useCurrentSectionContext} from "../../components/Page/CurrentPageContext/Contexts.tsx";
 
 type Props = {
-    isActive: boolean;
-    className?: string;
+  isActive: boolean;
+  className?: string;
 };
 
 export default function ParallaxPage({isActive, className}: Props) {
-    return (
-        <Page
-            isActive={isActive}
-            className={classNames(className, styles.parallaxPage)}
-            pageName={"parallax"}
-        >
-            <PageSection isActive={isActive} sectionName={"parallax"}>
-                <ParallaxInContext></ParallaxInContext>
-            </PageSection>
-        </Page>
-    );
+  return (
+    <Page
+      isActive={isActive}
+      className={classNames(className, styles.parallaxPage)}
+      pageName={"parallax"}
+    >
+      <PageSection isActive={isActive} sectionName={"parallax"}>
+        <ParallaxInContext></ParallaxInContext>
+      </PageSection>
+    </Page>
+  );
 }
 
 function ParallaxInContext() {
-    const sectionContext = useCurrentSectionContext();
-    return <Parallax isActive={sectionContext.isActive}></Parallax>;
+  const sectionContext = useCurrentSectionContext();
+  return <Parallax isActive={sectionContext.isActive}></Parallax>;
 }

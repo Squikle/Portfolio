@@ -23,42 +23,42 @@ import {loadEmittersShapeCircle} from "@tsparticles/plugin-emitters-shape-circle
 import {loadExternalRepulseInteraction} from "@tsparticles/interaction-external-repulse";
 
 export function useParticlesEngine(onLoaded: () => void) {
-    useEffect(() => {
-        initParticlesEngine(async (engine) => {
-            await loadEmittersPlugin(engine);
-            await loadCanvasMaskPlugin(engine);
-            await loadExternalBubbleInteraction(engine);
-            await loadExternalConnectInteraction(engine);
-            await loadExternalGrabInteraction(engine);
-            await loadExternalTrailInteraction(engine);
-            await loadExternalAttractInteraction(engine);
-            await loadTriangleShape(engine);
-            await loadBaseMover(engine);
-            await loadParallaxMover(engine);
-            await loadParticlesLinksInteraction(engine);
-            await loadRotateUpdater(engine);
-            await loadSizeUpdater(engine);
-            await loadOpacityUpdater(engine);
-            await loadColorUpdater(engine);
-            await loadStrokeColorUpdater(engine);
-            await loadDestroyUpdater(engine);
-            await loadBasic(engine);
-            await loadEmittersShapeCircle(engine);
-            await loadExternalRepulseInteraction(engine);
-        }).then(() => {
-            if (onLoaded) onLoaded();
-        });
-    }, [onLoaded]);
+  useEffect(() => {
+    initParticlesEngine(async (engine) => {
+      await loadEmittersPlugin(engine);
+      await loadCanvasMaskPlugin(engine);
+      await loadExternalBubbleInteraction(engine);
+      await loadExternalConnectInteraction(engine);
+      await loadExternalGrabInteraction(engine);
+      await loadExternalTrailInteraction(engine);
+      await loadExternalAttractInteraction(engine);
+      await loadTriangleShape(engine);
+      await loadBaseMover(engine);
+      await loadParallaxMover(engine);
+      await loadParticlesLinksInteraction(engine);
+      await loadRotateUpdater(engine);
+      await loadSizeUpdater(engine);
+      await loadOpacityUpdater(engine);
+      await loadColorUpdater(engine);
+      await loadStrokeColorUpdater(engine);
+      await loadDestroyUpdater(engine);
+      await loadBasic(engine);
+      await loadEmittersShapeCircle(engine);
+      await loadExternalRepulseInteraction(engine);
+    }).then(() => {
+      if (onLoaded) onLoaded();
+    });
+  }, [onLoaded]);
 }
 
 export function useParticlesComponent(
-    id: string,
-    options: ISourceOptions,
-    particlesLoaded: (container?: Container) => Promise<void>,
+  id: string,
+  options: ISourceOptions,
+  particlesLoaded: (container?: Container) => Promise<void>,
 ) {
-    return useMemo(() => {
-        return (
-            <Particles id={id} options={options} particlesLoaded={particlesLoaded}/>
-        );
-    }, [id, particlesLoaded, options]);
+  return useMemo(() => {
+    return (
+      <Particles id={id} options={options} particlesLoaded={particlesLoaded}/>
+    );
+  }, [id, particlesLoaded, options]);
 }
