@@ -4,7 +4,6 @@ import {visualizer} from "rollup-plugin-visualizer";
 import compression from "vite-plugin-compression2";
 import {ViteImageOptimizer} from "vite-plugin-image-optimizer";
 import * as path from "node:path";
-import eslintPlugin from "vite-plugin-eslint";
 
 const imageOptimizer = ViteImageOptimizer({
   png: {
@@ -23,7 +22,6 @@ console.log(path.resolve(__dirname, "src"));
 export default defineConfig({
   base: "",
   plugins: [
-    eslintPlugin(),
     react(),
     visualizer(),
     imageOptimizer,
