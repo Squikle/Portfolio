@@ -19,6 +19,8 @@ module.exports = {
       {allowConstantExport: true},
     ],
     'react/jsx-filename-extension': [1, {extensions: ['.js', '.jsx', '.ts', '.tsx']}],
-    "indent": ["warn", 2]
+    "indent": ["warn", 2],
+    "@typescript-eslint/no-explicit-any": "off",
+    "react/no-unescaped-entities": "off"
   }
 }

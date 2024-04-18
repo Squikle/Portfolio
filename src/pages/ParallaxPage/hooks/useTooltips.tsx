@@ -1,12 +1,12 @@
-import classNames from "classnames";
-import Tooltip from "../../../components/Tooltip/Tooltip";
-import tooltipStyles from "../components/Parallax/ParallaxOverlay.module.scss";
 import React, {useCallback, useEffect, useRef} from "react";
 import config from "../../../configs/global.config.json";
 import {StagedAnimationTweens} from "./useParallaxAnimations.ts";
 import {useSwiper} from "swiper/react";
+import {MoreTooltip} from "@/pages/ParallaxPage/components/Parallax/MoreTooltip.tsx";
+import {InteractiveTooltip} from "@/pages/ParallaxPage/components/Parallax/InteractiveTooltip.tsx";
+import {TextTooltip} from "@/pages/ParallaxPage/components/Parallax/TextTooltip.tsx";
 
-const tooltipRevealStages = {
+export const tooltipRevealStages = {
   HOVER: "hoverTooltip",
   MORE: "moreTooltip",
   TEXT: "textTooltip",
@@ -17,6 +17,11 @@ export default function useTooltips(tweens: StagedAnimationTweens) {
 
   const timeout = useRef<NodeJS.Timeout>();
   const userInteractionConfig = config.parallax.userInteraction;
+
+  const handleContainerPointerDown = useCallback((e: React.PointerEvent) => {
+    console.log(e.target)
+    e.target.releasePointerCapture(e.pointerId);
+  }, []);
 
   const hoverCompleted = useCallback(() => {
     const hoverTween = tweens[tooltipRevealStages.HOVER];
@@ -100,13 +105,13 @@ export default function useTooltips(tweens: StagedAnimationTweens) {
   );
 
   const InteractiveTooltipWithProps = useCallback(
-    () => <InteractiveTooltip onMouseOver={hoverCompleted}/>,
-    [],
+    () => <InteractiveTooltip onPointerOver={hoverCompleted}/>,
+    [hoverCompleted],
   );
 
   const MoreTooltipWithProps = useCallback(
-    () => <MoreTooltip onMouseOver={moreCompleted}/>,
-    [],
+    () => <MoreTooltip onPointerOver={moreCompleted}/>,
+    [moreCompleted],
   );
 
   return {
@@ -122,69 +127,6 @@ export default function useTooltips(tweens: StagedAnimationTweens) {
     onPointerLeave: handleContainerLeave,
     onTouchEnd: handleContainerLeave,
     onTextPointerEnter: textTapCompleted,
+    onContainerPointerDown: handleContainerPointerDown
   };
 }
-
-const InteractiveTooltip = ({onMouseOver}: { onMouseOver: () => void }) => (
-  <Tooltip
-    className={classNames(
-      tooltipStyles.tip,
-      tooltipStyles.interactive,
-      "parallax",
-    )}
-    dataProps={{
-      "data-speed-x": "0.19",
-      "data-speed-y": "0.16",
-      "data-reveal-distance-y": "-1",
-      "data-reveal-speed": "1",
-      "data-reveal-opacity": "-3",
-      "data-reveal-stage": "1",
-      "data-reveal-stage-name": tooltipRevealStages.HOVER,
-    }}
-    onMouseOver={onMouseOver}
-  >
-    <p>It's interactive</p>
-    <p>Slide over the screen!</p>
-  </Tooltip>
-);
-
-const MoreTooltip = ({onMouseOver}: { onMouseOver: () => void }) => (
-  <Tooltip
-    className={classNames(tooltipStyles.tip, tooltipStyles.more, "parallax")}
-    dataProps={{
-      "data-speed-x": "0.19",
-      "data-speed-y": "0.16",
-      "data-reveal-distance-y": "100",
-      "data-reveal-speed": "1.5",
-      "data-reveal-opacity": "-3",
-      "data-reveal-stage": "3",
-      "data-reveal-stage-name": tooltipRevealStages.MORE,
-    }}
-    tailClassName={tooltipStyles.tail}
-    position={"right-bottom"}
-    onMouseOver={onMouseOver}
-  >
-    <p>There's more!</p>
-  </Tooltip>
-);
-
-const TextTooltip = () => (
-  <Tooltip
-    position={"bottom"}
-    className={classNames(tooltipStyles.tip, tooltipStyles.tapMe, "parallax")}
-    dataProps={{
-      "data-speed-x": "0.19",
-      "data-speed-y": "0.16",
-      "data-speed-rot-y": "16",
-      "data-speed-rot-x": "8",
-      "data-reveal-distance-x": "-1",
-      "data-reveal-speed": "1",
-      "data-reveal-opacity": "-3",
-      "data-reveal-stage": "2",
-      "data-reveal-stage-name": tooltipRevealStages.TEXT,
-    }}
-    tailClassName={tooltipStyles.tail}
-  >
-    <p>Who's that?</p>
-  </Tooltip>
-);

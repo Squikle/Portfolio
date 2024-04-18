@@ -100,6 +100,7 @@ export default function Parallax({isActive}: Props) {
     onPointerLeave,
     onTextPointerEnter,
     onPointerMove,
+    onContainerPointerDown
   } = useTooltips(tweens);
 
   return (
@@ -152,7 +153,7 @@ export default function Parallax({isActive}: Props) {
           data-reveal-distance-x="-30"
           data-reveal-speed="0.8"
         />
-        <div className="parallax-layers">
+        <div className="parallax-layers" onPointerDown={onContainerPointerDown}>
           <div className={classNames(overlayStyles.overlayFixed)}>
             <tooltips.TextTooltip/>
           </div>
