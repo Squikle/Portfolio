@@ -1,4 +1,4 @@
-import {RefObject, useEffect, useLayoutEffect, useState} from "react";
+import {RefObject, useCallback, useEffect, useLayoutEffect, useState} from "react";
 import {throttle} from "@/utils/throttle.ts";
 import useParallaxAnimation from "./useParallaxAnimations.ts";
 
@@ -26,27 +26,24 @@ export function useParallax(
 ) {
   const [animationFinished, setAnimationFinished] = useState(false);
 
+  const getContainerAndElements: () => [Element, HTMLElement[]] = useCallback(() => {
+    const container = containerRef.current!;
+    const elementsToUpdate = Array.from(
+      container.querySelectorAll<HTMLElement>(".parallax"),
+    );
+
+    return [container as Element, elementsToUpdate as HTMLElement[]];
+  }, [containerRef]);
+
   useEffect(() => {
     if (!animationFinished) return;
 
     getContainerAndElements()[1].forEach((x) =>
       x.classList.toggle("transition", true),
     );
-  }, [animationFinished]);
+  }, [animationFinished, getContainerAndElements]);
 
-  const handleUpdate = (
-    clientX: number,
-    clientY: number,
-    elementsToUpdate: HTMLElement[],
-  ) => {
-    const xValue = clientX - window.innerWidth / 2;
-    const yValue = clientY - window.innerHeight / 2;
-    const xPercent = (xValue / window.innerWidth) * 100;
-    const yPercent = (yValue / window.innerHeight) * 100;
-    update(xPercent, yPercent, elementsToUpdate);
-  };
-
-  function update(x: number, y: number, elementsToUpdate: HTMLElement[]): void {
+  const update = useCallback((x: number, y: number, elementsToUpdate: HTMLElement[]) => {
     if (!isActive) return;
 
     elementsToUpdate.forEach((el) => {
@@ -78,7 +75,19 @@ export function useParallax(
       const speedRotX = dataset.speedRotX;
       updateRotation(x, y, el, speedRotX, speedRotY);
     });
-  }
+  }, [animationFinished, isActive])
+
+  const handleUpdate = useCallback((
+    clientX: number,
+    clientY: number,
+    elementsToUpdate: HTMLElement[],
+  ) => {
+    const xValue = clientX - window.innerWidth / 2;
+    const yValue = clientY - window.innerHeight / 2;
+    const xPercent = (xValue / window.innerWidth) * 100;
+    const yPercent = (yValue / window.innerHeight) * 100;
+    update(xPercent, yPercent, elementsToUpdate);
+  }, [update]);
 
   function updateRotation(
     x: number,
@@ -104,26 +113,17 @@ export function useParallax(
     }
   }
 
-  const getContainerAndElements: () => [Element, HTMLElement[]] = () => {
-    const container = containerRef.current!;
-    const elementsToUpdate = Array.from(
-      container.querySelectorAll<HTMLElement>(".parallax"),
-    );
-
-    return [container as Element, elementsToUpdate as HTMLElement[]];
-  };
-
   useLayoutEffect(() => {
-    const [_, elementsToUpdate] = getContainerAndElements();
+    const [, elementsToUpdate] = getContainerAndElements();
 
     const handleMouseUpdate = throttle((e: MouseEvent) => {
       handleUpdate(e.clientX, e.clientY, elementsToUpdate);
     }, 5);
 
     const handleTouchUpdate = throttle((e: TouchEvent) => {
-      const lastTouch = e.changedTouches[e.changedTouches.length - 1];
+      const lastTouch = e.changedTouches[0];
       handleUpdate(lastTouch.clientX, lastTouch.clientY, elementsToUpdate);
-    }, 10);
+    }, 5);
 
     const reset = () => {
       update(0, 0, elementsToUpdate);
@@ -143,7 +143,7 @@ export function useParallax(
       window.removeEventListener("mouseleave", reset);
       window.removeEventListener("touchend", reset);
     };
-  }, [isActive]);
+  }, [isActive, getContainerAndElements, handleUpdate, update]);
 
   return useParallaxAnimation(containerRef, () => {
     setAnimationFinished(true);

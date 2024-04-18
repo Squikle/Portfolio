@@ -19,6 +19,6 @@ export const MoreTooltip = ({onPointerOver}: { onPointerOver: () => void }) => (
     position={"right-bottom"}
     onPointerOver={onPointerOver}
   >
-    <p>There's more!</p>
+    <p>Let's Connect!</p>
   </Tooltip>
 );

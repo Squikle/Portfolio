@@ -76,12 +76,13 @@ import person from "../../../../../assets/layers-mid/1-0-person.webp";
 import personLow from "../../../../../assets/layers-low/1-0-person.webp";
 import light from "../../../../../assets/layers-mid/0-0-light.webp";
 import "./parallax.scss";
-import "./parallax.text.scss";
+import "./parallaxText.scss";
 import {useParallax} from "../../hooks/useParallax.ts";
 import classNames from "classnames";
 import overlayStyles from "./ParallaxOverlay.module.scss";
 import useTooltips from "../../hooks/useTooltips.tsx";
 import {useRef} from "react";
+import {useTextHovering} from "@/pages/ParallaxPage/hooks/useTextHovering.ts";
 
 type Props = {
   isActive: boolean;
@@ -102,6 +103,13 @@ export default function Parallax({isActive}: Props) {
     onPointerMove,
     onContainerPointerDown
   } = useTooltips(tweens);
+
+  const {
+    onNameTextPointerEnter,
+    onNameTextPointerLeave,
+    onDevTextPointerEnter,
+    onDevTextPointerLeave
+  } = useTextHovering();
 
   return (
     <>
@@ -178,7 +186,11 @@ export default function Parallax({isActive}: Props) {
             <div
               className="dev"
               onClick={onTextClick}
-              onPointerEnter={onTextPointerEnter}
+              onPointerEnter={(e) => {
+                onDevTextPointerEnter(e);
+                onTextPointerEnter()
+              }}
+              onPointerLeave={onDevTextPointerLeave}
             >
               <h1>Fullstack</h1>
               <h1>Developer</h1>
@@ -186,7 +198,11 @@ export default function Parallax({isActive}: Props) {
             <div
               className="name"
               onClick={onTextClick}
-              onPointerEnter={onTextPointerEnter}
+              onPointerEnter={(e) => {
+                onNameTextPointerEnter(e);
+                onTextPointerEnter()
+              }}
+              onPointerLeave={onNameTextPointerLeave}
             >
               <h1>Michael</h1>
               <h1>Dovhalov</h1>

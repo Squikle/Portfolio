@@ -19,8 +19,7 @@ export default function useTooltips(tweens: StagedAnimationTweens) {
   const userInteractionConfig = config.parallax.userInteraction;
 
   const handleContainerPointerDown = useCallback((e: React.PointerEvent) => {
-    console.log(e.target)
-    e.target.releasePointerCapture(e.pointerId);
+    (e.target as HTMLElement).releasePointerCapture(e.pointerId);
   }, []);
 
   const hoverCompleted = useCallback(() => {
@@ -44,7 +43,7 @@ export default function useTooltips(tweens: StagedAnimationTweens) {
       userInteractionConfig.swipeDelay * 1000,
     );
     return () => clearTimeout(timeout);
-  }, [userInteractionConfig.swipeDelay]);
+  }, [moreCompleted, userInteractionConfig.swipeDelay]);
 
   useEffect(() => {
     swiper.on("slideChangeTransitionStart", moreCompleted);
