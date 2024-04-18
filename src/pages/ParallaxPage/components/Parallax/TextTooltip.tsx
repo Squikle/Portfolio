@@ -9,10 +9,11 @@ export const TextTooltip = () => (
     position={"bottom"}
     className={classNames(tooltipStyles.tip, tooltipStyles.tapMe, "parallax")}
     dataProps={{
-      "data-speed-x": "0.19",
-      "data-speed-y": "0.16",
-      "data-speed-rot-y": "16",
-      "data-speed-rot-x": "8",
+      "data-speed-x": "0.12",
+      "data-speed-y": "0.1",
+      "data-speed-z": "0",
+      "data-speed-rot-y": "12",
+      "data-speed-rot-x": "6",
       "data-reveal-distance-x": "-1",
       "data-reveal-speed": "1",
       "data-reveal-opacity": "-3",

@@ -31,7 +31,7 @@ $default-scale: 0.316;
                   var(--translateZ)
   ) rotateY(var(--rotateY)) rotateX(var(--rotateX));
 
-  transition: transform 1s cubic-bezier(0.15, 0.43, 0.15, 0.71),
+  transition: transform 0.6s cubic-bezier(0.15, 0.43, 0.15, 0.71),
   filter 1s ease-out;
   width: calc(var(--width) * var(--scale));
 }

@@ -177,7 +177,7 @@ export default function Parallax({isActive}: Props) {
           />
           <div
             className="parallax text swiper-no-swiping"
-            data-speed-x="0.19"
+            data-speed-x="0.15"
             data-speed-y="0.13"
             data-speed-z="0"
             data-speed-rot-y="8"
@@ -488,7 +488,7 @@ export default function Parallax({isActive}: Props) {
             data-src={middle4}
             alt="middle4"
             className="lazyload blur-up parallax middle-4"
-            data-speed-x="0.19"
+            data-speed-x="0.15"
             data-speed-y="0.13"
             data-speed-z="0.15"
             data-reveal-distance-y="1"
