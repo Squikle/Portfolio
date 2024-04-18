@@ -8,7 +8,6 @@ import styles from "./SlidesPagination.module.scss";
 import getCssDimensions from "./utils.ts";
 import { positions } from "./positions.ts";
 import { useAnalytics } from "../Analytics/AnalyticsContext.tsx";
-import { EventActions, EventCategories } from "../../hooks/useAnalytics.ts";
 
 type Props = {
   slider: Slider;

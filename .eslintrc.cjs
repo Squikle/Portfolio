@@ -1,6 +1,6 @@
 module.exports = {
   root: true,
-  env: { browser: true, es2020: true, node: true },
+  env: {browser: true, es2020: true, node: true},
   extends: [
     'eslint:recommended',
     'plugin:react/recommended',
@@ -8,14 +8,17 @@ module.exports = {
     'plugin:react-hooks/recommended',
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
-  parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
-  settings: { react: { version: '18.2' } },
+  parserOptions: {ecmaVersion: 'latest', sourceType: 'module'},
+  settings: {react: {version: '18.2'}},
   plugins: ['react-refresh'],
   rules: {
     'react/jsx-no-target-blank': 'off',
     'react-refresh/only-export-components': [
       'warn',
-      { allowConstantExport: true },
+      {allowConstantExport: true},
     ],
+    'react/jsx-filename-extension': [2, {extensions: ['.js', '.jsx', '.ts', '.tsx']}],
+    'import/no-extraneous-dependencies': [2, {devDependencies: ['**/test.tsx', '**/test.ts']}],
+    '@typescript-eslint/indent': [2, 2],
   }
 }

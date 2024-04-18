@@ -1,5 +1,5 @@
 import { RefObject, useEffect, useLayoutEffect, useState } from "react";
-import { throttle } from "../../../utils/throttle.ts";
+import { throttle } from "@/utils/throttle.ts";
 import useParallaxAnimation from "./useParallaxAnimations.ts";
 
 const cssProps = {
@@ -12,13 +12,13 @@ const cssProps = {
   xRotate: "--rotateX",
 };
 
-interface ParallaxDataset {
+type ParallaxDataset = {
   speedX: number;
   speedY: number;
   speedZ: number;
   speedRotY: number;
   speedRotX: number;
-}
+};
 
 export function useParallax(
   containerRef: RefObject<HTMLElement>,
@@ -110,11 +110,11 @@ export function useParallax(
       container.querySelectorAll<HTMLElement>(".parallax"),
     );
 
-    return [container, elementsToUpdate];
+    return [container as Element, elementsToUpdate as HTMLElement[]];
   };
 
   useLayoutEffect(() => {
-    const [container, elementsToUpdate] = getContainerAndElements();
+    const [_, elementsToUpdate] = getContainerAndElements();
 
     const handleMouseUpdate = throttle((e: MouseEvent) => {
       handleUpdate(e.clientX, e.clientY, elementsToUpdate);
@@ -145,8 +145,7 @@ export function useParallax(
     };
   }, [isActive]);
 
-  const tweens = useParallaxAnimation(containerRef, () => {
+  return useParallaxAnimation(containerRef, () => {
     setAnimationFinished(true);
   });
-  return tweens;
 }
