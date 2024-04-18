@@ -174,6 +174,24 @@
         white-space: nowrap;
       }
 
+      &:hover .heart::before {
+        background-color: white;
+        animation: beat 0.5s ease-in alternate infinite;
+
+        @keyframes beat {
+          0% {
+            box-shadow:
+                    0 0 10px 2px rgba(255, 22, 152, 0.88),
+                    0 0 20px 6px red;
+          }
+          100% {
+            box-shadow:
+                    0 0 10px 3px rgba(255, 22, 152, 0.88),
+                    0 0 20px 8px red;
+          }
+        }
+      }
+
       .heart {
         height: 1.3em;
         width: 1.3em;
@@ -182,14 +200,20 @@
         top: 0;
         transform: translate(25%, -5%) rotateZ(-15deg);
 
-        filter: drop-shadow(0px 0px 8px red);
-        transition: filter 0.5s ease-in-out;
-        will-change: filter;
-
-        &:hover {
-          filter:
-                  drop-shadow(0px 0px 5px rgba(255, 22, 152, 0.88))
-                  drop-shadow(0px 0px 12px red);
+        &:before {
+          content: '';
+          width: 50%;
+          height: 50%;
+          position: absolute;
+          box-shadow:
+                  0 0 0 0 rgba(255, 22, 152, 0.88),
+                  0 0 17px 4px red;
+          z-index: -1;
+          inset: 0;
+          border-radius: 1000px;
+          margin: auto;
+          background-color: white;
+          transition: box-shadow 1s ease-in-out;
         }
 
         img {

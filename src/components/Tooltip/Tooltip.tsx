@@ -7,6 +7,7 @@ type Props = {
   className?: string;
   tailClassName?: string;
   dataProps?: any;
+  onMouseOver?: () => void
 } & Options;
 
 type Options = {
@@ -25,6 +26,7 @@ export default function Tooltip({
   children,
   className,
   tailClassName,
+  onMouseOver,
   position = "none",
   dataProps = {},
 }: Props) {
@@ -32,6 +34,7 @@ export default function Tooltip({
     <div
       className={classNames(styles.tooltip, styles[position], className)}
       {...dataProps}
+      onMouseOver={onMouseOver}
     >
       {children}
       {position != "none" ? (

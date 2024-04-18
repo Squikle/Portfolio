@@ -87,6 +87,7 @@ export default function useParallaxAnimation(
             () => !tween.reversed() && gsap.timeline().add(tween.reverse()),
           ),
           completed: false,
+          yoyoEase: true
         };
         stagedTweens.current[stageName] = stagedTween;
       });

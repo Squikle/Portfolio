@@ -46,7 +46,7 @@
     "userInteraction": {
       "hoveringTouch": 1,
       "hoveringMouse": 3,
-      "swipeDelay": 12
+      "swipeDelay": 30
     }
   },
   "analytics": {

@@ -66,9 +66,12 @@ export function useParallax(
       const zOffset = animationFinished ? zValue * zSpeed : 0;
 
       window.requestAnimationFrame(() => {
-        cssProps.xTranslate && el.style.setProperty(cssProps.xTranslate, `${xOffsetX}px`);
-        cssProps.yTranslate && el.style.setProperty(cssProps.yTranslate, `${yOffset}px`);
-        cssProps.zTranslate && el.style.setProperty(cssProps.zTranslate, `${zOffset}px`);
+        cssProps.xTranslate &&
+          el.style.setProperty(cssProps.xTranslate, `${xOffsetX}px`);
+        cssProps.yTranslate &&
+          el.style.setProperty(cssProps.yTranslate, `${yOffset}px`);
+        cssProps.zTranslate &&
+          el.style.setProperty(cssProps.zTranslate, `${zOffset}px`);
       });
 
       const speedRotY = dataset.speedRotY || zSpeed;
@@ -127,18 +130,18 @@ export function useParallax(
     };
 
     reset();
-    container.addEventListener("mousemove", handleMouseUpdate);
-    container.addEventListener("touchmove", handleTouchUpdate, {
+    window.addEventListener("mousemove", handleMouseUpdate);
+    window.addEventListener("touchmove", handleTouchUpdate, {
       passive: true,
     });
-    container.addEventListener("mouseleave", reset);
-    container.addEventListener("touchend", reset);
+    window.addEventListener("mouseleave", reset);
+    window.addEventListener("touchend", reset);
 
     return () => {
-      container.removeEventListener("mousemove", handleMouseUpdate);
-      container.removeEventListener("touchmove", handleTouchUpdate);
-      container.removeEventListener("mouseleave", reset);
-      container.removeEventListener("touchend", reset);
+      window.removeEventListener("mousemove", handleMouseUpdate);
+      window.removeEventListener("touchmove", handleTouchUpdate);
+      window.removeEventListener("mouseleave", reset);
+      window.removeEventListener("touchend", reset);
     };
   }, [isActive]);
 

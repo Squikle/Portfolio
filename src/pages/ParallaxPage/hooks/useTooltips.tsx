@@ -99,8 +99,22 @@ export default function useTooltips(tweens: StagedAnimationTweens) {
     [handleContainerEnter, userInteractionConfig.hoveringTouch],
   );
 
+  const InteractiveTooltipWithProps = useCallback(
+    () => <InteractiveTooltip onMouseOver={hoverCompleted} />,
+    [],
+  );
+
+  const MoreTooltipWithProps = useCallback(
+    () => <MoreTooltip onMouseOver={moreCompleted} />,
+    [],
+  );
+
   return {
-    tooltips: { InteractiveTooltip, MoreTooltip, TextTooltip },
+    tooltips: {
+      InteractiveTooltip: InteractiveTooltipWithProps,
+      MoreTooltip: MoreTooltipWithProps,
+      TextTooltip,
+    },
     onTextClick: textTapCompleted,
     onPointerEnter: handlePointerEnter,
     onPointerMove: handleContainerPointerMove,
@@ -111,7 +125,7 @@ export default function useTooltips(tweens: StagedAnimationTweens) {
   };
 }
 
-const InteractiveTooltip = () => (
+const InteractiveTooltip = ({ onMouseOver }: { onMouseOver: () => void }) => (
   <Tooltip
     className={classNames(
       tooltipStyles.tip,
@@ -127,26 +141,28 @@ const InteractiveTooltip = () => (
       "data-reveal-stage": "1",
       "data-reveal-stage-name": tooltipRevealStages.HOVER,
     }}
+    onMouseOver={onMouseOver}
   >
     <p>It's interactive</p>
     <p>Slide over the screen!</p>
   </Tooltip>
 );
 
-const MoreTooltip = () => (
+const MoreTooltip = ({ onMouseOver }: { onMouseOver: () => void }) => (
   <Tooltip
     className={classNames(tooltipStyles.tip, tooltipStyles.more, "parallax")}
     dataProps={{
       "data-speed-x": "0.19",
       "data-speed-y": "0.16",
-      "data-reveal-distance-y": "1",
-      "data-reveal-speed": "1",
+      "data-reveal-distance-y": "100",
+      "data-reveal-speed": "1.5",
       "data-reveal-opacity": "-3",
       "data-reveal-stage": "3",
       "data-reveal-stage-name": tooltipRevealStages.MORE,
     }}
     tailClassName={tooltipStyles.tail}
     position={"right-bottom"}
+    onMouseOver={onMouseOver}
   >
     <p>There's more!</p>
   </Tooltip>
