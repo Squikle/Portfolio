@@ -1,4 +1,4 @@
-import {RefObject, useCallback, useEffect, useLayoutEffect, useState} from "react";
+import {RefObject, useCallback, useLayoutEffect, useState} from "react";
 import {throttle} from "@/utils/throttle.ts";
 import useParallaxAnimation from "./useParallaxAnimations.ts";
 
@@ -35,14 +35,6 @@ export function useParallax(
     return [container as Element, elementsToUpdate as HTMLElement[]];
   }, [containerRef]);
 
-  useEffect(() => {
-    if (!animationFinished) return;
-
-    getContainerAndElements()[1].forEach((x) =>
-      x.classList.toggle("transition", true),
-    );
-  }, [animationFinished, getContainerAndElements]);
-
   const update = useCallback((x: number, y: number, elementsToUpdate: HTMLElement[]) => {
     if (!isActive) return;
 
@@ -75,7 +67,7 @@ export function useParallax(
       const speedRotX = dataset.speedRotX;
       updateRotation(x, y, el, speedRotX, speedRotY);
     });
-  }, [animationFinished, isActive])
+  }, [isActive])
 
   const handleUpdate = useCallback((
     clientX: number,
