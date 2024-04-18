@@ -25,19 +25,14 @@ $default-scale: 0.316;
 
   top: calc(var(--from-top) * var(--scale));
   left: calc((var(--from-left) + var(--leftOffset)) * var(--scale));
-  transform:
-    perspective(10000px)
-    translate3d(
-                calc((var(--translateX) + var(--origTranslateX)) * var(--parallaxMultiplier)),
-                calc((var(--translateY) + var(--origTranslateY)) * var(--parallaxMultiplier)),
-                var(--translateZ)
-              )
-    rotateY(var(--rotateY))
-    rotateX(var(--rotateX));
+  transform: perspective(10000px) translate3d(
+                  calc((var(--translateX) + var(--origTranslateX)) * var(--parallaxMultiplier)),
+                  calc((var(--translateY) + var(--origTranslateY)) * var(--parallaxMultiplier)),
+                  var(--translateZ)
+  ) rotateY(var(--rotateY)) rotateX(var(--rotateX));
 
-  transition:
-          transform 1s cubic-bezier(0.15, 0.43, 0.15, 0.71),
-          filter 1s ease-out;
+  transition: transform 1s cubic-bezier(0.15, 0.43, 0.15, 0.71),
+  filter 1s ease-out;
   width: calc(var(--width) * var(--scale));
 }
 
@@ -52,9 +47,10 @@ $default-scale: 0.316;
   height: 100%;
   bottom: 0;
   left: 0;
-  background: radial-gradient(ellipse at center, rgba(0,0,0,0) 60%, rgba(0,0,0,0.4));
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.4));
   pointer-events: none;
 }
+
 .sky-overlap {
   --width: 364%;
   --from-left: 0%;
@@ -63,12 +59,14 @@ $default-scale: 0.316;
   opacity: 0.5;
   filter: brightness(1) saturate(1);
 }
+
 .sky-3 {
   --width: 364%;
   --from-left: -15%;
   --from-top: -10%;
   z-index: 1;
 }
+
 .sky-2 {
   --width: 365%;
   --from-left: -20%;
@@ -76,6 +74,7 @@ $default-scale: 0.316;
   z-index: 2;
   opacity: 0.8;
 }
+
 .sky-1 {
   --width: 364%;
   --from-left: -20%;
@@ -83,60 +82,70 @@ $default-scale: 0.316;
   z-index: 5;
   opacity: 1;
 }
+
 .trace {
   --width: 126.311%;
   --from-left: 125.94%;
   --from-top: 187%;
   z-index: 4;
 }
+
 .left-9 {
   --width: 10.644%;
   --from-left: 7.85%;
   --from-top: 243%;
   z-index: 5;
 }
+
 .left-8 {
   --width: 17.298%;
   --from-left: 19.27%;
   --from-top: 234.5%;
   z-index: 6;
 }
+
 .left-7 {
   --width: 15.806%;
   --from-left: -7.5%;
   --from-top: 233.69%;
   z-index: 7;
 }
+
 .left-6 {
   --width: 6.366%;
   --from-left: 38.82%;
   --from-top: 240%;
   z-index: 8;
 }
+
 .left-5 {
   --width: 18.685%;
   --from-left: 51.59%;
   --from-top: 232.91%;
   z-index: 9;
 }
+
 .left-4 {
   --width: 33.346%;
   --from-left: 80.35%;
   --from-top: 216%;
   z-index: 9;
 }
+
 .left-3 {
   --width: 33.436%;
   --from-left: 87%;
   --from-top: 236%;
   z-index: 32;
 }
+
 .left-2 {
   --width: 26.806%;
   --from-left: 66.64%;
   --from-top: 230.86%;
   z-index: 11;
 }
+
 .rays-left {
   --width: 264.028%;
   --from-left: 9%;
@@ -144,6 +153,7 @@ $default-scale: 0.316;
   z-index: 30;
   opacity: 0.8;
 }
+
 .fog-left {
   --width: 68.419%;
   --from-left: -11.44%;
@@ -151,36 +161,42 @@ $default-scale: 0.316;
   z-index: 13;
   mix-blend-mode: screen;
 }
+
 .right-11 {
   --width: 12.853%;
   --from-left: 231.8%;
   --from-top: 210.19%;
   z-index: 14;
 }
+
 .right-10 {
   --width: 12.049%;
   --from-left: 221.2%;
   --from-top: 220.13%;
   z-index: 15;
 }
+
 .right-9 {
   --width: 35.333%;
   --from-left: 262.19%;
   --from-top: 189.08%;
   z-index: 16;
 }
+
 .right-8 {
   --width: 17.116%;
   --from-left: 313.5%;
   --from-top: 221.52%;
   z-index: 17;
 }
+
 .right-7 {
   --width: 18.415%;
   --from-left: 295%;
   --from-top: 211%;
   z-index: 18;
 }
+
 .fog-right-6 {
   --width: 85.254%;
   --from-left: 261.31%;
@@ -188,36 +204,42 @@ $default-scale: 0.316;
   z-index: 19;
   mix-blend-mode: screen;
 }
+
 .right-5 {
   --width: 13.014%;
   --from-left: 297.13%;
   --from-top: 228.47%;
   z-index: 20;
 }
+
 .right-4 {
   --width: 14.504%;
   --from-left: 324.32%;
   --from-top: 245.66%;
   z-index: 21;
 }
+
 .right-3 {
   --width: 21.732%;
   --from-left: 315.17%;
   --from-top: 246%;
   z-index: 22;
 }
+
 .right-2 {
   --width: 18.932%;
   --from-left: 245.26%;
   --from-top: 198.78%;
   z-index: 23;
 }
+
 .right-1 {
   --width: 27.942%;
   --from-left: 239.96%;
   --from-top: 218.21%;
   z-index: 24;
 }
+
 .fog-right-0 {
   --width: 81.204%;
   --from-left: 203.86%;
@@ -225,18 +247,21 @@ $default-scale: 0.316;
   z-index: 25;
   mix-blend-mode: screen;
 }
+
 .middle-5 {
   --width: 70.011%;
   --from-left: 147.62%;
   --from-top: 198.41%;
   z-index: 26;
 }
+
 .middle-4 {
   --width: 9.242%;
   --from-left: 136.76%;
   --from-top: 160%;
   z-index: 27;
 }
+
 .fog-middle {
   --width: 87.295%;
   --from-left: 128.86%;
@@ -244,60 +269,70 @@ $default-scale: 0.316;
   z-index: 28;
   mix-blend-mode: screen;
 }
+
 .middle-2 {
   --width: 11.529%;
   --from-left: 189.67%;
   --from-top: 228.17%;
   z-index: 29;
 }
+
 .middle-1 {
   --width: 15.713%;
   --from-left: 134%;
   --from-top: 228%;
   z-index: 30;
 }
+
 .middle-0 {
   --width: 29.494%;
   --from-left: 198.62%;
   --from-top: 217.94%;
   z-index: 31;
 }
+
 .buildings-front {
   --width: 345.575%;
   --from-left: -6.54%;
   --from-top: 189.59%;
   z-index: 32;
 }
+
 .water {
   --width: 349.487%;
   --from-left: -8.12%;
   --from-top: 256%;
   z-index: 33;
 }
+
 .water-yacht {
   --width: 16.366%;
   --from-left: 180.65%;
   --from-top: 253.35%;
   z-index: 34;
 }
+
 .water-boat-right {
   --width: 16.068%;
   --from-left: 130.39%;
   --from-top: 254.89%;
   z-index: 35;
 }
+
 .water-boat-left {
   --width: 7%;
   --from-left: -5%;
   --from-top: 246.98%;
   z-index: 36;
 }
+
 .fog-front-small {
   --width: 121.605%;
   --from-left: 113.03%;
   --from-top: 230.77%;
   z-index: 37;
 }
+
 .fog-front {
   --width: 389.398%;
   --from-left: -26.97%;
@@ -305,12 +340,14 @@ $default-scale: 0.316;
   z-index: 38;
   opacity: 0.6;
 }
+
 .birds {
   --width: 34%;
   --from-left: 199%;
   --from-top: 195%;
   z-index: 39;
 }
+
 .person {
   --width: 84%;
   --from-left: 11.34%;
@@ -318,6 +355,7 @@ $default-scale: 0.316;
   z-index: 40;
   opacity: 1;
 }
+
 .light {
   --width: 230%;
   --from-left: -10%;
@@ -327,7 +365,8 @@ $default-scale: 0.316;
   mix-blend-mode: screen;
   opacity: 0.5;
 }
-@media (max-aspect-ratio: 0.75/1) and (orientation: portrait){
+
+@media (max-aspect-ratio: 0.75/1) and (orientation: portrait) {
   .birds {
     left: auto;
     right: 36%;
@@ -357,17 +396,20 @@ $default-scale: 0.316;
     transition: transform 2s ease-out;
   }*/
 }
-@media (max-aspect-ratio: 0.68/1) and (orientation: portrait){
+
+@media (max-aspect-ratio: 0.68/1) and (orientation: portrait) {
   .birds {
     right: 42%;
   }
 }
-@media (max-aspect-ratio: 0.68/1) and (orientation: portrait){
+
+@media (max-aspect-ratio: 0.68/1) and (orientation: portrait) {
   .birds {
     right: 45%;
   }
 }
-@media (max-aspect-ratio: 0.54/1) and (orientation: portrait){
+
+@media (max-aspect-ratio: 0.54/1) and (orientation: portrait) {
   .text {
     .dev {
       left: 53%;
@@ -375,12 +417,14 @@ $default-scale: 0.316;
       line-height: 3.8vmax;
       top: 9%
     }
+
     .name {
       left: 15%;
       --font-size: 0.9;
       line-height: 3.8vmax;
       top: 9%
     }
+
     left: 17%;
   }
   .rays-left {
@@ -390,19 +434,22 @@ $default-scale: 0.316;
     right: 55%;
   }
 }
-@media (max-aspect-ratio: 0.44/1) and (orientation: portrait){
+
+@media (max-aspect-ratio: 0.44/1) and (orientation: portrait) {
   .text {
     .dev {
       --font-size: 0.55;
       line-height: 3vmax;
       top: 10%;
     }
+
     .name {
       --font-size: 0.65;
       line-height: 3vmax;
       left: 25%;
       top: 10%;
     }
+
     left: 16.5%;
   }
   .rays-left {
@@ -416,11 +463,13 @@ $default-scale: 0.316;
     right: 62%;
   }
 }
-@media (max-aspect-ratio: 0.35/1) and (orientation: portrait){
+
+@media (max-aspect-ratio: 0.35/1) and (orientation: portrait) {
   .text {
     .dev {
       display: none;
     }
+
     .name {
       left: 56%;
       text-align: left;
@@ -433,7 +482,8 @@ $default-scale: 0.316;
     right: 68%;
   }
 }
-@media (min-aspect-ratio: 1.5/1) and (orientation: landscape){
+
+@media (min-aspect-ratio: 1.5/1) and (orientation: landscape) {
   .parallax-layers, .parallax-container {
     transform: translateY(5vh);
   }
@@ -457,7 +507,8 @@ $default-scale: 0.316;
     top: auto;
   }
 }
-@media (min-aspect-ratio: 1.9/1) and (orientation: landscape){
+
+@media (min-aspect-ratio: 1.9/1) and (orientation: landscape) {
   .parallax-layers, .parallax-container {
     transform: translateY(10vh);
   }
@@ -474,17 +525,20 @@ $default-scale: 0.316;
     min-width: 12vmax;
   }
 }
-@media (min-aspect-ratio: 2.4/1) and (orientation: landscape){
+
+@media (min-aspect-ratio: 2.4/1) and (orientation: landscape) {
   .parallax-layers, .parallax-container {
     transform: translateY(15vh);
   }
 }
-@media (min-aspect-ratio: 2.5/1) and (orientation: landscape){
+
+@media (min-aspect-ratio: 2.5/1) and (orientation: landscape) {
   .parallax-layers, .parallax-container {
     transform: translateY(17vh);
   }
 }
-@media (min-aspect-ratio: 2.7/1) and (orientation: landscape){
+
+@media (min-aspect-ratio: 2.7/1) and (orientation: landscape) {
   .parallax-layers, .parallax-container {
     transform: translateY(21vh);
   }
@@ -493,7 +547,8 @@ $default-scale: 0.316;
     left: 5%;
   }
 }
-@media (min-aspect-ratio: 2.9/1) and (orientation: landscape){
+
+@media (min-aspect-ratio: 2.9/1) and (orientation: landscape) {
   .parallax-layers, .parallax-container {
     transform: translateY(25vh);
   }
@@ -502,7 +557,8 @@ $default-scale: 0.316;
     bottom: 5%;
   }
 }
-@media (min-aspect-ratio: 3.1/1) and (orientation: landscape){
+
+@media (min-aspect-ratio: 3.1/1) and (orientation: landscape) {
   .parallax-layers, .parallax-container {
     transform: translateY(27vh);
   }

@@ -1,9 +1,10 @@
-import { defineConfig } from "vite";
+import {defineConfig} from "vite";
 import react from "@vitejs/plugin-react-swc";
-import { visualizer } from "rollup-plugin-visualizer";
+import {visualizer} from "rollup-plugin-visualizer";
 import compression from "vite-plugin-compression2";
-import { ViteImageOptimizer } from "vite-plugin-image-optimizer";
+import {ViteImageOptimizer} from "vite-plugin-image-optimizer";
 import * as path from "node:path";
+import eslintPlugin from "vite-plugin-eslint";
 
 const imageOptimizer = ViteImageOptimizer({
   png: {
@@ -17,11 +18,12 @@ const imageOptimizer = ViteImageOptimizer({
     effort: 6,
   },
 });
-console.log(path.resolve(__dirname, 'src'));
+console.log(path.resolve(__dirname, "src"));
 // https://vitejs.dev/config/
 export default defineConfig({
   base: "",
   plugins: [
+    eslintPlugin(),
     react(),
     visualizer(),
     imageOptimizer,
@@ -42,9 +44,9 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src'),
-      '@assets': path.resolve(__dirname, './src/assets'),
-      '@components': path.resolve(__dirname, './src/components'),
+      "@": path.resolve(__dirname, "./src"),
+      "@assets": path.resolve(__dirname, "./src/assets"),
+      "@components": path.resolve(__dirname, "./src/components"),
     },
   },
 });

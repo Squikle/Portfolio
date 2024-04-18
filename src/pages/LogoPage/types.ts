@@ -1,4 +1,4 @@
 export type ResumeSectionContext = {
-  isPrev: boolean;
-  isNext: boolean;
+    isPrev: boolean;
+    isNext: boolean;
 };

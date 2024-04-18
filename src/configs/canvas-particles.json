@@ -16,7 +16,10 @@
       "path": false
     },
     "color": {
-      "value": ["#ff1ce7", "#1cddff"]
+      "value": [
+        "#ff1ce7",
+        "#1cddff"
+      ]
     },
     "move": {
       "distance": {
@@ -133,7 +136,10 @@
     "events": {
       "onHover": {
         "enable": true,
-        "mode": ["bubble", "attract"],
+        "mode": [
+          "bubble",
+          "attract"
+        ],
         "parallax": {
           "enable": true,
           "force": 150,

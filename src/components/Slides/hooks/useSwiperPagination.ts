@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
-import { Pagination as CustomPagination } from "../SlidesPagination";
-import { SwiperClass } from "swiper/react";
+import {useEffect, useState} from "react";
+import {Pagination as CustomPagination} from "../SlidesPagination";
+import {SwiperClass} from "swiper/react";
 
 export function useSwiperPagination() {
   const [pagination, setPagination] = useState<CustomPagination | null>(null);

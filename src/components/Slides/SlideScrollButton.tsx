@@ -4,23 +4,23 @@ import classNames from "classnames";
 import arrowIcon from "/assets/arrow-icon.svg";
 
 type Props = {
-  onClick: () => void;
-  style: React.CSSProperties;
-  className: string;
+    onClick: () => void;
+    style: React.CSSProperties;
+    className: string;
 };
 
 export default function SlideScrollButton({
-  onClick,
-  style,
-  className,
-}: Props) {
-  return (
-    <div
-      style={style}
-      className={classNames(styles.button, className)}
-      onClick={onClick}
-    >
-      <img alt="navigation arrow" src={arrowIcon} />
-    </div>
-  );
+                                              onClick,
+                                              style,
+                                              className,
+                                          }: Props) {
+    return (
+        <div
+            style={style}
+            className={classNames(styles.button, className)}
+            onClick={onClick}
+        >
+            <img alt="navigation arrow" src={arrowIcon}/>
+        </div>
+    );
 }

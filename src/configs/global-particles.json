@@ -19,7 +19,10 @@
       "direction": "random"
     },
     "color": {
-      "value": ["#ff1ce7", "#1cddff"]
+      "value": [
+        "#ff1ce7",
+        "#1cddff"
+      ]
     },
     "move": {
       "distance": {
@@ -119,7 +122,11 @@
       },
       "onHover": {
         "enable": true,
-        "mode": ["bubble", "connect", "grab"],
+        "mode": [
+          "bubble",
+          "connect",
+          "grab"
+        ],
         "parallax": {
           "enable": true,
           "force": 150,

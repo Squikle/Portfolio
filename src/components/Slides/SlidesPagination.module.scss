@@ -44,18 +44,20 @@
   .button.next {
     transform: rotateY(180deg);
   }
+
   &.vertical {
     .button {
       transform: rotateZ(90deg);
       margin: 50px 0;
     }
+
     .button.next {
       transform: rotateZ(-90deg);
     }
   }
 
   .bullet {
-    transition: transform 0.6s cubic-bezier(.83,1.65,.57,.66);
+    transition: transform 0.6s cubic-bezier(.83, 1.65, .57, .66);
     width: 10px;
     height: 10px;
     display: flex;
@@ -113,17 +115,11 @@
 
   &:not(.hidden):hover {
     @include global.glass($with-shadow: false, $blur: $blur, $opacity: 1, $border-thickness: 0.8px, $border-opacity: 0.5);
-    backdrop-filter: blur($blur) drop-shadow(0 0 6px rgba(255, 255, 255, 1))
-                    drop-shadow(0 0 6px rgba(255, 255, 255, 1))
-                    drop-shadow(0 0 6px rgba(255, 255, 255, 1));
+    backdrop-filter: blur($blur) drop-shadow(0 0 6px rgba(255, 255, 255, 1)) drop-shadow(0 0 6px rgba(255, 255, 255, 1)) drop-shadow(0 0 6px rgba(255, 255, 255, 1));
     cursor: pointer;
 
     img {
-      filter:
-              drop-shadow(0 0 2px rgba(255, 255, 255, 1))
-              drop-shadow(0 0 2px rgba(255, 255, 255, 0.5))
-              drop-shadow(0 0 4px rgba(255, 255, 255, 0.8))
-              drop-shadow(0 0 6px rgba(255, 255, 255, 0.7));
+      filter: drop-shadow(0 0 2px rgba(255, 255, 255, 1)) drop-shadow(0 0 2px rgba(255, 255, 255, 0.5)) drop-shadow(0 0 4px rgba(255, 255, 255, 0.8)) drop-shadow(0 0 6px rgba(255, 255, 255, 0.7));
     }
   }
 }

@@ -35,6 +35,7 @@
     @extend %slider;
     width: 5px;
   }
+
   ::-webkit-scrollbar-thumb {
     @extend %sliderThumb;
   }
@@ -51,10 +52,12 @@
       align-items: center;
       margin: 0.75em 0;
     }
+
     .key {
       width: 5em;
       display: inline-block;
     }
+
     .key {
       font-weight: 400;
       line-height: 1.2em;
@@ -102,20 +105,24 @@
     line-height: 1em;
     font-size: 1.9em;
   }
+
   h3 {
     font-weight: 400;
     line-height: 1.4em;
     font-size: 1.2em;
   }
+
   h4 {
     font-size: 1.3em;
     margin: 0.75em 0;
     font-weight: 400;
   }
+
   h5 {
     font-size: 1em;
     font-weight: 400;
   }
+
   li {
     font-style: italic;
     margin-left: 1em;
@@ -180,14 +187,12 @@
 
         @keyframes beat {
           0% {
-            box-shadow:
-                    0 0 10px 2px rgba(255, 22, 152, 0.88),
-                    0 0 20px 6px red;
+            box-shadow: 0 0 10px 2px rgba(255, 22, 152, 0.88),
+            0 0 20px 6px red;
           }
           100% {
-            box-shadow:
-                    0 0 10px 3px rgba(255, 22, 152, 0.88),
-                    0 0 20px 8px red;
+            box-shadow: 0 0 10px 3px rgba(255, 22, 152, 0.88),
+            0 0 20px 8px red;
           }
         }
       }
@@ -205,9 +210,8 @@
           width: 50%;
           height: 50%;
           position: absolute;
-          box-shadow:
-                  0 0 0 0 rgba(255, 22, 152, 0.88),
-                  0 0 17px 4px red;
+          box-shadow: 0 0 0 0 rgba(255, 22, 152, 0.88),
+          0 0 17px 4px red;
           z-index: -1;
           inset: 0;
           border-radius: 1000px;
@@ -237,17 +241,20 @@
     }
   }
 }
+
 @media (max-width: 850px) {
   .card {
     max-width: 85%;
     --top-padding: 20px;
   }
 }
+
 @media (max-width: 650px) {
   .card {
     font-size: 0.9em;
   }
 }
+
 @media (max-width: 450px) {
   .card {
     font-size: 0.8em;
@@ -272,10 +279,9 @@
 
 .line {
   $line-color: white;
-  box-shadow:
-          0 0 10px 1px rgba(255, 255, 255, 0.1),
-          0 0 15px 2px rgba(255, 0, 255, 0.1),
-          0 0 20px 4px rgba(0, 255, 255, 0.1);
+  box-shadow: 0 0 10px 1px rgba(255, 255, 255, 0.1),
+  0 0 15px 2px rgba(255, 0, 255, 0.1),
+  0 0 20px 4px rgba(0, 255, 255, 0.1);
 
   --additional-height: 0px;
   --dot-offset: 1.5em;
@@ -311,15 +317,13 @@
     border-radius: 1000px;
     position: absolute;
     background-color: $line-color;
-    box-shadow:
-            0 0 10px 1px rgba(255, 255, 255, 0.4),
-            0 0 15px 2px rgba(255, 0, 255, 0.4),
-            0 0 20px 4px rgba(0, 255, 255, 0.4);
+    box-shadow: 0 0 10px 1px rgba(255, 255, 255, 0.4),
+    0 0 15px 2px rgba(255, 0, 255, 0.4),
+    0 0 20px 4px rgba(0, 255, 255, 0.4);
   }
 
   &:not(.lineStart)::before {
-    transform: translateX(calc(-50% + (var(--line-width) / 2)))
-                translateY(calc(-1 * var(--line-margin) - var(--top-offset) / 2));
+    transform: translateX(calc(-50% + (var(--line-width) / 2))) translateY(calc(-1 * var(--line-margin) - var(--top-offset) / 2));
   }
 
   &::before {

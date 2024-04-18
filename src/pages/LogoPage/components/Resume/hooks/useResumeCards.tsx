@@ -1,6 +1,6 @@
 import ExperienceCard from "../Card/ExperienceCard.tsx";
 import resume from "../../../../../configs/resume-data.json";
-import { useMemo } from "react";
+import {useMemo} from "react";
 import IntroCard from "../Card/IntroCard.tsx";
 
 export default function useResumeCards() {
@@ -17,7 +17,7 @@ export default function useResumeCards() {
       );
     });
 
-    return [<IntroCard />, ...jobsCards];
+    return [<IntroCard/>, ...jobsCards];
   }, []);
 
   return cards;

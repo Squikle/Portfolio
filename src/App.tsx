@@ -1,12 +1,12 @@
 import "swiper/css";
 import "./main.scss";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Keyboard } from "swiper/modules";
-import { useSwiperPagination } from "./components/Slides/hooks/useSwiperPagination.ts";
+import {Swiper, SwiperSlide} from "swiper/react";
+import {Keyboard} from "swiper/modules";
+import {useSwiperPagination} from "./components/Slides/hooks/useSwiperPagination.ts";
 import config from "./configs/global.config.json";
 import SlidesPagination from "./components/Slides/SlidesPagination.tsx";
 import Page from "./components/Page/Page.tsx";
-import { lazy, Suspense, useEffect, useMemo, useState } from "react";
+import {lazy, Suspense, useEffect, useMemo, useState} from "react";
 import LoadingOverlay from "./components/LoadingOverlay/LoadingOverlay.tsx";
 
 export default function App() {
@@ -60,15 +60,15 @@ export default function App() {
         noSwipingClass={"swiper-no-swiping"}
       >
         <SwiperSlide>
-          {({ isActive }) => (
-            <Suspense fallback={<LoadingOverlay />}>
+          {({isActive}) => (
+            <Suspense fallback={<LoadingOverlay/>}>
               <LazyParallaxPage isActive={isActive}></LazyParallaxPage>
             </Suspense>
           )}
         </SwiperSlide>
         <SwiperSlide>
-          {({ isActive }) => (
-            <Suspense fallback={<LoadingOverlay />}>
+          {({isActive}) => (
+            <Suspense fallback={<LoadingOverlay/>}>
               {(isActive || nextPageLoaded) && (
                 <LazyLogoPage
                   isAlwaysVisible={true}

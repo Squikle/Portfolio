@@ -7,7 +7,10 @@
   "fpsLimit": 120,
   "particles": {
     "color": {
-      "value": ["#ff1ce7", "#1cddff"]
+      "value": [
+        "#ff1ce7",
+        "#1cddff"
+      ]
     },
     "move": {
       "outModes": {
@@ -90,7 +93,10 @@
     "events": {
       "onHover": {
         "enable": true,
-        "mode": ["repulse", "bubble"],
+        "mode": [
+          "repulse",
+          "bubble"
+        ],
         "parallax": {
           "enable": false,
           "force": 120,
