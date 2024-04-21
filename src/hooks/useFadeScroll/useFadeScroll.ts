@@ -19,6 +19,7 @@ export default function useFadeScroll(
 
       if (!isScrollable) {
         element.classList.remove(styles.fadeBottom, styles.fadeTop);
+        console.log('return', isScrollable, scrollHeight, clientHeight);
         return;
       }
 
@@ -27,9 +28,11 @@ export default function useFadeScroll(
       const maxScrollHeight = scrollHeight - clientHeight;
       const currentScrollPercentage = (scrollTop / maxScrollHeight) * 100;
 
+      console.log(isScrollable, scrollHeight, clientHeight);
+      console.log(currentScrollPercentage);
       element.classList.toggle(
         styles.fadeBottom,
-        currentScrollPercentage < 100,
+        currentScrollPercentage < 99,
       );
       element.classList.toggle(styles.fadeTop, currentScrollPercentage > 0);
     };
