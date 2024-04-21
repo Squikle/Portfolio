@@ -19,35 +19,67 @@
     "pdfResume": "./Michael Dovhalov CV.pdf"
   },
   "greeting": "Hey there! Thank you for visiting my portfolio page. It has been fully designed and developed by me",
-  "description": "I am dedicated to building scalable and well-documented code, leveraging the latest tools and technologies. My approach is rooted in the 'T-shaped' model, with a strong focus on backend development, complemented by a growing expertise in frontend development and deployment strategies. I am committed to staying abreast of modern technologies to ensure timely and effective tool selection for optimal results",
+  "description": "I am dedicated to building scalable and self-explanatory code, leveraging the latest tools and technologies. My approach is rooted in the 'T-shaped' model, with a strong focus on back-end development, complemented by a growing expertise in front-end development and deployment strategies",
   "jobs": [
     {
+      "company": "Bitcoin Suisse",
+      "period": "2023 - Present",
+      "location": "Zug, Switzerland",
+      "position": "FullStack Engineer",
+      "description": "Contributed to Swiss financial services provider specializing in cryptocurrencies and trading services for clients. Bitcoin Suisse leads the market in cryptocurrency investments, offering institutional brokerage services, custody solutions, staking, and secured loans, alongside cutting-edge technical developments. With over 300 employees, Bitcoin Suisse maintains its position as a Swiss pioneer in the crypto industry",
+      "highlights": [
+        {
+          "title": "Technical Contributions Highlights:",
+          "bullets": [
+            "Developing and maintaining a clustered Virtual Actor Model based on Microsoft's Orleans, significantly enhancing backend reliability and performance by scaling horizontally",
+            "Developed event-sourcing architecture using Kafka, supporting thousands of events per second",
+            "Creating and maintaining integration tests for microservices communication via Kafka",
+            "Created Azure Pipelines from scratch for microservices working in Kubernetes clusters",
+            "Resolving issues in the production environment",
+            "Utilized TypeScript to develop React.js components",
+            "Developing ASP.NET Core Blazor development for managing database records",
+            "Stress testing application using JMeter and NBomber to assess system performance under high loads",
+            "Azure Monitor and Application Insights with OpenTelemetry framework",
+            "Implemented a Grafana dashboard for streamlined microservices monitoring"
+          ]
+        },
+        {
+          "title": "Soft Skills Highlights:",
+          "bullets": [
+            "Displayed problem-solving skills by striving to understand the core issues and finding optimal solutions",
+            "Onboarded a newcomer senior developer to the project",
+            "Quickly integrated into the project and contributed by developing code and updating outdated documentation"
+          ]
+        }
+      ]
+    },
+    {
       "company": "upSWOT",
-      "period": "2020-2023",
+      "period": "2020 - 2023",
       "location": "South Carolina, USA",
-      "position": "Software Engineer",
+      "position": "Backend Software Engineer",
       "description": "Contributed to product development and customer support teams. Fintech solution offering customizable embedded finance widgets and actionable insights for businesses. Trusted by 100+ multinational financial institutions and partnered with industry leaders like Mastercard, Visa, NCR, NerdWallet, Alkami, RedHat, Republic Bank, FSNB, PwC, MX, CreditSafe, Equifax and more",
       "highlights": [
         {
           "title": "Product Team Highlights:",
           "bullets": [
-            "Multi-tenant SaaS with Microservices and DDD Architecture",
-            "Huge data flow using Kafka and ClickHouse",
-            "Horizontal Scalability",
-            "WebSockets",
-            "SSO using OAuth and SAML",
-            "CI/CD pipelines",
-            "RESTful APIs",
-            "Web components architecture and development",
-            "AWS and GCP infrastructure solutions integrations",
-            "Making important strategic decisions to address complex challenges"
+            "Developed multi-tenant SaaS with Microservices and DDD Architecture, accommodating over 100 tenants per application instance",
+            "Managed high-volume data flow through Kafka and ClickHouse, exceeding gigabyte-scale throughput",
+            "Designing horizontally scalable architecture",
+            "Identified and remediated over 25+ potential vulnerabilities, enhancing product security for the penetration testing and SOC2 certification",
+            "Implemented SSO authorization using OAuth and SAML, integrating with more than 20 partners",
+            "Created and maintained CI/CD pipelines using GitLab CI/CD, ensuring efficient development processes",
+            "Implemented numerous RESTful APIs, developing dozens of API endpoints from scratch with strict performance requirements",
+            "Designing and developing the backend for complex analytics web components",
+            "Integrating AWS and GCP infrastructure solutions",
+            "Guided strategic decision-making to tackle intricate challenges"
           ]
         },
         {
           "title": "Customer-Support Team Highlights:",
           "bullets": [
-            "Pre-sales calls participation",
-            "Supporting client environments code and infrastructure",
+            "Engaged in dozens of client calls to provide technical expertise and recommend optimal integration solutions",
+            "Supporting client environments, handling numerous technical inquiries, ensuring prompt resolution and client satisfaction",
             "Clients assistance in technical discussions and troubleshooting",
             "Provided support to clients in designing and implementing integration solutions",
             "Workflow, deployment, architecture, use-case sequence, and data-flow diagrams"
@@ -56,47 +88,12 @@
         {
           "title": "Soft-skills Highlights:",
           "bullets": [
-            "Mentored newcomers to the team, providing guidance",
+            "Mentored 4 newcomers to the team, providing guidance and accelerating their onboarding process",
             "Demonstrated initiative by suggesting improvements in development planning and team organization",
             "Actively participated in retrospectives and grooming sessions",
             "Maintained composure and emotional control in high-stress situations",
             "Demonstrated adaptability when working with new colleagues",
             "Displayed a problem-solving approach, consistently seeking effective solutions rather than superficial fixes"
-          ]
-        }
-      ]
-    },
-    {
-      "company": "Bitcoin Suisse",
-      "period": "2023-2024",
-      "location": "Zug, Switzerland",
-      "position": "FullStack Engineer",
-      "description": "Contributed to Swiss financial services provider specializing in cryptocurrencies and trading services for clients. Bitcoin Suisse leads the market in cryptocurrency investments, offering institutional brokerage services, custody solutions, staking, and secured loans, alongside cutting-edge technical developments. With over 300 employees, Bitcoin Suisse maintains its position as a Swiss pioneer in the crypto industry",
-      "highlights": [
-        {
-          "title": "Technical Contributions Highlights:",
-          "bullets": [
-            "Clustered Virtual Actor Model based on Microsoft's Orleans, significantly enhancing backend reliability and performance by scaling horizontally",
-            "Event-sourcing architecture using Apache Kafka",
-            "Integration tests for microservices communication via Kafka",
-            "Azure Pipelines for microservices and Kubernetes clusters",
-            "Resolving issues in the production environment",
-            "React components using TypeScript",
-            "ASP.NET Core Blazor development for managing database records",
-            "Stress tests using JMeter and NBomber to assess system performance under high loads",
-            "Kafka Message Handlers using MediatR library",
-            "Azure Identity for SSO authentication",
-            "Azure Monitor and Application Insights with OpenTelemetry framework",
-            "Setting up a Grafana dashboard",
-            "Backend architecture documentation using UML"
-          ]
-        },
-        {
-          "title": "Soft Skills Highlights:",
-          "bullets": [
-            "Quickly integrated into the project and contributed by developing code and updating outdated documentation",
-            "Onboarded a newcomer senior developer to the project",
-            "Displayed problem-solving skills by striving to understand the core issues and finding optimal solutions"
           ]
         }
       ]
@@ -120,14 +117,14 @@
     "backend": [
       "ASP.NET Core",
       "Kafka",
-      "MySQL, PostgreSQL, MicrosoftSQL",
-      "RabbitMQ",
+      "MySQL, PostgreSQL, Microsoft SQL",
       "Redis",
-      "ClickHouse",
       "MongoDB",
       "Elasticsearch",
-      "gRPC",
       "WebSockets",
+      "RabbitMQ",
+      "ClickHouse",
+      "gRPC",
       "Orleans Framework"
     ],
     "frontend": {
@@ -135,8 +132,7 @@
         "React",
         "Redux (RTK)",
         "JavaScript, TypeScript",
-        "HTML, CSS, Sass",
-        "Blazor"
+        "HTML, CSS, Sass"
       ],
       "libs": [
         "tsParticles (particles.js)",
@@ -146,14 +142,14 @@
     },
     "infrastructure": [
       "Docker",
-      "kubernetes",
-      "Jenkins",
-      "NGinx",
+      "Kubernetes",
       "AWS (Amazon Web Services)",
+      "GitHub Actions, GitLab CI/CD",
+      "NGinx",
       "Azure",
+      "Jenkins",
       "Grafana",
       "Prometheus",
-      "GitHub Actions, GitLab CI/CD",
       "Terraform"
     ]
   },
