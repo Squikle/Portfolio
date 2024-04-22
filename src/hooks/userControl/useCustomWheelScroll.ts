@@ -16,7 +16,7 @@ export function useCustomWheelScroll(
       const clientHeight = element.clientHeight;
 
       const scrollable = scrollHeight > clientHeight;
-      const scrolledToBottom = scrollTop + clientHeight >= scrollHeight;
+      const scrolledToBottom = scrollTop + clientHeight >= scrollHeight - 2;
       const scrolledToTop = !scrollTop;
 
       const direction = event.deltaY > 0 ? "down" : "up";
