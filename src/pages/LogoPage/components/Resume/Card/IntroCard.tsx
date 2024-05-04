@@ -10,6 +10,7 @@ export default function IntroCard() {
   const skillsData = resume.skills;
   const stackData = resume.stack;
   const educationsData = resume.education;
+  const certificatesData = resume.certificates;
   const {isActive} = useCurrentSectionContext();
 
   const educations = (
@@ -120,6 +121,16 @@ export default function IntroCard() {
                   <h5>Libs:</h5>
                   <UlList data={stackData.frontend.libs}></UlList>
                 </div>
+              </div>
+              <div className={styles.certificatesContainer}>
+                <h4>Cetificates:</h4>
+                {
+                  certificatesData.map(x => {
+                    return (<a href={x.link} key={x.label}>
+                      <img className={styles.certificateBadge} alt={x.label} src={x.img}/>
+                    </a>)
+                  })
+                }
               </div>
               <h4>Educations:</h4>
               {educations}
