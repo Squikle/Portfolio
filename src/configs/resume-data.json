@@ -117,7 +117,7 @@
     "backend": [
       "ASP.NET Core",
       "Kafka",
-      "MySQL, PostgreSQL, Microsoft SQL",
+      "MySQL, PostgreSQL",
       "Redis",
       "MongoDB",
       "Elasticsearch",
@@ -147,12 +147,18 @@
       "GitHub Actions, GitLab CI/CD",
       "NGinx",
       "Azure",
-      "Jenkins",
       "Grafana",
       "Prometheus",
       "Terraform"
     ]
   },
+  "certificates": [
+    {
+      "label": "AWS Certified Cloud Practitioner",
+      "img": "./badges/AWS_Certified_Cloud_Practitioner.png",
+      "link": "https://www.credly.com/badges/771bd528-c1fc-4959-ad4c-2cd437150893/public_url"
+    }
+  ],
   "education": [
     {
       "title": "State University of Telecommunications",
