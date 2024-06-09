@@ -59,22 +59,16 @@ export default function IntroCard() {
                       {contactsData.linkedin.label}
                     </a>
                   </p>
+                  <p className={styles.github}>
+                    <span className={styles.key}>GitHub:</span>{" "}
+                    <a href={contactsData.github.link}>
+                      {contactsData.github.label}
+                    </a>
+                  </p>
                   <p className={styles.phone}>
                     <span className={styles.key}>Phone:</span>{" "}
                     <a href={`tel:${contactsData.phoneNumber}`}>
                       {contactsData.phoneNumber}
-                    </a>
-                  </p>
-                  <p className={styles.phone}>
-                    <span className={styles.key}>Secondary:</span>{" "}
-                    <a href={`tel:${contactsData.phoneNumberSecondary}`}>
-                      {contactsData.phoneNumberSecondary}
-                    </a>
-                  </p>
-                  <p className={styles.telegram}>
-                    <span className={styles.key}>Telegram:</span>{" "}
-                    <a href={contactsData.telegram.link}>
-                      {contactsData.telegram.label}
                     </a>
                   </p>
                   <p className={styles.location}>
@@ -84,13 +78,9 @@ export default function IntroCard() {
                     </a>
                   </p>
                   <p className={styles.resume}>
-                    <span className={styles.key}>CV:</span>{" "}
+                    <span className={styles.key}>Resume:</span>{" "}
                     <a href={contactsData.pdfResume}>PDF format</a>
                   </p>
-                </div>
-                <div className={styles.descriptionContainer}>
-                  <p className={styles.greeting}>{resume.greeting}</p>
-                  <p className={styles.description}>{resume.description}</p>
                 </div>
               </div>
             </div>

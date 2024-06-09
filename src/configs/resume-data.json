@@ -3,7 +3,10 @@
   "position": "FullStack Software Engineer",
   "contacts": {
     "email": "m.dovhalov@squikable.com",
-    "linkedinLabel": "linkedin.com/in/dovhalov/",
+    "github": {
+      "link": "https://github.com/Squikle",
+      "label": "github.com/Squikle"
+    },
     "linkedin": {
       "link": "https://www.linkedin.com/in/dovhalov/",
       "label": "linkedin.com/in/dovhalov/"
@@ -14,92 +17,62 @@
       "link": "https://t.me/squikle",
       "label": "t.me/squikle"
     },
-    "location": "Toronto, Canada",
+    "location": "Toronto, ON, Canada",
     "locationLink": "https://maps.app.goo.gl/CZQjbmQuShKgXZkA6",
     "pdfResume": "./Michael Dovhalov CV.pdf"
   },
   "greeting": "Hey there! Thank you for visiting my portfolio page. It has been fully designed and developed by me",
-  "description": "I am dedicated to building scalable and self-explanatory code, leveraging the latest tools and technologies. My approach is rooted in the 'T-shaped' model, with a strong focus on back-end development, complemented by a growing expertise in front-end development and deployment strategies",
+  "description": "I am a hardworking and motivated developer. My main focus is\nbackend development but my experience also includes frontend\nand devops areas",
   "jobs": [
     {
       "company": "Bitcoin Suisse",
-      "period": "2023 - Present",
+      "period": "2023 - 2024",
       "location": "Zug, Switzerland",
       "position": "FullStack Engineer",
-      "description": "Contributed to Swiss financial services provider specializing in cryptocurrencies and trading services for clients. Bitcoin Suisse leads the market in cryptocurrency investments, offering institutional brokerage services, custody solutions, staking, and secured loans, alongside cutting-edge technical developments. With over 300 employees, Bitcoin Suisse maintains its position as a Swiss pioneer in the crypto industry",
+      "description": "A crypto-oriented banking application. Bitcoin Suisse leads the market in cryptocurrency investments, offering institutional brokerage services, custody solutions, staking, and secured loans, alongside cutting-edge technical developments. With over 300 employees, Bitcoin Suisse maintains its position as a Swiss pioneer in the crypto industry.",
       "highlights": [
         {
           "title": "Technical Contributions Highlights:",
           "bullets": [
-            "Developing and maintaining a clustered Virtual Actor Model based on Microsoft's Orleans, significantly enhancing backend reliability and performance by scaling horizontally",
-            "Developed event-sourcing architecture using Kafka, supporting thousands of events per second",
-            "Creating and maintaining integration tests for microservices communication via Kafka",
-            "Created Azure Pipelines from scratch for microservices working in Kubernetes clusters",
-            "Resolving issues in the production environment",
-            "Utilized TypeScript to develop React.js components",
-            "Developing ASP.NET Core Blazor development for managing database records",
-            "Stress testing application using JMeter and NBomber to assess system performance under high loads",
-            "Azure Monitor and Application Insights with OpenTelemetry framework",
-            "Implemented a Grafana dashboard for streamlined microservices monitoring"
-          ]
-        },
-        {
-          "title": "Soft Skills Highlights:",
-          "bullets": [
-            "Displayed problem-solving skills by striving to understand the core issues and finding optimal solutions",
-            "Onboarded a newcomer senior developer to the project",
-            "Quickly integrated into the project and contributed by developing code and updating outdated documentation"
+            "Developed a clustered microservice capable of handling hundreds of thousands of requests per second with below second latency, significantly enhancing backend reliability and performance",
+            "Solved dozens of different problems, including security,performance,processing of huge data streams, making efficient architectural decisions and improving the quality and functionality of the product",
+            "Made a major contribution to CI/CD automating the deployment of microservices in a cluster, greatly accelerating the speed and efficiency of product development",
+            "Skills and Tech: C#, ASP.NET, React.js, TypeScript, JavaScript, Blazor, Kafka, Azure, MicrosoftSQL, Docker, Kubernetes, Grafana, Azure Pipeline, Microsoft Orleans, k6, Restful API, Postman, Git, Azure DevOps, web applications"
           ]
         }
       ]
     },
     {
       "company": "upSWOT",
-      "period": "2020 - 2023",
+      "period": "2021 - 2023",
       "location": "South Carolina, USA",
       "position": "Software Engineer",
-      "description": "Contributed to product development and customer support teams. Fintech solution offering customizable embedded finance widgets and actionable insights for businesses. Trusted by 100+ multinational financial institutions and partnered with industry leaders like Mastercard, Visa, NCR, NerdWallet, Alkami, RedHat, Republic Bank, FSNB, PwC, MX, CreditSafe, Equifax and more",
+      "description": "Developed integrations with other systems, cloud integration, backend for client-facing frontend, authorization mechanisms, integration tests, ci/cd pipelines, etc. upSWOT is a fintech startup offering customizable embedded finance widgets and actionable insights for businesses. Trusted by 100+ multinational financial institutions and partnered with industry leaders like Mastercard, Visa, NCR, NerdW",
       "highlights": [
         {
           "title": "Product Team Highlights:",
           "bullets": [
-            "Developed multi-tenant SaaS with Microservices and DDD Architecture, accommodating over 100 tenants per application instance",
-            "Managed high-volume data flow through Kafka and ClickHouse, exceeding gigabyte-scale throughput",
-            "Designing horizontally scalable architecture",
-            "Identified and remediated over 25+ potential vulnerabilities, enhancing product security for the penetration testing and SOC2 certification",
-            "Implemented SSO authorization using OAuth and SAML, integrating with more than 20 partners",
-            "Created and maintained CI/CD pipelines using GitLab CI/CD, ensuring efficient development processes",
-            "Implemented numerous RESTful APIs, developing dozens of API endpoints from scratch with strict performance requirements",
-            "Designing and developing the backend for complex analytics web components",
-            "Integrating AWS and GCP infrastructure solutions",
-            "Guided strategic decision-making to tackle intricate challenges"
+            "Developed multi-tenant SaaS accommodating hundreds of parallel tenants per application instance, exceeding gigabyte-scale throughput",
+            "Led backend development in the team, onboarded and mentored 3 newcomers to the team, allowing them to quickly get up to speed on work processes",
+            "Identified and fixed over 25+ potential vulnerabilities, enhancing product security for penetration testing and SOC2 certification",
+            "Integrated with more than 10 partners solutions using Rest API, OAuth, OIDC, and SAML significantly expanding the innovative functionality of the product with strict performance requirements",
+            "Repeatedly took initiative by making improvements to scrum processes improving the process and efficiency of development within the team",
+            "Skills and Tech: C#, SQL, ASP.NET, MySQL, MongoDB, Kafka, Redis, Docker, Kubernetes, GitLab ci/cd, Websockets, OAuth, SAML, Clickhouse, Grafana, JavaScript, REST Web Services, Postman, Linux, Google Cloud, ADO.NET, JIRA, NoSQL, business development, test-driven production code, GitFlow, PostgreSQL"
           ]
         },
         {
           "title": "Customer-Support Team Highlights:",
           "bullets": [
-            "Engaged in dozens of client calls to provide technical expertise and recommend optimal integration solutions",
-            "Supporting client environments, handling numerous technical inquiries, ensuring prompt resolution and client satisfaction",
-            "Clients assistance in technical discussions and troubleshooting",
-            "Provided support to clients in designing and implementing integration solutions",
-            "Workflow, deployment, architecture, use-case sequence, and data-flow diagrams"
-          ]
-        },
-        {
-          "title": "Soft-skills Highlights:",
-          "bullets": [
-            "Mentored 4 newcomers to the team, providing guidance and accelerating their onboarding process",
-            "Demonstrated initiative by suggesting improvements in development planning and team organization",
-            "Actively participated in retrospectives and grooming sessions",
-            "Maintained composure and emotional control in high-stress situations",
-            "Demonstrated adaptability when working with new colleagues",
-            "Displayed a problem-solving approach, consistently seeking effective solutions rather than superficial fixes"
+            "Engaged in dozens of client calls and supported client environments to provide technical expertise and recommend optimal integration solutions, successfully executing contracts and significantly increasing company revenue through successful deals",
+            "Prepared and presented workflow, deployment, architecture, use-case sequence, and data-flow diagrams to help partners understand technical processes"
           ]
         }
       ]
     }
   ],
   "skills": [
+    "Hard worker",
+    "Proactive",
     "Backend, Frontend",
     "Containerization",
     "Microservices Architecture",
@@ -108,31 +81,26 @@
     "OOP, DDD, SOLID, Design Patterns",
     "Clean architecture and code",
     "Integration, Unit and Stress testing",
-    "Multithreading",
-    "Scrum",
-    "Jira, Azure DevOps",
-    "Critical Thinking"
+    "Multithreading, Asynchronous Programming"
   ],
   "stack": {
     "backend": [
-      "ASP.NET Core",
+      "C#",
+      "ASP.NET",
+      "SQL (MySQL, PostgreSQL)",
       "Kafka",
-      "MySQL, PostgreSQL",
+      "Node.js",
+      "WebSockets",
       "Redis",
       "MongoDB",
-      "Elasticsearch",
-      "WebSockets",
-      "RabbitMQ",
-      "ClickHouse",
-      "gRPC",
-      "Orleans Framework"
+      "Elasticsearch"
     ],
     "frontend": {
       "tools": [
-        "React",
-        "Redux (RTK)",
+        "React.js",
+        "Redux",
         "JavaScript, TypeScript",
-        "HTML, CSS, Sass"
+        "HTML, CSS"
       ],
       "libs": [
         "tsParticles (particles.js)",
@@ -143,13 +111,9 @@
     "infrastructure": [
       "Docker",
       "Kubernetes",
-      "AWS (Amazon Web Services)",
+      "AWS, Azure",
       "GitHub Actions, GitLab CI/CD",
-      "NGinx",
-      "Azure",
-      "Grafana",
-      "Prometheus",
-      "Terraform"
+      "NGinx"
     ]
   },
   "certificates": [
