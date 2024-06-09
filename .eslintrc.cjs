@@ -8,8 +8,8 @@ module.exports = {
     'plugin:react/jsx-runtime',
     'plugin:react-hooks/recommended',
   ],
-  ignorePatterns: ['dist', '.eslintrc.cjs'],
-  parserOptions: {ecmaVersion: 'latest', sourceType: 'module'},
+  ignorePatterns: ['dist', '.eslintrc.cjs', 'configs', 'node_modules', 'public'],
+  parserOptions: {ecmaVersion: 'latest', sourceType: 'module', project: ['./tsconfig.json']},
   settings: {react: {version: '18.2'}},
   plugins: ['react-refresh'],
   rules: {
@@ -19,7 +19,6 @@ module.exports = {
       {allowConstantExport: true},
     ],
     'react/jsx-filename-extension': [1, {extensions: ['.js', '.jsx', '.ts', '.tsx']}],
-    "indent": ["warn", 2],
     "@typescript-eslint/no-explicit-any": "off",
     "react/no-unescaped-entities": "off"
   }
